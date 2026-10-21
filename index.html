@@ -48,15 +48,30 @@
   <!-- Filters & Controls Panel -->
   <section class="controls-panel">
     <div class="filters-row">
-      <!-- 1. Campaign Selector -->
+      <!-- 1. Campaign Multi-Select -->
       <div class="filter-group">
         <div class="filter-label">
-          <span>Campaña en Gantt (Desde C1-4 2027)</span>
+          <span>Campañas</span>
           <label class="inline-check" style="font-size:10.5px;text-transform:none;font-weight:500" title="Mostrar también las campañas de 2026 (ADV 202610 a 202618)">
             <input type="checkbox" id="chkInclude2026" /> +2026
           </label>
         </div>
-        <select id="campaignSelect" class="filter-select"></select>
+        <button type="button" id="campaignDropdownBtn" class="multi-select-btn">
+          <span class="btn-text">Campañas</span>
+          <span>▾</span>
+        </button>
+        <div id="campaignDropdown" class="multi-dropdown">
+          <div class="multi-dropdown-header">
+            <input type="text" id="campaignSearchInput" class="filter-input" placeholder="Buscar campaña (ej. 8-11, 2027)..." />
+            <div class="multi-dropdown-actions">
+              <button type="button" id="campaignSelectAll" class="link-btn">Todas</button>
+              <button type="button" id="campaignSelect2027" class="link-btn">2027</button>
+              <button type="button" id="campaignSelect2028" class="link-btn">2028</button>
+              <button type="button" id="campaignClearAll" class="link-btn">Limpiar</button>
+            </div>
+          </div>
+          <div id="campaignOptionsList" class="multi-options-list"></div>
+        </div>
       </div>
 
       <!-- 2. Brand Filter -->
