@@ -30,11 +30,17 @@
       <button type="button" id="btnResetData" class="btn btn-secondary" style="display:none" title="Volver a los datos originales del cronograma base">
         ↺ Restaurar base original
       </button>
+      <button type="button" id="btnExportPdfGantt" class="btn btn-primary" title="Generar e imprimir / guardar en PDF el Diagrama de Gantt con las actividades filtradas/seleccionadas">
+        📄 PDF Gantt
+      </button>
+      <button type="button" id="btnExportPdfCalendar" class="btn btn-primary" style="background:#7c3aed;border-color:#6d28d9" title="Generar PDF del Calendario Mensual (1 hoja apaisada por cada mes) con las actividades seleccionadas">
+        📅 PDF Calendario (1 mes/hoja)
+      </button>
       <button type="button" id="btnExportIcs" class="btn btn-secondary" title="Descargar calendario .ics con las actividades y campañas filtradas actualmente">
-        📅 Exportar .ICS
+        📅 .ICS
       </button>
       <button type="button" id="btnExportCsv" class="btn btn-secondary" title="Descargar tabla .csv compatible con Excel de la vista filtrada">
-        📊 Exportar .CSV
+        📊 .CSV
       </button>
     </div>
   </header>
@@ -134,10 +140,19 @@
     <div class="sub-toolbar">
       <div class="view-tabs">
         <button type="button" id="tabGantt" class="tab-btn active">📊 Diagrama de Gantt</button>
+        <button type="button" id="tabCalendar" class="tab-btn">📅 Calendario Minimalista</button>
         <button type="button" id="tabMatrix" class="tab-btn">📋 Matriz Completa de Fechas (C1-4 2027 → 2029)</button>
       </div>
 
-      <div class="gantt-toolbar-options">
+      <div class="selection-toolbar" id="selectionToolbar">
+        <span class="selection-pill" id="selectionCountBadge">
+          <input type="checkbox" id="chkMasterSelect" title="Seleccionar o deseleccionar todas las actividades visibles" />
+          <span id="selectionText">Todas visibles (sin filtro manual)</span>
+        </span>
+        <button type="button" id="btnClearSelection" class="link-btn" style="display:none;color:#ef4444">✕ Desmarcar</button>
+      </div>
+
+      <div class="gantt-toolbar-options" id="ganttToolbarOptions">
         <label class="inline-check">
           <input type="checkbox" id="chkGroupProceso" checked />
           Agrupar por Proceso
@@ -173,6 +188,17 @@
         </button>
       </div>
 
+      <!-- Calendar Toolbar Options -->
+      <div class="calendar-toolbar-options" id="calendarToolbarOptions" style="display:none">
+        <button type="button" id="btnCalPrevMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">◀ Mes anterior</button>
+        <span id="calCurrentMonthLabel" style="font-weight:700;font-size:12px;color:var(--text-main)">Todos los meses</span>
+        <button type="button" id="btnCalNextMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">Mes siguiente ▶</button>
+        <label class="inline-check">
+          <input type="checkbox" id="chkCalShowAllMonths" checked />
+          Ver todos los meses de la campaña
+        </label>
+      </div>
+
       <div class="kpi-chips">
         <span class="kpi-chip"><span class="legend-dot dot-livva"></span> Livva</span>
         <span class="kpi-chip"><span class="legend-dot dot-azzorti"></span> Azzorti</span>
@@ -190,6 +216,7 @@
     <div id="ganttWrapper" class="gantt-wrapper">
       <div class="gantt-left-pane">
         <div class="gantt-left-header">
+          <span style="display:flex;align-items:center;justify-content:center"><input type="checkbox" id="chkSelectAllGantt" title="Seleccionar/Deseleccionar todas las actividades visibles" /></span>
           <span>No</span>
           <span>Actividad / Proceso</span>
           <span>Área</span>
@@ -203,6 +230,11 @@
         <div id="ganttTimelineHeader" class="gantt-timeline-header"></div>
         <div id="ganttTimelineBody" class="gantt-timeline-body"></div>
       </div>
+    </div>
+
+    <!-- Minimalist Calendar View -->
+    <div id="calendarWrapper" class="calendar-wrapper" style="display:none">
+      <div class="calendar-container" id="calendarContainer"></div>
     </div>
 
     <!-- Matrix Table View -->

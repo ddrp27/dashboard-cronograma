@@ -7,20 +7,22 @@
   // State
   let rawData = null;
   let state = {
-    include2026: false, // By default starts at C1-4 2027 (ADV 202701 / NAL 202704)
-    selectedCampaignId: "ADV_202701_NAL_202704", // Default C1-4 2027
-    campaignEndId: "ALL_FROM_START",
-    ganttMultiCampaignMode: false, // false = single campaign Gantt, true = multi-campaign range
+    include2026: false, // Por defecto inicia en C1-4 2027 (ADV 202701 / NAL 202704)
+    selectedCampaignId: "ADV_202701_NAL_202704", // C1-4 2027 por defecto
+    ganttMultiCampaignMode: false,
     brand: "ALL", // ALL, Livva, Azzorti, Azz Livv
-    includeSharedBrand: true, // include "Azz Livv" when Livva or Azzorti is selected
+    includeSharedBrand: true,
     selectedProcesos: new Set(),
     selectedAreas: new Set(),
+    selectedActivityNos: new Set(), // Checkboxes de actividades seleccionadas manualmente
     searchQuery: "",
-    viewMode: "gantt", // "gantt" | "matrix"
+    viewMode: "gantt", // "gantt" | "calendar" | "matrix"
     groupByProceso: true,
     collapsedGroups: new Set(),
     sortBy: "date", // "date" | "no" | "proceso"
     zoom: "week", // "day" | "week" | "month"
+    calCurrentMonthIndex: 0,
+    calShowAllMonths: true,
   };
 
   // DOM Elements
@@ -30,6 +32,8 @@
     els.fileInput = document.getElementById("excelFileInput");
     els.btnUpload = document.getElementById("btnUploadExcel");
     els.btnResetData = document.getElementById("btnResetData");
+    els.btnExportPdfGantt = document.getElementById("btnExportPdfGantt");
+    els.btnExportPdfCalendar = document.getElementById("btnExportPdfCalendar");
     els.btnExportIcs = document.getElementById("btnExportIcs");
     els.btnExportCsv = document.getElementById("btnExportCsv");
     els.statusBadge = document.getElementById("dataStatusBadge");
@@ -50,24 +54,50 @@
     els.searchInput = document.getElementById("activitySearchInput");
     els.btnResetFilters = document.getElementById("btnResetFilters");
     els.btnQuickEstampacion = document.getElementById("btnQuickEstampacion");
+
     els.tabGantt = document.getElementById("tabGantt");
+    els.tabCalendar = document.getElementById("tabCalendar");
     els.tabMatrix = document.getElementById("tabMatrix");
+
     els.chkGroupProceso = document.getElementById("chkGroupProceso");
     els.btnExpandAll = document.getElementById("btnExpandAll");
     els.btnCollapseAll = document.getElementById("btnCollapseAll");
     els.sortSelect = document.getElementById("sortSelect");
     els.zoomSelect = document.getElementById("zoomSelect");
     els.btnCenterGantt = document.getElementById("btnCenterGantt");
+
+    // Selection toolbar
+    els.selectionToolbar = document.getElementById("selectionToolbar");
+    els.selectionCountBadge = document.getElementById("selectionCountBadge");
+    els.chkMasterSelect = document.getElementById("chkMasterSelect");
+    els.selectionText = document.getElementById("selectionText");
+    els.btnClearSelection = document.getElementById("btnClearSelection");
+    els.chkSelectAllGantt = document.getElementById("chkSelectAllGantt");
+
+    // Calendar toolbar options
+    els.ganttToolbarOptions = document.getElementById("ganttToolbarOptions");
+    els.calendarToolbarOptions = document.getElementById("calendarToolbarOptions");
+    els.btnCalPrevMonth = document.getElementById("btnCalPrevMonth");
+    els.btnCalNextMonth = document.getElementById("btnCalNextMonth");
+    els.calCurrentMonthLabel = document.getElementById("calCurrentMonthLabel");
+    els.chkCalShowAllMonths = document.getElementById("chkCalShowAllMonths");
+
     els.kpiActivities = document.getElementById("kpiActivities");
     els.kpiProcesses = document.getElementById("kpiProcesses");
     els.kpiDateRange = document.getElementById("kpiDateRange");
+
     els.ganttWrapper = document.getElementById("ganttWrapper");
     els.ganttLeftBody = document.getElementById("ganttLeftBody");
     els.ganttTimelineHeader = document.getElementById("ganttTimelineHeader");
     els.ganttTimelineBody = document.getElementById("ganttTimelineBody");
+
+    els.calendarWrapper = document.getElementById("calendarWrapper");
+    els.calendarContainer = document.getElementById("calendarContainer");
+
     els.matrixWrapper = document.getElementById("matrixWrapper");
     els.matrixTableHead = document.getElementById("matrixTableHead");
     els.matrixTableBody = document.getElementById("matrixTableBody");
+
     els.tooltip = document.getElementById("ganttTooltip");
     els.dropzoneOverlay = document.getElementById("dropzoneOverlay");
   }
@@ -164,7 +194,6 @@
     if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
     if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(s)) {
       const parts = s.split("/");
-      // Handle DD/MM/YYYY or MM/DD/YYYY
       const p0 = parseInt(parts[0], 10);
       const p1 = parseInt(parts[1], 10);
       const yr = parts[2];
@@ -194,7 +223,6 @@
     return { shortLabel: `${advS}-${nalS}`, fullLabel: `ADV ${advS} / NAL ${nalS}` };
   }
 
-  // Convert 2D array of rows (from Excel or CSV) into structured cronograma object
   function parseGridToCronograma(grid, fileName) {
     if (!grid || grid.length < 4) {
       throw new Error("El archivo no tiene el formato esperado (mínimo 4 filas).");
@@ -275,7 +303,6 @@
     };
   }
 
-  // Pure JS CSV parser
   function parseCSVText(text) {
     const rows = [];
     let row = [];
@@ -322,11 +349,9 @@
     return rows;
   }
 
-  // Native fallback .xlsx reader using browser's DecompressionStream (works 100% offline without CDN!)
   async function parseXlsxBufferNative(arrayBuffer) {
     const bytes = new Uint8Array(arrayBuffer);
     const view = new DataView(arrayBuffer);
-    // Find End of Central Directory (EOCD)
     let eocdOffset = -1;
     for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 65557); i--) {
       if (view.getUint32(i, true) === 0x06054b50) {
@@ -374,7 +399,7 @@
         const ab = await resp.arrayBuffer();
         return decoder.decode(new Uint8Array(ab));
       }
-      throw new Error("Método de compresión ZIP no soportado: " + info.compression);
+      throw new Error("Compresión ZIP no soportada: " + info.compression);
     }
 
     const sharedStrings = [];
@@ -393,10 +418,9 @@
       }
     }
 
-    // Find first worksheet
     const sheetKey = Object.keys(files).find((k) => /^xl\/worksheets\/sheet\d+\.xml$/.test(k)) || "xl/worksheets/sheet1.xml";
     const sheetXml = await extractXmlText(sheetKey);
-    if (!sheetXml) throw new Error("No se encontró la hoja de cálculo en el archivo .xlsx");
+    if (!sheetXml) throw new Error("No se encontró la hoja en el archivo .xlsx");
 
     const sheetDoc = domParser.parseFromString(sheetXml, "application/xml");
     const rowNodes = sheetDoc.getElementsByTagName("row");
@@ -474,6 +498,7 @@
       els.statusBadge.style.background = "rgba(16, 185, 129, 0.25)";
       els.statusBadge.style.color = "#6ee7b7";
 
+      state.selectedActivityNos.clear();
       populateFilterControls(true);
       renderAll();
     } catch (err) {
@@ -482,7 +507,6 @@
     }
   }
 
-  // Active campaigns based on C1-4 2027 toggle
   function getActiveCampaigns() {
     if (!rawData || !rawData.campaigns) return [];
     if (state.include2026) return rawData.campaigns;
@@ -495,7 +519,6 @@
       state.selectedCampaignId = camps[0].id;
     }
 
-    // Populate Campaign Select
     els.campaignSelect.innerHTML = "";
     for (const c of camps) {
       const opt = document.createElement("option");
@@ -505,7 +528,6 @@
       els.campaignSelect.appendChild(opt);
     }
 
-    // Collect unique Procesos and Areas with counts
     const procesoCounts = new Map();
     const areaCounts = new Map();
     for (const act of rawData.activities) {
@@ -600,7 +622,6 @@
     if (!rawData) return [];
     const q = state.searchQuery.trim().toLowerCase();
     return rawData.activities.filter((act) => {
-      // Brand filter
       if (state.brand !== "ALL") {
         if (state.brand === "Azz Livv") {
           if (act.marca !== "Azz Livv") return false;
@@ -612,11 +633,8 @@
           }
         }
       }
-      // Proceso filter
       if (!state.selectedProcesos.has(act.proceso)) return false;
-      // Area filter
       if (!state.selectedAreas.has(act.area)) return false;
-      // Search filter
       if (q) {
         const matchNo = String(act.no).includes(q) || `#${act.no}` === q;
         const matchText =
@@ -630,10 +648,36 @@
     });
   }
 
+  // Returns activities respecting explicit checkbox selection (if any selected, otherwise all filtered)
+  function getEffectiveSelectedActivities(filtered) {
+    if (state.selectedActivityNos.size > 0) {
+      return filtered.filter((a) => state.selectedActivityNos.has(a.no));
+    }
+    return filtered;
+  }
+
   function badgeClassForBrand(marca) {
     if (marca === "Livva") return "Livva";
     if (marca === "Azzorti") return "Azzorti";
     return "AzzLivv";
+  }
+
+  function updateSelectionToolbar(filtered) {
+    const selCount = state.selectedActivityNos.size;
+    if (selCount > 0) {
+      els.selectionCountBadge.classList.add("has-selection");
+      els.selectionText.textContent = `${selCount} actividad${selCount > 1 ? "es" : ""} seleccionada${selCount > 1 ? "s" : ""}`;
+      els.btnClearSelection.style.display = "inline-block";
+      const allChecked = filtered.length > 0 && filtered.every((a) => state.selectedActivityNos.has(a.no));
+      els.chkMasterSelect.checked = allChecked;
+      if (els.chkSelectAllGantt) els.chkSelectAllGantt.checked = allChecked;
+    } else {
+      els.selectionCountBadge.classList.remove("has-selection");
+      els.selectionText.textContent = `Todas visibles (${filtered.length} act.)`;
+      els.btnClearSelection.style.display = "none";
+      els.chkMasterSelect.checked = false;
+      if (els.chkSelectAllGantt) els.chkSelectAllGantt.checked = false;
+    }
   }
 
   function renderAll() {
@@ -641,30 +685,47 @@
     const activeCamps = getActiveCampaigns();
     const currentCamp = activeCamps.find((c) => c.id === state.selectedCampaignId) || activeCamps[0];
 
+    updateSelectionToolbar(filtered);
+
     // Update KPIs
-    const uniqueProcs = new Set(filtered.map((a) => a.proceso));
-    els.kpiActivities.innerHTML = `Actividades: <strong>${filtered.length}</strong> / ${rawData.activities.length}`;
+    const effective = getEffectiveSelectedActivities(filtered);
+    const uniqueProcs = new Set(effective.map((a) => a.proceso));
+    els.kpiActivities.innerHTML = `Actividades: <strong>${effective.length}</strong> ${state.selectedActivityNos.size > 0 ? "(seleccionadas)" : `de ${filtered.length}`}`;
     els.kpiProcesses.innerHTML = `Procesos: <strong>${uniqueProcs.size}</strong>`;
 
     if (state.viewMode === "gantt") {
       els.ganttWrapper.style.display = "flex";
+      els.calendarWrapper.style.display = "none";
       els.matrixWrapper.style.display = "none";
+      els.ganttToolbarOptions.style.display = "flex";
+      els.calendarToolbarOptions.style.display = "none";
       renderGantt(filtered, currentCamp, activeCamps);
+    } else if (state.viewMode === "calendar") {
+      els.ganttWrapper.style.display = "none";
+      els.calendarWrapper.style.display = "block";
+      els.matrixWrapper.style.display = "none";
+      els.ganttToolbarOptions.style.display = "none";
+      els.calendarToolbarOptions.style.display = "flex";
+      renderCalendar(filtered, currentCamp, activeCamps);
     } else {
       els.ganttWrapper.style.display = "none";
+      els.calendarWrapper.style.display = "none";
       els.matrixWrapper.style.display = "block";
+      els.ganttToolbarOptions.style.display = "none";
+      els.calendarToolbarOptions.style.display = "none";
       renderMatrix(filtered, activeCamps);
     }
   }
 
+  /* ==========================================================================
+     GANTT VIEW
+     ========================================================================== */
   function renderGantt(filtered, currentCamp, activeCamps) {
     if (!currentCamp) return;
 
-    // Prepare items with start/end dates
     const items = [];
     let minDate = null;
     let maxDate = null;
-
     const campsToPlot = state.ganttMultiCampaignMode ? activeCamps : [currentCamp];
 
     for (const act of filtered) {
@@ -674,7 +735,6 @@
         if (!endStr) continue;
         const endDt = parseYMD(endStr);
         if (!endDt) continue;
-        // Skip obvious typo dates from 2026 in 2027/2028 columns when computing min/max if multi-campaign, or still show them
         const dhVal = act.dh[camp.id] ?? act.dias ?? 0;
         const startDt = subtractBusinessDays(endStr, dhVal) || endDt;
         bars.push({
@@ -709,7 +769,6 @@
 
     els.kpiDateRange.innerHTML = `Rango: <strong>${formatHumanDate(formatYMD(minDate))} → ${formatHumanDate(formatYMD(maxDate))}</strong>`;
 
-    // Sort items
     items.sort((a, b) => {
       if (state.sortBy === "no") return a.act.no - b.act.no;
       if (state.sortBy === "proceso") {
@@ -724,7 +783,6 @@
       return a.act.no - b.act.no;
     });
 
-    // Build rows (either grouped by Proceso or flat)
     const displayRows = [];
     if (state.groupByProceso) {
       const groupsMap = new Map();
@@ -764,16 +822,14 @@
           type: "group",
           proceso: g.proceso,
           count: g.children.length,
+          children: g.children,
           minStart: g.minStart,
           maxEnd: g.maxEnd,
           collapsed: isCollapsed,
         });
         if (!isCollapsed) {
           for (const child of g.children) {
-            displayRows.push({
-              type: "item",
-              item: child,
-            });
+            displayRows.push({ type: "item", item: child });
           }
         }
       }
@@ -783,7 +839,6 @@
       }
     }
 
-    // Timeline geometry
     const totalDays = Math.max(30, daysBetween(minDate, maxDate) + 1);
     let pxPerDay = 18;
     if (state.zoom === "day") pxPerDay = 28;
@@ -792,12 +847,10 @@
 
     const totalWidth = Math.ceil(totalDays * pxPerDay);
 
-    // Build Header (Months + Ticks)
     const monthsHtml = [];
     const ticksHtml = [];
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-    let curMonthStart = new Date(minDate.getTime());
     let dayIdx = 0;
     while (dayIdx < totalDays) {
       const d = addDays(minDate, dayIdx);
@@ -835,7 +888,6 @@
         i += span;
       }
     } else {
-      // Month zoom: 15-day ticks
       let i = 0;
       while (i < totalDays) {
         const d = addDays(minDate, i);
@@ -855,7 +907,6 @@
       </div>
     `;
 
-    // Render Left & Right Rows
     const leftHtml = [];
     const rightHtml = [];
 
@@ -867,10 +918,17 @@
           rowObj.minStart && rowObj.maxEnd
             ? `${formatHumanDate(formatYMD(rowObj.minStart))} – ${formatHumanDate(formatYMD(rowObj.maxEnd))}`
             : "Sin fechas";
+        const allGroupChecked = rowObj.children.every((c) => state.selectedActivityNos.has(c.act.no));
+
         leftHtml.push(`
           <div class="gantt-row-left group-row" data-proceso="${rowObj.proceso}">
-            <span>${icon} 📁 ${rowObj.proceso} <small style="font-weight:500;color:#475569">(${rowObj.count} act.)</small></span>
-            <span style="font-size:11px;font-weight:500;color:#475569">${rangeTxt}</span>
+            <span style="display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation()">
+              <input type="checkbox" class="group-checkbox" data-proceso="${rowObj.proceso}" ${allGroupChecked ? "checked" : ""} title="Seleccionar/Deseleccionar todas las actividades de este proceso" />
+            </span>
+            <span class="group-title-click">📁 ${rowObj.proceso} <small style="font-weight:500;color:#475569">(${rowObj.count} act.)</small></span>
+            <span style="font-size:11px;font-weight:500;color:#475569;display:flex;align-items:center;gap:6px">
+              ${rangeTxt} <span style="font-size:10px">${icon}</span>
+            </span>
           </div>
         `);
 
@@ -886,8 +944,13 @@
       } else {
         const { act, bars, primaryDh } = rowObj.item;
         const bClass = badgeClassForBrand(act.marca);
+        const isChecked = state.selectedActivityNos.has(act.no);
+
         leftHtml.push(`
-          <div class="gantt-row-left" title="#${act.no} - ${act.actividad}">
+          <div class="gantt-row-left ${isChecked ? "selected-row" : ""}" title="#${act.no} - ${act.actividad}">
+            <span style="display:flex;align-items:center;justify-content:center">
+              <input type="checkbox" class="act-checkbox" data-no="${act.no}" ${isChecked ? "checked" : ""} />
+            </span>
             <span class="cell-no">#${act.no}</span>
             <span class="cell-act">${act.actividad}</span>
             <span class="cell-area">${act.area}</span>
@@ -934,7 +997,6 @@
       }
     }
 
-    // Today line
     const todayDt = parseYMD(TODAY_STR);
     let todayHtml = "";
     if (todayDt && todayDt >= minDate && todayDt <= maxDate) {
@@ -954,17 +1016,42 @@
       </div>
     `;
 
-    // Attach group collapse listeners
+    // Group collapse and checkbox handlers
     els.ganttLeftBody.querySelectorAll(".gantt-row-left.group-row").forEach((el) => {
+      const proc = el.getAttribute("data-proceso");
       el.addEventListener("click", () => {
-        const proc = el.getAttribute("data-proceso");
         if (state.collapsedGroups.has(proc)) state.collapsedGroups.delete(proc);
         else state.collapsedGroups.add(proc);
         renderGantt(filtered, currentCamp, activeCamps);
       });
+
+      const grpChk = el.querySelector(".group-checkbox");
+      if (grpChk) {
+        grpChk.addEventListener("change", (e) => {
+          e.stopPropagation();
+          const shouldCheck = grpChk.checked;
+          const matchingActs = filtered.filter((a) => a.proceso === proc);
+          for (const a of matchingActs) {
+            if (shouldCheck) state.selectedActivityNos.add(a.no);
+            else state.selectedActivityNos.delete(a.no);
+          }
+          renderAll();
+        });
+      }
     });
 
-    // Attach tooltip listeners
+    // Individual activity checkbox handlers
+    els.ganttLeftBody.querySelectorAll(".act-checkbox").forEach((chk) => {
+      chk.addEventListener("change", (e) => {
+        e.stopPropagation();
+        const actNo = parseInt(chk.getAttribute("data-no"), 10);
+        if (chk.checked) state.selectedActivityNos.add(actNo);
+        else state.selectedActivityNos.delete(actNo);
+        renderAll();
+      });
+    });
+
+    // Tooltip listeners
     const actMap = new Map(rawData.activities.map((a) => [String(a.no), a]));
     els.ganttTimelineBody.querySelectorAll("[data-no], [data-group]").forEach((barEl) => {
       barEl.addEventListener("mouseenter", (e) => {
@@ -1019,13 +1106,257 @@
     els.tooltip.style.top = `${Math.max(8, y)}px`;
   }
 
+  /* ==========================================================================
+     MINIMALIST MONTHLY CALENDAR VIEW
+     ========================================================================== */
+  function renderCalendar(filtered, currentCamp, activeCamps) {
+    if (!currentCamp) return;
+    const effective = getEffectiveSelectedActivities(filtered);
+
+    // Collect all scheduled delivery dates
+    const eventsByDate = new Map();
+    const monthsMap = new Map(); // "YYYY-MM" -> { year, month, events: [] }
+
+    const campsToPlot = state.ganttMultiCampaignMode ? activeCamps : [currentCamp];
+
+    for (const act of effective) {
+      for (const camp of campsToPlot) {
+        const fStr = act.fechas[camp.id];
+        if (!fStr) continue;
+        const dt = parseYMD(fStr);
+        if (!dt) continue;
+
+        const ym = fStr.slice(0, 7);
+        const ev = {
+          dateStr: fStr,
+          date: dt,
+          act,
+          camp,
+          dh: act.dh[camp.id] ?? act.dias ?? 0,
+        };
+
+        if (!eventsByDate.has(fStr)) eventsByDate.set(fStr, []);
+        eventsByDate.get(fStr).push(ev);
+
+        if (!monthsMap.has(ym)) {
+          monthsMap.set(ym, {
+            year: dt.getFullYear(),
+            month: dt.getMonth(),
+            ym,
+            events: [],
+          });
+        }
+        monthsMap.get(ym).events.push(ev);
+      }
+    }
+
+    const sortedMonthKeys = Array.from(monthsMap.keys()).sort();
+    if (sortedMonthKeys.length === 0) {
+      els.calendarContainer.innerHTML = `
+        <div style="text-align:center;padding:60px 20px;color:#64748b">
+          <h3 style="font-size:16px;margin-bottom:8px">No hay fechas programadas en la selección actual</h3>
+          <p>Selecciona otra campaña o ajusta los filtros de proceso/marca/área para visualizar el calendario.</p>
+        </div>
+      `;
+      els.calCurrentMonthLabel.textContent = "Sin fechas";
+      return;
+    }
+
+    // Clamp current month index
+    if (state.calCurrentMonthIndex >= sortedMonthKeys.length) {
+      state.calCurrentMonthIndex = sortedMonthKeys.length - 1;
+    }
+    if (state.calCurrentMonthIndex < 0) {
+      state.calCurrentMonthIndex = 0;
+    }
+
+    const monthNames = [
+      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+    ];
+
+    if (state.calShowAllMonths) {
+      els.calCurrentMonthLabel.textContent = `Todos los meses (${sortedMonthKeys.length})`;
+    } else {
+      const activeKey = sortedMonthKeys[state.calCurrentMonthIndex];
+      const mObj = monthsMap.get(activeKey);
+      els.calCurrentMonthLabel.textContent = `${monthNames[mObj.month]} ${mObj.year} (${state.calCurrentMonthIndex + 1} de ${sortedMonthKeys.length})`;
+    }
+
+    const keysToRender = state.calShowAllMonths ? sortedMonthKeys : [sortedMonthKeys[state.calCurrentMonthIndex]];
+    const sheetsHtml = [];
+
+    for (const ym of keysToRender) {
+      const mInfo = monthsMap.get(ym);
+      const yr = mInfo.year;
+      const mo = mInfo.month;
+
+      // Determine calendar grid (Monday to Sunday)
+      const firstDayOfMonth = new Date(yr, mo, 1, 12, 0, 0);
+      let startingDow = firstDayOfMonth.getDay(); // 0 is Sun, 1 is Mon...
+      startingDow = startingDow === 0 ? 6 : startingDow - 1; // 0 is Mon, 6 is Sun
+
+      const lastDayOfMonth = new Date(yr, mo + 1, 0, 12, 0, 0);
+      const totalDaysInMonth = lastDayOfMonth.getDate();
+
+      const prevMonthLastDay = new Date(yr, mo, 0, 12, 0, 0).getDate();
+
+      const weeks = [];
+      let currentWeek = [];
+
+      // Preceding days from previous month
+      for (let p = startingDow - 1; p >= 0; p--) {
+        const dayNum = prevMonthLastDay - p;
+        const prevDt = new Date(yr, mo - 1, dayNum, 12, 0, 0);
+        currentWeek.push({
+          date: prevDt,
+          dateStr: formatYMD(prevDt),
+          dayNum,
+          isOtherMonth: true,
+        });
+      }
+
+      // Days of the month
+      for (let d = 1; d <= totalDaysInMonth; d++) {
+        const curDt = new Date(yr, mo, d, 12, 0, 0);
+        currentWeek.push({
+          date: curDt,
+          dateStr: formatYMD(curDt),
+          dayNum: d,
+          isOtherMonth: false,
+        });
+        if (currentWeek.length === 7) {
+          weeks.push(currentWeek);
+          currentWeek = [];
+        }
+      }
+
+      // Trailing days from next month
+      if (currentWeek.length > 0) {
+        let nextDay = 1;
+        while (currentWeek.length < 7) {
+          const nextDt = new Date(yr, mo + 1, nextDay, 12, 0, 0);
+          currentWeek.push({
+            date: nextDt,
+            dateStr: formatYMD(nextDt),
+            dayNum: nextDay,
+            isOtherMonth: true,
+          });
+          nextDay++;
+        }
+        weeks.push(currentWeek);
+      }
+
+      // Render week rows
+      const rowsHtml = [];
+      for (const w of weeks) {
+        const cellsHtml = [];
+        for (const cell of w) {
+          const isToday = cell.dateStr === TODAY_STR;
+          const dayEvents = eventsByDate.get(cell.dateStr) || [];
+
+          const eventsHtml = [];
+          for (const ev of dayEvents) {
+            const bClass = badgeClassForBrand(ev.act.marca);
+            eventsHtml.push(`
+              <div class="calendar-event-card event-${bClass}" data-no="${ev.act.no}" data-camp="${ev.camp.shortLabel}" data-campfull="${ev.camp.fullLabel}" data-start="${formatYMD(subtractBusinessDays(ev.dateStr, ev.dh))}" data-end="${ev.dateStr}" data-dh="${ev.dh}" title="#${ev.act.no} [${ev.act.marca}] ${ev.act.actividad} (${ev.dh} DH)">
+                <strong>[${ev.act.marca}]</strong> #${ev.act.no} ${ev.act.actividad}
+              </div>
+            `);
+          }
+
+          cellsHtml.push(`
+            <td class="calendar-day-cell ${cell.isOtherMonth ? "day-other-month" : ""} ${isToday ? "day-today" : ""}">
+              <div class="day-num-wrap">
+                <span class="day-num ${cell.isOtherMonth ? "day-num-other" : ""}">${cell.dayNum}</span>
+                ${isToday ? `<span class="today-chip">Hoy</span>` : ""}
+              </div>
+              <div class="calendar-events-list">
+                ${eventsHtml.join("")}
+              </div>
+            </td>
+          `);
+        }
+        rowsHtml.push(`<tr>${cellsHtml.join("")}</tr>`);
+      }
+
+      sheetsHtml.push(`
+        <div class="calendar-month-sheet">
+          <div class="calendar-month-header">
+            <div>
+              <div class="calendar-month-title">${monthNames[mo]} ${yr}</div>
+              <div style="font-size:12px;color:#64748b;margin-top:2px">
+                ${mInfo.events.length} actividad${mInfo.events.length > 1 ? "es" : ""} programada${mInfo.events.length > 1 ? "s" : ""}
+                ${state.selectedActivityNos.size > 0 ? "• Filtro manual por checkbox" : ""}
+              </div>
+            </div>
+            <div class="calendar-campaign-meta">
+              <span class="calendar-campaign-badge">${currentCamp.shortLabel} (${currentCamp.fullLabel})</span>
+              <span class="calendar-campaign-sub">Cronograma Maestro Azzorti &amp; Livva</span>
+            </div>
+          </div>
+
+          <table class="calendar-grid-table">
+            <thead>
+              <tr>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+                <th>Sábado</th>
+                <th>Domingo</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml.join("")}
+            </tbody>
+          </table>
+        </div>
+      `);
+    }
+
+    els.calendarContainer.innerHTML = sheetsHtml.join("");
+
+    // Attach tooltips to calendar event cards
+    const actMap = new Map(rawData.activities.map((a) => [String(a.no), a]));
+    els.calendarContainer.querySelectorAll(".calendar-event-card").forEach((card) => {
+      card.addEventListener("mouseenter", (e) => {
+        const act = actMap.get(card.getAttribute("data-no"));
+        if (!act) return;
+        els.tooltip.innerHTML = `
+          <h4>#${act.no} — ${act.actividad}</h4>
+          <div class="tooltip-grid">
+            <span class="lbl">Marca:</span><span><strong>${act.marca}</strong></span>
+            <span class="lbl">Proceso:</span><span>${act.proceso}</span>
+            <span class="lbl">Área:</span><span>${act.area}</span>
+            <span class="lbl">Campaña:</span><span>${card.getAttribute("data-camp")} (${card.getAttribute("data-campfull")})</span>
+            <span class="lbl">Días Hábiles:</span><span>${card.getAttribute("data-dh")} DH</span>
+            <span class="lbl">Fecha Inicio:</span><span>${formatHumanDate(card.getAttribute("data-start"))}</span>
+            <span class="lbl">Fecha Entrega:</span><span><strong>${formatHumanDate(card.getAttribute("data-end"))} (${card.getAttribute("data-end")})</strong></span>
+          </div>
+        `;
+        els.tooltip.style.display = "block";
+        moveTooltip(e);
+      });
+      card.addEventListener("mousemove", moveTooltip);
+      card.addEventListener("mouseleave", () => {
+        els.tooltip.style.display = "none";
+      });
+    });
+  }
+
+  /* ==========================================================================
+     MATRIX TABLE VIEW
+     ========================================================================== */
   function renderMatrix(filtered, activeCamps) {
     const thRow1 = [
-      `<th class="sticky-col-1" rowspan="2">No</th>`,
-      `<th class="sticky-col-2" rowspan="2">Actividad</th>`,
-      `<th class="sticky-col-3" rowspan="2">Proceso</th>`,
-      `<th class="sticky-col-4" rowspan="2">Marca</th>`,
-      `<th class="sticky-col-5" rowspan="2">Área (DH)</th>`,
+      `<th class="sticky-col-1" rowspan="2" style="width:34px;text-align:center"><input type="checkbox" id="chkSelectAllMatrix" title="Seleccionar/Deseleccionar todas" /></th>`,
+      `<th class="sticky-col-2" rowspan="2">No</th>`,
+      `<th class="sticky-col-3" rowspan="2">Actividad</th>`,
+      `<th class="sticky-col-4" rowspan="2">Proceso</th>`,
+      `<th class="sticky-col-5" rowspan="2">Marca</th>`,
+      `<th rowspan="2">Área (DH)</th>`,
     ];
     const thRow2 = [];
 
@@ -1042,27 +1373,89 @@
     const bodyRows = [];
     for (const act of filtered) {
       const bClass = badgeClassForBrand(act.marca);
+      const isChecked = state.selectedActivityNos.has(act.no);
       const cells = [
-        `<td class="sticky-col-1 cell-no">#${act.no}</td>`,
-        `<td class="sticky-col-2" title="${act.actividad}">${act.actividad}</td>`,
-        `<td class="sticky-col-3" title="${act.proceso}">${act.proceso}</td>`,
-        `<td class="sticky-col-4"><span class="badge-marca badge-${bClass}">${act.marca}</span></td>`,
-        `<td class="sticky-col-5">${act.area} <small style="color:#64748b">(${act.dias}d)</small></td>`,
+        `<td class="sticky-col-1" style="text-align:center"><input type="checkbox" class="act-checkbox" data-no="${act.no}" ${isChecked ? "checked" : ""} /></td>`,
+        `<td class="sticky-col-2 cell-no">#${act.no}</td>`,
+        `<td class="sticky-col-3" title="${act.actividad}">${act.actividad}</td>`,
+        `<td class="sticky-col-4" title="${act.proceso}">${act.proceso}</td>`,
+        `<td class="sticky-col-5"><span class="badge-marca badge-${bClass}">${act.marca}</span></td>`,
+        `<td>${act.area} <small style="color:#64748b">(${act.dias}d)</small></td>`,
       ];
       for (const c of activeCamps) {
         const f = act.fechas[c.id];
         cells.push(`<td style="text-align:center;font-variant-numeric:tabular-nums">${f || "—"}</td>`);
       }
-      bodyRows.push(`<tr>${cells.join("")}</tr>`);
+      bodyRows.push(`<tr class="${isChecked ? "selected-row" : ""}">${cells.join("")}</tr>`);
     }
     els.matrixTableBody.innerHTML = bodyRows.join("");
+
+    // Matrix checkbox handlers
+    els.matrixTableBody.querySelectorAll(".act-checkbox").forEach((chk) => {
+      chk.addEventListener("change", () => {
+        const actNo = parseInt(chk.getAttribute("data-no"), 10);
+        if (chk.checked) state.selectedActivityNos.add(actNo);
+        else state.selectedActivityNos.delete(actNo);
+        renderAll();
+      });
+    });
+
+    const chkAllM = document.getElementById("chkSelectAllMatrix");
+    if (chkAllM) {
+      chkAllM.checked = filtered.length > 0 && filtered.every((a) => state.selectedActivityNos.has(a.no));
+      chkAllM.addEventListener("change", () => {
+        if (chkAllM.checked) {
+          filtered.forEach((a) => state.selectedActivityNos.add(a.no));
+        } else {
+          state.selectedActivityNos.clear();
+        }
+        renderAll();
+      });
+    }
   }
 
-  // Export filtered activities & campaigns to .ICS
+  /* ==========================================================================
+     PDF & EXPORT FUNCTIONS
+     ========================================================================== */
+  function printPdfGantt() {
+    // Switch to Gantt view if not already
+    state.viewMode = "gantt";
+    els.tabGantt.classList.add("active");
+    els.tabCalendar.classList.remove("active");
+    els.tabMatrix.classList.remove("active");
+    renderAll();
+
+    document.body.classList.add("printing-gantt");
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove("printing-gantt");
+    }, 1000);
+  }
+
+  function printPdfCalendar() {
+    // Ensure all months are visible in calendar before printing
+    state.calShowAllMonths = true;
+    els.chkCalShowAllMonths.checked = true;
+
+    // Switch to Calendar view
+    state.viewMode = "calendar";
+    els.tabCalendar.classList.add("active");
+    els.tabGantt.classList.remove("active");
+    els.tabMatrix.classList.remove("active");
+    renderAll();
+
+    document.body.classList.add("printing-calendar");
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove("printing-calendar");
+    }, 1000);
+  }
+
   function exportFilteredToICS() {
     const filtered = getFilteredActivities();
+    const effective = getEffectiveSelectedActivities(filtered);
     const activeCamps = getActiveCampaigns();
-    const campsToExport = state.viewMode === "gantt" && !state.ganttMultiCampaignMode
+    const campsToExport = !state.ganttMultiCampaignMode
       ? [activeCamps.find((c) => c.id === state.selectedCampaignId) || activeCamps[0]]
       : activeCamps;
 
@@ -1072,13 +1465,13 @@
       "PRODID:-//Azzorti Livva//Dashboard Cronograma//ES",
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
-      "X-WR-CALNAME:Cronograma Azzorti Livva (Filtro Activo)",
+      "X-WR-CALNAME:Cronograma Azzorti Livva (Selección)",
       "X-WR-TIMEZONE:America/Bogota",
     ];
     const dtstamp = "20261021T140000Z";
     let count = 0;
 
-    for (const act of filtered) {
+    for (const act of effective) {
       for (const camp of campsToExport) {
         if (!camp) continue;
         const fStr = act.fechas[camp.id];
@@ -1118,16 +1511,16 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `cronograma_${state.brand.replace(/\s+/g, "_")}_${campsToExport.length === 1 ? campsToExport[0].adv : "2027_2029"}.ics`;
+    a.download = `cronograma_${state.brand.replace(/\s+/g, "_")}_${campsToExport.length === 1 ? campsToExport[0].adv : "seleccion"}.ics`;
     document.body.appendChild(a);
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
   }
 
-  // Export filtered activities & campaigns to .CSV
   function exportFilteredToCSV() {
     const filtered = getFilteredActivities();
+    const effective = getEffectiveSelectedActivities(filtered);
     const activeCamps = getActiveCampaigns();
 
     const hdr1 = ["No", "ACTIVIDAD", "PROCESO", "Marca", "AREA", "Dias"];
@@ -1146,7 +1539,7 @@
     };
 
     const rows = [hdr1.map(escapeCsv).join(","), hdr2.map(escapeCsv).join(",")];
-    for (const act of filtered) {
+    for (const act of effective) {
       const r = [act.no, act.actividad, act.proceso, act.marca, act.area, act.dias];
       for (const c of activeCamps) {
         r.push(act.fechas[c.id] || "");
@@ -1165,14 +1558,15 @@
     URL.revokeObjectURL(url);
   }
 
+  /* ==========================================================================
+     EVENT LISTENERS
+     ========================================================================== */
   function setupEventListeners() {
-    // Sync scroll between Gantt Left Body, Timeline Header, and Timeline Body
     els.ganttTimelineBody.addEventListener("scroll", () => {
       els.ganttLeftBody.scrollTop = els.ganttTimelineBody.scrollTop;
       els.ganttTimelineHeader.scrollLeft = els.ganttTimelineBody.scrollLeft;
     });
 
-    // Upload Excel button
     els.btnUpload.addEventListener("click", () => els.fileInput.click());
     els.fileInput.addEventListener("change", (e) => {
       if (e.target.files && e.target.files[0]) {
@@ -1181,7 +1575,6 @@
       }
     });
 
-    // Global Drag & Drop Excel file
     window.addEventListener("dragover", (e) => {
       e.preventDefault();
       els.dropzoneOverlay.classList.add("active");
@@ -1199,7 +1592,6 @@
       }
     });
 
-    // Restore original data
     els.btnResetData.addEventListener("click", () => {
       localStorage.removeItem(STORAGE_KEY);
       rawData = window.CRONOGRAMA_INITIAL_DATA;
@@ -1207,17 +1599,51 @@
       els.statusBadge.textContent = `Base original (${rawData.activities.length} act. | C1-4 2027 → C7-10 2029)`;
       els.statusBadge.style.background = "rgba(255,255,255,0.12)";
       els.statusBadge.style.color = "#e2e8f0";
+      state.selectedActivityNos.clear();
       populateFilterControls(false);
       renderAll();
     });
 
-    // Exports
+    // PDF Exports
+    els.btnExportPdfGantt.addEventListener("click", printPdfGantt);
+    els.btnExportPdfCalendar.addEventListener("click", printPdfCalendar);
+
+    // .ICS and .CSV Exports
     els.btnExportIcs.addEventListener("click", exportFilteredToICS);
     els.btnExportCsv.addEventListener("click", exportFilteredToCSV);
 
-    // Campaign selector & checkboxes
+    // Master Select / Clear Selection
+    els.chkMasterSelect.addEventListener("change", () => {
+      const filtered = getFilteredActivities();
+      if (els.chkMasterSelect.checked) {
+        filtered.forEach((a) => state.selectedActivityNos.add(a.no));
+      } else {
+        state.selectedActivityNos.clear();
+      }
+      renderAll();
+    });
+
+    if (els.chkSelectAllGantt) {
+      els.chkSelectAllGantt.addEventListener("change", () => {
+        const filtered = getFilteredActivities();
+        if (els.chkSelectAllGantt.checked) {
+          filtered.forEach((a) => state.selectedActivityNos.add(a.no));
+        } else {
+          state.selectedActivityNos.clear();
+        }
+        renderAll();
+      });
+    }
+
+    els.btnClearSelection.addEventListener("click", () => {
+      state.selectedActivityNos.clear();
+      renderAll();
+    });
+
+    // Campaign selectors
     els.campaignSelect.addEventListener("change", (e) => {
       state.selectedCampaignId = e.target.value;
+      state.calCurrentMonthIndex = 0;
       renderAll();
     });
     els.chkInclude2026.addEventListener("change", (e) => {
@@ -1248,7 +1674,7 @@
       renderAll();
     });
 
-    // Multi-select dropdown toggles
+    // Dropdowns
     els.procesoBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       els.areaDropdown.classList.remove("open");
@@ -1292,7 +1718,6 @@
       renderAll();
     });
 
-    // Quick preset: Diseño Textil (Estampación Continua y Localizada)
     els.btnQuickEstampacion.addEventListener("click", () => {
       state.selectedProcesos = new Set(["Estampacion Continua", "Estampacion Local"]);
       state.selectedAreas = new Set(["Aglab"]);
@@ -1300,7 +1725,6 @@
       renderAll();
     });
 
-    // Reset all filters
     els.btnResetFilters.addEventListener("click", () => {
       state.brand = "ALL";
       els.brandPills.forEach((b) => b.classList.toggle("active", b.getAttribute("data-brand") === "ALL"));
@@ -1311,12 +1735,12 @@
       els.areaSearch.value = "";
       state.selectedProcesos.clear();
       state.selectedAreas.clear();
+      state.selectedActivityNos.clear();
       state.collapsedGroups.clear();
       populateFilterControls(false);
       renderAll();
     });
 
-    // Search input
     els.searchInput.addEventListener("input", (e) => {
       state.searchQuery = e.target.value;
       renderAll();
@@ -1326,6 +1750,14 @@
     els.tabGantt.addEventListener("click", () => {
       state.viewMode = "gantt";
       els.tabGantt.classList.add("active");
+      els.tabCalendar.classList.remove("active");
+      els.tabMatrix.classList.remove("active");
+      renderAll();
+    });
+    els.tabCalendar.addEventListener("click", () => {
+      state.viewMode = "calendar";
+      els.tabCalendar.classList.add("active");
+      els.tabGantt.classList.remove("active");
       els.tabMatrix.classList.remove("active");
       renderAll();
     });
@@ -1333,10 +1765,11 @@
       state.viewMode = "matrix";
       els.tabMatrix.classList.add("active");
       els.tabGantt.classList.remove("active");
+      els.tabCalendar.classList.remove("active");
       renderAll();
     });
 
-    // Gantt options
+    // Gantt toolbar options
     els.chkGroupProceso.addEventListener("change", (e) => {
       state.groupByProceso = e.target.checked;
       renderAll();
@@ -1364,12 +1797,29 @@
         els.ganttTimelineBody.scrollLeft = Math.max(0, leftPx - 80);
       }
     });
+
+    // Calendar toolbar options
+    els.btnCalPrevMonth.addEventListener("click", () => {
+      state.calShowAllMonths = false;
+      els.chkCalShowAllMonths.checked = false;
+      state.calCurrentMonthIndex--;
+      renderAll();
+    });
+    els.btnCalNextMonth.addEventListener("click", () => {
+      state.calShowAllMonths = false;
+      els.chkCalShowAllMonths.checked = false;
+      state.calCurrentMonthIndex++;
+      renderAll();
+    });
+    els.chkCalShowAllMonths.addEventListener("change", (e) => {
+      state.calShowAllMonths = e.target.checked;
+      renderAll();
+    });
   }
 
   function init() {
     initDomRefs();
 
-    // Load from localStorage if user previously uploaded a custom Excel version
     let loadedCustom = false;
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
