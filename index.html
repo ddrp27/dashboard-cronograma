@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronograma Maestro Azzorti & Livva — Diagrama de Gantt Interactivo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Librería SheetJS opcional (cuenta además con lector nativo offline .xlsx/.csv integrado) -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" defer></script>
+</head>
+<body>
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="brand-title">
+      <div class="brand-logo">AL</div>
+      <div>
+        <h1>Cronograma Maestro Azzorti &amp; Livva</h1>
+        <div class="brand-subtitle">
+          <span>Diagrama de Gantt y Matriz de Fechas por Campaña</span>
+          <span id="dataStatusBadge" class="badge-status">Cargando cronograma...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" style="display:none" />
+      <button type="button" id="btnUploadExcel" class="btn btn-upload" title="Sube o arrastra una nueva versión del archivo Excel (.xlsx) o CSV para actualizar todas las fechas automáticamente">
+        📂 Subir nueva versión Excel (.xlsx / .csv)
+      </button>
+      <button type="button" id="btnResetData" class="btn btn-secondary" style="display:none" title="Volver a los datos originales del cronograma base">
+        ↺ Restaurar base original
+      </button>
+      <button type="button" id="btnExportIcs" class="btn btn-secondary" title="Descargar calendario .ics con las actividades y campañas filtradas actualmente">
+        📅 Exportar .ICS
+      </button>
+      <button type="button" id="btnExportCsv" class="btn btn-secondary" title="Descargar tabla .csv compatible con Excel de la vista filtrada">
+        📊 Exportar .CSV
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters & Controls Panel -->
+  <section class="controls-panel">
+    <div class="filters-row">
+      <!-- 1. Campaign Selector -->
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Campaña en Gantt (Desde C1-4 2027)</span>
+          <label class="inline-check" style="font-size:10.5px;text-transform:none;font-weight:500" title="Mostrar también las campañas de 2026 (ADV 202610 a 202618)">
+            <input type="checkbox" id="chkInclude2026" /> +2026
+          </label>
+        </div>
+        <select id="campaignSelect" class="filter-select"></select>
+      </div>
+
+      <!-- 2. Brand Filter -->
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Marca</span>
+          <label id="sharedBrandWrap" class="inline-check" style="display:none;font-size:10.5px;text-transform:none;font-weight:500" title="Incluir actividades compartidas marcadas como 'Azz Livv'">
+            <input type="checkbox" id="chkSharedBrand" checked /> +Azz Livv
+          </label>
+        </div>
+        <div class="brand-pills">
+          <button type="button" class="brand-pill active" data-brand="ALL">Todas</button>
+          <button type="button" class="brand-pill" data-brand="Livva">Livva</button>
+          <button type="button" class="brand-pill" data-brand="Azzorti">Azzorti</button>
+          <button type="button" class="brand-pill" data-brand="Azz Livv">Azz Livv</button>
+        </div>
+      </div>
+
+      <!-- 3. Proceso Multi-Select -->
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Proceso</span>
+        </div>
+        <button type="button" id="procesoDropdownBtn" class="multi-select-btn">
+          <span class="btn-text">Todos los procesos</span>
+          <span>▾</span>
+        </button>
+        <div id="procesoDropdown" class="multi-dropdown">
+          <div class="multi-dropdown-header">
+            <input type="text" id="procesoSearchInput" class="filter-input" placeholder="Buscar proceso..." />
+            <div class="multi-dropdown-actions">
+              <button type="button" id="procesoSelectAll" class="link-btn">Seleccionar todos</button>
+              <button type="button" id="procesoClearAll" class="link-btn">Limpiar</button>
+            </div>
+          </div>
+          <div id="procesoOptionsList" class="multi-options-list"></div>
+        </div>
+      </div>
+
+      <!-- 4. Area Multi-Select -->
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Área Responsable</span>
+        </div>
+        <button type="button" id="areaDropdownBtn" class="multi-select-btn">
+          <span class="btn-text">Todas las áreas</span>
+          <span>▾</span>
+        </button>
+        <div id="areaDropdown" class="multi-dropdown">
+          <div class="multi-dropdown-header">
+            <input type="text" id="areaSearchInput" class="filter-input" placeholder="Buscar área..." />
+            <div class="multi-dropdown-actions">
+              <button type="button" id="areaSelectAll" class="link-btn">Seleccionar todas</button>
+              <button type="button" id="areaClearAll" class="link-btn">Limpiar</button>
+            </div>
+          </div>
+          <div id="areaOptionsList" class="multi-options-list"></div>
+        </div>
+      </div>
+
+      <!-- 5. Search Input -->
+      <div class="filter-group">
+        <div class="filter-label">
+          <span>Buscar Actividad / #No</span>
+        </div>
+        <input type="search" id="activitySearchInput" class="filter-input" placeholder="Ej. estampacion, 3D, #105, facturacion..." />
+      </div>
+
+      <!-- 6. Quick Actions -->
+      <div class="filter-group" style="flex-direction:row;gap:6px">
+        <button type="button" id="btnQuickEstampacion" class="btn btn-outline" title="Filtrar rápidamente Diseño Textil (Estampación Continua y Localizada)">
+          🎨 Diseño Textil
+        </button>
+        <button type="button" id="btnResetFilters" class="btn btn-outline" title="Restablecer todos los filtros">
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+
+    <!-- Sub-toolbar: View Mode, Gantt Controls & KPIs -->
+    <div class="sub-toolbar">
+      <div class="view-tabs">
+        <button type="button" id="tabGantt" class="tab-btn active">📊 Diagrama de Gantt</button>
+        <button type="button" id="tabMatrix" class="tab-btn">📋 Matriz Completa de Fechas (C1-4 2027 → 2029)</button>
+      </div>
+
+      <div class="gantt-toolbar-options">
+        <label class="inline-check">
+          <input type="checkbox" id="chkGroupProceso" checked />
+          Agrupar por Proceso
+        </label>
+        <button type="button" id="btnExpandAll" class="link-btn">Expandir procesos</button>
+        <button type="button" id="btnCollapseAll" class="link-btn">Colapsar procesos</button>
+
+        <label class="inline-check" title="Superponer en el Gantt todas las campañas desde C1-4 2027 en adelante para cada actividad">
+          <input type="checkbox" id="chkMultiCampGantt" />
+          Ver todas las campañas en Gantt
+        </label>
+
+        <label class="inline-check">
+          Ordenar:
+          <select id="sortSelect" class="filter-select" style="width:auto;padding:3px 8px;font-size:11.5px">
+            <option value="date">Fecha cronológica</option>
+            <option value="no">No. Actividad (#9 → #267)</option>
+            <option value="proceso">Alfabético por Proceso</option>
+          </select>
+        </label>
+
+        <label class="inline-check">
+          Zoom:
+          <select id="zoomSelect" class="filter-select" style="width:auto;padding:3px 8px;font-size:11.5px">
+            <option value="day">Día (Detallado)</option>
+            <option value="week" selected>Semana (Estándar)</option>
+            <option value="month">Mes (Panorama completo)</option>
+          </select>
+        </label>
+
+        <button type="button" id="btnCenterGantt" class="btn btn-outline" style="padding:3px 8px;font-size:11px">
+          🎯 Centrar barras
+        </button>
+      </div>
+
+      <div class="kpi-chips">
+        <span class="kpi-chip"><span class="legend-dot dot-livva"></span> Livva</span>
+        <span class="kpi-chip"><span class="legend-dot dot-azzorti"></span> Azzorti</span>
+        <span class="kpi-chip"><span class="legend-dot dot-both"></span> Azz Livv</span>
+        <span id="kpiProcesses" class="kpi-chip">Procesos: <strong>0</strong></span>
+        <span id="kpiActivities" class="kpi-chip">Actividades: <strong>0</strong></span>
+        <span id="kpiDateRange" class="kpi-chip">Rango: <strong>—</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Workspace -->
+  <main class="main-workspace">
+    <!-- Gantt View -->
+    <div id="ganttWrapper" class="gantt-wrapper">
+      <div class="gantt-left-pane">
+        <div class="gantt-left-header">
+          <span>No</span>
+          <span>Actividad / Proceso</span>
+          <span>Área</span>
+          <span>Marca</span>
+          <span style="text-align:right">DH</span>
+        </div>
+        <div id="ganttLeftBody" class="gantt-left-body"></div>
+      </div>
+
+      <div class="gantt-right-pane">
+        <div id="ganttTimelineHeader" class="gantt-timeline-header"></div>
+        <div id="ganttTimelineBody" class="gantt-timeline-body"></div>
+      </div>
+    </div>
+
+    <!-- Matrix Table View -->
+    <div id="matrixWrapper" class="matrix-wrapper">
+      <table class="matrix-table">
+        <thead id="matrixTableHead"></thead>
+        <tbody id="matrixTableBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Floating Tooltip -->
+  <div id="ganttTooltip" class="gantt-tooltip"></div>
+
+  <!-- Drag & Drop Overlay -->
+  <div id="dropzoneOverlay" class="dropzone-overlay">
+    <div class="dropzone-card">
+      <h2>📂 Suelta aquí el nuevo archivo Excel (.xlsx / .csv)</h2>
+      <p>Se actualizarán automáticamente todas las campañas, áreas, procesos y fechas en el Diagrama de Gantt.</p>
+    </div>
+  </div>
+
+  <script src="datos_cronograma.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
