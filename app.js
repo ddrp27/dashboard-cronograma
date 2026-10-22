@@ -220,9 +220,14 @@
     els.evIdInput = document.getElementById("evIdInput");
     els.evTitleInput = document.getElementById("evTitleInput");
     els.evDateInput = document.getElementById("evDateInput");
-    els.evDhInput = document.getElementById("evDhInput");
+    els.evEndDateInput = document.getElementById("evEndDateInput");
+    els.evRangeSummaryBadge = document.getElementById("evRangeSummaryBadge");
+    els.evOwnersGrid = document.getElementById("evOwnersGrid");
+    els.evOwnersCountLabel = document.getElementById("evOwnersCountLabel");
+    els.btnEvOwnerOnlyMe = document.getElementById("btnEvOwnerOnlyMe");
+    els.btnEvOwnerAll = document.getElementById("btnEvOwnerAll");
+    els.btnEvOwnerClear = document.getElementById("btnEvOwnerClear");
     els.evAreaInput = document.getElementById("evAreaInput");
-    els.evOwnerInput = document.getElementById("evOwnerInput");
     els.evMarcaInput = document.getElementById("evMarcaInput");
     els.evCategoryInput = document.getElementById("evCategoryInput");
     els.evNotesInput = document.getElementById("evNotesInput");
@@ -642,6 +647,13 @@
     return `${String(d.getDate()).padStart(2, "0")} ${months[d.getMonth()]} ${d.getFullYear()}`;
   }
 
+  function formatShortDayMonth(str) {
+    const d = parseYMD(str);
+    if (!d) return "—";
+    const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+    return `${String(d.getDate()).padStart(2, "0")} ${months[d.getMonth()]}`;
+  }
+
   function subtractBusinessDays(endDateStr, dh) {
     const endDt = parseYMD(endDateStr);
     if (!endDt) return null;
@@ -655,6 +667,109 @@
       if (dow !== 0 && dow !== 6) remaining--;
     }
     return cur;
+  }
+
+  function addBusinessDays(startDateStr, dh) {
+    const startDt = parseYMD(startDateStr);
+    if (!startDt) return null;
+    const days = Math.max(1, parseInt(dh, 10) || 1);
+    if (days <= 1) return new Date(startDt.getTime());
+    let cur = new Date(startDt.getTime());
+    let remaining = days - 1;
+    while (remaining > 0) {
+      cur.setDate(cur.getDate() + 1);
+      const dow = cur.getDay();
+      if (dow !== 0 && dow !== 6) remaining--;
+    }
+    return cur;
+  }
+
+  function countBusinessDaysBetween(startDt, endDt) {
+    if (!startDt || !endDt) return 1;
+    const s = startDt <= endDt ? startDt : endDt;
+    const e = startDt <= endDt ? endDt : startDt;
+    let count = 0;
+    const cur = new Date(s.getTime());
+    while (cur <= e) {
+      const dow = cur.getDay();
+      if (dow !== 0 && dow !== 6) count++;
+      cur.setDate(cur.getDate() + 1);
+    }
+    return Math.max(1, count);
+  }
+
+  function getCustomEventRange(cev) {
+    if (!cev || !cev.event_date) {
+      return { startStr: "", endStr: "", startDt: null, endDt: null, isMultiDay: false, calDays: 1, bizDays: 1 };
+    }
+    const raw = String(cev.event_date).trim();
+    let startStr = "";
+    let endStr = "";
+
+    if (raw.includes("|")) {
+      const parts = raw.split("|");
+      startStr = (parts[0] || "").trim().slice(0, 10);
+      endStr = (parts[1] || parts[0] || "").trim().slice(0, 10);
+    } else if (cev.end_date) {
+      startStr = raw.slice(0, 10);
+      endStr = String(cev.end_date).trim().slice(0, 10);
+    } else if (cev.dh && Number(cev.dh) > 1) {
+      startStr = raw.slice(0, 10);
+      const computedEnd = addBusinessDays(startStr, Number(cev.dh));
+      endStr = computedEnd ? formatYMD(computedEnd) : startStr;
+    } else {
+      startStr = raw.slice(0, 10);
+      endStr = startStr;
+    }
+
+    if (endStr < startStr) {
+      const tmp = startStr;
+      startStr = endStr;
+      endStr = tmp;
+    }
+
+    const startDt = parseYMD(startStr);
+    const endDt = parseYMD(endStr) || startDt;
+    const calDays = startDt && endDt ? Math.max(1, daysBetween(startDt, endDt) + 1) : 1;
+    const bizDays = startDt && endDt ? countBusinessDaysBetween(startDt, endDt) : 1;
+
+    return {
+      startStr,
+      endStr,
+      startDt,
+      endDt,
+      isMultiDay: calDays > 1,
+      calDays,
+      bizDays,
+    };
+  }
+
+  function getCustomEventOwners(cev) {
+    if (!cev || !cev.owner_user) return ["DANI"];
+    const arr = String(cev.owner_user)
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    return arr.length > 0 ? arr : ["DANI"];
+  }
+
+  function renderOwnerPillsHtml(owners, compact) {
+    if (!owners || owners.length === 0) return "";
+    if (owners.length >= TEAM_PROFILES.length) {
+      return `<span class="event-owner-pill"><span class="event-owner-dot" style="background:#6366f1"></span>👥 Todo el equipo (${owners.length})</span>`;
+    }
+    const maxToShow = compact ? 3 : 12;
+    const shown = owners.slice(0, maxToShow);
+    const extra = owners.length - shown.length;
+    const pills = shown.map((uid) => {
+      const prof = TEAM_PROFILES.find((p) => p.id === uid);
+      const color = prof ? prof.color : "#64748b";
+      return `<span class="event-owner-pill"><span class="event-owner-dot" style="background:${color}"></span>${uid}</span>`;
+    });
+    if (extra > 0) {
+      pills.push(`<span class="event-owner-pill">+${extra}</span>`);
+    }
+    return pills.join("");
   }
 
   function daysBetween(d1, d2) {
@@ -1257,7 +1372,7 @@
 
     for (const p of TEAM_PROFILES) {
       const tag = `USER:${p.id}`;
-      const count = customEvents.filter((e) => e.owner_user === p.id).length;
+      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
       const isChecked = state.customFilterTags.size === 0 || state.customFilterTags.has(tag);
 
       const div = document.createElement("div");
@@ -1404,16 +1519,17 @@
 
       if (state.customFilterTags.size > 0) {
         const areaTag = `AREA:${ev.area || "General / Equipo"}`;
-        const userTag = `USER:${ev.owner_user || "DANI"}`;
+        const owners = getCustomEventOwners(ev);
+        const matchesAnyUser = owners.some((uid) => state.customFilterTags.has(`USER:${uid}`));
         const hasAreaTags = Array.from(state.customFilterTags).some((t) => t.startsWith("AREA:"));
         const hasUserTags = Array.from(state.customFilterTags).some((t) => t.startsWith("USER:"));
 
         if (hasAreaTags && hasUserTags) {
-          if (!state.customFilterTags.has(areaTag) && !state.customFilterTags.has(userTag)) return false;
+          if (!state.customFilterTags.has(areaTag) && !matchesAnyUser) return false;
         } else if (hasAreaTags) {
           if (!state.customFilterTags.has(areaTag)) return false;
         } else if (hasUserTags) {
-          if (!state.customFilterTags.has(userTag)) return false;
+          if (!matchesAnyUser) return false;
         }
       }
 
@@ -1478,9 +1594,9 @@
      ========================================================================== */
   function renderCalendar(selectedOfficial, visibleCustom, selectedCamps) {
     const eventsByDate = new Map();
-    const monthsMap = new Map(); // "YYYY-MM" -> { year, month, ym, events: [] }
+    const monthsMap = new Map(); // "YYYY-MM" -> { year, month, ym, events: [], uniqueKeys: Set }
 
-    function addEventToMaps(fStr, evObj) {
+    function addEventToMaps(fStr, evObj, uniqueEventKey) {
       const dt = parseYMD(fStr);
       if (!dt) return;
       const ym = fStr.slice(0, 7);
@@ -1493,9 +1609,15 @@
           month: dt.getMonth(),
           ym,
           events: [],
+          uniqueKeys: new Set(),
         });
       }
-      monthsMap.get(ym).events.push(evObj);
+      const mEntry = monthsMap.get(ym);
+      const uKey = uniqueEventKey || `${evObj.type}-${fStr}`;
+      if (!mEntry.uniqueKeys.has(uKey)) {
+        mEntry.uniqueKeys.add(uKey);
+        mEntry.events.push(evObj);
+      }
     }
 
     // 1. Add Official Cronograma Events for Selected Campaigns
@@ -1503,28 +1625,63 @@
       for (const camp of selectedCamps) {
         const fStr = act.fechas[camp.id];
         if (!fStr) continue;
-        addEventToMaps(fStr, {
-          type: "official",
-          dateStr: fStr,
-          act,
-          camp,
-          dh: act.dh[camp.id] ?? act.dias ?? 0,
-        });
+        addEventToMaps(
+          fStr,
+          {
+            type: "official",
+            dateStr: fStr,
+            act,
+            camp,
+            dh: act.dh[camp.id] ?? act.dias ?? 0,
+          },
+          `off-${act.no}-${camp.id}`
+        );
       }
     }
 
-    // 2. Add Custom Events
+    // 2. Add Custom Events Across Their Entire Date Range (Subtle Range Extension)
     for (const cev of visibleCustom) {
       if (!cev.event_date) continue;
-      addEventToMaps(cev.event_date, {
-        type: "custom",
-        dateStr: cev.event_date,
-        custom: cev,
-        dh: cev.dh || 1,
-      });
+      const range = getCustomEventRange(cev);
+      if (!range.startDt || !range.endDt) continue;
+
+      const spanDays = Math.min(180, range.calDays);
+      for (let offset = 0; offset < spanDays; offset++) {
+        const curDt = addDays(range.startDt, offset);
+        const curStr = formatYMD(curDt);
+        const dow = curDt.getDay();
+        const isMonday = dow === 1;
+        const isSunday = dow === 0;
+        const isWeekend = dow === 0 || dow === 6;
+        const isRangeStart = offset === 0;
+        const isRangeEnd = offset === spanDays - 1;
+        const isMultiDay = spanDays > 1;
+        const continuesLeft = isMultiDay && !isRangeStart && !isMonday;
+        const continuesRight = isMultiDay && !isRangeEnd && !isSunday;
+
+        addEventToMaps(
+          curStr,
+          {
+            type: "custom",
+            dateStr: curStr,
+            custom: cev,
+            range,
+            isMultiDay,
+            isRangeStart,
+            isRangeEnd,
+            isMonday,
+            isWeekend,
+            continuesLeft,
+            continuesRight,
+            dayOffset: offset,
+            totalDays: spanDays,
+          },
+          `cust-${cev.id}`
+        );
+      }
     }
 
-    //Onboarding banner if 0 official activities are selected
+    // Onboarding banner if 0 official activities are selected
     let onboardingBannerHtml = "";
     if (state.selectedActivityNos.size === 0) {
       const targetName = state.targetUserId || "Diseñador(a)";
@@ -1546,7 +1703,7 @@
       `;
     }
 
-    // If no months have events yet, still render a default month sheet (e.g. June 2027 or current month) so user can click '+' on any day!
+    // If no months have events yet, still render a default month sheet so user can click '+' on any day!
     if (monthsMap.size === 0) {
       const fallbackDate = parseYMD("2027-06-01") || new Date();
       const ym = formatYMD(fallbackDate).slice(0, 7);
@@ -1555,6 +1712,7 @@
         month: fallbackDate.getMonth(),
         ym,
         events: [],
+        uniqueKeys: new Set(),
       });
     }
 
@@ -1655,7 +1813,20 @@
         const cellsHtml = [];
         for (const cell of w) {
           const isToday = cell.dateStr === TODAY_STR;
-          const dayEvents = eventsByDate.get(cell.dateStr) || [];
+          const rawDayEvents = eventsByDate.get(cell.dateStr) || [];
+
+          // Keep multi-day range events sorted at the top so they align across consecutive days in a week
+          const dayEvents = [...rawDayEvents].sort((a, b) => {
+            const aRank = a.type === "custom" ? (a.isMultiDay ? 0 : 1) : 2;
+            const bRank = b.type === "custom" ? (b.isMultiDay ? 0 : 1) : 2;
+            if (aRank !== bRank) return aRank - bRank;
+            if (a.type === "custom" && b.type === "custom") {
+              const cmpStart = (a.range.startStr || "").localeCompare(b.range.startStr || "");
+              if (cmpStart !== 0) return cmpStart;
+              return String(a.custom.id).localeCompare(String(b.custom.id));
+            }
+            return 0;
+          });
 
           const eventsHtml = [];
           for (const ev of dayEvents) {
@@ -1677,17 +1848,51 @@
               const cev = ev.custom;
               const cat = cev.category || "emerald";
               const bClass = badgeClassForBrand(cev.marca || "Azz Livv");
-              eventsHtml.push(`
-                <div class="calendar-event-card event-custom-${cat}" data-type="custom" data-evid="${cev.id}" title="Clic para ver detalles o editar este evento">
-                  <div class="event-meta-line">
-                    <span class="event-custom-badge">📌 ${cev.area || "Diseño"}</span>
-                    <span class="event-user-badge">👤 ${cev.owner_user || "Equipo"}</span>
-                    <span class="event-brand-badge brand-${bClass}">${cev.marca || "Azz Livv"}</span>
+              const owners = getCustomEventOwners(cev);
+              const rangeClasses = ev.isMultiDay
+                ? `is-range-card ${ev.isRangeStart ? "is-range-start" : "is-range-continuation"} ${ev.isRangeEnd ? "is-range-end" : ""} ${ev.isWeekend ? "is-range-weekend" : ""} ${ev.continuesLeft ? "continues-left" : ""} ${ev.continuesRight ? "continues-right" : ""}`
+                : "";
+
+              if (!ev.isMultiDay || ev.isRangeStart) {
+                eventsHtml.push(`
+                  <div class="calendar-event-card event-custom-${cat} ${rangeClasses}" data-type="custom" data-evid="${cev.id}">
+                    <div class="event-meta-line">
+                      <span class="event-custom-badge">📌 ${cev.area || "Diseño"}</span>
+                      <span class="event-brand-badge brand-${bClass}">${cev.marca || "Azz Livv"}</span>
+                      ${
+                        ev.isMultiDay
+                          ? `<span class="event-range-badge">🗓️ ${formatShortDayMonth(ev.range.startStr)} → ${formatShortDayMonth(ev.range.endStr)}</span>`
+                          : ""
+                      }
+                    </div>
+                    <div class="event-full-title">${cev.title}</div>
+                    <div class="event-owners-wrap">${renderOwnerPillsHtml(owners, false)}</div>
+                    ${cev.notes ? `<div class="event-notes-preview">${cev.notes}</div>` : ""}
                   </div>
-                  <div class="event-full-title">${cev.title}</div>
-                  ${cev.notes ? `<div class="event-notes-preview">${cev.notes}</div>` : ""}
-                </div>
-              `);
+                `);
+              } else {
+                // Subtle range extension card on continuation days
+                const arrowSymbol = ev.isRangeEnd ? "🏁" : ev.isMonday ? "↪" : "→";
+                const rightBadge = ev.isRangeEnd
+                  ? `<span class="event-range-badge">Fin</span>`
+                  : ev.isMonday
+                  ? `<span class="event-range-badge">→ ${formatShortDayMonth(ev.range.endStr)}</span>`
+                  : "";
+                const showOwnersRow = ev.isMonday || ev.isRangeEnd;
+
+                eventsHtml.push(`
+                  <div class="calendar-event-card event-custom-${cat} ${rangeClasses}" data-type="custom" data-evid="${cev.id}">
+                    <div class="range-cont-header">
+                      <div class="range-cont-title">
+                        <span class="range-cont-arrow">${arrowSymbol}</span>
+                        <span>${cev.title}</span>
+                      </div>
+                      ${rightBadge}
+                    </div>
+                    ${showOwnersRow ? `<div class="event-owners-wrap">${renderOwnerPillsHtml(owners, true)}</div>` : ""}
+                  </div>
+                `);
+              }
             }
           }
 
@@ -1769,16 +1974,51 @@
       });
     });
 
-    // Bind Custom Event Click (Edit) & Official Event Hover Tooltip
+    // Bind Custom Event Click (Edit), Range Hover Highlight, & Tooltips
     const actMap = new Map(rawData.activities.map((a) => [String(a.no), a]));
     els.calendarContainer.querySelectorAll(".calendar-event-card").forEach((card) => {
       const cType = card.getAttribute("data-type");
       if (cType === "custom") {
+        const evId = card.getAttribute("data-evid");
         card.addEventListener("click", (e) => {
           e.stopPropagation();
-          const evId = card.getAttribute("data-evid");
+          els.tooltip.style.display = "none";
           const found = customEvents.find((x) => String(x.id) === String(evId));
           if (found) openCustomEventModal(found);
+        });
+
+        card.addEventListener("mouseenter", (e) => {
+          els.calendarContainer
+            .querySelectorAll(`.calendar-event-card[data-evid="${evId}"]`)
+            .forEach((seg) => seg.classList.add("is-range-hovered"));
+
+          const found = customEvents.find((x) => String(x.id) === String(evId));
+          if (!found) return;
+          const rng = getCustomEventRange(found);
+          const owners = getCustomEventOwners(found);
+          els.tooltip.innerHTML = `
+            <h4>📌 ${found.title}</h4>
+            <div class="tooltip-grid">
+              <span class="lbl">Área / Rol:</span><span><strong>${found.area || "Diseño"}</strong></span>
+              <span class="lbl">Asignado a:</span><span><strong>${owners.join(", ")}</strong></span>
+              <span class="lbl">Marca:</span><span>${found.marca || "Azz Livv"}</span>
+              <span class="lbl">Fecha Inicio:</span><span><strong>${formatHumanDate(rng.startStr)}</strong></span>
+              <span class="lbl">Fecha Fin:</span><span><strong>${formatHumanDate(rng.endStr)}</strong></span>
+              <span class="lbl">Duración:</span><span>${rng.calDays} día${rng.calDays === 1 ? "" : "s"} (${rng.bizDays} días hábiles)</span>
+              ${found.notes ? `<span class="lbl">Notas:</span><span>${found.notes}</span>` : ""}
+            </div>
+            <div style="margin-top:6px;font-size:10px;color:#6ee7b7;font-weight:700">✏️ Haz clic para editar este evento</div>
+          `;
+          els.tooltip.style.display = "block";
+          moveTooltip(e);
+        });
+
+        card.addEventListener("mousemove", moveTooltip);
+        card.addEventListener("mouseleave", () => {
+          els.calendarContainer
+            .querySelectorAll(`.calendar-event-card[data-evid="${evId}"]`)
+            .forEach((seg) => seg.classList.remove("is-range-hovered"));
+          els.tooltip.style.display = "none";
         });
       } else {
         card.addEventListener("mouseenter", (e) => {
@@ -1828,24 +2068,83 @@
   /* ==========================================================================
      11. CUSTOM EVENT MODAL (ADD / EDIT / DELETE IN SUPABASE)
      ========================================================================== */
-  function openCustomEventModal(existingEvent, defaultDateStr) {
-    // Populate owner select
-    els.evOwnerInput.innerHTML = "";
+  let modalSelectedOwners = new Set();
+
+  function renderModalOwnersGrid() {
+    if (!els.evOwnersGrid) return;
+    els.evOwnersGrid.innerHTML = "";
+
     for (const p of TEAM_PROFILES) {
-      const opt = document.createElement("option");
-      opt.value = p.id;
-      opt.textContent = p.name;
-      els.evOwnerInput.appendChild(opt);
+      const isSelected = modalSelectedOwners.has(p.id);
+      const chip = document.createElement("div");
+      chip.className = `ev-owner-chip ${isSelected ? "selected" : ""}`;
+      chip.innerHTML = `
+        <span class="ev-owner-chip-avatar" style="background:${p.color}">${p.name.slice(0, 2)}</span>
+        <span>${p.name}</span>
+        <span class="ev-owner-chip-check">✓</span>
+      `;
+      chip.addEventListener("click", () => {
+        if (modalSelectedOwners.has(p.id)) {
+          modalSelectedOwners.delete(p.id);
+        } else {
+          modalSelectedOwners.add(p.id);
+        }
+        renderModalOwnersGrid();
+      });
+      els.evOwnersGrid.appendChild(chip);
     }
 
+    if (els.evOwnersCountLabel) {
+      const cnt = modalSelectedOwners.size;
+      if (cnt === 0) {
+        els.evOwnersCountLabel.textContent = "(Selecciona al menos 1 persona)";
+        els.evOwnersCountLabel.style.color = "#e11d48";
+      } else if (cnt === TEAM_PROFILES.length) {
+        els.evOwnersCountLabel.textContent = `(Todo el equipo: ${cnt})`;
+        els.evOwnersCountLabel.style.color = "#059669";
+      } else {
+        els.evOwnersCountLabel.textContent = `(${cnt} seleccionada${cnt === 1 ? "" : "s"}: ${Array.from(modalSelectedOwners).join(", ")})`;
+        els.evOwnersCountLabel.style.color = "#6366f1";
+      }
+    }
+  }
+
+  function updateModalRangeSummary() {
+    if (!els.evDateInput || !els.evEndDateInput || !els.evRangeSummaryBadge) return;
+    const sVal = els.evDateInput.value;
+    let eVal = els.evEndDateInput.value;
+    if (sVal && eVal && eVal < sVal) {
+      eVal = sVal;
+      els.evEndDateInput.value = sVal;
+    }
+    if (sVal) {
+      els.evEndDateInput.min = sVal;
+    }
+    const sDt = parseYMD(sVal);
+    const eDt = parseYMD(eVal) || sDt;
+    if (!sDt || !eDt) {
+      els.evRangeSummaryBadge.textContent = "Selecciona fechas";
+      return;
+    }
+    const calDays = Math.max(1, daysBetween(sDt, eDt) + 1);
+    const bizDays = countBusinessDaysBetween(sDt, eDt);
+    if (calDays === 1) {
+      els.evRangeSummaryBadge.textContent = `📅 1 día (${formatShortDayMonth(sVal)})`;
+    } else {
+      els.evRangeSummaryBadge.textContent = `🗓️ ${formatShortDayMonth(sVal)} → ${formatShortDayMonth(eVal)} (${calDays} días • ${bizDays} hábiles)`;
+    }
+  }
+
+  function openCustomEventModal(existingEvent, defaultDateStr) {
     if (existingEvent) {
       els.customModalTitle.textContent = "✏️ Editar Evento Adicional";
       els.evIdInput.value = existingEvent.id;
       els.evTitleInput.value = existingEvent.title || "";
-      els.evDateInput.value = existingEvent.event_date || TODAY_STR;
-      els.evDhInput.value = existingEvent.dh || 1;
+      const rng = getCustomEventRange(existingEvent);
+      els.evDateInput.value = rng.startStr || TODAY_STR;
+      els.evEndDateInput.value = rng.endStr || rng.startStr || TODAY_STR;
       els.evAreaInput.value = existingEvent.area || "Diseño Textil (Aglab)";
-      els.evOwnerInput.value = existingEvent.owner_user || state.targetUserId || "DANI";
+      modalSelectedOwners = new Set(getCustomEventOwners(existingEvent));
       els.evMarcaInput.value = existingEvent.marca || "Azz Livv";
       els.evCategoryInput.value = existingEvent.category || "emerald";
       els.evNotesInput.value = existingEvent.notes || "";
@@ -1854,15 +2153,19 @@
       els.customModalTitle.textContent = "✨ Agregar Nuevo Evento al Calendario";
       els.evIdInput.value = "";
       els.evTitleInput.value = "";
-      els.evDateInput.value = defaultDateStr || "2027-06-15";
-      els.evDhInput.value = 1;
+      const defDate = defaultDateStr || "2027-06-15";
+      els.evDateInput.value = defDate;
+      els.evEndDateInput.value = defDate;
       els.evAreaInput.value = "Diseño Textil (Aglab)";
-      els.evOwnerInput.value = state.targetUserId || state.loggedInUserId || "DANI";
+      modalSelectedOwners = new Set([state.targetUserId || state.loggedInUserId || "DANI"]);
       els.evMarcaInput.value = "Azz Livv";
       els.evCategoryInput.value = "emerald";
       els.evNotesInput.value = "";
       els.btnDeleteCustomEvent.style.display = "none";
     }
+
+    renderModalOwnersGrid();
+    updateModalRangeSummary();
 
     els.customEventModal.style.display = "flex";
     setTimeout(() => els.evTitleInput.focus(), 50);
@@ -1871,19 +2174,34 @@
   async function handleSaveCustomEvent(e) {
     e.preventDefault();
     const id = els.evIdInput.value.trim();
+    const startStr = els.evDateInput.value;
+    let endStr = els.evEndDateInput.value || startStr;
+    if (endStr < startStr) endStr = startStr;
+
+    const startDt = parseYMD(startStr);
+    const endDt = parseYMD(endStr) || startDt;
+    const bizDays = startDt && endDt ? countBusinessDaysBetween(startDt, endDt) : 1;
+
+    if (modalSelectedOwners.size === 0) {
+      modalSelectedOwners.add(state.targetUserId || state.loggedInUserId || "DANI");
+    }
+
+    const encodedEventDate = startStr === endStr ? startStr : `${startStr}|${endStr}`;
+    const encodedOwners = Array.from(modalSelectedOwners).join(", ");
+
     const payload = {
       title: els.evTitleInput.value.trim(),
-      event_date: els.evDateInput.value,
-      dh: Math.max(1, parseInt(els.evDhInput.value, 10) || 1),
+      event_date: encodedEventDate,
+      dh: bizDays,
       area: els.evAreaInput.value,
-      owner_user: els.evOwnerInput.value,
+      owner_user: encodedOwners,
       marca: els.evMarcaInput.value,
       category: els.evCategoryInput.value,
       notes: els.evNotesInput.value.trim(),
       created_by: state.loggedInUserId || "DANI",
     };
 
-    if (!payload.title || !payload.event_date) return;
+    if (!payload.title || !startStr) return;
 
     els.customEventModal.style.display = "none";
     setCloudStatus("☁️ Guardando evento en la nube...", false);
@@ -1970,10 +2288,14 @@
 
     // 1. Add Custom Events into Gantt under "📌 EVENTOS EXTRA"
     for (const cev of visibleCustom) {
-      const endDt = parseYMD(cev.event_date);
-      if (!endDt) continue;
-      const dhVal = cev.dh || 1;
-      const startDt = subtractBusinessDays(cev.event_date, dhVal) || endDt;
+      const rng = getCustomEventRange(cev);
+      if (!rng.startDt || !rng.endDt) continue;
+      const startDt = rng.startDt;
+      const endDt = rng.endDt;
+      const dhVal = rng.bizDays;
+      const owners = getCustomEventOwners(cev);
+      const ownersLabel = owners.length >= TEAM_PROFILES.length ? "Todo el equipo" : owners.join(", ");
+
       if (!minDate || startDt < minDate) minDate = new Date(startDt.getTime());
       if (!maxDate || endDt > maxDate) maxDate = new Date(endDt.getTime());
 
@@ -1984,17 +2306,17 @@
           no: "📌",
           actividad: cev.title,
           proceso: `📌 Eventos Extra (${cev.area || "Equipo"})`,
-          area: cev.owner_user || "Equipo",
+          area: ownersLabel,
           marca: cev.marca || "Azz Livv",
           dias: dhVal,
         },
         bars: [
           {
-            camp: { shortLabel: cev.owner_user || "Extra", fullLabel: cev.area || "Evento Adicional" },
+            camp: { shortLabel: ownersLabel, fullLabel: cev.area || "Evento Adicional" },
             startDt,
             endDt,
-            startStr: formatYMD(startDt),
-            endStr: cev.event_date,
+            startStr: rng.startStr,
+            endStr: rng.endStr,
             dh: dhVal,
           },
         ],
@@ -2420,14 +2742,15 @@
 
     // 2. Custom events
     for (const cev of visibleCustom) {
-      const dt = parseYMD(cev.event_date);
-      if (!dt) continue;
-      const endDt = addDays(dt, 1);
-      const sVal = formatYMD(dt).replace(/-/g, "");
-      const eVal = formatYMD(endDt).replace(/-/g, "");
+      const rng = getCustomEventRange(cev);
+      if (!rng.startDt || !rng.endDt) continue;
+      const endDtExclusive = addDays(rng.endDt, 1);
+      const sVal = formatYMD(rng.startDt).replace(/-/g, "");
+      const eVal = formatYMD(endDtExclusive).replace(/-/g, "");
+      const owners = getCustomEventOwners(cev).join(", ");
       const uid = `custom-${cev.id}@azzorti-livva.com`;
-      const summary = `[📌 ${cev.area || "EXTRA"} - ${cev.owner_user || "Equipo"}] ${cev.title}`;
-      const desc = `Responsable: ${cev.owner_user}\\nÁrea: ${cev.area}\\nMarca: ${cev.marca}\\nNotas: ${cev.notes || ""}`;
+      const summary = `[📌 ${cev.area || "EXTRA"} - ${owners || "Equipo"}] ${cev.title}`;
+      const desc = `Asignado a: ${owners}\\nÁrea: ${cev.area}\\nMarca: ${cev.marca}\\nRango: ${rng.startStr} al ${rng.endStr}\\nNotas: ${cev.notes || ""}`;
       lines.push(
         "BEGIN:VEVENT",
         `UID:${uid}`,
@@ -2561,11 +2884,27 @@
     els.btnSaveAllPins.addEventListener("click", saveAllAdminPins);
 
     // Custom Event Modal
-    els.btnOpenAddEvent.addEventListener("click", () => openCustomEventModal(null, "2027-06-15"));
+    els.btnOpenAddEvent.addEventListener("click", () => openCustomEventModal(null, TODAY_STR));
     els.btnCloseCustomModal.addEventListener("click", () => (els.customEventModal.style.display = "none"));
     els.btnCancelCustomModal.addEventListener("click", () => (els.customEventModal.style.display = "none"));
     els.customEventForm.addEventListener("submit", handleSaveCustomEvent);
     els.btnDeleteCustomEvent.addEventListener("click", handleDeleteCustomEvent);
+
+    els.evDateInput.addEventListener("change", updateModalRangeSummary);
+    els.evEndDateInput.addEventListener("change", updateModalRangeSummary);
+
+    els.btnEvOwnerOnlyMe.addEventListener("click", () => {
+      modalSelectedOwners = new Set([state.targetUserId || state.loggedInUserId || "DANI"]);
+      renderModalOwnersGrid();
+    });
+    els.btnEvOwnerAll.addEventListener("click", () => {
+      modalSelectedOwners = new Set(TEAM_PROFILES.map((p) => p.id));
+      renderModalOwnersGrid();
+    });
+    els.btnEvOwnerClear.addEventListener("click", () => {
+      modalSelectedOwners.clear();
+      renderModalOwnersGrid();
+    });
 
     // Dropdown toggles
     const dropdownPairs = [

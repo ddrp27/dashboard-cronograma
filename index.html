@@ -385,7 +385,7 @@
        5. MODAL: AGREGAR / EDITAR EVENTO ADICIONAL (Fuera del Cronograma)
        ======================================================================== -->
   <div id="customEventModal" class="modal-backdrop" style="display:none">
-    <div class="modal-card">
+    <div class="modal-card" style="max-width:600px">
       <div class="modal-header">
         <h3 id="customModalTitle">✨ Agregar Nuevo Evento / Proceso al Calendario</h3>
         <button type="button" id="btnCloseCustomModal" class="modal-close-btn">✕</button>
@@ -395,21 +395,39 @@
 
         <div class="form-field">
           <label for="evTitleInput">Nombre de la actividad o evento *</label>
-          <input type="text" id="evTitleInput" class="filter-input" placeholder="Ej. Entrega bocetos estampación localizada / Fit de colección..." required />
+          <input type="text" id="evTitleInput" class="filter-input" placeholder="Ej. DESARROLLO EST. CONT. Y EST. LOC. / Fit de colección..." required />
         </div>
 
-        <div class="form-row-2">
-          <div class="form-field">
-            <label for="evDateInput">Fecha en el calendario *</label>
-            <input type="date" id="evDateInput" class="filter-input" required />
+        <div class="form-field">
+          <div class="form-label-row">
+            <label>Rango de fechas en el calendario *</label>
+            <span id="evRangeSummaryBadge" class="ev-range-summary-badge">1 día</span>
           </div>
-          <div class="form-field">
-            <label for="evDhInput">Duración (Días Hábiles - DH)</label>
-            <input type="number" id="evDhInput" class="filter-input" min="1" max="90" value="1" />
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="evDateInput" class="sub-field-label">Fecha de inicio *</label>
+              <input type="date" id="evDateInput" class="filter-input" required />
+            </div>
+            <div class="form-field">
+              <label for="evEndDateInput" class="sub-field-label">Fecha de fin *</label>
+              <input type="date" id="evEndDateInput" class="filter-input" required />
+            </div>
           </div>
         </div>
 
-        <div class="form-row-2">
+        <div class="form-field">
+          <div class="form-label-row">
+            <label>Personas asignadas / Responsables * <span id="evOwnersCountLabel" style="font-weight:600;color:#6366f1">(1 seleccionada)</span></label>
+            <div class="ev-owners-quick-actions">
+              <button type="button" id="btnEvOwnerOnlyMe" class="link-btn">Solo yo</button>
+              <button type="button" id="btnEvOwnerAll" class="link-btn">Todo el equipo</button>
+              <button type="button" id="btnEvOwnerClear" class="link-btn">Limpiar</button>
+            </div>
+          </div>
+          <div id="evOwnersGrid" class="ev-owners-grid"></div>
+        </div>
+
+        <div class="form-row-3">
           <div class="form-field">
             <label for="evAreaInput">Área o Rol (Para filtrar) *</label>
             <select id="evAreaInput" class="filter-select">
@@ -424,13 +442,6 @@
               <option value="General / Equipo">General / Equipo</option>
             </select>
           </div>
-          <div class="form-field">
-            <label for="evOwnerInput">Diseñador(a) / Responsable</label>
-            <select id="evOwnerInput" class="filter-select"></select>
-          </div>
-        </div>
-
-        <div class="form-row-2">
           <div class="form-field">
             <label for="evMarcaInput">Marca</label>
             <select id="evMarcaInput" class="filter-select">
