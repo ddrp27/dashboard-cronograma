@@ -1202,6 +1202,571 @@ body {
 }
 
 /* ==========================================================================
+   CUSTOM EVENTS & DAY CELL ADD BUTTON
+   ========================================================================== */
+.day-add-btn {
+  opacity: 0;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.calendar-day-cell:hover .day-add-btn {
+  opacity: 1;
+}
+
+.day-add-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.calendar-event-card.event-custom-emerald {
+  border-left-color: #10b981;
+  background: #ecfdf5;
+}
+.calendar-event-card.event-custom-amber {
+  border-left-color: #f59e0b;
+  background: #fffbeb;
+}
+.calendar-event-card.event-custom-indigo {
+  border-left-color: #6366f1;
+  background: #eef2ff;
+}
+.calendar-event-card.event-custom-rose {
+  border-left-color: #f43f5e;
+  background: #fff1f2;
+}
+.calendar-event-card.event-custom-teal {
+  border-left-color: #14b8a6;
+  background: #f0fdfa;
+}
+
+.event-custom-badge {
+  background: #059669;
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.event-user-badge {
+  background: #334155;
+  color: #f8fafc;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.event-notes-preview {
+  font-size: 9.5px;
+  color: #475569;
+  font-style: italic;
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.dot-custom {
+  background: #10b981;
+}
+
+/* ==========================================================================
+   LOGIN OVERLAY & USER PROFILES
+   ========================================================================== */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top right, #1e1b4b, #0f172a 70%);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.login-card {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 720px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.login-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.35);
+}
+
+.login-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+}
+
+.login-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.login-users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 12px;
+}
+
+.login-user-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+}
+
+.login-user-card:hover {
+  background: #f5f3ff;
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(139, 92, 246, 0.14);
+}
+
+.login-user-card.admin-card {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-color: #f59e0b;
+}
+
+.login-user-card.admin-card:hover {
+  border-color: #d97706;
+  box-shadow: 0 6px 14px rgba(245, 158, 11, 0.22);
+}
+
+.user-avatar-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #6366f1;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-avatar-xs {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #8b5cf6;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-pin-box {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-selected-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.login-pin-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.login-pin-input {
+  flex: 1;
+  font-size: 15px !important;
+  padding: 10px 14px !important;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.login-submit-btn {
+  padding: 10px 20px !important;
+  font-size: 13.5px !important;
+}
+
+.login-remember-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.login-error-msg {
+  color: #e11d48;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   HEADER CLOUD BADGE, USER CHIP & ADMIN CONTROLS
+   ========================================================================== */
+.badge-cloud {
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 10.5px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.btn-add-event {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: 1px solid #047857;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+  font-weight: 700;
+}
+.btn-add-event:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+}
+
+.user-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 5px 11px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.user-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.admin-control-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  padding: 5px 12px;
+  border-radius: 8px;
+}
+
+.admin-badge-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fbbf24;
+  letter-spacing: 0.4px;
+}
+
+.admin-select-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #fef3c7;
+  font-weight: 600;
+}
+
+.admin-user-select {
+  background: #0f172a;
+  color: #fbbf24;
+  border: 1px solid #f59e0b;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-admin-sm {
+  background: #f59e0b;
+  color: #0f172a;
+  border: none;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 5px;
+}
+.btn-admin-sm:hover {
+  background: #fbbf24;
+}
+
+.admin-editing-banner {
+  background: linear-gradient(90deg, #fef3c7, #fde68a);
+  color: #78350f;
+  padding: 8px 20px;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #f59e0b;
+  flex-shrink: 0;
+}
+
+.btn-admin-return {
+  background: #78350f;
+  color: #ffffff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MODALS (Custom Event & Admin PINs)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(3px);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 16px 22px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.modal-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-field label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+.btn-danger:hover {
+  background: #fecaca;
+}
+
+.admin-pins-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.admin-pin-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+}
+
+.admin-pin-item input {
+  width: 85px;
+  padding: 4px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ==========================================================================
+   ONBOARDING / EMPTY STATE CARD IN CALENDAR
+   ========================================================================== */
+.onboarding-card {
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 36px 28px;
+  max-width: 780px;
+  margin: 16px auto;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.onboarding-card h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.onboarding-card p {
+  font-size: 13.5px;
+  color: #475569;
+  max-width: 580px;
+  margin: 0 auto 22px;
+  line-height: 1.5;
+}
+
+.onboarding-presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 900px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .main-workspace {
+    overflow: visible;
+  }
+  .calendar-wrapper {
+    overflow: visible;
+    padding: 10px;
+  }
+  .calendar-month-sheet {
+    padding: 12px;
+    overflow-x: auto;
+  }
+  .calendar-grid-table {
+    min-width: 720px;
+  }
+  .form-row-2,
+  .admin-pins-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
    PRINT / PDF STYLES
    ========================================================================== */
 @media print {
@@ -1222,7 +1787,12 @@ body {
   .controls-panel,
   .gantt-tooltip,
   .dropzone-overlay,
-  .calendar-toolbar-options {
+  .calendar-toolbar-options,
+  .login-overlay,
+  .admin-editing-banner,
+  .modal-backdrop,
+  .day-add-btn,
+  .onboarding-card {
     display: none !important;
   }
 
