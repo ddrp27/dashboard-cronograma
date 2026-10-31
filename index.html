@@ -102,14 +102,6 @@
         📊 .CSV
       </button>
 
-      <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" style="display:none" />
-      <button type="button" id="btnUploadExcel" class="btn btn-upload" title="Actualizar versión del Excel del cronograma oficial (conserva intactos todos los eventos creados aparte)">
-        📂 Actualizar Excel Oficial
-      </button>
-      <button type="button" id="btnResetData" class="btn btn-secondary" style="display:none" title="Restaurar versión base del cronograma oficial">
-        ↺ Base original
-      </button>
-
       <!-- User Profile Pill -->
       <div class="user-profile-menu">
         <button type="button" id="btnSwitchUser" class="user-chip-btn" title="Cambiar de usuario o cerrar sesión">
@@ -133,144 +125,126 @@
        3. FILTERS & CUSTOMIZATION PANEL
        ======================================================================== -->
   <section class="controls-panel">
-    <div class="filters-row">
-      <!-- 1. Campaign Multi-Select -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>1. Campañas</span>
-          <label class="inline-check" style="font-size:10.5px;text-transform:none;font-weight:500" title="Incluir campañas de 2026">
-            <input type="checkbox" id="chkInclude2026" /> +2026
-          </label>
-        </div>
-        <button type="button" id="campaignDropdownBtn" class="multi-select-btn">
-          <span class="btn-text">Campañas</span>
-          <span>▾</span>
+    <!-- Barra Minimalista de Filtros Rápidos (Modelo Híbrido) -->
+    <div class="quick-controls-bar">
+      <!-- 1. Píldoras de Campañas activas + Botón "Campañas" -->
+      <div class="campaign-quick-wrap">
+        <div class="active-campaigns-pills" id="activeCampaignsPills"></div>
+        <button type="button" id="campaignDropdownBtn" class="pill-btn-campaigns" title="Abrir catálogo completo de campañas">
+          <span class="btn-text">📅 Campañas</span>
+          <span id="campaignPillBadge" class="campaign-pill-badge">0</span>
+          <span class="dropdown-caret">▾</span>
         </button>
-        <div id="campaignDropdown" class="multi-dropdown">
+        <div id="campaignDropdown" class="multi-dropdown campaign-clean-dropdown">
           <div class="multi-dropdown-header">
-            <input type="text" id="campaignSearchInput" class="filter-input" placeholder="Buscar campaña (ej. 8-11, 2027)..." />
+            <div class="campaign-dropdown-title-row">
+              <div style="display:flex;align-items:center;gap:6px">
+                <strong>📅 Catálogo de Campañas</strong>
+                <span id="campaignSelectedCountLabel" class="campaign-count-badge">0 seleccionadas</span>
+              </div>
+              <label class="inline-check" style="font-size:11px;font-weight:600;color:var(--text-secondary)" title="Incluir campañas de 2026">
+                <input type="checkbox" id="chkInclude2026" /> Incluir 2026
+              </label>
+            </div>
+            <!-- Tabs de filtrado rápido por Año -->
+            <div id="campaignYearTabs" class="campaign-year-tabs">
+              <button type="button" class="year-tab active" data-year="ALL">Todas</button>
+              <button type="button" class="year-tab" data-year="2027">2027</button>
+              <button type="button" class="year-tab" data-year="2028">2028</button>
+              <button type="button" class="year-tab" data-year="2029">2029</button>
+            </div>
+            <!-- Acciones rápidas de selección masiva -->
             <div class="multi-dropdown-actions">
-              <button type="button" id="campaignSelectAll" class="link-btn">Todas</button>
-              <button type="button" id="campaignSelect2027" class="link-btn">2027</button>
-              <button type="button" id="campaignSelect2028" class="link-btn">2028</button>
-              <button type="button" id="campaignClearAll" class="link-btn">Limpiar</button>
+              <button type="button" id="campaignSelectAll" class="link-btn">✓ Seleccionar Todas</button>
+              <button type="button" id="campaignSelect2027" class="link-btn">Solo 2027</button>
+              <button type="button" id="campaignSelect2028" class="link-btn">Solo 2028</button>
+              <button type="button" id="campaignClearAll" class="link-btn" style="color:#ef4444">Limpiar todo</button>
+            </div>
+            <!-- Búsqueda compacta opcional -->
+            <div class="campaign-search-row">
+              <span class="campaign-search-icon">🔍</span>
+              <input type="text" id="campaignSearchInput" class="filter-input campaign-search-field" placeholder="Buscar campaña por código o número (ej: 8-11, 2027)..." />
             </div>
           </div>
-          <div id="campaignOptionsList" class="multi-options-list"></div>
+          <!-- Lista completa y visible de campañas disponibles -->
+          <div id="campaignOptionsList" class="multi-options-list campaign-full-options-grid"></div>
         </div>
       </div>
 
-      <!-- 2. Area Multi-Select (Apagadas por defecto) -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>2. Áreas (Cronograma)</span>
-        </div>
-        <button type="button" id="areaDropdownBtn" class="multi-select-btn">
-          <span class="btn-text">0 áreas activas</span>
-          <span>▾</span>
-        </button>
-        <div id="areaDropdown" class="multi-dropdown">
-          <div class="multi-dropdown-header">
-            <input type="text" id="areaSearchInput" class="filter-input" placeholder="Buscar área (ej. Aglab, DisGraf)..." />
-            <div class="multi-dropdown-actions">
-              <button type="button" id="areaSelectAll" class="link-btn">Encender todas</button>
-              <button type="button" id="areaClearAll" class="link-btn" style="color:#ef4444">Apagar todas</button>
-            </div>
-          </div>
-          <div id="areaOptionsList" class="multi-options-list"></div>
-        </div>
-      </div>
+      <div class="controls-divider"></div>
 
-      <!-- 3. Proceso Multi-Select (Apagados por defecto) -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>3. Procesos (Cronograma)</span>
-        </div>
-        <button type="button" id="procesoDropdownBtn" class="multi-select-btn">
-          <span class="btn-text">0 procesos activos</span>
-          <span>▾</span>
-        </button>
-        <div id="procesoDropdown" class="multi-dropdown">
-          <div class="multi-dropdown-header">
-            <input type="text" id="procesoSearchInput" class="filter-input" placeholder="Buscar proceso (ej. Estampacion, 3D)..." />
-            <div class="multi-dropdown-actions">
-              <button type="button" id="procesoSelectAll" class="link-btn">Encender todos</button>
-              <button type="button" id="procesoClearAll" class="link-btn" style="color:#ef4444">Apagar todos</button>
-            </div>
-          </div>
-          <div id="procesoOptionsList" class="multi-options-list"></div>
-        </div>
-      </div>
-
-      <!-- 4. Individual Activities Checklist Dropdown -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>4. Checklist Actividades (#No)</span>
-        </div>
-        <button type="button" id="actDropdownBtn" class="multi-select-btn">
-          <span class="btn-text">0 actividades elegidas</span>
-          <span>▾</span>
-        </button>
-        <div id="actDropdown" class="multi-dropdown" style="min-width:420px">
-          <div class="multi-dropdown-header">
-            <input type="text" id="actChecklistSearchInput" class="filter-input" placeholder="Buscar actividad por nombre, proceso o #No..." />
-            <div class="multi-dropdown-actions">
-              <button type="button" id="actSelectVisible" class="link-btn">Marcar buscadas</button>
-              <button type="button" id="actQuickTextil" class="link-btn">🎨 Diseño Textil</button>
-              <button type="button" id="actClearAll" class="link-btn" style="color:#ef4444">Apagar todas (0)</button>
-            </div>
-          </div>
-          <div id="actOptionsList" class="multi-options-list" style="max-height:320px"></div>
-        </div>
-      </div>
-
-      <!-- 5. Custom Events Filter (Por Área / Rol / Usuario) -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>5. Eventos Extra (Equipo)</span>
-          <label class="inline-check" style="font-size:10.5px;text-transform:none;font-weight:600;color:#059669">
-            <input type="checkbox" id="chkShowCustomEvents" checked /> Ver extras
-          </label>
-        </div>
-        <button type="button" id="customFilterDropdownBtn" class="multi-select-btn">
-          <span class="btn-text">Todas las áreas / roles</span>
-          <span>▾</span>
-        </button>
-        <div id="customFilterDropdown" class="multi-dropdown" style="min-width:300px">
-          <div class="multi-dropdown-header">
-            <div style="font-size:11px;font-weight:700;color:#475569">Filtrar eventos creados aparte por Área o Usuario:</div>
-            <div class="multi-dropdown-actions">
-              <button type="button" id="customFilterSelectAll" class="link-btn">Ver todos</button>
-              <button type="button" id="customFilterOnlyMine" class="link-btn">Solo de este perfil</button>
-              <button type="button" id="customFilterClear" class="link-btn">Limpiar</button>
-            </div>
-          </div>
-          <div id="customFilterOptionsList" class="multi-options-list"></div>
-        </div>
-      </div>
-
-      <!-- 6. Brand Filter -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>Marca</span>
-          <label id="sharedBrandWrap" class="inline-check" style="display:none;font-size:10.5px;text-transform:none;font-weight:500" title="Incluir actividades compartidas 'Azz Livv'">
-            <input type="checkbox" id="chkSharedBrand" checked /> +Azz Livv
-          </label>
-        </div>
+      <!-- 2. Segmento rápido de Marca (Todas | Livva | Azzorti | Azz Livv) -->
+      <div class="brand-filter-wrap">
         <div class="brand-pills">
           <button type="button" class="brand-pill active" data-brand="ALL">Todas</button>
           <button type="button" class="brand-pill" data-brand="Livva">Livva</button>
           <button type="button" class="brand-pill" data-brand="Azzorti">Azzorti</button>
           <button type="button" class="brand-pill" data-brand="Azz Livv">Azz Livv</button>
         </div>
+        <label id="sharedBrandWrap" class="inline-check shared-brand-wrap" style="display:none" title="Incluir actividades compartidas 'Azz Livv'">
+          <input type="checkbox" id="chkSharedBrand" checked /> +Azz Livv
+        </label>
       </div>
 
-      <!-- 7. Search Input -->
-      <div class="filter-group">
-        <div class="filter-label">
-          <span>Buscar texto</span>
+      <div class="controls-divider"></div>
+
+      <!-- 3. Avatares de Diseñadores / Equipo en fila horizontal con toggle de Extras y selector de cualquier perfil -->
+      <div class="team-avatars-bar" id="teamAvatarsBar">
+        <label class="team-extras-toggle" title="Encender o apagar todos los eventos extra creados aparte">
+          <input type="checkbox" id="chkShowCustomEvents" checked />
+          <span class="extras-toggle-pill">📌 Extras</span>
+        </label>
+
+        <!-- Selector Desplegable para Cualquier Perfil del Equipo -->
+        <div class="team-profiles-dropdown-wrap" id="teamProfilesDropdownWrap">
+          <button type="button" id="btnTeamProfilesDropdown" class="btn-team-dropdown" title="Abrir catálogo para seleccionar cualquier perfil del equipo">
+            <span class="team-dropdown-icon">👥</span>
+            <span id="teamDropdownLabel" class="team-dropdown-label">Perfiles</span>
+            <span class="team-dropdown-arrow">▾</span>
+          </button>
+
+          <!-- Floating Dropdown Panel -->
+          <div id="teamProfilesDropdown" class="team-profiles-panel" style="display:none">
+            <div class="team-profiles-panel-header">
+              <div class="team-profiles-search-box">
+                <span style="font-size:12px;opacity:0.7">🔍</span>
+                <input type="text" id="teamProfileSearchInput" class="team-profiles-search-field" placeholder="Buscar diseñador o perfil..." />
+              </div>
+              <div class="team-profiles-actions-bar">
+                <button type="button" id="btnSelectAllProfiles" class="team-action-link">🌟 Ver Todo el Equipo (Sin filtro)</button>
+              </div>
+            </div>
+            <div id="teamProfilesOptionsList" class="team-profiles-options-grid">
+              <!-- Renderizado de todos los perfiles disponibles -->
+            </div>
+          </div>
         </div>
-        <input type="search" id="activitySearchInput" class="filter-input" placeholder="Filtrar en vista actual..." />
+
+        <div class="team-avatars-scroll-wrap">
+          <button type="button" id="btnTeamScrollLeft" class="team-scroll-arrow" title="Desplazar a la izquierda" style="display:none">‹</button>
+          <div class="team-avatars-list" id="teamAvatarsList">
+            <!-- Renderizado dinámico: MARI, BRY, JOHA, YEYE, CARO, CATA, LAU A, LAU L, ELI, LEIDY, ANDRE, DANI -->
+          </div>
+          <button type="button" id="btnTeamScrollRight" class="team-scroll-arrow" title="Desplazar a la derecha" style="display:none">›</button>
+        </div>
+
+        <button type="button" id="btnTeamShowAll" class="team-all-btn" title="Ver eventos extra de todo el equipo" style="display:none">
+          ✕ Ver todos
+        </button>
+      </div>
+
+      <div class="controls-divider"></div>
+
+      <!-- 4. Único Botón Principal Destacado -->
+      <button type="button" id="btnOpenUnifiedFilters" class="btn btn-filter-main" title="Abrir panel jerárquico de Áreas, Procesos y Actividades">
+        <span class="filter-main-icon">🎛️</span>
+        <span class="filter-main-title">Filtrar Actividades y Procesos</span>
+        <span id="unifiedFilterActiveBadge" class="unified-filter-badge">0 act.</span>
+      </button>
+
+      <!-- 5. Input de búsqueda por texto libre -->
+      <div class="quick-search-box">
+        <input type="search" id="activitySearchInput" class="filter-input quick-search-input" placeholder="🔍 Buscar texto..." />
       </div>
     </div>
 
@@ -284,6 +258,7 @@
 
       <!-- Calendar Toolbar Options (Visible por defecto) -->
       <div class="calendar-toolbar-options" id="calendarToolbarOptions">
+        <button type="button" id="btnCalToday" class="btn btn-today" title="Ir a la fecha de hoy en el calendario">📍 Hoy</button>
         <button type="button" id="btnCalPrevMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">◀ Anterior</button>
         <span id="calCurrentMonthLabel" style="font-weight:700;font-size:12px;color:var(--text-main)">Todos los meses</span>
         <button type="button" id="btnCalNextMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">Siguiente ▶</button>
@@ -342,6 +317,75 @@
       </div>
     </div>
   </section>
+
+  <!-- ========================================================================
+       PANEL UNIFICADO DE CONFIGURACIÓN (DRAWER FLOTANTE HÍBRIDO)
+       Jerarquía: Área ➔ Proceso ➔ Actividades (#No) + Presets en Bloque
+       ======================================================================== -->
+  <div id="unifiedFilterDrawerBackdrop" class="drawer-backdrop" style="display:none">
+    <div id="unifiedFilterDrawer" class="unified-drawer">
+      <div class="drawer-header">
+        <div class="drawer-header-info">
+          <div class="drawer-title-row">
+            <span class="drawer-icon">🎛️</span>
+            <h3>Filtrar Actividades y Procesos</h3>
+          </div>
+          <p class="drawer-subtitle">
+            Estructura jerárquica oficial: <strong>Área ➔ Proceso ➔ Actividades (#No)</strong>. Enciende o apaga bloques completos con un solo clic.
+          </p>
+        </div>
+        <button type="button" id="btnCloseUnifiedDrawer" class="drawer-close-btn" title="Cerrar panel">✕</button>
+      </div>
+
+      <!-- Presets Rápidos en Bloque (AG LAB, DisGraf, Ingeniería, Todas, Apagar) -->
+      <div class="drawer-presets-bar">
+        <div class="drawer-presets-label">⚡ PRESETS RÁPIDOS EN BLOQUE:</div>
+        <div class="drawer-presets-btns">
+          <button type="button" class="preset-pill-btn preset-aglab" data-preset="aglab" title="Encender todo AG LAB: Diseño Textil (Estampación Continua/Local) y Diseño de Modas (Desarrollos MO 2D/3D, Telas, etc.)">
+            🎨 AG LAB (Textil y Moda)
+          </button>
+          <button type="button" class="preset-pill-btn preset-disgraf" data-preset="disgraf" title="Encender Diseño Gráfico (DisGraf)">
+            📐 DisGraf
+          </button>
+          <button type="button" class="preset-pill-btn preset-ingenieria" data-preset="ingenieria" title="Encender Patronaje e Ingeniería">
+            ⚙️ Ingeniería
+          </button>
+          <button type="button" class="preset-pill-btn preset-all" id="btnDrawerSelectAll" title="Encender todas las actividades oficiales">
+            ✨ Todas
+          </button>
+          <button type="button" class="preset-pill-btn preset-clear" id="btnDrawerClearAll" title="Apagar todas las actividades oficiales">
+            🧹 Apagar Todas (0)
+          </button>
+        </div>
+      </div>
+
+      <!-- Buscador y acciones dentro del Drawer -->
+      <div class="drawer-search-row">
+        <input type="text" id="unifiedDrawerSearch" class="filter-input drawer-search-input" placeholder="🔍 Buscar por actividad, proceso, área o #No (ej. 9, estampación, 3D)..." />
+        <div class="drawer-tree-actions">
+          <button type="button" id="btnDrawerExpandAll" class="link-btn">Expandir todo</button>
+          <button type="button" id="btnDrawerCollapseAll" class="link-btn">Colapsar todo</button>
+        </div>
+      </div>
+
+      <!-- Árbol Jerárquico: Área ➔ Proceso ➔ Actividades #No -->
+      <div id="unifiedDrawerTree" class="drawer-tree-container">
+        <!-- Generado dinámicamente -->
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="drawer-footer">
+        <div class="drawer-footer-stats">
+          <span id="drawerStatsActive"><strong>0</strong> activas</span>
+          <span class="drawer-stats-sep">•</span>
+          <span id="drawerStatsTotal">259 actividades oficiales</span>
+        </div>
+        <button type="button" id="btnDrawerApplyClose" class="btn btn-primary drawer-apply-btn">
+          ✓ Listo y Aplicar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================================
        4. MAIN WORKSPACE (Calendar Default, Gantt, Matrix)
@@ -427,13 +471,14 @@
           <div id="evOwnersGrid" class="ev-owners-grid"></div>
         </div>
 
-        <div class="form-row-3">
+        <div class="form-row-2">
           <div class="form-field">
             <label for="evAreaInput">Área o Rol (Para filtrar) *</label>
             <select id="evAreaInput" class="filter-select">
-              <option value="Diseño Textil (Aglab)">Diseño Textil (Aglab)</option>
+              <option value="AG LAB (Diseño Textil y Moda)">AG LAB (Diseño Textil y Moda)</option>
+              <option value="Diseño Textil (Aglab)">Diseño Textil (AG LAB)</option>
+              <option value="Desarrollos Moda MO">Desarrollos Moda MO (AG LAB)</option>
               <option value="Diseño Gráfico (DisGraf)">Diseño Gráfico (DisGraf)</option>
-              <option value="Desarrollos Moda MO">Desarrollos Moda MO (2D / 3D)</option>
               <option value="Patronaje e Ingeniería">Patronaje e Ingeniería</option>
               <option value="Muestras y Taller">Muestras y Taller</option>
               <option value="Reunión / Fit / Comité">Reunión / Fit / Comité</option>
@@ -450,15 +495,105 @@
               <option value="Azzorti">Azzorti</option>
             </select>
           </div>
+        </div>
+
+        <!-- Etiqueta Hashtag (#) con guardado y selección para futuros usos -->
+        <div class="form-field">
+          <div class="form-label-row">
+            <label for="evTagInput">
+              Etiqueta (#Hashtag)
+              <span class="sub-label-hint">— Escribe o elige un # (se guardará para futuros usos)</span>
+            </label>
+            <span id="evTagActivePreview" class="hashtag-active-chip">#Entrega</span>
+          </div>
+          <div class="hashtag-input-group">
+            <span class="hashtag-prefix-symbol">#</span>
+            <input type="text" id="evTagInput" class="filter-input hashtag-input-field" placeholder="Entrega, Fit, Muestra, Revisión, Comité..." autocomplete="off" />
+            <button type="button" id="btnClearHashtag" class="hashtag-clear-btn" title="Limpiar hashtag">×</button>
+          </div>
+          <div class="saved-hashtags-section">
+            <div class="saved-hashtags-header">
+              <span class="saved-hashtags-label">🏷️ # Guardados (clic para seleccionar):</span>
+            </div>
+            <div id="savedHashtagsList" class="saved-hashtags-list"></div>
+          </div>
+        </div>
+
+        <!-- Selector independiente de Color y Nivel de Importancia -->
+        <div class="form-row-2 ev-color-importance-row">
           <div class="form-field">
-            <label for="evCategoryInput">Color / Etiqueta visual</label>
-            <select id="evCategoryInput" class="filter-select">
-              <option value="emerald">🟢 Verde Esmeralda (Proceso / Entrega)</option>
-              <option value="amber">🟠 Ámbar (Muestra / Revisión)</option>
-              <option value="indigo">🔵 Índigo (Reunión / Fit)</option>
-              <option value="rose">🔴 Rosa (Urgente / Hito Crítico)</option>
-              <option value="teal">🩵 Turquesa (Seguimiento / Compra)</option>
-            </select>
+            <label>Color del Evento</label>
+            <input type="hidden" id="evCategoryInput" value="emerald" />
+            <div id="evColorPicker" class="color-swatches-grid">
+              <button type="button" class="color-swatch-item active" data-color="emerald" title="Verde Esmeralda">
+                <span class="swatch-bubble" style="background:#10b981;"></span>
+                <span class="swatch-text">Esmeralda</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="amber" title="Ámbar Cálido">
+                <span class="swatch-bubble" style="background:#f59e0b;"></span>
+                <span class="swatch-text">Ámbar</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="indigo" title="Índigo Azul">
+                <span class="swatch-bubble" style="background:#6366f1;"></span>
+                <span class="swatch-text">Índigo</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="rose" title="Rosa Rubí">
+                <span class="swatch-bubble" style="background:#f43f5e;"></span>
+                <span class="swatch-text">Rosa</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="teal" title="Turquesa Menta">
+                <span class="swatch-bubble" style="background:#14b8a6;"></span>
+                <span class="swatch-text">Turquesa</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="purple" title="Violeta / Púrpura">
+                <span class="swatch-bubble" style="background:#a855f7;"></span>
+                <span class="swatch-text">Violeta</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="sky" title="Azul Cielo">
+                <span class="swatch-bubble" style="background:#0284c7;"></span>
+                <span class="swatch-text">Cielo</span>
+                <span class="swatch-check">✓</span>
+              </button>
+              <button type="button" class="color-swatch-item" data-color="orange" title="Naranja">
+                <span class="swatch-bubble" style="background:#ea580c;"></span>
+                <span class="swatch-text">Naranja</span>
+                <span class="swatch-check">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Nivel de Importancia</label>
+            <input type="hidden" id="evImportanceInput" value="medium" />
+            <div id="evImportanceGroup" class="importance-selector-group">
+              <button type="button" class="importance-choice imp-choice-high" data-importance="high" title="Prioritaria / Crítica">
+                <span class="imp-dot">🔴</span>
+                <div class="imp-texts">
+                  <span class="imp-title">Alta</span>
+                  <span class="imp-sub">Urgente / Crítica</span>
+                </div>
+              </button>
+              <button type="button" class="importance-choice imp-choice-medium active" data-importance="medium" title="Normal / Regular">
+                <span class="imp-dot">🟡</span>
+                <div class="imp-texts">
+                  <span class="imp-title">Media</span>
+                  <span class="imp-sub">Proceso regular</span>
+                </div>
+              </button>
+              <button type="button" class="importance-choice imp-choice-low" data-importance="low" title="Baja / Flexible">
+                <span class="imp-dot">🟢</span>
+                <div class="imp-texts">
+                  <span class="imp-title">Baja</span>
+                  <span class="imp-sub">Informativa</span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -502,14 +637,6 @@
 
   <!-- Floating Tooltip -->
   <div id="ganttTooltip" class="gantt-tooltip"></div>
-
-  <!-- Drag & Drop Overlay -->
-  <div id="dropzoneOverlay" class="dropzone-overlay">
-    <div class="dropzone-card">
-      <h2>📂 Suelta aquí la nueva versión del Excel (.xlsx / .csv)</h2>
-      <p>Se actualizarán las fechas del cronograma oficial para todos los usuarios. <strong>Los eventos creados por aparte se conservarán intactos.</strong></p>
-    </div>
-  </div>
 
   <script src="datos_cronograma.js"></script>
   <script src="app.js"></script>

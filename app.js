@@ -11,7 +11,24 @@
   const LOCAL_USERS_CACHE_KEY = "AZZORTI_USERS_CACHE_V2";
   const LOCAL_CUSTOM_EVENTS_KEY = "AZZORTI_CUSTOM_EVENTS_CACHE_V2";
   const LOCAL_MASTER_CACHE_KEY = "AZZORTI_CUSTOM_CRONOGRAMA_V1";
+  const LOCAL_SAVED_HASHTAGS_KEY = "AZZORTI_SAVED_HASHTAGS_V1";
   const TODAY_STR = new Date().toISOString().slice(0, 10);
+
+  const DEFAULT_HASHTAGS = [
+    "#Entrega",
+    "#Muestra",
+    "#Revisión",
+    "#Fit",
+    "#Comité",
+    "#HitoCrítico",
+    "#Seguimiento",
+    "#Aprobación",
+    "#Compra",
+    "#Taller",
+    "#PC_Kids",
+    "#Telas",
+  ];
+  let savedHashtags = new Set(DEFAULT_HASHTAGS);
 
   const DEFAULT_CAMPAIGNS = [
     "ADV_202708_NAL_202711",
@@ -35,9 +52,10 @@
   ];
 
   const CUSTOM_EVENT_AREAS = [
+    "AG LAB (Diseño Textil y Moda)",
     "Diseño Textil (Aglab)",
-    "Diseño Gráfico (DisGraf)",
     "Desarrollos Moda MO",
+    "Diseño Gráfico (DisGraf)",
     "Patronaje e Ingeniería",
     "Muestras y Taller",
     "Reunión / Fit / Comité",
@@ -82,6 +100,7 @@
     viewMode: "calendar", // Calendar is the main official view!
     calCurrentMonthIndex: 0,
     calShowAllMonths: true,
+    forceIncludeToday: false,
     showCatalogInGantt: false,
     groupByProceso: true,
     collapsedGroups: new Set(),
@@ -121,14 +140,11 @@
     els.btnExportPdfGantt = document.getElementById("btnExportPdfGantt");
     els.btnExportIcs = document.getElementById("btnExportIcs");
     els.btnExportCsv = document.getElementById("btnExportCsv");
-    els.fileInput = document.getElementById("excelFileInput");
-    els.btnUpload = document.getElementById("btnUploadExcel");
-    els.btnResetData = document.getElementById("btnResetData");
     els.btnSwitchUser = document.getElementById("btnSwitchUser");
     els.headerUserAvatar = document.getElementById("headerUserAvatar");
     els.headerUserName = document.getElementById("headerUserName");
 
-    // Filters
+    // Filters & Minimalist Controls (Modelo Híbrido)
     els.chkInclude2026 = document.getElementById("chkInclude2026");
     els.campaignBtn = document.getElementById("campaignDropdownBtn");
     els.campaignDropdown = document.getElementById("campaignDropdown");
@@ -138,40 +154,48 @@
     els.campaignSelect2027 = document.getElementById("campaignSelect2027");
     els.campaignSelect2028 = document.getElementById("campaignSelect2028");
     els.campaignClearAll = document.getElementById("campaignClearAll");
+    els.activeCampaignsPills = document.getElementById("activeCampaignsPills");
+    els.campaignPillBadge = document.getElementById("campaignPillBadge");
+    els.campaignSelectedCountLabel = document.getElementById("campaignSelectedCountLabel");
+    els.campaignYearTabs = document.getElementById("campaignYearTabs");
 
-    els.areaBtn = document.getElementById("areaDropdownBtn");
-    els.areaDropdown = document.getElementById("areaDropdown");
-    els.areaSearch = document.getElementById("areaSearchInput");
-    els.areaList = document.getElementById("areaOptionsList");
-    els.areaSelectAll = document.getElementById("areaSelectAll");
-    els.areaClearAll = document.getElementById("areaClearAll");
-
-    els.procesoBtn = document.getElementById("procesoDropdownBtn");
-    els.procesoDropdown = document.getElementById("procesoDropdown");
-    els.procesoSearch = document.getElementById("procesoSearchInput");
-    els.procesoList = document.getElementById("procesoOptionsList");
-    els.procesoSelectAll = document.getElementById("procesoSelectAll");
-    els.procesoClearAll = document.getElementById("procesoClearAll");
-
-    els.actBtn = document.getElementById("actDropdownBtn");
-    els.actDropdown = document.getElementById("actDropdown");
-    els.actSearch = document.getElementById("actChecklistSearchInput");
-    els.actList = document.getElementById("actOptionsList");
-    els.actSelectVisible = document.getElementById("actSelectVisible");
-    els.actQuickTextil = document.getElementById("actQuickTextil");
-    els.actClearAll = document.getElementById("actClearAll");
-
-    els.chkShowCustomEvents = document.getElementById("chkShowCustomEvents");
-    els.customFilterBtn = document.getElementById("customFilterDropdownBtn");
-    els.customFilterDropdown = document.getElementById("customFilterDropdown");
-    els.customFilterList = document.getElementById("customFilterOptionsList");
-    els.customFilterSelectAll = document.getElementById("customFilterSelectAll");
-    els.customFilterOnlyMine = document.getElementById("customFilterOnlyMine");
-    els.customFilterClear = document.getElementById("customFilterClear");
-
+    // Brand
     els.brandPills = document.querySelectorAll(".brand-pill");
     els.chkSharedBrand = document.getElementById("chkSharedBrand");
     els.sharedBrandWrap = document.getElementById("sharedBrandWrap");
+
+    // Team Avatars & Extras Filter & Profiles Selector
+    els.teamAvatarsBar = document.getElementById("teamAvatarsBar");
+    els.teamAvatarsList = document.getElementById("teamAvatarsList");
+    els.chkShowCustomEvents = document.getElementById("chkShowCustomEvents");
+    els.btnTeamShowAll = document.getElementById("btnTeamShowAll");
+    els.btnTeamProfilesDropdown = document.getElementById("btnTeamProfilesDropdown");
+    els.teamProfilesDropdownWrap = document.getElementById("teamProfilesDropdownWrap");
+    els.teamDropdownLabel = document.getElementById("teamDropdownLabel");
+    els.teamProfilesDropdown = document.getElementById("teamProfilesDropdown");
+    els.teamProfileSearchInput = document.getElementById("teamProfileSearchInput");
+    els.teamProfilesOptionsList = document.getElementById("teamProfilesOptionsList");
+    els.btnSelectAllProfiles = document.getElementById("btnSelectAllProfiles");
+    els.btnTeamScrollLeft = document.getElementById("btnTeamScrollLeft");
+    els.btnTeamScrollRight = document.getElementById("btnTeamScrollRight");
+
+    // Unified Filter Main Button & Drawer
+    els.btnOpenUnifiedFilters = document.getElementById("btnOpenUnifiedFilters");
+    els.unifiedFilterActiveBadge = document.getElementById("unifiedFilterActiveBadge");
+    els.unifiedFilterDrawerBackdrop = document.getElementById("unifiedFilterDrawerBackdrop");
+    els.unifiedFilterDrawer = document.getElementById("unifiedFilterDrawer");
+    els.btnCloseUnifiedDrawer = document.getElementById("btnCloseUnifiedDrawer");
+    els.btnDrawerApplyClose = document.getElementById("btnDrawerApplyClose");
+    els.unifiedDrawerSearch = document.getElementById("unifiedDrawerSearch");
+    els.btnDrawerExpandAll = document.getElementById("btnDrawerExpandAll");
+    els.btnDrawerCollapseAll = document.getElementById("btnDrawerCollapseAll");
+    els.unifiedDrawerTree = document.getElementById("unifiedDrawerTree");
+    els.btnDrawerSelectAll = document.getElementById("btnDrawerSelectAll");
+    els.btnDrawerClearAll = document.getElementById("btnDrawerClearAll");
+    els.drawerStatsActive = document.getElementById("drawerStatsActive");
+    els.drawerStatsTotal = document.getElementById("drawerStatsTotal");
+
+    // Search Input
     els.searchInput = document.getElementById("activitySearchInput");
 
     // Sub-toolbar & Tabs
@@ -180,6 +204,7 @@
     els.tabMatrix = document.getElementById("tabMatrix");
 
     els.calendarToolbarOptions = document.getElementById("calendarToolbarOptions");
+    els.btnCalToday = document.getElementById("btnCalToday");
     els.btnCalPrevMonth = document.getElementById("btnCalPrevMonth");
     els.btnCalNextMonth = document.getElementById("btnCalNextMonth");
     els.calCurrentMonthLabel = document.getElementById("calCurrentMonthLabel");
@@ -230,6 +255,13 @@
     els.evAreaInput = document.getElementById("evAreaInput");
     els.evMarcaInput = document.getElementById("evMarcaInput");
     els.evCategoryInput = document.getElementById("evCategoryInput");
+    els.evTagInput = document.getElementById("evTagInput");
+    els.evTagActivePreview = document.getElementById("evTagActivePreview");
+    els.btnClearHashtag = document.getElementById("btnClearHashtag");
+    els.savedHashtagsList = document.getElementById("savedHashtagsList");
+    els.evColorPicker = document.getElementById("evColorPicker");
+    els.evImportanceInput = document.getElementById("evImportanceInput");
+    els.evImportanceGroup = document.getElementById("evImportanceGroup");
     els.evNotesInput = document.getElementById("evNotesInput");
     els.btnDeleteCustomEvent = document.getElementById("btnDeleteCustomEvent");
 
@@ -241,7 +273,6 @@
     els.btnSaveAllPins = document.getElementById("btnSaveAllPins");
 
     els.tooltip = document.getElementById("ganttTooltip");
-    els.dropzoneOverlay = document.getElementById("dropzoneOverlay");
   }
 
   /* ==========================================================================
@@ -365,21 +396,7 @@
       if (!eventsErr && Array.isArray(eventsData)) {
         customEvents = eventsData;
         saveLocalCustomEventsCache();
-      }
-
-      // 3. Check if there is an updated official master_schedule in Supabase
-      const { data: masterData, error: masterErr } = await sbClient
-        .from("master_schedule")
-        .select("*")
-        .eq("id", "official_cronograma")
-        .maybeSingle();
-
-      if (!masterErr && masterData && masterData.data && masterData.data.activities) {
-        rawData = masterData.data;
-        els.btnResetData.style.display = "inline-flex";
-        els.statusBadge.textContent = `📂 Excel Oficial Nube: ${masterData.file_name || "Actualizado"} (${rawData.activities.length} act.)`;
-        els.statusBadge.style.background = "#059669";
-        els.statusBadge.style.color = "#ffffff";
+        loadSavedHashtags();
       }
 
       setCloudStatus("☁️ Nube sincronizada en tiempo real", false);
@@ -791,8 +808,40 @@
 
   function normArea(val) {
     const s = String(val || "").trim().replace(/\s+/g, " ");
-    if (s.toLowerCase() === "ingenieria") return "Ingenieria";
+    const lower = s.toLowerCase();
+    if (lower === "ingenieria" || lower === "ingeniería") return "Ingenieria";
+    if (lower === "aglab" || lower === "ag lab" || lower === "ag_lab") return "Aglab";
     return s || "Sin Área";
+  }
+
+  function getAreaDisplayName(area) {
+    if (area === "Aglab") return "🎨 AG LAB (Diseño Textil y Moda)";
+    if (area === "DisGraf") return "📐 DisGraf (Diseño Gráfico)";
+    if (area === "Ingenieria") return "⚙️ Patronaje e Ingeniería";
+    if (area === "Mercadeo") return "📢 Mercadeo";
+    if (area === "Produccion") return "🏭 Producción";
+    if (area === "Star Trading") return "🌐 Star Trading";
+    if (area === "Planeacion Estrategica") return "📊 Planeación Estratégica";
+    if (area === "Ventas") return "💼 Ventas y Facturación";
+    if (area === "Compras") return "📦 Compras";
+    return area || "Sin Área";
+  }
+
+  function getProcesoDisplayName(proceso, area) {
+    if (area === "Aglab") {
+      if (proceso === "Estampacion Continua") return "Estampación Continua (Diseño Textil)";
+      if (proceso === "Estampacion Local") return "Estampación Local (Diseño Textil)";
+      if (proceso === "Desarrollos Moda MO") return "Desarrollos Moda MO (Diseño de Modas)";
+      if (proceso === "Desarrollos Moda MO 2D") return "Desarrollos Moda MO 2D (Diseño de Modas 2D)";
+      if (proceso === "Desarrollos Moda MO 3D") return "Desarrollos Moda MO 3D (Diseño de Modas 3D)";
+      if (proceso === "Desarrollos Moda MO Prog") return "Desarrollos Moda MO Prog (Diseño de Modas)";
+      if (proceso === "Proyeccion Telas") return "Proyección Telas (Diseño de Modas)";
+      if (proceso === "Telas Sublego") return "Telas Sublego (Diseño de Modas)";
+      if (proceso === "Telas Especiales") return "Telas Especiales (Diseño de Modas)";
+      if (proceso === "Importados") return "Importados (Diseño de Modas)";
+      if (proceso === "Toma de Fotos") return "Toma de Fotos (AG LAB)";
+    }
+    return proceso;
   }
 
   function normMarca(val) {
@@ -891,8 +940,19 @@
       const fechasMap = {};
       for (const camp of campaigns) {
         const c = camp.colIndex;
-        const dhVal = row[c - 1];
-        const fVal = row[c];
+        let fVal = null;
+        let dhVal = null;
+        if (normalizeDateCell(row[c + 1])) {
+          fVal = row[c + 1];
+          dhVal = row[c];
+        } else if (normalizeDateCell(row[c])) {
+          fVal = row[c];
+          dhVal = row[c - 1];
+        } else {
+          fVal = row[c + 1] !== undefined ? row[c + 1] : row[c];
+          dhVal = row[c] !== undefined ? row[c] : row[c - 1];
+        }
+
         dhMap[camp.id] = dhVal !== undefined && dhVal !== null && dhVal !== "" ? parseInt(dhVal, 10) || 0 : dias;
         fechasMap[camp.id] = normalizeDateCell(fVal);
       }
@@ -1095,7 +1155,7 @@
         }
       }
 
-      els.btnResetData.style.display = "inline-flex";
+      if (els.btnResetData) els.btnResetData.style.display = "inline-flex";
       els.statusBadge.textContent = `📂 Excel activo: ${file.name} (${parsed.activities.length} act. | Eventos extra intactos)`;
       els.statusBadge.style.background = "#059669";
       els.statusBadge.style.color = "#ffffff";
@@ -1109,7 +1169,7 @@
   }
 
   /* ==========================================================================
-     7. CHECKLISTS & FILTER CONTROLS (OFF BY DEFAULT, UNIFIED SYNC)
+     7. CHECKLISTS & UNIFIED HIERARCHY FILTER (ÁREA ➔ PROCESO ➔ ACTIVIDADES)
      ========================================================================== */
   function getActiveCampaigns() {
     if (!rawData || !rawData.campaigns) return [];
@@ -1125,340 +1185,700 @@
 
   function populateFilterControls() {
     if (!rawData) return;
-    updateCampaignButtonLabel();
+    renderActiveCampaignPills();
     renderCampaignSelectList();
-    renderAreaChecklist();
-    renderProcesoChecklist();
-    renderActivityChecklist();
-    renderCustomEventFilterList();
-    updateChecklistButtonLabels();
+    renderTeamAvatarsBar();
+    renderUnifiedDrawerHierarchy();
+    updateUnifiedFilterBadge();
   }
 
-  function updateCampaignButtonLabel() {
-    const active = getActiveCampaigns();
-    const total = active.length;
-    const count = state.selectedCampaignIds.size;
-    const btnSpan = els.campaignBtn.querySelector(".btn-text");
+  let selectedCampaignYear = "ALL";
 
-    if (count === 0) {
-      btnSpan.textContent = "Ninguna campaña (0)";
-    } else if (count === total) {
-      btnSpan.textContent = `Todas las campañas (${total})`;
-    } else if (count === 1) {
-      const singleId = Array.from(state.selectedCampaignIds)[0];
-      const c = active.find((x) => x.id === singleId);
-      btnSpan.textContent = c ? c.shortLabel : "1 campaña";
-    } else if (count <= 3) {
-      const labels = [];
-      for (const id of state.selectedCampaignIds) {
-        const c = active.find((x) => x.id === id);
-        if (c) labels.push(c.shortLabel.replace(/\s*\d{4}/, ""));
-      }
-      btnSpan.textContent = labels.join(", ");
-    } else {
-      btnSpan.textContent = `${count} de ${total} campañas`;
+  function toggleCampaignDropdown(forceOpen) {
+    if (!els.campaignDropdown) return;
+    const isOpen = els.campaignDropdown.classList.contains("open");
+    closeAllDropdowns();
+    if (forceOpen === true || !isOpen) {
+      els.campaignDropdown.classList.add("open");
+      renderCampaignSelectList();
     }
   }
 
-  function renderCampaignSelectList() {
+  // 1. Píldoras de Campañas Activas en la Barra Minimalista (Interactivas y Seleccionables)
+  function renderActiveCampaignPills() {
+    if (!els.activeCampaignsPills) return;
     const active = getActiveCampaigns();
-    const q = (els.campaignSearch.value || "").trim().toLowerCase();
+    const total = active.length;
+    const selected = active.filter((c) => state.selectedCampaignIds.has(c.id));
+    const count = selected.length;
+
+    if (els.campaignPillBadge) {
+      els.campaignPillBadge.textContent = count;
+    }
+    if (els.campaignSelectedCountLabel) {
+      els.campaignSelectedCountLabel.textContent = `${count} seleccionada${count === 1 ? "" : "s"}`;
+    }
+
+    els.activeCampaignsPills.innerHTML = "";
+
+    if (count === 0) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "camp-pill camp-pill-empty";
+      btn.innerHTML = `<span>⚠️ 0 campañas activas</span> <span style="font-size:10px;color:#6366f1;font-weight:700">+ Seleccionar</span>`;
+      btn.title = "Haz clic para abrir el catálogo completo de campañas";
+      btn.addEventListener("click", () => toggleCampaignDropdown(true));
+      els.activeCampaignsPills.appendChild(btn);
+    } else if (count === total) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "camp-pill camp-pill-all";
+      btn.innerHTML = `<span>✓ Todas las campañas (${total})</span>`;
+      btn.title = "Haz clic para filtrar o seleccionar campañas específicas";
+      btn.addEventListener("click", () => toggleCampaignDropdown(true));
+      els.activeCampaignsPills.appendChild(btn);
+    } else {
+      const maxDirect = count <= 4 ? count : 3;
+      for (let i = 0; i < maxDirect; i++) {
+        const c = selected[i];
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "camp-pill camp-pill-active";
+        btn.title = `Campaña ${c.shortLabel} (${c.fullLabel})\n• Clic para ver SOLO esta campaña\n• Clic en × para deseleccionar`;
+        btn.innerHTML = `
+          <span class="camp-pill-name">${escapeHtml(c.shortLabel)}</span>
+          <span class="camp-pill-remove" data-id="${c.id}" title="Quitar campaña">×</span>
+        `;
+
+        btn.addEventListener("click", (e) => {
+          const removeBtn = e.target.closest(".camp-pill-remove");
+          if (removeBtn) {
+            e.stopPropagation();
+            state.selectedCampaignIds.delete(c.id);
+            renderActiveCampaignPills();
+            renderCampaignSelectList();
+            scheduleSavePreferences();
+            renderAll();
+            return;
+          }
+
+          // Clic directo en la píldora: Aislar esta campaña
+          state.selectedCampaignIds.clear();
+          state.selectedCampaignIds.add(c.id);
+          renderActiveCampaignPills();
+          renderCampaignSelectList();
+          scheduleSavePreferences();
+          renderAll();
+        });
+
+        els.activeCampaignsPills.appendChild(btn);
+      }
+
+      if (count > maxDirect) {
+        const moreBtn = document.createElement("button");
+        moreBtn.type = "button";
+        moreBtn.className = "camp-pill camp-pill-more";
+        moreBtn.textContent = `+${count - maxDirect} más`;
+        moreBtn.title = selected.slice(maxDirect).map((x) => x.shortLabel).join(", ") + "\nHaz clic para ver todas en el catálogo";
+        moreBtn.addEventListener("click", () => toggleCampaignDropdown(true));
+        els.activeCampaignsPills.appendChild(moreBtn);
+      }
+    }
+  }
+
+  // Lista desplegable de selección de campañas (Catálogo Completo y Visible)
+  function renderCampaignSelectList() {
+    if (!els.campaignList) return;
+    const active = getActiveCampaigns();
+    const q = (els.campaignSearch ? els.campaignSearch.value : "").trim().toLowerCase();
     els.campaignList.innerHTML = "";
 
-    for (const c of active) {
-      const textMatch =
-        c.shortLabel.toLowerCase().includes(q) ||
-        c.fullLabel.toLowerCase().includes(q) ||
-        c.adv.includes(q) ||
-        c.nal.includes(q);
-      if (q && !textMatch) continue;
+    const filtered = active.filter((c) => {
+      // Filtro por Año rápido
+      if (selectedCampaignYear !== "ALL") {
+        const cYear = c.adv ? c.adv.slice(0, 4) : "";
+        if (cYear !== selectedCampaignYear && !c.fullLabel.includes(selectedCampaignYear)) {
+          return false;
+        }
+      }
+      // Filtro por texto si el usuario escribe
+      if (q) {
+        const textMatch =
+          c.shortLabel.toLowerCase().includes(q) ||
+          c.fullLabel.toLowerCase().includes(q) ||
+          c.adv.includes(q) ||
+          c.nal.includes(q);
+        if (!textMatch) return false;
+      }
+      return true;
+    });
 
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      const chkId = `chk-camp-${c.id}`;
+    if (filtered.length === 0) {
+      els.campaignList.innerHTML = `
+        <div style="padding:16px;text-align:center;color:var(--text-muted);font-size:12px">
+          No se encontraron campañas con el filtro actual
+        </div>
+      `;
+      return;
+    }
+
+    for (const c of filtered) {
       const isChecked = state.selectedCampaignIds.has(c.id);
+      const year = c.adv ? c.adv.slice(0, 4) : "";
 
-      div.innerHTML = `
-        <label for="${chkId}" style="cursor:pointer;display:flex;align-items:center;gap:8px;flex:1">
-          <input type="checkbox" id="${chkId}" data-id="${c.id}" ${isChecked ? "checked" : ""} />
-          <span style="font-weight:600;color:var(--text-main)">${c.shortLabel}</span>
-          <span style="font-size:11px;color:var(--text-muted)">(${c.fullLabel})</span>
-        </label>
+      const card = document.createElement("div");
+      card.className = `campaign-card-item ${isChecked ? "selected" : ""}`;
+      card.innerHTML = `
+        <div class="campaign-card-left">
+          <input type="checkbox" id="chk-camp-${c.id}" data-id="${c.id}" ${isChecked ? "checked" : ""} />
+          <div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="campaign-card-code">${escapeHtml(c.shortLabel)}</span>
+              ${year ? `<span class="campaign-card-year">${year}</span>` : ""}
+            </div>
+            <div class="campaign-card-desc">${escapeHtml(c.fullLabel)}</div>
+          </div>
+        </div>
+        <button type="button" class="campaign-btn-only" data-id="${c.id}" title="Seleccionar exclusivamente esta campaña">Solo esta</button>
       `;
 
-      const input = div.querySelector("input");
+      // Checkbox click
+      const input = card.querySelector("input");
+      input.addEventListener("click", (e) => e.stopPropagation());
       input.addEventListener("change", () => {
         if (input.checked) state.selectedCampaignIds.add(c.id);
         else state.selectedCampaignIds.delete(c.id);
-        updateCampaignButtonLabel();
-        state.calCurrentMonthIndex = 0;
+        card.classList.toggle("selected", input.checked);
+        renderActiveCampaignPills();
         scheduleSavePreferences();
         renderAll();
       });
 
-      els.campaignList.appendChild(div);
+      // Card row click
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".campaign-btn-only") || e.target === input) return;
+        input.checked = !input.checked;
+        if (input.checked) state.selectedCampaignIds.add(c.id);
+        else state.selectedCampaignIds.delete(c.id);
+        card.classList.toggle("selected", input.checked);
+        renderActiveCampaignPills();
+        scheduleSavePreferences();
+        renderAll();
+      });
+
+      // Botón "Solo esta"
+      const btnOnly = card.querySelector(".campaign-btn-only");
+      btnOnly.addEventListener("click", (e) => {
+        e.stopPropagation();
+        state.selectedCampaignIds.clear();
+        state.selectedCampaignIds.add(c.id);
+        renderActiveCampaignPills();
+        renderCampaignSelectList();
+        scheduleSavePreferences();
+        renderAll();
+        closeAllDropdowns();
+      });
+
+      els.campaignList.appendChild(card);
     }
   }
 
-  // ÁREAS: Marcar un área enciende/apaga todas las actividades de esa área
-  function renderAreaChecklist() {
-    const areaMap = new Map(); // area -> [act.no, ...]
-    for (const act of rawData.activities) {
-      if (!areaMap.has(act.area)) areaMap.set(act.area, []);
-      areaMap.get(act.area).push(act.no);
+  // 2. Helper de Perfiles Conocidos (Base del equipo + cualquier usuario extra en eventos)
+  function getAllKnownProfiles() {
+    const list = [...TEAM_PROFILES];
+    const existingIds = new Set(list.map((p) => p.id));
+    if (Array.isArray(customEvents)) {
+      for (const ev of customEvents) {
+        const owners = getCustomEventOwners(ev);
+        for (const ow of owners) {
+          if (!existingIds.has(ow)) {
+            existingIds.add(ow);
+            list.push({
+              id: ow,
+              name: ow,
+              role: "designer",
+              color: "#64748b",
+              defaultPin: "1234",
+            });
+          }
+        }
+      }
+    }
+    return list;
+  }
+
+  function toggleTeamProfilesDropdown() {
+    if (!els.teamProfilesDropdown) return;
+    const isOpened = els.teamProfilesDropdown.style.display === "flex";
+    if (isOpened) {
+      closeAllDropdowns();
+    } else {
+      closeAllDropdowns();
+      els.teamProfilesDropdown.style.display = "flex";
+      if (els.teamProfilesDropdownWrap) els.teamProfilesDropdownWrap.classList.add("open");
+      renderTeamProfilesDropdownList();
+      if (els.teamProfileSearchInput) {
+        els.teamProfileSearchInput.value = "";
+        setTimeout(() => els.teamProfileSearchInput.focus(), 60);
+      }
+    }
+  }
+
+  function renderTeamProfilesDropdownList() {
+    if (!els.teamProfilesOptionsList) return;
+    els.teamProfilesOptionsList.innerHTML = "";
+
+    const allProfiles = getAllKnownProfiles();
+    const query = els.teamProfileSearchInput
+      ? els.teamProfileSearchInput.value.trim().toLowerCase()
+      : "";
+
+    const activeUserTag = state.customFilterTags.size > 0
+      ? Array.from(state.customFilterTags).find((t) => t.startsWith("USER:"))
+      : null;
+    const activeUserId = activeUserTag ? activeUserTag.replace("USER:", "") : null;
+
+    const filtered = allProfiles.filter((p) => {
+      if (!query) return true;
+      return p.name.toLowerCase().includes(query) || p.id.toLowerCase().includes(query);
+    });
+
+    if (filtered.length === 0) {
+      els.teamProfilesOptionsList.innerHTML = `
+        <div style="padding:14px;text-align:center;color:var(--text-muted);font-size:11px">
+          No se encontró ningún perfil con "<strong>${query}</strong>"
+        </div>
+      `;
+      return;
     }
 
-    const sortedAreas = Array.from(areaMap.keys()).sort((a, b) => a.localeCompare(b, "es"));
-    const q = (els.areaSearch.value || "").trim().toLowerCase();
-    els.areaList.innerHTML = "";
+    for (const p of filtered) {
+      const isSelected = activeUserId === p.id;
+      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
+      const initials = p.name.length <= 3 ? p.name : p.name.slice(0, 2);
+
+      const row = document.createElement("div");
+      row.className = `team-profile-option-row ${isSelected ? "selected" : ""}`;
+
+      const isAdminLogged = state.loggedInUserId === "DANI";
+      const isCurrentTarget = state.targetUserId === p.id;
+
+      row.innerHTML = `
+        <div class="team-profile-info">
+          <span class="avatar-circle" style="background:${p.color};width:26px;height:26px;font-size:10px">${initials}</span>
+          <div class="team-profile-text">
+            <span class="team-profile-name">${p.name} ${isSelected ? "✓" : ""}</span>
+            <span class="team-profile-role">${p.role === "admin" ? "👑 Administrador" : "Diseñador(a)"}${isCurrentTarget ? " • (Calendario activo)" : ""}</span>
+          </div>
+        </div>
+        <div class="team-profile-actions">
+          <span class="team-profile-count-pill">${count} evento${count !== 1 ? "s" : ""}</span>
+          ${
+            isAdminLogged && p.id !== "DANI"
+              ? `<button type="button" class="team-profile-admin-btn" title="Configurar el calendario de ${p.name}">👑 Editar</button>`
+              : ""
+          }
+        </div>
+      `;
+
+      const adminBtn = row.querySelector(".team-profile-admin-btn");
+      if (adminBtn) {
+        adminBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          switchAdminTargetUser(p.id);
+          closeAllDropdowns();
+        });
+      }
+
+      row.addEventListener("click", () => {
+        if (!state.showCustomEvents) {
+          state.showCustomEvents = true;
+          if (els.chkShowCustomEvents) els.chkShowCustomEvents.checked = true;
+        }
+
+        if (isSelected) {
+          state.customFilterTags.clear();
+        } else {
+          state.customFilterTags = new Set([`USER:${p.id}`]);
+        }
+        closeAllDropdowns();
+        renderTeamAvatarsBar();
+        scheduleSavePreferences();
+        renderAll();
+      });
+
+      els.teamProfilesOptionsList.appendChild(row);
+    }
+  }
+
+  // Barra de Avatares del Equipo y Selector Universal de Perfiles
+  function renderTeamAvatarsBar() {
+    if (!els.teamAvatarsList) return;
+    els.teamAvatarsList.innerHTML = "";
+
+    const isExtrasOn = state.showCustomEvents;
+    if (els.chkShowCustomEvents) {
+      els.chkShowCustomEvents.checked = isExtrasOn;
+    }
+
+    const hasFilter = state.customFilterTags.size > 0;
+    const activeUserTag = hasFilter
+      ? Array.from(state.customFilterTags).find((t) => t.startsWith("USER:"))
+      : null;
+    const activeUserId = activeUserTag ? activeUserTag.replace("USER:", "") : null;
+
+    const allProfiles = getAllKnownProfiles();
+    const activeProfile = activeUserId ? allProfiles.find((p) => p.id === activeUserId) : null;
+
+    // Actualizar botón dropdown con el perfil activo
+    if (els.teamDropdownLabel) {
+      if (activeProfile) {
+        els.teamDropdownLabel.textContent = `👤 ${activeProfile.name}`;
+      } else {
+        els.teamDropdownLabel.textContent = "Cualquier Perfil";
+      }
+    }
+    if (els.btnTeamProfilesDropdown) {
+      els.btnTeamProfilesDropdown.classList.toggle("active", Boolean(activeProfile));
+    }
+
+    if (els.btnTeamShowAll) {
+      els.btnTeamShowAll.style.display = hasFilter ? "inline-flex" : "none";
+      if (activeProfile) {
+        els.btnTeamShowAll.textContent = `✕ Ver todos (${activeProfile.name})`;
+      } else {
+        els.btnTeamShowAll.textContent = "✕ Ver todos";
+      }
+    }
+
+    let selectedAvatarEl = null;
+
+    for (const p of allProfiles) {
+      const isSelected = activeUserId === p.id;
+      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
+
+      const avatarBtn = document.createElement("button");
+      avatarBtn.type = "button";
+      avatarBtn.className = `team-avatar-pill ${isSelected ? "selected" : ""} ${
+        hasFilter && !isSelected ? "dimmed" : ""
+      } ${!isExtrasOn ? "disabled" : ""}`;
+      avatarBtn.style.setProperty("--user-color", p.color);
+      avatarBtn.title = `${p.name} (${p.role === "admin" ? "Admin" : "Diseñador(a)"}) • ${count} evento${
+        count !== 1 ? "s" : ""
+      } extra\nHaz clic para filtrar sus eventos en el calendario`;
+
+      const initials = p.name.length <= 3 ? p.name : p.name.slice(0, 2);
+
+      avatarBtn.innerHTML = `
+        <span class="avatar-circle" style="background:${p.color}">${initials}</span>
+        <span class="avatar-name">${p.name}</span>
+        ${count > 0 ? `<span class="avatar-count-badge">${count}</span>` : ""}
+      `;
+
+      if (isSelected) {
+        selectedAvatarEl = avatarBtn;
+      }
+
+      avatarBtn.addEventListener("click", () => {
+        if (!state.showCustomEvents) {
+          state.showCustomEvents = true;
+          if (els.chkShowCustomEvents) els.chkShowCustomEvents.checked = true;
+        }
+
+        if (isSelected) {
+          // Si ya estaba seleccionado, se deselecciona y se muestran todos los eventos
+          state.customFilterTags.clear();
+        } else {
+          // Filtrar solo los eventos del diseñador seleccionado
+          state.customFilterTags = new Set([`USER:${p.id}`]);
+        }
+        renderTeamAvatarsBar();
+        scheduleSavePreferences();
+        renderAll();
+      });
+
+      els.teamAvatarsList.appendChild(avatarBtn);
+    }
+
+    // Centrar suavemente en el avatar seleccionado si está activo
+    if (selectedAvatarEl) {
+      setTimeout(() => {
+        selectedAvatarEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }, 50);
+    }
+
+    // Gestionar visibilidad de flechas de scroll si hay desbordamiento horizontal
+    setTimeout(() => {
+      if (els.teamAvatarsList) {
+        const canScroll = els.teamAvatarsList.scrollWidth > els.teamAvatarsList.clientWidth + 5;
+        if (els.btnTeamScrollLeft) els.btnTeamScrollLeft.style.display = canScroll ? "flex" : "none";
+        if (els.btnTeamScrollRight) els.btnTeamScrollRight.style.display = canScroll ? "flex" : "none";
+      }
+    }, 60);
+
+    // Actualizar también el contenido del dropdown
+    renderTeamProfilesDropdownList();
+  }
+
+  // 3. Indicador y Resumen del Botón Principal de Filtros
+  function updateUnifiedFilterBadge() {
+    if (!rawData) return;
+    const count = state.selectedActivityNos.size;
+    const total = rawData.activities.length;
+
+    if (els.unifiedFilterActiveBadge) {
+      if (count === 0) {
+        els.unifiedFilterActiveBadge.textContent = "0 act.";
+      } else if (count === total) {
+        els.unifiedFilterActiveBadge.textContent = `Todas (${total})`;
+      } else {
+        els.unifiedFilterActiveBadge.textContent = `${count} act.`;
+      }
+    }
+
+    if (els.drawerStatsActive) {
+      els.drawerStatsActive.innerHTML = `<strong>${count}</strong> activas`;
+    }
+    if (els.drawerStatsTotal) {
+      els.drawerStatsTotal.textContent = `${total} actividades oficiales`;
+    }
+  }
+
+  // 4. Jerarquía Unificada: Área ➔ Proceso ➔ Actividades (#No)
+  let drawerExpandedAreas = new Set(["Aglab", "DisGraf", "Ingenieria"]);
+  let drawerExpandedProcs = new Set();
+
+  function renderUnifiedDrawerHierarchy() {
+    if (!els.unifiedDrawerTree || !rawData) return;
+
+    const q = (els.unifiedDrawerSearch ? els.unifiedDrawerSearch.value : "").trim().toLowerCase();
+
+    // Agrupar actividades por Área ➔ Proceso
+    const areaMap = new Map();
+    for (const act of rawData.activities) {
+      if (!areaMap.has(act.area)) areaMap.set(act.area, new Map());
+      const procMap = areaMap.get(act.area);
+      if (!procMap.has(act.proceso)) procMap.set(act.proceso, []);
+      procMap.get(act.proceso).push(act);
+    }
+
+    // Orden de presentación: AG LAB primero, luego DisGraf, Ingeniería y el resto alfabético
+    const sortedAreas = Array.from(areaMap.keys()).sort((a, b) => {
+      const order = { Aglab: 1, DisGraf: 2, Ingenieria: 3 };
+      const oa = order[a] || 99;
+      const ob = order[b] || 99;
+      if (oa !== ob) return oa - ob;
+      return a.localeCompare(b, "es");
+    });
+
+    els.unifiedDrawerTree.innerHTML = "";
+    let totalMatches = 0;
 
     for (const area of sortedAreas) {
-      if (q && !area.toLowerCase().includes(q)) continue;
-      const nos = areaMap.get(area);
-      const activeCount = nos.filter((n) => state.selectedActivityNos.has(n)).length;
-      const allActive = activeCount === nos.length && nos.length > 0;
-      const someActive = activeCount > 0 && activeCount < nos.length;
+      const procMap = areaMap.get(area);
+      const allAreaActs = [];
+      procMap.forEach((acts) => allAreaActs.push(...acts));
 
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      const id = `chk-area-${area.replace(/[^a-zA-Z0-9]/g, "_")}`;
-      div.innerHTML = `
-        <label for="${id}">
-          <input type="checkbox" id="${id}" ${allActive ? "checked" : ""} />
-          <span style="${activeCount > 0 ? "font-weight:700;color:var(--primary)" : ""}">${area}</span>
-        </label>
-        <span class="multi-option-count" style="${activeCount > 0 ? "background:#ede9fe;color:#6d28d9;font-weight:700" : ""}">${activeCount}/${nos.length}</span>
-      `;
-      const input = div.querySelector("input");
-      if (someActive) input.indeterminate = true;
+      let areaHasMatches = false;
+      const matchingProcs = [];
 
-      input.addEventListener("change", () => {
-        if (input.checked) {
-          nos.forEach((n) => state.selectedActivityNos.add(n));
-        } else {
-          nos.forEach((n) => state.selectedActivityNos.delete(n));
+      for (const [proc, acts] of procMap.entries()) {
+        const filteredActs = acts.filter((act) => {
+          if (!q) return true;
+          return (
+            String(act.no).includes(q) ||
+            `#${act.no}` === q ||
+            act.actividad.toLowerCase().includes(q) ||
+            act.proceso.toLowerCase().includes(q) ||
+            act.area.toLowerCase().includes(q) ||
+            act.marca.toLowerCase().includes(q)
+          );
+        });
+
+        if (filteredActs.length > 0) {
+          areaHasMatches = true;
+          totalMatches += filteredActs.length;
+          matchingProcs.push({ proc, acts: filteredActs, totalCount: acts.length });
         }
-        populateFilterControls();
-        scheduleSavePreferences();
-        renderAll();
-      });
-      els.areaList.appendChild(div);
-    }
-  }
+      }
 
-  // PROCESOS: Marcar un proceso enciende/apaga todas las actividades de ese proceso
-  function renderProcesoChecklist() {
-    const procMap = new Map(); // proceso -> [act.no, ...]
-    for (const act of rawData.activities) {
-      if (!procMap.has(act.proceso)) procMap.set(act.proceso, []);
-      procMap.get(act.proceso).push(act.no);
-    }
+      if (q && !areaHasMatches) continue;
 
-    const sortedProcs = Array.from(procMap.keys()).sort((a, b) => a.localeCompare(b, "es"));
-    const q = (els.procesoSearch.value || "").trim().toLowerCase();
-    els.procesoList.innerHTML = "";
+      const areaSelectedCount = allAreaActs.filter((a) => state.selectedActivityNos.has(a.no)).length;
+      const isAreaAll = areaSelectedCount === allAreaActs.length && allAreaActs.length > 0;
+      const isAreaSome = areaSelectedCount > 0 && areaSelectedCount < allAreaActs.length;
+      const isAreaOpen = q ? true : drawerExpandedAreas.has(area);
 
-    for (const proc of sortedProcs) {
-      if (q && !proc.toLowerCase().includes(q)) continue;
-      const nos = procMap.get(proc);
-      const activeCount = nos.filter((n) => state.selectedActivityNos.has(n)).length;
-      const allActive = activeCount === nos.length && nos.length > 0;
-      const someActive = activeCount > 0 && activeCount < nos.length;
+      const areaGroup = document.createElement("div");
+      areaGroup.className = `drawer-area-group ${isAreaOpen ? "open" : ""} ${areaSelectedCount > 0 ? "has-selected" : ""}`;
+      areaGroup.setAttribute("data-area", area);
 
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      const id = `chk-proc-${proc.replace(/[^a-zA-Z0-9]/g, "_")}`;
-      div.innerHTML = `
-        <label for="${id}">
-          <input type="checkbox" id="${id}" ${allActive ? "checked" : ""} />
-          <span style="${activeCount > 0 ? "font-weight:700;color:var(--primary)" : ""}">${proc}</span>
+      const areaId = `chk-drawer-area-${area.replace(/[^a-zA-Z0-9]/g, "_")}`;
+
+      const areaHeader = document.createElement("div");
+      areaHeader.className = "drawer-area-header";
+      areaHeader.innerHTML = `
+        <span class="drawer-chevron">▶</span>
+        <input type="checkbox" id="${areaId}" style="cursor:pointer" ${isAreaAll ? "checked" : ""} />
+        <label for="${areaId}" class="drawer-area-title" style="cursor:pointer">
+          <span>${getAreaDisplayName(area)}</span>
         </label>
-        <span class="multi-option-count" style="${activeCount > 0 ? "background:#ede9fe;color:#6d28d9;font-weight:700" : ""}">${activeCount}/${nos.length}</span>
+        <span class="drawer-area-count">${areaSelectedCount}/${allAreaActs.length}</span>
+        <button type="button" class="drawer-area-only-btn" title="Activar solo esta área y apagar las demás">Solo esta</button>
       `;
-      const input = div.querySelector("input");
-      if (someActive) input.indeterminate = true;
 
-      input.addEventListener("change", () => {
-        if (input.checked) {
-          nos.forEach((n) => state.selectedActivityNos.add(n));
-        } else {
-          nos.forEach((n) => state.selectedActivityNos.delete(n));
+      const areaChk = areaHeader.querySelector(`#${areaId}`);
+      if (isAreaSome) areaChk.indeterminate = true;
+
+      areaChk.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const shouldSelect = areaChk.checked;
+        for (const act of allAreaActs) {
+          if (shouldSelect) state.selectedActivityNos.add(act.no);
+          else state.selectedActivityNos.delete(act.no);
         }
-        populateFilterControls();
+        updateUnifiedFilterBadge();
+        renderUnifiedDrawerHierarchy();
         scheduleSavePreferences();
         renderAll();
       });
-      els.procesoList.appendChild(div);
-    }
-  }
 
-  // ACTIVIDADES INDIVIDUALES (#No)
-  function renderActivityChecklist() {
-    const q = (els.actSearch.value || "").trim().toLowerCase();
-    els.actList.innerHTML = "";
-
-    for (const act of rawData.activities) {
-      const match =
-        !q ||
-        String(act.no).includes(q) ||
-        `#${act.no}` === q ||
-        act.actividad.toLowerCase().includes(q) ||
-        act.proceso.toLowerCase().includes(q) ||
-        act.area.toLowerCase().includes(q);
-      if (!match) continue;
-
-      const isChecked = state.selectedActivityNos.has(act.no);
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      const id = `chk-act-dd-${act.no}`;
-      div.innerHTML = `
-        <label for="${id}" style="align-items:flex-start">
-          <input type="checkbox" id="${id}" style="margin-top:2px" ${isChecked ? "checked" : ""} />
-          <span>
-            <strong style="color:#475569">#${act.no}</strong> [${act.marca}] ${act.actividad}
-            <small style="display:block;color:#64748b;font-size:10px">${act.proceso} • ${act.area}</small>
-          </span>
-        </label>
-      `;
-      const input = div.querySelector("input");
-      input.addEventListener("change", () => {
-        if (input.checked) state.selectedActivityNos.add(act.no);
-        else state.selectedActivityNos.delete(act.no);
-        updateChecklistButtonLabels();
-        renderAreaChecklist();
-        renderProcesoChecklist();
+      const soloBtn = areaHeader.querySelector(".drawer-area-only-btn");
+      soloBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        state.selectedActivityNos.clear();
+        for (const act of allAreaActs) {
+          state.selectedActivityNos.add(act.no);
+        }
+        updateUnifiedFilterBadge();
+        renderUnifiedDrawerHierarchy();
         scheduleSavePreferences();
         renderAll();
       });
-      els.actList.appendChild(div);
-    }
-  }
 
-  // FILTRO DE EVENTOS EXTRA (POR ÁREA O USUARIO)
-  function renderCustomEventFilterList() {
-    els.customFilterList.innerHTML = "";
+      areaHeader.addEventListener("click", (e) => {
+        if (e.target === areaChk || e.target === soloBtn) return;
+        const isOpen = areaGroup.classList.contains("open");
+        if (isOpen) {
+          areaGroup.classList.remove("open");
+          drawerExpandedAreas.delete(area);
+        } else {
+          areaGroup.classList.add("open");
+          drawerExpandedAreas.add(area);
+        }
+      });
 
-    // Group 1: Áreas
-    const areaHeader = document.createElement("div");
-    areaHeader.style.cssText = "font-size:10px;font-weight:800;color:#64748b;padding:4px 6px;text-transform:uppercase";
-    areaHeader.textContent = "Por Área / Rol";
-    els.customFilterList.appendChild(areaHeader);
+      const areaBody = document.createElement("div");
+      areaBody.className = "drawer-area-body";
 
-    const allAreas = Array.from(new Set([...CUSTOM_EVENT_AREAS, ...customEvents.map((e) => e.area || "General / Equipo")]));
-    for (const area of allAreas) {
-      const tag = `AREA:${area}`;
-      const count = customEvents.filter((e) => (e.area || "General / Equipo") === area).length;
-      const isChecked = state.customFilterTags.size === 0 || state.customFilterTags.has(tag);
+      const procsToRender = q
+        ? matchingProcs
+        : Array.from(procMap.entries()).map(([proc, acts]) => ({ proc, acts, totalCount: acts.length }));
 
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      div.innerHTML = `
-        <label style="cursor:pointer">
-          <input type="checkbox" data-tag="${tag}" ${isChecked ? "checked" : ""} />
-          <span>📌 ${area}</span>
-        </label>
-        <span class="multi-option-count">${count}</span>
-      `;
-      const inp = div.querySelector("input");
-      inp.addEventListener("change", () => handleCustomFilterToggle(tag, inp.checked, allAreas));
-      els.customFilterList.appendChild(div);
-    }
+      for (const { proc, acts } of procsToRender) {
+        const procKey = `${area}::${proc}`;
+        const procSelectedCount = acts.filter((a) => state.selectedActivityNos.has(a.no)).length;
+        const isProcAll = procSelectedCount === acts.length && acts.length > 0;
+        const isProcSome = procSelectedCount > 0 && procSelectedCount < acts.length;
+        const isProcOpen = q ? true : (drawerExpandedProcs.has(procKey) || (area === "Aglab" && acts.length <= 6));
 
-    // Group 2: Usuarios
-    const userHeader = document.createElement("div");
-    userHeader.style.cssText = "font-size:10px;font-weight:800;color:#64748b;padding:8px 6px 4px;text-transform:uppercase;border-top:1px solid #e2e8f0;margin-top:4px";
-    userHeader.textContent = "Por Diseñador(a)";
-    els.customFilterList.appendChild(userHeader);
+        const procGroup = document.createElement("div");
+        procGroup.className = `drawer-proc-group ${isProcOpen ? "open" : ""} ${procSelectedCount > 0 ? "has-selected" : ""}`;
+        procGroup.setAttribute("data-proc-key", procKey);
 
-    for (const p of TEAM_PROFILES) {
-      const tag = `USER:${p.id}`;
-      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
-      const isChecked = state.customFilterTags.size === 0 || state.customFilterTags.has(tag);
+        const procChkId = `chk-proc-${procKey.replace(/[^a-zA-Z0-9]/g, "_")}`;
 
-      const div = document.createElement("div");
-      div.className = "multi-option-item";
-      div.innerHTML = `
-        <label style="cursor:pointer">
-          <input type="checkbox" data-tag="${tag}" ${isChecked ? "checked" : ""} />
-          <span>👤 ${p.name}</span>
-        </label>
-        <span class="multi-option-count">${count}</span>
-      `;
-      const inp = div.querySelector("input");
-      inp.addEventListener("change", () => handleCustomFilterToggle(tag, inp.checked, allAreas));
-      els.customFilterList.appendChild(div);
-    }
-  }
+        const procHeader = document.createElement("div");
+        procHeader.className = "drawer-proc-header";
+        procHeader.innerHTML = `
+          <span class="drawer-proc-chevron">▶</span>
+          <input type="checkbox" id="${procChkId}" style="cursor:pointer" ${isProcAll ? "checked" : ""} />
+          <label for="${procChkId}" class="drawer-proc-title" style="cursor:pointer">
+            <span>${getProcesoDisplayName(proc, area)}</span>
+          </label>
+          <span class="drawer-proc-count">${procSelectedCount}/${acts.length}</span>
+        `;
 
-  function handleCustomFilterToggle(tag, checked, allAreas) {
-    // If currently empty (which means "All"), populate all tags first then remove the unchecked one
-    if (state.customFilterTags.size === 0 && !checked) {
-      allAreas.forEach((a) => state.customFilterTags.add(`AREA:${a}`));
-      TEAM_PROFILES.forEach((p) => state.customFilterTags.add(`USER:${p.id}`));
-      state.customFilterTags.delete(tag);
-    } else {
-      if (checked) state.customFilterTags.add(tag);
-      else state.customFilterTags.delete(tag);
-    }
-    renderCustomEventFilterList();
-    updateChecklistButtonLabels();
-    scheduleSavePreferences();
-    renderAll();
-  }
+        const procChk = procHeader.querySelector(`#${procChkId}`);
+        if (isProcSome) procChk.indeterminate = true;
 
-  function updateChecklistButtonLabels() {
-    if (!rawData) return;
+        procChk.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const shouldSelect = procChk.checked;
+          for (const act of acts) {
+            if (shouldSelect) state.selectedActivityNos.add(act.no);
+            else state.selectedActivityNos.delete(act.no);
+          }
+          updateUnifiedFilterBadge();
+          renderUnifiedDrawerHierarchy();
+          scheduleSavePreferences();
+          renderAll();
+        });
 
-    // Areas active count
-    const areaMap = new Map();
-    const procMap = new Map();
-    for (const act of rawData.activities) {
-      if (!areaMap.has(act.area)) areaMap.set(act.area, []);
-      areaMap.get(act.area).push(act.no);
-      if (!procMap.has(act.proceso)) procMap.set(act.proceso, []);
-      procMap.get(act.proceso).push(act.no);
-    }
+        procHeader.addEventListener("click", (e) => {
+          if (e.target === procChk) return;
+          const isOpen = procGroup.classList.contains("open");
+          if (isOpen) {
+            procGroup.classList.remove("open");
+            drawerExpandedProcs.delete(procKey);
+          } else {
+            procGroup.classList.add("open");
+            drawerExpandedProcs.add(procKey);
+          }
+        });
 
-    let activeAreas = 0;
-    const activeAreaNames = [];
-    for (const [area, nos] of areaMap.entries()) {
-      if (nos.some((n) => state.selectedActivityNos.has(n))) {
-        activeAreas++;
-        activeAreaNames.push(area);
+        const procBody = document.createElement("div");
+        procBody.className = "drawer-proc-body";
+
+        for (const act of acts) {
+          const isActChecked = state.selectedActivityNos.has(act.no);
+          const actItem = document.createElement("div");
+          actItem.className = "drawer-act-item";
+          const actId = `chk-act-drawer-${act.no}`;
+
+          const brandClass = act.marca === "Livva" ? "Livva" : act.marca === "Azzorti" ? "Azzorti" : "AzzLivv";
+
+          actItem.innerHTML = `
+            <input type="checkbox" id="${actId}" data-no="${act.no}" ${isActChecked ? "checked" : ""} />
+            <label for="${actId}" style="display:flex;align-items:flex-start;gap:8px;flex:1;cursor:pointer">
+              <span class="drawer-act-no">#${act.no}</span>
+              <span class="drawer-act-brand ${brandClass}">${act.marca}</span>
+              <span class="drawer-act-title">${act.actividad}</span>
+              <span class="drawer-act-dh">${act.dias} DH</span>
+            </label>
+          `;
+
+          const actChk = actItem.querySelector("input");
+          actChk.addEventListener("change", () => {
+            if (actChk.checked) state.selectedActivityNos.add(act.no);
+            else state.selectedActivityNos.delete(act.no);
+            updateUnifiedFilterBadge();
+            renderUnifiedDrawerHierarchy();
+            scheduleSavePreferences();
+            renderAll();
+          });
+
+          procBody.appendChild(actItem);
+        }
+
+        procGroup.appendChild(procHeader);
+        procGroup.appendChild(procBody);
+        areaBody.appendChild(procGroup);
       }
+
+      areaGroup.appendChild(areaHeader);
+      areaGroup.appendChild(areaBody);
+      els.unifiedDrawerTree.appendChild(areaGroup);
     }
 
-    let activeProcs = 0;
-    const activeProcNames = [];
-    for (const [proc, nos] of procMap.entries()) {
-      if (nos.some((n) => state.selectedActivityNos.has(n))) {
-        activeProcs++;
-        activeProcNames.push(proc);
-      }
+    if (q && totalMatches === 0) {
+      els.unifiedDrawerTree.innerHTML = `
+        <div style="text-align:center;padding:30px;color:var(--text-muted)">
+          <div style="font-size:24px;margin-bottom:8px">🔍</div>
+          <p>No se encontraron actividades con <strong>"${q}"</strong></p>
+        </div>
+      `;
     }
-
-    const aSpan = els.areaBtn.querySelector(".btn-text");
-    if (activeAreas === 0) aSpan.textContent = "0 áreas activas (Apagadas)";
-    else if (activeAreas === 1) aSpan.textContent = activeAreaNames[0];
-    else if (activeAreas === areaMap.size) aSpan.textContent = `Todas las áreas (${activeAreas})`;
-    else aSpan.textContent = `${activeAreas} áreas con actividades`;
-
-    const pSpan = els.procesoBtn.querySelector(".btn-text");
-    if (activeProcs === 0) pSpan.textContent = "0 procesos activos (Apagados)";
-    else if (activeProcs === 1) pSpan.textContent = activeProcNames[0];
-    else if (activeProcs === procMap.size) pSpan.textContent = `Todos los procesos (${activeProcs})`;
-    else pSpan.textContent = `${activeProcs} procesos activos`;
-
-    const actSpan = els.actBtn.querySelector(".btn-text");
-    const selSize = state.selectedActivityNos.size;
-    if (selSize === 0) actSpan.textContent = "0 actividades elegidas";
-    else if (selSize === rawData.activities.length) actSpan.textContent = `Todas (${selSize} act.)`;
-    else actSpan.textContent = `${selSize} actividad${selSize > 1 ? "es" : ""} activa${selSize > 1 ? "s" : ""}`;
-
-    const custSpan = els.customFilterBtn.querySelector(".btn-text");
-    if (!state.showCustomEvents) custSpan.textContent = "Eventos extra ocultos";
-    else if (state.customFilterTags.size === 0) custSpan.textContent = `Todos visibles (${customEvents.length})`;
-    else custSpan.textContent = `Filtro personalizado (${state.customFilterTags.size})`;
   }
 
   /* ==========================================================================
@@ -1534,7 +1954,8 @@
       }
 
       if (q) {
-        const text = `${ev.title || ""} ${ev.area || ""} ${ev.owner_user || ""} ${ev.notes || ""}`.toLowerCase();
+        const meta = parseCustomEventMeta(ev);
+        const text = `${ev.title || ""} ${ev.area || ""} ${ev.owner_user || ""} ${meta.tag || ""} ${meta.cleanNotes || ""}`.toLowerCase();
         if (!text.includes(q)) return false;
       }
       return true;
@@ -1557,7 +1978,7 @@
     const selectedOfficial = getSelectedOfficialActivities();
     const visibleCustom = getVisibleCustomEvents();
 
-    updateChecklistButtonLabels();
+    updateUnifiedFilterBadge();
 
     // Update KPIs
     els.kpiActivities.innerHTML = `Cronograma activas: <strong>${selectedOfficial.length}</strong>`;
@@ -1693,14 +2114,27 @@
             Elige con un clic qué área quieres encender o agrega tus propios eventos adicionales:
           </p>
           <div class="onboarding-presets">
-            <button type="button" class="btn btn-primary" data-preset="textil">🎨 Encender Diseño Textil (Estampación)</button>
-            <button type="button" class="btn btn-outline" data-preset="disgraf">✏️ Encender Diseño Gráfico (DisGraf)</button>
-            <button type="button" class="btn btn-outline" data-preset="moda">👗 Encender Desarrollos Moda MO (2D/3D)</button>
-            <button type="button" class="btn btn-outline" data-preset="ingenieria">📐 Encender Ingeniería / Patronaje</button>
+            <button type="button" class="btn btn-primary" data-preset="aglab">🎨 Encender AG LAB (Textil y Moda)</button>
+            <button type="button" class="btn btn-outline" data-preset="disgraf">📐 Encender Diseño Gráfico (DisGraf)</button>
+            <button type="button" class="btn btn-outline" data-preset="ingenieria">⚙️ Encender Patronaje / Ingeniería</button>
+            <button type="button" class="btn btn-outline" id="btnOnboardingOpenDrawer">🎛️ Ver Todas las Actividades</button>
             <button type="button" class="btn btn-add-event" id="btnOnboardingAddEvent">✨ + Crear Evento Adicional</button>
           </div>
         </div>
       `;
+    }
+
+    // If state.forceIncludeToday is active, ensure today's month is in monthsMap
+    const todayYm = TODAY_STR.slice(0, 7);
+    if (state.forceIncludeToday && !monthsMap.has(todayYm)) {
+      const todayDt = new Date();
+      monthsMap.set(todayYm, {
+        year: todayDt.getFullYear(),
+        month: todayDt.getMonth(),
+        ym: todayYm,
+        events: [],
+        uniqueKeys: new Set(),
+      });
     }
 
     // If no months have events yet, still render a default month sheet so user can click '+' on any day!
@@ -1717,6 +2151,11 @@
     }
 
     const sortedMonthKeys = Array.from(monthsMap.keys()).sort();
+
+    if (state.forceIncludeToday && sortedMonthKeys.includes(todayYm)) {
+      state.calCurrentMonthIndex = sortedMonthKeys.indexOf(todayYm);
+      state.forceIncludeToday = false;
+    }
 
     if (state.calCurrentMonthIndex >= sortedMonthKeys.length) {
       state.calCurrentMonthIndex = sortedMonthKeys.length - 1;
@@ -1846,6 +2285,7 @@
               `);
             } else {
               const cev = ev.custom;
+              const meta = parseCustomEventMeta(cev);
               const cat = cev.category || "emerald";
               const bClass = badgeClassForBrand(cev.marca || "Azz Livv");
               const owners = getCustomEventOwners(cev);
@@ -1853,11 +2293,22 @@
                 ? `is-range-card ${ev.isRangeStart ? "is-range-start" : "is-range-continuation"} ${ev.isRangeEnd ? "is-range-end" : ""} ${ev.isWeekend ? "is-range-weekend" : ""} ${ev.continuesLeft ? "continues-left" : ""} ${ev.continuesRight ? "continues-right" : ""}`
                 : "";
 
+              let impBadgeHtml = "";
+              if (meta.importance === "high") {
+                impBadgeHtml = `<span class="event-importance-badge priority-high" title="Prioridad Alta">🔴 Alta</span>`;
+              } else if (meta.importance === "low") {
+                impBadgeHtml = `<span class="event-importance-badge priority-low" title="Prioridad Baja">🟢 Baja</span>`;
+              }
+
+              const tagBadgeHtml = meta.tag ? `<span class="event-hashtag-badge">${escapeHtml(meta.tag)}</span>` : "";
+
               if (!ev.isMultiDay || ev.isRangeStart) {
                 eventsHtml.push(`
                   <div class="calendar-event-card event-custom-${cat} ${rangeClasses}" data-type="custom" data-evid="${cev.id}">
                     <div class="event-meta-line">
                       <span class="event-custom-badge">📌 ${cev.area || "Diseño"}</span>
+                      ${tagBadgeHtml}
+                      ${impBadgeHtml}
                       <span class="event-brand-badge brand-${bClass}">${cev.marca || "Azz Livv"}</span>
                       ${
                         ev.isMultiDay
@@ -1867,7 +2318,7 @@
                     </div>
                     <div class="event-full-title">${cev.title}</div>
                     <div class="event-owners-wrap">${renderOwnerPillsHtml(owners, false)}</div>
-                    ${cev.notes ? `<div class="event-notes-preview">${cev.notes}</div>` : ""}
+                    ${meta.cleanNotes ? `<div class="event-notes-preview">${escapeHtml(meta.cleanNotes)}</div>` : ""}
                   </div>
                 `);
               } else {
@@ -1885,6 +2336,7 @@
                     <div class="range-cont-header">
                       <div class="range-cont-title">
                         <span class="range-cont-arrow">${arrowSymbol}</span>
+                        ${meta.tag ? `<span class="event-hashtag-badge-mini">${escapeHtml(meta.tag)}</span>` : ""}
                         <span>${cev.title}</span>
                       </div>
                       ${rightBadge}
@@ -1963,6 +2415,17 @@
     const btnOnbAdd = document.getElementById("btnOnboardingAddEvent");
     if (btnOnbAdd) {
       btnOnbAdd.addEventListener("click", () => openCustomEventModal(null, TODAY_STR));
+    }
+    const btnOnbDrawer = document.getElementById("btnOnboardingOpenDrawer");
+    if (btnOnbDrawer) {
+      btnOnbDrawer.addEventListener("click", () => {
+        if (els.unifiedFilterDrawerBackdrop) {
+          els.unifiedFilterDrawerBackdrop.style.display = "flex";
+          renderUnifiedDrawerHierarchy();
+          updateUnifiedFilterBadge();
+          if (els.unifiedDrawerSearch) setTimeout(() => els.unifiedDrawerSearch.focus(), 60);
+        }
+      });
     }
 
     // Bind '+' Day Add Buttons
@@ -2049,15 +2512,43 @@
 
   function applyQuickPreset(preset) {
     if (!rawData) return;
-    for (const act of rawData.activities) {
-      if (preset === "textil" && (act.proceso === "Estampacion Continua" || act.proceso === "Estampacion Local")) {
+    if (preset === "clear") {
+      state.selectedActivityNos.clear();
+    } else if (preset === "all") {
+      for (const act of rawData.activities) {
         state.selectedActivityNos.add(act.no);
-      } else if (preset === "disgraf" && (act.area === "DisGraf" || act.proceso === "DisGraf")) {
-        state.selectedActivityNos.add(act.no);
-      } else if (preset === "moda" && act.proceso.startsWith("Desarrollos Moda")) {
-        state.selectedActivityNos.add(act.no);
-      } else if (preset === "ingenieria" && (act.area === "Ingenieria" || act.proceso.startsWith("Ingenieria"))) {
-        state.selectedActivityNos.add(act.no);
+      }
+    } else {
+      for (const act of rawData.activities) {
+        if (preset === "aglab") {
+          // AG LAB involucra TANTO Diseño Textil (Estampación continua y local) como Diseño de Modas (Desarrollos MO 2D/3D, etc.)
+          if (
+            act.area === "Aglab" ||
+            act.proceso === "Estampacion Continua" ||
+            act.proceso === "Estampacion Local" ||
+            act.proceso.startsWith("Desarrollos Moda") ||
+            act.proceso === "Proyeccion Telas" ||
+            act.proceso === "Telas Sublego" ||
+            act.proceso === "Telas Especiales" ||
+            act.proceso === "Importados"
+          ) {
+            state.selectedActivityNos.add(act.no);
+          }
+        } else if (preset === "textil" && (act.proceso === "Estampacion Continua" || act.proceso === "Estampacion Local")) {
+          state.selectedActivityNos.add(act.no);
+        } else if (preset === "disgraf" && (act.area === "DisGraf" || act.proceso === "DisGraf")) {
+          state.selectedActivityNos.add(act.no);
+        } else if (
+          preset === "moda" &&
+          (act.proceso.startsWith("Desarrollos Moda") ||
+            (act.area === "Aglab" &&
+              act.proceso !== "Estampacion Continua" &&
+              act.proceso !== "Estampacion Local"))
+        ) {
+          state.selectedActivityNos.add(act.no);
+        } else if (preset === "ingenieria" && (act.area === "Ingenieria" || act.proceso.startsWith("Ingenieria"))) {
+          state.selectedActivityNos.add(act.no);
+        }
       }
     }
     populateFilterControls();
@@ -2069,6 +2560,183 @@
      11. CUSTOM EVENT MODAL (ADD / EDIT / DELETE IN SUPABASE)
      ========================================================================== */
   let modalSelectedOwners = new Set();
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function normalizeHashtag(tag) {
+    if (!tag) return "";
+    let t = String(tag).trim();
+    if (!t.startsWith("#")) t = "#" + t;
+    t = t.replace(/\s+/g, "_");
+    return t;
+  }
+
+  function parseCustomEventMeta(cev) {
+    if (!cev) return { tag: "#Entrega", importance: "medium", cleanNotes: "" };
+
+    let tag = cev.tag || "";
+    let importance = cev.importance || "medium";
+    let rawNotes = cev.notes || "";
+    let cleanNotes = rawNotes;
+
+    const metaMatch = rawNotes.match(/<!--meta:([\s\S]*?)-->/);
+    if (metaMatch) {
+      try {
+        const parsed = JSON.parse(metaMatch[1]);
+        if (parsed.tag) tag = parsed.tag;
+        if (parsed.importance) importance = parsed.importance;
+        cleanNotes = rawNotes.replace(/<!--meta:[\s\S]*?-->/, "").trim();
+      } catch (e) {}
+    } else {
+      const tagMatch = cleanNotes.match(/^(#[A-Za-z0-9_áéíóúÁÉÍÓÚñÑ]+)/);
+      if (tagMatch && !tag) {
+        tag = tagMatch[1];
+      }
+      if (!tag && cev.category) {
+        const legacyMap = {
+          emerald: "#Entrega",
+          amber: "#Muestra",
+          indigo: "#Fit",
+          rose: "#HitoCrítico",
+          teal: "#Seguimiento",
+          purple: "#Revisión",
+          sky: "#Comité",
+          orange: "#Taller",
+        };
+        tag = legacyMap[cev.category] || "#General";
+      }
+    }
+
+    return {
+      tag: normalizeHashtag(tag) || "#General",
+      importance: (importance === "high" || importance === "low") ? importance : "medium",
+      cleanNotes,
+    };
+  }
+
+  function serializeCustomEventNotes(cleanNotes, tag, importance) {
+    const metaObj = {};
+    if (tag) metaObj.tag = normalizeHashtag(tag);
+    if (importance) metaObj.importance = importance;
+
+    const hasMeta = Object.keys(metaObj).length > 0;
+    const metaComment = hasMeta ? `\n<!--meta:${JSON.stringify(metaObj)}-->` : "";
+    return (cleanNotes || "").trim() + metaComment;
+  }
+
+  function loadSavedHashtags() {
+    try {
+      const cached = localStorage.getItem(LOCAL_SAVED_HASHTAGS_KEY);
+      if (cached) {
+        const arr = JSON.parse(cached);
+        if (Array.isArray(arr)) {
+          arr.forEach((h) => {
+            const clean = normalizeHashtag(h);
+            if (clean) savedHashtags.add(clean);
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Error leyendo savedHashtags:", e);
+    }
+
+    if (Array.isArray(customEvents)) {
+      for (const cev of customEvents) {
+        const meta = parseCustomEventMeta(cev);
+        if (meta.tag) savedHashtags.add(meta.tag);
+      }
+    }
+  }
+
+  function saveSavedHashtags() {
+    try {
+      localStorage.setItem(LOCAL_SAVED_HASHTAGS_KEY, JSON.stringify(Array.from(savedHashtags)));
+    } catch (e) {
+      console.warn("Error guardando savedHashtags:", e);
+    }
+  }
+
+  function saveHashtagToCatalog(tag) {
+    const clean = normalizeHashtag(tag);
+    if (!clean) return;
+    savedHashtags.add(clean);
+    saveSavedHashtags();
+    renderSavedHashtagsList(clean);
+  }
+
+  function removeHashtagFromCatalog(tag) {
+    const clean = normalizeHashtag(tag);
+    if (!clean) return;
+    savedHashtags.delete(clean);
+    saveSavedHashtags();
+    const currentVal = els.evTagInput ? els.evTagInput.value : "";
+    renderSavedHashtagsList(currentVal);
+  }
+
+  function renderSavedHashtagsList(activeTag) {
+    if (!els.savedHashtagsList) return;
+    const normActive = normalizeHashtag(activeTag);
+    const html = [];
+    for (const tag of savedHashtags) {
+      if (!tag) continue;
+      const isActive = tag.toLowerCase() === normActive.toLowerCase();
+      const isDeletable = !DEFAULT_HASHTAGS.includes(tag);
+      html.push(`
+        <button type="button" class="saved-hashtag-pill ${isActive ? "active" : ""}" data-tag="${escapeHtml(tag)}">
+          <span>${escapeHtml(tag)}</span>
+          ${isDeletable ? `<span class="pill-del-btn" data-deltag="${escapeHtml(tag)}" title="Eliminar de guardados">×</span>` : ""}
+        </button>
+      `);
+    }
+    els.savedHashtagsList.innerHTML = html.join("");
+  }
+
+  function selectModalColor(colorName) {
+    const color = colorName || "emerald";
+    if (els.evCategoryInput) els.evCategoryInput.value = color;
+    if (els.evColorPicker) {
+      const items = els.evColorPicker.querySelectorAll(".color-swatch-item");
+      items.forEach((item) => {
+        item.classList.toggle("active", item.getAttribute("data-color") === color);
+      });
+    }
+  }
+
+  function selectModalImportance(impLevel) {
+    const imp = (impLevel === "high" || impLevel === "low") ? impLevel : "medium";
+    if (els.evImportanceInput) els.evImportanceInput.value = imp;
+    if (els.evImportanceGroup) {
+      const choices = els.evImportanceGroup.querySelectorAll(".importance-choice");
+      choices.forEach((choice) => {
+        choice.classList.toggle("active", choice.getAttribute("data-importance") === imp);
+      });
+    }
+  }
+
+  function updateModalHashtagDisplay(val) {
+    const tag = normalizeHashtag(val);
+    if (els.evTagActivePreview) {
+      els.evTagActivePreview.textContent = tag || "#SinEtiqueta";
+    }
+    if (els.btnClearHashtag) {
+      els.btnClearHashtag.style.display = val && val.trim() ? "block" : "none";
+    }
+    if (els.savedHashtagsList) {
+      const pills = els.savedHashtagsList.querySelectorAll(".saved-hashtag-pill");
+      pills.forEach((p) => {
+        const pTag = p.getAttribute("data-tag");
+        p.classList.toggle("active", Boolean(pTag && tag && pTag.toLowerCase() === tag.toLowerCase()));
+      });
+    }
+  }
 
   function renderModalOwnersGrid() {
     if (!els.evOwnersGrid) return;
@@ -2136,6 +2804,8 @@
   }
 
   function openCustomEventModal(existingEvent, defaultDateStr) {
+    loadSavedHashtags();
+
     if (existingEvent) {
       els.customModalTitle.textContent = "✏️ Editar Evento Adicional";
       els.evIdInput.value = existingEvent.id;
@@ -2143,11 +2813,19 @@
       const rng = getCustomEventRange(existingEvent);
       els.evDateInput.value = rng.startStr || TODAY_STR;
       els.evEndDateInput.value = rng.endStr || rng.startStr || TODAY_STR;
-      els.evAreaInput.value = existingEvent.area || "Diseño Textil (Aglab)";
+      els.evAreaInput.value = existingEvent.area || "AG LAB (Diseño Textil y Moda)";
       modalSelectedOwners = new Set(getCustomEventOwners(existingEvent));
       els.evMarcaInput.value = existingEvent.marca || "Azz Livv";
-      els.evCategoryInput.value = existingEvent.category || "emerald";
-      els.evNotesInput.value = existingEvent.notes || "";
+
+      const meta = parseCustomEventMeta(existingEvent);
+      if (els.evTagInput) els.evTagInput.value = meta.tag.replace(/^#/, "");
+      updateModalHashtagDisplay(meta.tag);
+      renderSavedHashtagsList(meta.tag);
+
+      selectModalColor(existingEvent.category || "emerald");
+      selectModalImportance(meta.importance || "medium");
+
+      els.evNotesInput.value = meta.cleanNotes || "";
       els.btnDeleteCustomEvent.style.display = "inline-flex";
     } else {
       els.customModalTitle.textContent = "✨ Agregar Nuevo Evento al Calendario";
@@ -2156,10 +2834,18 @@
       const defDate = defaultDateStr || "2027-06-15";
       els.evDateInput.value = defDate;
       els.evEndDateInput.value = defDate;
-      els.evAreaInput.value = "Diseño Textil (Aglab)";
+      els.evAreaInput.value = "AG LAB (Diseño Textil y Moda)";
       modalSelectedOwners = new Set([state.targetUserId || state.loggedInUserId || "DANI"]);
       els.evMarcaInput.value = "Azz Livv";
-      els.evCategoryInput.value = "emerald";
+
+      const defTag = "#Entrega";
+      if (els.evTagInput) els.evTagInput.value = defTag.replace(/^#/, "");
+      updateModalHashtagDisplay(defTag);
+      renderSavedHashtagsList(defTag);
+
+      selectModalColor("emerald");
+      selectModalImportance("medium");
+
       els.evNotesInput.value = "";
       els.btnDeleteCustomEvent.style.display = "none";
     }
@@ -2168,7 +2854,9 @@
     updateModalRangeSummary();
 
     els.customEventModal.style.display = "flex";
-    setTimeout(() => els.evTitleInput.focus(), 50);
+    setTimeout(() => {
+      if (els.evTitleInput) els.evTitleInput.focus();
+    }, 50);
   }
 
   async function handleSaveCustomEvent(e) {
@@ -2189,6 +2877,18 @@
     const encodedEventDate = startStr === endStr ? startStr : `${startStr}|${endStr}`;
     const encodedOwners = Array.from(modalSelectedOwners).join(", ");
 
+    const selectedColor = els.evCategoryInput ? els.evCategoryInput.value || "emerald" : "emerald";
+    const rawTag = els.evTagInput ? els.evTagInput.value.trim() : "";
+    const finalTag = normalizeHashtag(rawTag || "General");
+    const importance = els.evImportanceInput ? els.evImportanceInput.value || "medium" : "medium";
+    const cleanNotes = els.evNotesInput ? els.evNotesInput.value.trim() : "";
+    const serializedNotes = serializeCustomEventNotes(cleanNotes, finalTag, importance);
+
+    // Guardar el hashtag para futuros usos
+    if (finalTag && finalTag !== "#General") {
+      saveHashtagToCatalog(finalTag);
+    }
+
     const payload = {
       title: els.evTitleInput.value.trim(),
       event_date: encodedEventDate,
@@ -2196,8 +2896,8 @@
       area: els.evAreaInput.value,
       owner_user: encodedOwners,
       marca: els.evMarcaInput.value,
-      category: els.evCategoryInput.value,
-      notes: els.evNotesInput.value.trim(),
+      category: selectedColor,
+      notes: serializedNotes,
       created_by: state.loggedInUserId || "DANI",
     };
 
@@ -2299,12 +2999,16 @@
       if (!minDate || startDt < minDate) minDate = new Date(startDt.getTime());
       if (!maxDate || endDt > maxDate) maxDate = new Date(endDt.getTime());
 
+      const meta = parseCustomEventMeta(cev);
+      const tagPrefix = meta.tag ? `[${meta.tag}] ` : "";
+      const impIcon = meta.importance === "high" ? "🔴 " : "";
+
       items.push({
         isCustom: true,
         custom: cev,
         act: {
           no: "📌",
-          actividad: cev.title,
+          actividad: `${impIcon}${tagPrefix}${cev.title}`,
           proceso: `📌 Eventos Extra (${cev.area || "Equipo"})`,
           area: ownersLabel,
           marca: cev.marca || "Azz Livv",
@@ -2748,9 +3452,11 @@
       const sVal = formatYMD(rng.startDt).replace(/-/g, "");
       const eVal = formatYMD(endDtExclusive).replace(/-/g, "");
       const owners = getCustomEventOwners(cev).join(", ");
+      const meta = parseCustomEventMeta(cev);
+      const tagText = meta.tag ? ` [${meta.tag}]` : "";
       const uid = `custom-${cev.id}@azzorti-livva.com`;
-      const summary = `[📌 ${cev.area || "EXTRA"} - ${owners || "Equipo"}] ${cev.title}`;
-      const desc = `Asignado a: ${owners}\\nÁrea: ${cev.area}\\nMarca: ${cev.marca}\\nRango: ${rng.startStr} al ${rng.endStr}\\nNotas: ${cev.notes || ""}`;
+      const summary = `[📌 ${cev.area || "EXTRA"}${tagText} - ${owners || "Equipo"}] ${cev.title}`;
+      const desc = `Asignado a: ${owners}\\nÁrea: ${cev.area}\\nEtiqueta: ${meta.tag}\\nImportancia: ${meta.importance.toUpperCase()}\\nMarca: ${cev.marca}\\nRango: ${rng.startStr} al ${rng.endStr}\\nNotas: ${meta.cleanNotes || ""}`;
       lines.push(
         "BEGIN:VEVENT",
         `UID:${uid}`,
@@ -2833,11 +3539,9 @@
      15. EVENT LISTENERS SETUP
      ========================================================================== */
   function closeAllDropdowns() {
-    els.campaignDropdown.classList.remove("open");
-    els.areaDropdown.classList.remove("open");
-    els.procesoDropdown.classList.remove("open");
-    els.actDropdown.classList.remove("open");
-    els.customFilterDropdown.classList.remove("open");
+    if (els.campaignDropdown) els.campaignDropdown.classList.remove("open");
+    if (els.teamProfilesDropdown) els.teamProfilesDropdown.style.display = "none";
+    if (els.teamProfilesDropdownWrap) els.teamProfilesDropdownWrap.classList.remove("open");
   }
 
   function setupEventListeners() {
@@ -2890,6 +3594,60 @@
     els.customEventForm.addEventListener("submit", handleSaveCustomEvent);
     els.btnDeleteCustomEvent.addEventListener("click", handleDeleteCustomEvent);
 
+    if (els.evTagInput) {
+      els.evTagInput.addEventListener("input", (e) => {
+        updateModalHashtagDisplay(e.target.value);
+      });
+    }
+
+    if (els.btnClearHashtag) {
+      els.btnClearHashtag.addEventListener("click", () => {
+        if (els.evTagInput) {
+          els.evTagInput.value = "";
+          updateModalHashtagDisplay("");
+          els.evTagInput.focus();
+        }
+      });
+    }
+
+    if (els.savedHashtagsList) {
+      els.savedHashtagsList.addEventListener("click", (e) => {
+        const delBtn = e.target.closest(".pill-del-btn");
+        if (delBtn) {
+          e.stopPropagation();
+          const tagToDel = delBtn.getAttribute("data-deltag");
+          if (tagToDel) removeHashtagFromCatalog(tagToDel);
+          return;
+        }
+
+        const pill = e.target.closest(".saved-hashtag-pill");
+        if (!pill) return;
+        const tag = pill.getAttribute("data-tag");
+        if (tag && els.evTagInput) {
+          els.evTagInput.value = tag.replace(/^#/, "");
+          updateModalHashtagDisplay(tag);
+        }
+      });
+    }
+
+    if (els.evColorPicker) {
+      els.evColorPicker.addEventListener("click", (e) => {
+        const item = e.target.closest(".color-swatch-item");
+        if (!item) return;
+        const col = item.getAttribute("data-color");
+        if (col) selectModalColor(col);
+      });
+    }
+
+    if (els.evImportanceGroup) {
+      els.evImportanceGroup.addEventListener("click", (e) => {
+        const choice = e.target.closest(".importance-choice");
+        if (!choice) return;
+        const imp = choice.getAttribute("data-importance");
+        if (imp) selectModalImportance(imp);
+      });
+    }
+
     els.evDateInput.addEventListener("change", updateModalRangeSummary);
     els.evEndDateInput.addEventListener("change", updateModalRangeSummary);
 
@@ -2906,157 +3664,216 @@
       renderModalOwnersGrid();
     });
 
-    // Dropdown toggles
-    const dropdownPairs = [
-      [els.campaignBtn, els.campaignDropdown],
-      [els.areaBtn, els.areaDropdown],
-      [els.procesoBtn, els.procesoDropdown],
-      [els.actBtn, els.actDropdown],
-      [els.customFilterBtn, els.customFilterDropdown],
-    ];
-
-    dropdownPairs.forEach(([btn, dd]) => {
-      btn.addEventListener("click", (e) => {
+    // 1. Campaign Quick Dropdown Toggle & Outside Click
+    if (els.campaignBtn && els.campaignDropdown) {
+      els.campaignBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        const wasOpen = dd.classList.contains("open");
-        closeAllDropdowns();
-        if (!wasOpen) dd.classList.add("open");
+        toggleCampaignDropdown();
       });
-    });
 
-    document.addEventListener("click", (e) => {
-      const insideAny = dropdownPairs.some(
-        ([btn, dd]) => dd.contains(e.target) || btn.contains(e.target)
-      );
-      if (!insideAny) closeAllDropdowns();
-    });
+      document.addEventListener("click", (e) => {
+        const inCampaign = els.campaignDropdown && els.campaignDropdown.contains(e.target);
+        const inCampaignBtn = els.campaignBtn && els.campaignBtn.contains(e.target);
+        const inTeamDropdown = els.teamProfilesDropdown && els.teamProfilesDropdown.contains(e.target);
+        const inTeamBtn = els.btnTeamProfilesDropdown && els.btnTeamProfilesDropdown.contains(e.target);
 
-    // 1. Campaign Filter Actions
-    els.campaignSearch.addEventListener("input", renderCampaignSelectList);
-    els.campaignSelectAll.addEventListener("click", () => {
-      state.selectedCampaignIds = new Set(getActiveCampaigns().map((c) => c.id));
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.campaignSelect2027.addEventListener("click", () => {
-      state.selectedCampaignIds = new Set(
-        getActiveCampaigns().filter((c) => c.adv.startsWith("2027")).map((c) => c.id)
-      );
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.campaignSelect2028.addEventListener("click", () => {
-      state.selectedCampaignIds = new Set(
-        getActiveCampaigns().filter((c) => c.adv.startsWith("2028")).map((c) => c.id)
-      );
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.campaignClearAll.addEventListener("click", () => {
-      state.selectedCampaignIds.clear();
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.chkInclude2026.addEventListener("change", (e) => {
-      state.include2026 = e.target.checked;
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-
-    // 2. Area Checklist Actions
-    els.areaSearch.addEventListener("input", renderAreaChecklist);
-    els.areaSelectAll.addEventListener("click", () => {
-      rawData.activities.forEach((a) => state.selectedActivityNos.add(a.no));
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.areaClearAll.addEventListener("click", () => {
-      state.selectedActivityNos.clear();
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-
-    // 3. Proceso Checklist Actions
-    els.procesoSearch.addEventListener("input", renderProcesoChecklist);
-    els.procesoSelectAll.addEventListener("click", () => {
-      rawData.activities.forEach((a) => state.selectedActivityNos.add(a.no));
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.procesoClearAll.addEventListener("click", () => {
-      state.selectedActivityNos.clear();
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-
-    // 4. Individual Activities Checklist Actions
-    els.actSearch.addEventListener("input", renderActivityChecklist);
-    els.actSelectVisible.addEventListener("click", () => {
-      const q = (els.actSearch.value || "").trim().toLowerCase();
-      rawData.activities.forEach((act) => {
-        if (
-          !q ||
-          String(act.no).includes(q) ||
-          act.actividad.toLowerCase().includes(q) ||
-          act.proceso.toLowerCase().includes(q) ||
-          act.area.toLowerCase().includes(q)
-        ) {
-          state.selectedActivityNos.add(act.no);
+        if (!inCampaign && !inCampaignBtn && !inTeamDropdown && !inTeamBtn) {
+          closeAllDropdowns();
         }
       });
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.actQuickTextil.addEventListener("click", () => {
-      applyQuickPreset("textil");
-    });
-    els.actClearAll.addEventListener("click", () => {
-      state.selectedActivityNos.clear();
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
+    }
+
+    // Campaign Year Tabs (Filtro rápido por año)
+    if (els.campaignYearTabs) {
+      els.campaignYearTabs.addEventListener("click", (e) => {
+        const tab = e.target.closest(".year-tab");
+        if (!tab) return;
+        selectedCampaignYear = tab.getAttribute("data-year") || "ALL";
+        const allTabs = els.campaignYearTabs.querySelectorAll(".year-tab");
+        allTabs.forEach((t) => t.classList.toggle("active", t === tab));
+        renderCampaignSelectList();
+      });
+    }
+
+    // Campaign Filter Actions
+    if (els.campaignSearch) {
+      els.campaignSearch.addEventListener("input", renderCampaignSelectList);
+    }
+    if (els.campaignSelectAll) {
+      els.campaignSelectAll.addEventListener("click", () => {
+        state.selectedCampaignIds = new Set(getActiveCampaigns().map((c) => c.id));
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+    if (els.campaignSelect2027) {
+      els.campaignSelect2027.addEventListener("click", () => {
+        state.selectedCampaignIds = new Set(
+          getActiveCampaigns().filter((c) => c.adv.startsWith("2027")).map((c) => c.id)
+        );
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+    if (els.campaignSelect2028) {
+      els.campaignSelect2028.addEventListener("click", () => {
+        state.selectedCampaignIds = new Set(
+          getActiveCampaigns().filter((c) => c.adv.startsWith("2028")).map((c) => c.id)
+        );
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+    if (els.campaignClearAll) {
+      els.campaignClearAll.addEventListener("click", () => {
+        state.selectedCampaignIds.clear();
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+    if (els.chkInclude2026) {
+      els.chkInclude2026.addEventListener("change", (e) => {
+        state.include2026 = e.target.checked;
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+
+    // 2. Team Avatars & Extras Filter & Profiles Selector
+    if (els.chkShowCustomEvents) {
+      els.chkShowCustomEvents.addEventListener("change", (e) => {
+        state.showCustomEvents = e.target.checked;
+        renderTeamAvatarsBar();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+    if (els.btnTeamShowAll) {
+      els.btnTeamShowAll.addEventListener("click", () => {
+        state.customFilterTags.clear();
+        renderTeamAvatarsBar();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+
+    if (els.btnTeamProfilesDropdown) {
+      els.btnTeamProfilesDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleTeamProfilesDropdown();
+      });
+    }
+
+    if (els.teamProfileSearchInput) {
+      els.teamProfileSearchInput.addEventListener("input", () => {
+        renderTeamProfilesDropdownList();
+      });
+    }
+
+    if (els.btnSelectAllProfiles) {
+      els.btnSelectAllProfiles.addEventListener("click", () => {
+        state.customFilterTags.clear();
+        closeAllDropdowns();
+        renderTeamAvatarsBar();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+
+    if (els.btnTeamScrollLeft && els.teamAvatarsList) {
+      els.btnTeamScrollLeft.addEventListener("click", () => {
+        els.teamAvatarsList.scrollBy({ left: -140, behavior: "smooth" });
+      });
+    }
+
+    if (els.btnTeamScrollRight && els.teamAvatarsList) {
+      els.btnTeamScrollRight.addEventListener("click", () => {
+        els.teamAvatarsList.scrollBy({ left: 140, behavior: "smooth" });
+      });
+    }
+
+    // 3. Panel Unificado de Configuración (Drawer Flotante)
+    if (els.btnOpenUnifiedFilters) {
+      els.btnOpenUnifiedFilters.addEventListener("click", () => {
+        if (els.unifiedFilterDrawerBackdrop) {
+          els.unifiedFilterDrawerBackdrop.style.display = "flex";
+          renderUnifiedDrawerHierarchy();
+          updateUnifiedFilterBadge();
+          if (els.unifiedDrawerSearch) setTimeout(() => els.unifiedDrawerSearch.focus(), 60);
+        }
+      });
+    }
+
+    function closeUnifiedDrawer() {
+      if (els.unifiedFilterDrawerBackdrop) {
+        els.unifiedFilterDrawerBackdrop.style.display = "none";
+      }
+    }
+
+    if (els.btnCloseUnifiedDrawer) {
+      els.btnCloseUnifiedDrawer.addEventListener("click", closeUnifiedDrawer);
+    }
+    if (els.btnDrawerApplyClose) {
+      els.btnDrawerApplyClose.addEventListener("click", closeUnifiedDrawer);
+    }
+    if (els.unifiedFilterDrawerBackdrop) {
+      els.unifiedFilterDrawerBackdrop.addEventListener("click", (e) => {
+        if (e.target === els.unifiedFilterDrawerBackdrop) {
+          closeUnifiedDrawer();
+        }
+      });
+    }
+
+    // Escape closes modals and drawer
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeUnifiedDrawer();
+        closeAllDropdowns();
+      }
     });
 
-    // 5. Custom Events Filter Actions
-    els.chkShowCustomEvents.addEventListener("change", (e) => {
-      state.showCustomEvents = e.target.checked;
-      updateChecklistButtonLabels();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.customFilterSelectAll.addEventListener("click", () => {
-      state.customFilterTags.clear();
-      state.showCustomEvents = true;
-      els.chkShowCustomEvents.checked = true;
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.customFilterOnlyMine.addEventListener("click", () => {
-      state.customFilterTags = new Set([`USER:${state.targetUserId || "DANI"}`]);
-      state.showCustomEvents = true;
-      els.chkShowCustomEvents.checked = true;
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
-    els.customFilterClear.addEventListener("click", () => {
-      state.showCustomEvents = false;
-      els.chkShowCustomEvents.checked = false;
-      populateFilterControls();
-      scheduleSavePreferences();
-      renderAll();
-    });
+    // Drawer Presets Rápidos
+    if (els.unifiedFilterDrawer) {
+      els.unifiedFilterDrawer.querySelectorAll("[data-preset]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const preset = btn.getAttribute("data-preset");
+          applyQuickPreset(preset);
+        });
+      });
+    }
+    if (els.btnDrawerSelectAll) {
+      els.btnDrawerSelectAll.addEventListener("click", () => applyQuickPreset("all"));
+    }
+    if (els.btnDrawerClearAll) {
+      els.btnDrawerClearAll.addEventListener("click", () => applyQuickPreset("clear"));
+    }
+
+    // Drawer Search & Actions
+    if (els.unifiedDrawerSearch) {
+      els.unifiedDrawerSearch.addEventListener("input", renderUnifiedDrawerHierarchy);
+    }
+    if (els.btnDrawerExpandAll) {
+      els.btnDrawerExpandAll.addEventListener("click", () => {
+        if (!rawData) return;
+        rawData.activities.forEach((a) => {
+          drawerExpandedAreas.add(a.area);
+          drawerExpandedProcs.add(`${a.area}::${a.proceso}`);
+        });
+        renderUnifiedDrawerHierarchy();
+      });
+    }
+    if (els.btnDrawerCollapseAll) {
+      els.btnDrawerCollapseAll.addEventListener("click", () => {
+        drawerExpandedAreas.clear();
+        drawerExpandedProcs.clear();
+        renderUnifiedDrawerHierarchy();
+      });
+    }
 
     // 6. Brand & Search
     els.brandPills.forEach((btn) => {
@@ -3103,7 +3920,44 @@
       renderAll();
     });
 
+    function goToToday() {
+      if (state.viewMode !== "calendar") {
+        state.viewMode = "calendar";
+        els.tabCalendar.classList.add("active");
+        els.tabGantt.classList.remove("active");
+        els.tabMatrix.classList.remove("active");
+        els.calendarToolbarOptions.style.display = "flex";
+        els.ganttToolbarOptions.style.display = "none";
+        els.matrixToolbarOptions.style.display = "none";
+        els.calendarWrapper.style.display = "block";
+        els.ganttWrapper.style.display = "none";
+        els.matrixWrapper.style.display = "none";
+      }
+
+      const todayYm = TODAY_STR.slice(0, 7);
+      if (todayYm.startsWith("2026") && !state.include2026) {
+        state.include2026 = true;
+        if (els.chkInclude2026) els.chkInclude2026.checked = true;
+        populateFilterControls();
+      }
+
+      state.forceIncludeToday = true;
+      renderAll();
+
+      setTimeout(() => {
+        const todayCell = document.querySelector(`.calendar-day-cell[data-date="${TODAY_STR}"]`);
+        if (todayCell) {
+          todayCell.scrollIntoView({ behavior: "smooth", block: "center" });
+          todayCell.classList.add("highlight-pulse");
+          setTimeout(() => todayCell.classList.remove("highlight-pulse"), 3600);
+        }
+      }, 60);
+    }
+
     // Calendar & Gantt Controls
+    if (els.btnCalToday) {
+      els.btnCalToday.addEventListener("click", goToToday);
+    }
     els.btnCalPrevMonth.addEventListener("click", () => {
       state.calShowAllMonths = false;
       els.chkCalShowAllMonths.checked = false;
@@ -3157,44 +4011,11 @@
       els.ganttTimelineHeader.scrollLeft = els.ganttTimelineBody.scrollLeft;
     });
 
-    // Exports & Excel Upload
+    // Exports
     els.btnExportPdfCalendar.addEventListener("click", printPdfCalendar);
     els.btnExportPdfGantt.addEventListener("click", printPdfGantt);
     els.btnExportIcs.addEventListener("click", exportFilteredToICS);
     els.btnExportCsv.addEventListener("click", exportFilteredToCSV);
-
-    els.btnUpload.addEventListener("click", () => els.fileInput.click());
-    els.fileInput.addEventListener("change", (e) => {
-      if (e.target.files && e.target.files[0]) {
-        handleFileUpload(e.target.files[0]);
-        e.target.value = "";
-      }
-    });
-
-    els.btnResetData.addEventListener("click", async () => {
-      localStorage.removeItem(LOCAL_MASTER_CACHE_KEY);
-      rawData = window.CRONOGRAMA_INITIAL_DATA;
-      els.btnResetData.style.display = "none";
-      els.statusBadge.textContent = `Cronograma Oficial (${rawData.activities.length} act.)`;
-      populateFilterControls();
-      renderAll();
-    });
-
-    window.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      els.dropzoneOverlay.classList.add("active");
-    });
-    els.dropzoneOverlay.addEventListener("dragleave", (e) => {
-      e.preventDefault();
-      els.dropzoneOverlay.classList.remove("active");
-    });
-    window.addEventListener("drop", (e) => {
-      e.preventDefault();
-      els.dropzoneOverlay.classList.remove("active");
-      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
-        handleFileUpload(e.dataTransfer.files[0]);
-      }
-    });
   }
 
   /* ==========================================================================
@@ -3214,27 +4035,17 @@
     } catch (e) {
       // ignore
     }
+    loadSavedHashtags();
 
-    // Load Master Cronograma
-    let loadedCustomMaster = false;
+    // Master Cronograma Oficial (Manual - datos_cronograma.js es la fuente única de verdad)
     try {
-      const savedMaster = localStorage.getItem(LOCAL_MASTER_CACHE_KEY);
-      if (savedMaster) {
-        const parsed = JSON.parse(savedMaster);
-        if (parsed && parsed.activities && parsed.campaigns) {
-          rawData = parsed;
-          loadedCustomMaster = true;
-          els.btnResetData.style.display = "inline-flex";
-          els.statusBadge.textContent = `📂 Excel actualizado (${parsed.activities.length} act.)`;
-        }
-      }
+      localStorage.removeItem(LOCAL_MASTER_CACHE_KEY);
     } catch (e) {
       // ignore
     }
-
-    if (!loadedCustomMaster) {
-      rawData = window.CRONOGRAMA_INITIAL_DATA;
-      els.statusBadge.textContent = `Cronograma Oficial (${rawData.activities.length} act.)`;
+    rawData = window.CRONOGRAMA_INITIAL_DATA;
+    if (rawData && rawData.activities) {
+      els.statusBadge.textContent = `Cronograma Oficial (${rawData.activities.length} actividades)`;
     }
 
     setupEventListeners();
