@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenda &amp; Cronograma Diseño — Azzorti &amp; Livva</title>
+  <title>CRONOGRAMA AGLAB — Azzorti &amp; Livva</title>
   <link rel="stylesheet" href="styles.css" />
   <!-- Cliente oficial Supabase JS + Fallback REST integrado -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -16,30 +16,28 @@
        ======================================================================== -->
   <div id="loginOverlay" class="login-overlay">
     <div class="login-card">
-      <div class="login-header">
-        <div class="login-logo">AL</div>
-        <div>
-          <h2>Estudio de Diseño Azzorti &amp; Livva</h2>
-          <p>Selecciona tu perfil para cargar tu calendario personalizado y eventos en tiempo real</p>
-        </div>
+      <div class="login-header-hero">
+        <div class="login-eyebrow">EQUIPO AG LAB</div>
+        <h1 class="login-hero-title">CRONOGRAMA AGLAB</h1>
+        <p class="login-hero-sub">Cronograma de colores, entender las fechas y visualizarlas es la clave de la planeación</p>
       </div>
 
       <div id="loginUsersGrid" class="login-users-grid">
-        <!-- Generado dinámicamente con los 12 perfiles: MARI, BRY, JOHA, YEYE, CARO, CATA, LAU A, LAU L, ELI, LEIDY, ANDRE, DANI -->
+        <!-- Generado dinámicamente con los 17 perfiles sincronizados con Supabase -->
       </div>
 
       <form id="loginPinForm" class="login-pin-box" style="display:none">
         <div class="login-selected-user">
-          <span id="loginSelectedAvatar" class="user-avatar-sm">M</span>
-          <div>
-            <div id="loginSelectedName" style="font-weight:700;font-size:14px">MARI</div>
-            <div id="loginSelectedRole" style="font-size:11.5px;color:#64748b">Perfil de Diseñador(a)</div>
+          <span id="loginSelectedAvatar" class="login-user-avatar">M</span>
+          <div class="login-selected-meta">
+            <div id="loginSelectedName" class="login-sel-name">MARI</div>
+            <div id="loginSelectedRole" class="login-sel-role">Perfil de Diseñador(a)</div>
           </div>
-          <button type="button" id="btnChangeLoginUser" class="link-btn" style="margin-left:auto">Cambiar perfil</button>
+          <button type="button" id="btnChangeLoginUser" class="btn btn-sm btn-secondary" style="margin-left:auto">← Cambiar perfil</button>
         </div>
 
         <div class="login-pin-input-row">
-          <input type="password" id="loginPinInput" class="filter-input login-pin-input" placeholder="Ingresa tu clave / PIN (ej. 1234)" autocomplete="current-password" required />
+          <input type="password" id="loginPinInput" class="filter-input login-pin-input" placeholder="Ingresa tu clave / PIN (ej. 0000)" autocomplete="current-password" required />
           <button type="submit" class="btn btn-primary login-submit-btn">Entrar a mi Calendario →</button>
         </div>
 
@@ -51,6 +49,17 @@
           <span id="loginErrorMsg" class="login-error-msg"></span>
         </div>
       </form>
+
+      <!-- Minimalist Brand Logos Footer (Ag-b, Azzorti, Livva) -->
+      <footer class="login-footer-brands">
+        <div class="login-brands-track">
+          <img src="ag-b.png" alt="AG LAB" class="brand-foot-logo logo-agb" title="AG LAB S.A.S" />
+          <span class="brand-foot-divider"></span>
+          <img src="AZZORTI.png" alt="AZZORTI" class="brand-foot-logo logo-azzorti" title="Azzorti" />
+          <span class="brand-foot-divider"></span>
+          <img src="LIVVA.png" alt="LIVVA" class="brand-foot-logo logo-livva" title="Livva" />
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -59,13 +68,16 @@
        ======================================================================== -->
   <header class="top-header">
     <div class="brand-title">
-      <div class="brand-logo">AL</div>
+      <div class="brand-logo-wrap">
+        <img src="ag-b.png" alt="AG LAB" class="brand-logo-img" />
+      </div>
       <div>
-        <h1>Agenda &amp; Cronograma Azzorti • Livva</h1>
-        <div class="brand-subtitle">
+        <div class="brand-header-row">
+          <h1>CRONOGRAMA AGLAB</h1>
           <span id="cloudStatusBadge" class="badge-cloud">☁️ Conectando a la nube...</span>
           <span id="dataStatusBadge" class="badge-status">Cargando cronograma...</span>
         </div>
+        <div class="brand-slogan">Cronograma de colores, entender las fechas y visualizarlas es la clave de la planeación</div>
       </div>
     </div>
 
@@ -86,7 +98,7 @@
         ✨ + Agregar Evento
       </button>
 
-      <button type="button" id="btnExportPdfCalendar" class="btn btn-primary" style="background:#7c3aed;border-color:#6d28d9" title="Generar PDF del Calendario Mensual (1 hoja apaisada por mes) con tus actividades y eventos seleccionados">
+      <button type="button" id="btnExportPdfCalendar" class="btn btn-secondary" title="Generar PDF del Calendario Mensual (1 hoja apaisada por mes) con tus actividades y eventos seleccionados">
         📅 PDF Calendario
       </button>
 
@@ -223,7 +235,7 @@
         <div class="team-avatars-scroll-wrap">
           <button type="button" id="btnTeamScrollLeft" class="team-scroll-arrow" title="Desplazar a la izquierda" style="display:none">‹</button>
           <div class="team-avatars-list" id="teamAvatarsList">
-            <!-- Renderizado dinámico: MARI, BRY, JOHA, YEYE, CARO, CATA, LAU A, LAU L, ELI, LEIDY, ANDRE, DANI -->
+            <!-- Renderizado dinámico de todos los perfiles de Supabase -->
           </div>
           <button type="button" id="btnTeamScrollRight" class="team-scroll-arrow" title="Desplazar a la derecha" style="display:none">›</button>
         </div>

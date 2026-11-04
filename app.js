@@ -36,19 +36,50 @@
     "ADV_202710_NAL_202713",
   ];
 
-  const TEAM_PROFILES = [
-    { id: "MARI", name: "MARI", role: "designer", color: "#ec4899", defaultPin: "1234" },
-    { id: "BRY", name: "BRY", role: "designer", color: "#8b5cf6", defaultPin: "1234" },
-    { id: "JOHA", name: "JOHA", role: "designer", color: "#06b6d4", defaultPin: "1234" },
-    { id: "YEYE", name: "YEYE", role: "designer", color: "#10b981", defaultPin: "1234" },
-    { id: "CARO", name: "CARO", role: "designer", color: "#f59e0b", defaultPin: "1234" },
-    { id: "CATA", name: "CATA", role: "designer", color: "#6366f1", defaultPin: "1234" },
-    { id: "LAU A", name: "LAU A", role: "designer", color: "#f43f5e", defaultPin: "1234" },
-    { id: "LAU L", name: "LAU L", role: "designer", color: "#14b8a6", defaultPin: "1234" },
-    { id: "ELI", name: "ELI", role: "designer", color: "#a855f7", defaultPin: "1234" },
-    { id: "LEIDY", name: "LEIDY", role: "designer", color: "#3b82f6", defaultPin: "1234" },
-    { id: "ANDRE", name: "ANDRE", role: "designer", color: "#eab308", defaultPin: "1234" },
-    { id: "DANI", name: "DANI", role: "admin", color: "#d97706", defaultPin: "1234" },
+  const PALETTE_COLORS = [
+    "#ec4899", "#8b5cf6", "#06b6d4", "#10b981", "#f59e0b",
+    "#6366f1", "#f43f5e", "#14b8a6", "#a855f7", "#3b82f6",
+    "#eab308", "#0284c7", "#ea580c", "#059669", "#db2777",
+    "#7c3aed", "#d97706", "#0891b2", "#84cc16", "#475569"
+  ];
+
+  function getDeterministicColor(id) {
+    if (!id) return "#6366f1";
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+      hash = id.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const idx = Math.abs(hash) % PALETTE_COLORS.length;
+    return PALETTE_COLORS[idx];
+  }
+
+  function getProfileRoleLabel(role) {
+    if (!role) return "Diseñador(a)";
+    const r = String(role).toLowerCase().trim();
+    if (r === "admin" || r === "administrador") return "Administrador";
+    if (r === "administrativo") return "Administrativo";
+    return "Diseñador(a)";
+  }
+
+  let TEAM_PROFILES = [
+    { id: "MARI", name: "MARI", role: "designer", color: "#ec4899", defaultPin: "0000" },
+    { id: "BRY", name: "BRY", role: "designer", color: "#8b5cf6", defaultPin: "0000" },
+    { id: "JOHA", name: "JOHA", role: "designer", color: "#06b6d4", defaultPin: "4321" },
+    { id: "YEYE", name: "YEYE", role: "designer", color: "#10b981", defaultPin: "0000" },
+    { id: "CARO", name: "CARO", role: "designer", color: "#f59e0b", defaultPin: "0000" },
+    { id: "CATA", name: "CATA", role: "designer", color: "#6366f1", defaultPin: "0000" },
+    { id: "LAU A", name: "LAU A", role: "designer", color: "#f43f5e", defaultPin: "0000" },
+    { id: "LAU L", name: "LAU L", role: "designer", color: "#14b8a6", defaultPin: "0000" },
+    { id: "ELI", name: "ELI", role: "designer", color: "#a855f7", defaultPin: "0000" },
+    { id: "LEIDY", name: "LEIDY", role: "designer", color: "#3b82f6", defaultPin: "0000" },
+    { id: "JUSTIN", name: "JUSTIN", role: "designer", color: "#0891b2", defaultPin: "0000" },
+    { id: "ANDRE", name: "ANDRE", role: "admin", color: "#eab308", defaultPin: "1234" },
+    { id: "HENRY", name: "HENRY", role: "Administrativo", color: "#0284c7", defaultPin: "0000" },
+    { id: "ANITA", name: "ANITA", role: "Administrativo", color: "#ea580c", defaultPin: "0000" },
+    { id: "ANLLY", name: "ANLLY", role: "Administrativo", color: "#059669", defaultPin: "0000" },
+    { id: "ASTRID", name: "ASTRID", role: "Administrativo", color: "#db2777", defaultPin: "0000" },
+    { id: "PAULA", name: "PAULA", role: "Administrativo", color: "#7c3aed", defaultPin: "0000" },
+    { id: "DANI", name: "DANI", role: "admin", color: "#d97706", defaultPin: "9901" },
   ];
 
   const CUSTOM_EVENT_AREAS = [
@@ -321,13 +352,39 @@
         const arr = JSON.parse(cached);
         if (Array.isArray(arr)) {
           for (const u of arr) {
-            if (u && u.id && usersMap.has(u.id)) {
-              const base = usersMap.get(u.id);
-              usersMap.set(u.id, {
-                ...base,
-                pin: u.pin || base.pin,
-                preferences: { ...base.preferences, ...(u.preferences || {}) },
-              });
+            if (u && u.id) {
+              let prof = TEAM_PROFILES.find((p) => p.id === u.id);
+              if (!prof) {
+                prof = {
+                  id: u.id,
+                  name: u.name || u.id,
+                  role: u.role || "designer",
+                  color: getDeterministicColor(u.id),
+                  defaultPin: u.pin || "0000",
+                };
+                TEAM_PROFILES.push(prof);
+              }
+              if (usersMap.has(u.id)) {
+                const base = usersMap.get(u.id);
+                usersMap.set(u.id, {
+                  ...base,
+                  name: u.name || base.name,
+                  role: u.role || base.role,
+                  pin: u.pin || base.pin,
+                  preferences: { ...base.preferences, ...(u.preferences || {}) },
+                });
+              } else {
+                usersMap.set(u.id, {
+                  ...buildDefaultUserObject(prof),
+                  name: u.name || u.id,
+                  role: u.role || "designer",
+                  pin: u.pin || "0000",
+                  preferences: {
+                    ...buildDefaultUserObject(prof).preferences,
+                    ...(u.preferences || {}),
+                  },
+                });
+              }
             }
           }
         }
@@ -358,12 +415,28 @@
     try {
       if (!sbClient) throw new Error("Cliente Supabase no inicializado");
 
-      // 1. Fetch app_users
+      // 1. Fetch app_users (incluyendo nuevos miembros añadidos en Supabase)
       const { data: usersData, error: usersErr } = await sbClient.from("app_users").select("*");
       if (usersErr) throw usersErr;
 
       if (usersData && usersData.length > 0) {
         for (const u of usersData) {
+          let profMeta = TEAM_PROFILES.find((p) => p.id === u.id);
+          if (!profMeta) {
+            profMeta = {
+              id: u.id,
+              name: u.name || u.id,
+              role: u.role || "designer",
+              color: getDeterministicColor(u.id),
+              defaultPin: u.pin || "0000",
+            };
+            TEAM_PROFILES.push(profMeta);
+          } else {
+            profMeta.name = u.name || profMeta.name;
+            profMeta.role = u.role || profMeta.role;
+            profMeta.defaultPin = u.pin || profMeta.defaultPin;
+          }
+
           if (usersMap.has(u.id)) {
             const base = usersMap.get(u.id);
             usersMap.set(u.id, {
@@ -373,9 +446,31 @@
               pin: u.pin || base.pin,
               preferences: { ...base.preferences, ...(u.preferences || {}) },
             });
+          } else {
+            usersMap.set(u.id, {
+              ...buildDefaultUserObject(profMeta),
+              name: u.name || u.id,
+              role: u.role || "designer",
+              pin: u.pin || "0000",
+              preferences: {
+                selectedActivityNos: [],
+                selectedCampaignIds: [...DEFAULT_CAMPAIGNS],
+                brand: "ALL",
+                includeSharedBrand: true,
+                include2026: false,
+                showCustomEvents: true,
+                customFilterTags: [],
+                ...(u.preferences || {}),
+              },
+            });
           }
         }
         saveLocalUsersCache();
+
+        // Actualizar vistas dinámicas tras sincronizar todos los perfiles
+        renderLoginScreen();
+        renderTeamAvatarsBar();
+        populateAdminTargetSelect();
       } else {
         // Seed initial 12 users if table is empty
         const seedRows = Array.from(usersMap.values()).map((u) => ({
@@ -489,7 +584,18 @@
      4. LOGIN & ADMIN USER MANAGEMENT
      ========================================================================== */
   function getProfileMeta(userId) {
-    return TEAM_PROFILES.find((p) => p.id === userId) || { id: userId, name: userId, role: "designer", color: "#6366f1" };
+    const fromProfiles = TEAM_PROFILES.find((p) => p.id === userId);
+    if (fromProfiles) return fromProfiles;
+    const fromMap = usersMap.get(userId);
+    if (fromMap) {
+      return {
+        id: fromMap.id,
+        name: fromMap.name || fromMap.id,
+        role: fromMap.role || "designer",
+        color: getDeterministicColor(fromMap.id),
+      };
+    }
+    return { id: userId, name: userId, role: "designer", color: getDeterministicColor(userId) };
   }
 
   function renderLoginScreen() {
@@ -498,17 +604,22 @@
     els.loginUsersGrid.style.display = "grid";
     els.loginErrorMsg.textContent = "";
 
-    for (const p of TEAM_PROFILES) {
+    const allProfiles = getAllKnownProfiles();
+
+    for (const p of allProfiles) {
       const isAdmin = p.role === "admin";
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = `login-user-card ${isAdmin ? "admin-card" : ""}`;
       const initials = p.name.slice(0, 2).toUpperCase();
       btn.innerHTML = `
-        <span class="user-avatar-sm" style="background:${p.color}">${initials}</span>
-        <div>
-          <div style="font-weight:800;font-size:13.5px;color:#0f172a">${p.name} ${isAdmin ? "👑" : ""}</div>
-          <div style="font-size:11px;color:#64748b">${isAdmin ? "Administrador" : "Diseñador(a)"}</div>
+        <span class="login-user-avatar">${initials}</span>
+        <div class="login-user-meta">
+          <div class="login-user-name">
+            <span>${p.name}</span>
+            ${isAdmin ? '<span class="login-admin-crown" title="Administrador">👑</span>' : ""}
+          </div>
+          <div class="login-user-role">${getProfileRoleLabel(p.role)}</div>
         </div>
       `;
       btn.addEventListener("click", () => {
@@ -516,11 +627,12 @@
         els.loginUsersGrid.style.display = "none";
         els.loginPinForm.style.display = "flex";
         els.loginSelectedAvatar.textContent = initials;
-        els.loginSelectedAvatar.style.background = p.color;
-        els.loginSelectedName.textContent = p.name + (isAdmin ? " (Administrador)" : "");
+        els.loginSelectedAvatar.style.background = "#000000";
+        els.loginSelectedAvatar.style.color = "#ffffff";
+        els.loginSelectedName.textContent = p.name + (isAdmin ? " (Administrador)" : ` (${getProfileRoleLabel(p.role)})`);
         els.loginSelectedRole.textContent = isAdmin
           ? "Acceso total para configurar cualquier calendario"
-          : "Calendario y vista personalizada persistente";
+          : `Perfil ${getProfileRoleLabel(p.role)} • Calendario y vista personalizada persistente`;
         els.loginPinInput.value = "";
         els.loginErrorMsg.textContent = "";
         setTimeout(() => els.loginPinInput.focus(), 50);
@@ -544,7 +656,8 @@
 
     els.loginOverlay.style.display = "none";
     els.headerUserAvatar.textContent = meta.name.slice(0, 2).toUpperCase();
-    els.headerUserAvatar.style.background = meta.color;
+    els.headerUserAvatar.style.background = "#000000";
+    els.headerUserAvatar.style.color = "#ffffff";
     els.headerUserName.textContent = meta.name + (meta.role === "admin" ? " 👑" : "");
 
     // Setup Admin Bar if DANI
@@ -563,21 +676,23 @@
 
   function populateAdminTargetSelect() {
     els.adminTargetUserSelect.innerHTML = "";
-    for (const p of TEAM_PROFILES) {
+    const allProfiles = getAllKnownProfiles();
+    for (const p of allProfiles) {
       const opt = document.createElement("option");
       opt.value = p.id;
-      opt.textContent = p.id === "DANI" ? "DANI (Mi propio calendario)" : `Calendario de ${p.name}`;
+      opt.textContent = p.id === state.loggedInUserId ? `${p.name} (Mi propio calendario)` : `Calendario de ${p.name} (${getProfileRoleLabel(p.role)})`;
       if (p.id === state.targetUserId) opt.selected = true;
       els.adminTargetUserSelect.appendChild(opt);
     }
   }
 
   function switchAdminTargetUser(newTargetId) {
-    if (state.loggedInUserId !== "DANI") return;
+    const currentMeta = getProfileMeta(state.loggedInUserId);
+    if (!currentMeta || currentMeta.role !== "admin") return;
     state.targetUserId = newTargetId;
     els.adminTargetUserSelect.value = newTargetId;
 
-    if (newTargetId !== "DANI") {
+    if (newTargetId !== state.loggedInUserId) {
       els.adminEditingBanner.style.display = "flex";
       els.adminEditingTargetName.textContent = newTargetId;
       els.adminEditingTargetName2.textContent = newTargetId;
@@ -591,15 +706,17 @@
   }
 
   function openAdminPinsModal() {
-    if (state.loggedInUserId !== "DANI") return;
+    const currentMeta = getProfileMeta(state.loggedInUserId);
+    if (!currentMeta || currentMeta.role !== "admin") return;
     els.adminPinsList.innerHTML = "";
-    for (const p of TEAM_PROFILES) {
+    const allProfiles = getAllKnownProfiles();
+    for (const p of allProfiles) {
       const u = usersMap.get(p.id) || buildDefaultUserObject(p);
       const div = document.createElement("div");
       div.className = "admin-pin-item";
       div.innerHTML = `
-        <span><strong>${p.name}</strong> ${p.role === "admin" ? "👑" : ""}</span>
-        <input type="text" data-userid="${p.id}" value="${u.pin || "1234"}" maxlength="12" />
+        <span><strong>${p.name}</strong> (${getProfileRoleLabel(p.role)}) ${p.role === "admin" ? "👑" : ""}</span>
+        <input type="text" data-userid="${p.id}" value="${u.pin || p.defaultPin || "0000"}" maxlength="12" />
       `;
       els.adminPinsList.appendChild(div);
     }
@@ -772,15 +889,16 @@
 
   function renderOwnerPillsHtml(owners, compact) {
     if (!owners || owners.length === 0) return "";
-    if (owners.length >= TEAM_PROFILES.length) {
+    const allKnown = getAllKnownProfiles();
+    if (owners.length >= allKnown.length) {
       return `<span class="event-owner-pill"><span class="event-owner-dot" style="background:#6366f1"></span>👥 Todo el equipo (${owners.length})</span>`;
     }
     const maxToShow = compact ? 3 : 12;
     const shown = owners.slice(0, maxToShow);
     const extra = owners.length - shown.length;
     const pills = shown.map((uid) => {
-      const prof = TEAM_PROFILES.find((p) => p.id === uid);
-      const color = prof ? prof.color : "#64748b";
+      const prof = getProfileMeta(uid);
+      const color = prof ? prof.color : getDeterministicColor(uid);
       return `<span class="event-owner-pill"><span class="event-owner-dot" style="background:${color}"></span>${uid}</span>`;
     });
     if (extra > 0) {
@@ -1194,6 +1312,51 @@
 
   let selectedCampaignYear = "ALL";
 
+  function positionDropdownInViewport(dropdownEl, triggerEl) {
+    if (!dropdownEl || !triggerEl) return;
+    const margin = 10;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const trigRect = triggerEl.getBoundingClientRect();
+
+    dropdownEl.style.position = "fixed";
+    dropdownEl.style.maxWidth = `${Math.max(260, vw - margin * 2)}px`;
+    dropdownEl.style.left = "0px";
+    dropdownEl.style.right = "auto";
+
+    const dropRect = dropdownEl.getBoundingClientRect();
+    let left = trigRect.left;
+    if (left + dropRect.width > vw - margin) {
+      left = vw - dropRect.width - margin;
+    }
+    if (left < margin) {
+      left = margin;
+    }
+    dropdownEl.style.left = `${Math.round(left)}px`;
+
+    const spaceBelow = vh - trigRect.bottom - margin - 6;
+    const spaceAbove = trigRect.top - margin - 6;
+
+    if (spaceBelow >= 260 || spaceBelow >= spaceAbove) {
+      dropdownEl.style.top = `${Math.round(trigRect.bottom + 6)}px`;
+      dropdownEl.style.bottom = "auto";
+      dropdownEl.style.maxHeight = `${Math.max(200, Math.min(520, Math.floor(spaceBelow)))}px`;
+    } else {
+      dropdownEl.style.bottom = `${Math.round(vh - trigRect.top + 6)}px`;
+      dropdownEl.style.top = "auto";
+      dropdownEl.style.maxHeight = `${Math.max(200, Math.min(520, Math.floor(spaceAbove)))}px`;
+    }
+  }
+
+  function repositionOpenDropdowns() {
+    if (els.campaignDropdown && els.campaignDropdown.classList.contains("open") && els.campaignBtn) {
+      positionDropdownInViewport(els.campaignDropdown, els.campaignBtn);
+    }
+    if (els.teamProfilesDropdown && els.teamProfilesDropdown.style.display === "flex" && els.btnTeamProfilesDropdown) {
+      positionDropdownInViewport(els.teamProfilesDropdown, els.btnTeamProfilesDropdown);
+    }
+  }
+
   function toggleCampaignDropdown(forceOpen) {
     if (!els.campaignDropdown) return;
     const isOpen = els.campaignDropdown.classList.contains("open");
@@ -1201,6 +1364,7 @@
     if (forceOpen === true || !isOpen) {
       els.campaignDropdown.classList.add("open");
       renderCampaignSelectList();
+      positionDropdownInViewport(els.campaignDropdown, els.campaignBtn);
     }
   }
 
@@ -1417,6 +1581,7 @@
       els.teamProfilesDropdown.style.display = "flex";
       if (els.teamProfilesDropdownWrap) els.teamProfilesDropdownWrap.classList.add("open");
       renderTeamProfilesDropdownList();
+      positionDropdownInViewport(els.teamProfilesDropdown, els.btnTeamProfilesDropdown);
       if (els.teamProfileSearchInput) {
         els.teamProfileSearchInput.value = "";
         setTimeout(() => els.teamProfileSearchInput.focus(), 60);
@@ -2378,7 +2543,7 @@
             </div>
             <div class="calendar-campaign-meta">
               <span class="calendar-campaign-badge">${campHeaderBadge}</span>
-              <span class="calendar-campaign-sub">Agenda &amp; Cronograma Azzorti • Livva</span>
+              <span class="calendar-campaign-sub">CRONOGRAMA AGLAB — Azzorti &amp; Livva</span>
             </div>
           </div>
 
@@ -2741,8 +2906,9 @@
   function renderModalOwnersGrid() {
     if (!els.evOwnersGrid) return;
     els.evOwnersGrid.innerHTML = "";
+    const allProfiles = getAllKnownProfiles();
 
-    for (const p of TEAM_PROFILES) {
+    for (const p of allProfiles) {
       const isSelected = modalSelectedOwners.has(p.id);
       const chip = document.createElement("div");
       chip.className = `ev-owner-chip ${isSelected ? "selected" : ""}`;
@@ -2767,7 +2933,7 @@
       if (cnt === 0) {
         els.evOwnersCountLabel.textContent = "(Selecciona al menos 1 persona)";
         els.evOwnersCountLabel.style.color = "#e11d48";
-      } else if (cnt === TEAM_PROFILES.length) {
+      } else if (cnt === allProfiles.length) {
         els.evOwnersCountLabel.textContent = `(Todo el equipo: ${cnt})`;
         els.evOwnersCountLabel.style.color = "#059669";
       } else {
@@ -3406,10 +3572,10 @@
     const lines = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Azzorti Livva//Agenda Diseno//ES",
+      "PRODID:-//AG LAB Azzorti Livva//Cronograma AGLAB//ES",
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
-      `X-WR-CALNAME:Agenda ${state.targetUserId || "Azzorti Livva"}`,
+      `X-WR-CALNAME:CRONOGRAMA AGLAB - ${state.targetUserId || "Equipo"}`,
       "X-WR-TIMEZONE:America/Bogota",
     ];
     const dtstamp = "20261022T120000Z";
@@ -3656,7 +3822,7 @@
       renderModalOwnersGrid();
     });
     els.btnEvOwnerAll.addEventListener("click", () => {
-      modalSelectedOwners = new Set(TEAM_PROFILES.map((p) => p.id));
+      modalSelectedOwners = new Set(getAllKnownProfiles().map((p) => p.id));
       renderModalOwnersGrid();
     });
     els.btnEvOwnerClear.addEventListener("click", () => {
@@ -3837,6 +4003,15 @@
       }
     });
 
+    window.addEventListener("resize", () => {
+      repositionOpenDropdowns();
+      if (els.teamAvatarsList) {
+        const canScroll = els.teamAvatarsList.scrollWidth > els.teamAvatarsList.clientWidth + 5;
+        if (els.btnTeamScrollLeft) els.btnTeamScrollLeft.style.display = canScroll ? "flex" : "none";
+        if (els.btnTeamScrollRight) els.btnTeamScrollRight.style.display = canScroll ? "flex" : "none";
+      }
+    });
+
     // Drawer Presets Rápidos
     if (els.unifiedFilterDrawer) {
       els.unifiedFilterDrawer.querySelectorAll("[data-preset]").forEach((btn) => {
@@ -3928,7 +4103,7 @@
         els.tabMatrix.classList.remove("active");
         els.calendarToolbarOptions.style.display = "flex";
         els.ganttToolbarOptions.style.display = "none";
-        els.matrixToolbarOptions.style.display = "none";
+        if (els.matrixToolbarOptions) els.matrixToolbarOptions.style.display = "none";
         els.calendarWrapper.style.display = "block";
         els.ganttWrapper.style.display = "none";
         els.matrixWrapper.style.display = "none";
