@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRONOGRAMA AGLAB — Azzorti &amp; Livva</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
   <!-- Cliente oficial Supabase JS + Fallback REST integrado -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Librería SheetJS para lectura de nuevos archivos Excel (.xlsx / .csv) -->
@@ -74,6 +74,7 @@
       <div>
         <div class="brand-header-row">
           <h1>CRONOGRAMA AGLAB</h1>
+          <span id="cronogramaVersionBadge" class="badge-version" title="Versión activa del cronograma" style="display:none">📄 Versión</span>
           <span id="cloudStatusBadge" class="badge-cloud">☁️ Conectando a la nube...</span>
           <span id="dataStatusBadge" class="badge-status">Cargando cronograma...</span>
         </div>
@@ -650,7 +651,7 @@
   <!-- Floating Tooltip -->
   <div id="ganttTooltip" class="gantt-tooltip"></div>
 
-  <script src="datos_cronograma.js"></script>
-  <script src="app.js"></script>
+  <script src="datos_cronograma.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

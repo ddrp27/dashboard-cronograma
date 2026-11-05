@@ -1,7 +1,7 @@
 window.CRONOGRAMA_INITIAL_DATA = {
   "title": "CRONOGRAMA AZZORTI LIVVA 2026-2027-2028-2029",
   "sourceFile": "CRONOGRAMA ROPA V1 (2026-2027-2028) 19oct ABS.xlsx",
-  "updatedAt": "2026-10-31",
+  "updatedAt": "2026-11-05",
   "campaigns": [
     {
       "id": "ADV_202610_NAL_202613",

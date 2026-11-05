@@ -158,6 +158,7 @@
     // Header & Admin
     els.cloudStatusBadge = document.getElementById("cloudStatusBadge");
     els.statusBadge = document.getElementById("dataStatusBadge");
+    els.cronogramaVersionBadge = document.getElementById("cronogramaVersionBadge");
     els.adminControlBar = document.getElementById("adminControlBar");
     els.adminTargetUserSelect = document.getElementById("adminTargetUserSelect");
     els.btnAdminManagePins = document.getElementById("btnAdminManagePins");
@@ -323,20 +324,50 @@
     }
   }
 
+  function updateCronogramaVersionBadge() {
+    if (!els.cronogramaVersionBadge) return;
+    const src = (rawData && rawData.sourceFile) ? String(rawData.sourceFile).trim() : "";
+    if (!src) {
+      els.cronogramaVersionBadge.style.display = "none";
+      return;
+    }
+    els.cronogramaVersionBadge.style.display = "inline-flex";
+
+    let clean = src.replace(/\.(xlsx|csv)$/i, "").trim();
+    let shortVersion = clean.replace(/^CRONOGRAMA\s+(ROPA\s+)?/i, "").trim();
+    if (!shortVersion) shortVersion = clean;
+
+    els.cronogramaVersionBadge.innerHTML = `📄 <span>${shortVersion}</span>`;
+    els.cronogramaVersionBadge.title = `Versión activa del cronograma: ${src}${rawData.updatedAt ? " (Actualizado: " + rawData.updatedAt + ")" : ""}`;
+  }
+
+  function getDefaultOfficialActivityNos() {
+    const data = rawData || window.CRONOGRAMA_INITIAL_DATA;
+    if (!data || !Array.isArray(data.activities)) return [];
+    return data.activities
+      .filter((a) => {
+        const lower = String(a.area || "").trim().toLowerCase();
+        return lower === "aglab" || lower === "ag lab" || lower === "ag_lab";
+      })
+      .map((a) => Number(a.no));
+  }
+
   function buildDefaultUserObject(profile) {
+    const defaultActs = getDefaultOfficialActivityNos();
     return {
       id: profile.id,
       name: profile.name,
       role: profile.role,
       pin: profile.defaultPin,
       preferences: {
-        selectedActivityNos: [], // APAGADAS POR DEFECTO
+        selectedActivityNos: defaultActs, // Pre-activar las 30 actividades de AG LAB por defecto
         selectedCampaignIds: [...DEFAULT_CAMPAIGNS],
         brand: "ALL",
         includeSharedBrand: true,
         include2026: false,
         showCustomEvents: true,
         customFilterTags: [],
+        explicitlyClearedActivities: false,
       },
     };
   }
@@ -515,6 +546,7 @@
 
     u.preferences = {
       selectedActivityNos: Array.from(state.selectedActivityNos),
+      explicitlyClearedActivities: Boolean(state.explicitlyClearedActivities),
       selectedCampaignIds: Array.from(state.selectedCampaignIds),
       brand: state.brand,
       includeSharedBrand: state.includeSharedBrand,
@@ -561,9 +593,17 @@
     const filteredCamps = savedCamps.filter((id) => validCampIds.has(id));
     state.selectedCampaignIds = new Set(filteredCamps.length > 0 ? filteredCamps : DEFAULT_CAMPAIGNS);
 
-    // REGLA DE ORO: Por defecto las actividades/áreas están APAGADAS (array vacío)
-    const savedActs = Array.isArray(prefs.selectedActivityNos) ? prefs.selectedActivityNos : [];
+    // REGLA: Si el usuario no tiene actividades guardadas o están vacías por defecto,
+    // pre-activamos las 30 actividades oficiales de AG LAB (Diseño Textil y Moda).
+    let savedActs = Array.isArray(prefs.selectedActivityNos) ? prefs.selectedActivityNos : null;
+    const explicitlyCleared = Boolean(prefs.explicitlyClearedActivities);
+    if ((savedActs === null || savedActs.length === 0) && !explicitlyCleared) {
+      savedActs = getDefaultOfficialActivityNos();
+    } else if (!savedActs) {
+      savedActs = [];
+    }
     state.selectedActivityNos = new Set(savedActs.map((n) => Number(n)));
+    state.explicitlyClearedActivities = explicitlyCleared;
 
     state.brand = prefs.brand || "ALL";
     state.includeSharedBrand = prefs.includeSharedBrand !== undefined ? Boolean(prefs.includeSharedBrand) : true;
@@ -929,19 +969,27 @@
     const lower = s.toLowerCase();
     if (lower === "ingenieria" || lower === "ingeniería") return "Ingenieria";
     if (lower === "aglab" || lower === "ag lab" || lower === "ag_lab") return "Aglab";
+    if (lower === "disgraf" || lower === "dis graf" || lower === "dis_graf") return "DisGraf";
     return s || "Sin Área";
   }
 
   function getAreaDisplayName(area) {
-    if (area === "Aglab") return "🎨 AG LAB (Diseño Textil y Moda)";
-    if (area === "DisGraf") return "📐 DisGraf (Diseño Gráfico)";
-    if (area === "Ingenieria") return "⚙️ Patronaje e Ingeniería";
-    if (area === "Mercadeo") return "📢 Mercadeo";
-    if (area === "Produccion") return "🏭 Producción";
-    if (area === "Star Trading") return "🌐 Star Trading";
-    if (area === "Planeacion Estrategica") return "📊 Planeación Estratégica";
-    if (area === "Ventas") return "💼 Ventas y Facturación";
-    if (area === "Compras") return "📦 Compras";
+    const lower = String(area || "").toLowerCase();
+    if (lower === "aglab") return "🎨 AG LAB (Diseño Textil y Moda)";
+    if (lower === "disgraf") return "📐 DisGraf (Diseño Gráfico)";
+    if (lower === "ingenieria") return "⚙️ Patronaje e Ingeniería";
+    if (lower === "mercadeo") return "📢 Mercadeo";
+    if (lower === "produccion" || lower === "producción") return "🏭 Producción";
+    if (lower === "star trading") return "🌐 Star Trading";
+    if (lower === "planeacion estrategica" || lower === "planeación estratégica") return "📊 Planeación Estratégica";
+    if (lower === "ventas") return "💼 Ventas y Facturación";
+    if (lower === "compras") return "📦 Compras";
+    if (lower === "calidad") return "🔍 Calidad";
+    if (lower === "ciencia de datos") return "📈 Ciencia de Datos";
+    if (lower === "proveedor") return "🤝 Proveedor";
+    if (lower === "logistica internacional" || lower === "logística internacional") return "✈️ Logística Internacional";
+    if (lower.startsWith("suministro")) return "📦 Suministros";
+    if (lower.startsWith("ing peru")) return "⚙️ Ing Perú";
     return area || "Sin Área";
   }
 
@@ -1277,6 +1325,7 @@
       els.statusBadge.textContent = `📂 Excel activo: ${file.name} (${parsed.activities.length} act. | Eventos extra intactos)`;
       els.statusBadge.style.background = "#059669";
       els.statusBadge.style.color = "#ffffff";
+      updateCronogramaVersionBadge();
 
       populateFilterControls();
       renderAll();
@@ -1810,7 +1859,7 @@
   }
 
   // 4. Jerarquía Unificada: Área ➔ Proceso ➔ Actividades (#No)
-  let drawerExpandedAreas = new Set(["Aglab", "DisGraf", "Ingenieria"]);
+  let drawerExpandedAreas = new Set(["Aglab"]);
   let drawerExpandedProcs = new Set();
 
   function renderUnifiedDrawerHierarchy() {
@@ -1829,9 +1878,9 @@
 
     // Orden de presentación: AG LAB primero, luego DisGraf, Ingeniería y el resto alfabético
     const sortedAreas = Array.from(areaMap.keys()).sort((a, b) => {
-      const order = { Aglab: 1, DisGraf: 2, Ingenieria: 3 };
-      const oa = order[a] || 99;
-      const ob = order[b] || 99;
+      const order = { aglab: 1, disgraf: 2, ingenieria: 3 };
+      const oa = order[String(a).toLowerCase()] || 99;
+      const ob = order[String(b).toLowerCase()] || 99;
       if (oa !== ob) return oa - ob;
       return a.localeCompare(b, "es");
     });
@@ -2679,39 +2728,33 @@
     if (!rawData) return;
     if (preset === "clear") {
       state.selectedActivityNos.clear();
+      state.explicitlyClearedActivities = true;
     } else if (preset === "all") {
       for (const act of rawData.activities) {
         state.selectedActivityNos.add(act.no);
       }
+      state.explicitlyClearedActivities = false;
     } else {
+      state.explicitlyClearedActivities = false;
       for (const act of rawData.activities) {
+        const areaLower = String(act.area || "").trim().toLowerCase();
         if (preset === "aglab") {
-          // AG LAB involucra TANTO Diseño Textil (Estampación continua y local) como Diseño de Modas (Desarrollos MO 2D/3D, etc.)
-          if (
-            act.area === "Aglab" ||
-            act.proceso === "Estampacion Continua" ||
-            act.proceso === "Estampacion Local" ||
-            act.proceso.startsWith("Desarrollos Moda") ||
-            act.proceso === "Proyeccion Telas" ||
-            act.proceso === "Telas Sublego" ||
-            act.proceso === "Telas Especiales" ||
-            act.proceso === "Importados"
-          ) {
+          // AG LAB: Las 30 actividades oficiales de Diseño Textil y Diseño de Modas
+          if (areaLower === "aglab") {
             state.selectedActivityNos.add(act.no);
           }
-        } else if (preset === "textil" && (act.proceso === "Estampacion Continua" || act.proceso === "Estampacion Local")) {
+        } else if (preset === "textil" && (act.proceso === "Estampacion Continua" || act.proceso === "Estampacion Local") && areaLower === "aglab") {
           state.selectedActivityNos.add(act.no);
-        } else if (preset === "disgraf" && (act.area === "DisGraf" || act.proceso === "DisGraf")) {
+        } else if (preset === "disgraf" && (areaLower === "disgraf" || act.proceso === "DisGraf")) {
           state.selectedActivityNos.add(act.no);
         } else if (
           preset === "moda" &&
-          (act.proceso.startsWith("Desarrollos Moda") ||
-            (act.area === "Aglab" &&
-              act.proceso !== "Estampacion Continua" &&
-              act.proceso !== "Estampacion Local"))
+          areaLower === "aglab" &&
+          act.proceso !== "Estampacion Continua" &&
+          act.proceso !== "Estampacion Local"
         ) {
           state.selectedActivityNos.add(act.no);
-        } else if (preset === "ingenieria" && (act.area === "Ingenieria" || act.proceso.startsWith("Ingenieria"))) {
+        } else if (preset === "ingenieria" && (areaLower === "ingenieria" || act.proceso.startsWith("Ingenieria"))) {
           state.selectedActivityNos.add(act.no);
         }
       }
@@ -4198,6 +4241,15 @@
      ========================================================================== */
   function init() {
     initDomRefs();
+
+    // Master Cronograma Oficial (Manual - datos_cronograma.js es la fuente única de verdad)
+    try {
+      localStorage.removeItem(LOCAL_MASTER_CACHE_KEY);
+    } catch (e) {
+      // ignore
+    }
+    rawData = window.CRONOGRAMA_INITIAL_DATA;
+
     initLocalUsersMap();
 
     // Load cached custom events first for instant UI
@@ -4212,15 +4264,9 @@
     }
     loadSavedHashtags();
 
-    // Master Cronograma Oficial (Manual - datos_cronograma.js es la fuente única de verdad)
-    try {
-      localStorage.removeItem(LOCAL_MASTER_CACHE_KEY);
-    } catch (e) {
-      // ignore
-    }
-    rawData = window.CRONOGRAMA_INITIAL_DATA;
     if (rawData && rawData.activities) {
       els.statusBadge.textContent = `Cronograma Oficial (${rawData.activities.length} actividades)`;
+      updateCronogramaVersionBadge();
     }
 
     setupEventListeners();

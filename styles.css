@@ -138,6 +138,40 @@ body {
   border: 1px solid #e2e8f0;
 }
 
+.badge-version {
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: -0.1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  max-width: 380px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+  transition: all 0.15s ease;
+}
+
+.badge-version:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.badge-version span {
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -1244,6 +1278,7 @@ body {
 .drawer-tree-container {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
   padding: 12px 18px;
   display: flex;
   flex-direction: column;
@@ -1251,6 +1286,7 @@ body {
 }
 
 .drawer-area-group {
+  flex-shrink: 0;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
@@ -1263,6 +1299,8 @@ body {
 }
 
 .drawer-area-header {
+  min-height: 40px;
+  box-sizing: border-box;
   padding: 8px 12px;
   background: #f8fafc;
   display: flex;
@@ -1343,6 +1381,7 @@ body {
 }
 
 .drawer-proc-group {
+  flex-shrink: 0;
   border-left: 2px solid var(--border-color);
   padding-left: 8px;
   margin-top: 4px;
@@ -1353,6 +1392,8 @@ body {
 }
 
 .drawer-proc-header {
+  min-height: 32px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1411,6 +1452,7 @@ body {
 }
 
 .drawer-act-item {
+  flex-shrink: 0;
   display: flex;
   align-items: flex-start;
   gap: 8px;

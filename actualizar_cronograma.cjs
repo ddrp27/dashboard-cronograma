@@ -326,14 +326,28 @@ function main() {
   let targetFile = process.argv[2];
 
   if (!targetFile) {
-    // Buscar archivos .xlsx o .csv en la carpeta actual o padre
-    const candidates = [
-      ...fs.readdirSync('.').filter(f => f.endsWith('.xlsx') || f.endsWith('.csv')),
-      ...fs.readdirSync('..').filter(f => f.endsWith('.xlsx') || f.endsWith('.csv')).map(f => path.join('..', f))
-    ];
+    // Buscar archivos .xlsx o .csv en la carpeta actual o padre, priorizando el más reciente
+    const getCandidates = (dir) => {
+      try {
+        return fs.readdirSync(dir)
+          .filter(f => (f.endsWith('.xlsx') || f.endsWith('.csv')) && !f.startsWith('~$'))
+          .map(f => {
+            const full = dir === '.' ? f : path.join(dir, f);
+            return { file: full, mtime: fs.statSync(full).mtimeMs };
+          });
+      } catch (e) {
+        return [];
+      }
+    };
+
+    let candidates = getCandidates('.').sort((a, b) => b.mtime - a.mtime);
+    if (candidates.length === 0) {
+      candidates = getCandidates('..').sort((a, b) => b.mtime - a.mtime);
+    }
+
     if (candidates.length > 0) {
-      targetFile = candidates[0];
-      console.log(`ℹ️ No se especificó archivo. Usando detectado: "${targetFile}"`);
+      targetFile = candidates[0].file;
+      console.log(`ℹ️ Archivo Excel más reciente detectado automáticamente: "${targetFile}"`);
     } else {
       console.error('❌ Error: No se encontró ningún archivo .xlsx o .csv.');
       console.log('Uso: node actualizar_cronograma.cjs "nombre_del_archivo.xlsx"');
