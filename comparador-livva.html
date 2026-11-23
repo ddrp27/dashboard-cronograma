@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparador Fechas Livva — Octubre vs Noviembre | CRONOGRAMA AGLAB</title>
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="comparador-livva.css?v=3" />
+  <!-- Cliente Supabase JS (solo se consulta si el usuario activa explícitamente Eventos Extra) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- ========================================================================
+       1. TOP HEADER
+       ======================================================================== -->
+  <header class="top-header">
+    <div class="brand-title">
+      <div class="brand-logo-wrap">
+        <img src="ag-b.png" alt="AG LAB" class="brand-logo-img" />
+      </div>
+      <div>
+        <div class="brand-header-row">
+          <h1>COMPARADOR LIVVA</h1>
+          <div class="compare-version-pills">
+            <span class="pill-oct-header" title="Cronograma base de Octubre (Hoja1)">
+              ⬜ Base: 19 Oct (Gris)
+            </span>
+            <span class="pill-nov-header" title="Cronograma de Noviembre con Fórmulas (Hoja 'Cronograma')">
+              🟦 Nuevo: 18 Nov · Hoja Cronograma (Azul Índigo)
+            </span>
+          </div>
+        </div>
+        <div class="brand-slogan">
+          Comparativo exclusivo de fechas <strong>Livva</strong>: transición de estructura anterior (ADV-NAL) a nueva estructura <strong>Solo NAL Livva</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="index.html" class="btn-back-main" title="Regresar al Cronograma Principal">
+        ← Volver al Cronograma
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. CONTROLS & FILTERS PANEL (Mismo formato exacto del Dashboard)
+       ======================================================================== -->
+  <section class="controls-panel">
+    <!-- Barra Minimalista de Filtros Rápidos -->
+    <div class="quick-controls-bar">
+      <!-- 1. Píldoras de Campañas activas + Botón "Campañas" -->
+      <div class="campaign-quick-wrap">
+        <div class="active-campaigns-pills" id="cmpActiveCampaignsPills"></div>
+        <button type="button" id="cmpBtnCampaigns" class="pill-btn-campaigns" title="Abrir catálogo completo de campañas Livva">
+          <span class="btn-text">📅 Campañas</span>
+          <span id="cmpCampaignCountBadge" class="campaign-pill-badge">0</span>
+          <span class="dropdown-caret">▾</span>
+        </button>
+
+        <div id="cmpCampaignDropdown" class="multi-dropdown campaign-clean-dropdown">
+          <div class="multi-dropdown-header">
+            <div class="campaign-dropdown-title-row">
+              <div style="display:flex;align-items:center;gap:6px">
+                <strong>📅 Campañas Livva</strong>
+                <span id="cmpCampaignSelectedCountLabel" class="campaign-count-badge">0 seleccionadas</span>
+              </div>
+            </div>
+            <div id="cmpYearTabs" class="campaign-year-tabs">
+              <button type="button" class="year-tab active" data-year="ALL">Todas</button>
+              <button type="button" class="year-tab" data-year="2027">2027</button>
+              <button type="button" class="year-tab" data-year="2028">2028</button>
+            </div>
+            <div class="multi-dropdown-actions">
+              <button type="button" id="cmpBtnCampAll" class="link-btn">✓ Seleccionar Todas</button>
+              <button type="button" id="cmpBtnCampNone" class="link-btn" style="color:#ef4444">Limpiar todo</button>
+            </div>
+          </div>
+          <div id="cmpCampaignSelectList" class="multi-options-list campaign-full-options-grid"></div>
+        </div>
+      </div>
+
+      <div class="controls-divider"></div>
+
+      <!-- 2. Alcance de Marca: Solo Livva vs Livva + Compartidas -->
+      <div class="compare-mode-group" id="cmpScopeGroup" title="Filtrar actividades exclusivas de Livva o incluir compartidas Azz Livv">
+        <button type="button" class="compare-mode-btn active" data-scope="livva">Solo Livva (56)</button>
+        <button type="button" class="compare-mode-btn" data-scope="all_livva">Livva + Azz Livv (185)</button>
+      </div>
+
+      <!-- 3. Modo de Cruce: NAL Livva vs Columna ADV -->
+      <div class="compare-mode-group" id="cmpModeGroup" title="Elige cómo cruzar octubre vs noviembre">
+        <button type="button" class="compare-mode-btn active" data-mode="nal">Por NAL Livva (Estructura nueva)</button>
+        <button type="button" class="compare-mode-btn" data-mode="adv">Por Columna ADV</button>
+      </div>
+
+      <div class="controls-divider"></div>
+
+      <!-- 4. Botón Principal Filtrar Actividades -->
+      <button type="button" id="cmpBtnOpenDrawer" class="btn btn-filter-main" title="Abrir panel jerárquico de Áreas, Procesos y Actividades">
+        <span class="filter-main-icon">🎛️</span>
+        <span class="filter-main-title">Filtrar Actividades y Procesos</span>
+        <span id="cmpFilterActiveBadge" class="unified-filter-badge">0 act.</span>
+      </button>
+
+      <!-- 5. Toggles opcionales + Buscador -->
+      <label class="compare-toggle-pill" id="cmpOnlyChangesWrap" title="Mostrar únicamente las fechas que cambiaron">
+        <input type="checkbox" id="cmpChkOnlyChanges" />
+        <span>Solo cambios</span>
+      </label>
+
+      <label class="compare-toggle-pill" id="cmpSupabaseWrap" title="Opcional (Desactivado por defecto): consulta eventos extra guardados en Supabase solo si lo necesitas">
+        <input type="checkbox" id="cmpChkSupabase" />
+        <span>☁️ Eventos extra (Supabase)</span>
+        <span id="cmpSupabaseStatus" style="font-size:10px;opacity:0.85"></span>
+      </label>
+
+      <div class="quick-search-box">
+        <input type="search" id="cmpSearchInput" class="filter-input quick-search-input" placeholder="🔍 Buscar texto..." />
+      </div>
+    </div>
+
+    <!-- Sub-toolbar: View Mode Tabs, Navegación de Meses y Leyenda -->
+    <div class="sub-toolbar">
+      <div class="view-tabs">
+        <button type="button" class="tab-btn active" data-view="calendar">📅 Calendario Mensual Comparativo</button>
+        <button type="button" class="tab-btn" data-view="table">📋 Tabla Comparativa (Oct vs Nov)</button>
+      </div>
+
+      <div class="calendar-toolbar-options" id="cmpCalNavControls">
+        <button type="button" id="cmpBtnToday" class="btn btn-today" title="Ir a la fecha de hoy en el calendario">📍 Hoy</button>
+        <button type="button" id="cmpBtnPrevMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">◀ Anterior</button>
+        <span id="cmpCalMonthLabel" style="font-weight:700;font-size:12px;color:var(--text-main)">Todos los meses</span>
+        <button type="button" id="cmpBtnNextMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">Siguiente ▶</button>
+        <label class="inline-check">
+          <input type="checkbox" id="cmpChkAllMonths" checked />
+          Ver todos los meses continuos
+        </label>
+      </div>
+
+      <div class="legend-pills" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="cmp-legend-chip oct"><i class="cmp-dot dot-oct"></i> <strong>19 Oct</strong> (Gris)</span>
+        <span class="cmp-legend-chip nov"><i class="cmp-dot dot-nov"></i> <strong>18 Nov</strong> (Azul Índigo)</span>
+        <span class="cmp-legend-chip sb" id="cmpLegendSupabase" style="display:none"><i class="cmp-dot dot-extra-sb"></i> Extra Supabase</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. KPI SUMMARY STRIP
+       ======================================================================== -->
+  <section class="compare-kpi-strip" id="cmpKpiStrip">
+    <div class="compare-kpi-card kpi-oct">
+      <span class="compare-kpi-label">Actividades Visibles</span>
+      <span class="compare-kpi-val" id="kpiActivities">0</span>
+      <span class="compare-kpi-sub" id="kpiActivitiesSub">—</span>
+    </div>
+    <div class="compare-kpi-card kpi-nov">
+      <span class="compare-kpi-label">Comparaciones en Pantalla</span>
+      <span class="compare-kpi-val" id="kpiPairs">0</span>
+      <span class="compare-kpi-sub" id="kpiPairsSub">—</span>
+    </div>
+    <div class="compare-kpi-card kpi-nov">
+      <span class="compare-kpi-label">Fechas con Cambio</span>
+      <span class="compare-kpi-val" id="kpiChanged">0</span>
+      <span class="compare-kpi-sub" id="kpiChangedSub">—</span>
+    </div>
+    <div class="compare-kpi-card kpi-oct">
+      <span class="compare-kpi-label">Desplazamiento Promedio</span>
+      <span class="compare-kpi-val" id="kpiAvgDelta">0d</span>
+      <span class="compare-kpi-sub" id="kpiAvgDeltaSub">Noviembre respecto a Octubre</span>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. DRAWER JERÁRQUICO DE FILTRO DE ACTIVIDADES (Área ➔ Proceso ➔ #No)
+       ======================================================================== -->
+  <div id="cmpDrawerBackdrop" class="drawer-backdrop" style="display:none">
+    <div id="cmpDrawer" class="unified-drawer">
+      <div class="drawer-header">
+        <div class="drawer-header-info">
+          <div class="drawer-title-row">
+            <span class="drawer-icon">🎛️</span>
+            <h3>Filtrar Actividades Livva</h3>
+          </div>
+          <p class="drawer-subtitle">
+            Estructura jerárquica: <strong>Área ➔ Proceso ➔ Actividades (#No)</strong>. Filtra exactamente lo que quieres comparar entre Octubre y Noviembre.
+          </p>
+        </div>
+        <button type="button" id="cmpBtnCloseDrawer" class="drawer-close-btn" title="Cerrar panel">✕</button>
+      </div>
+
+      <div class="drawer-presets-bar">
+        <div class="drawer-presets-label">⚡ PRESETS RÁPIDOS LIVVA:</div>
+        <div class="drawer-presets-btns">
+          <button type="button" class="preset-pill-btn preset-aglab" data-preset="aglab">🎨 AG LAB</button>
+          <button type="button" class="preset-pill-btn preset-disgraf" data-preset="disgraf">📐 DisGraf</button>
+          <button type="button" class="preset-pill-btn preset-ingenieria" data-preset="ingenieria">⚙️ Ingeniería</button>
+          <button type="button" class="preset-pill-btn preset-all" id="cmpBtnDrawerAll">✨ Todas</button>
+          <button type="button" class="preset-pill-btn preset-clear" id="cmpBtnDrawerClear">🧹 Apagar Todas (0)</button>
+        </div>
+      </div>
+
+      <div class="drawer-search-row">
+        <input type="text" id="cmpDrawerSearch" class="filter-input drawer-search-input" placeholder="🔍 Buscar por actividad, proceso, área o #No..." />
+        <div class="drawer-tree-actions">
+          <button type="button" id="cmpBtnExpandAll" class="link-btn">Expandir todo</button>
+          <button type="button" id="cmpBtnCollapseAll" class="link-btn">Colapsar todo</button>
+        </div>
+      </div>
+
+      <div id="cmpDrawerTree" class="drawer-tree-container"></div>
+
+      <div class="drawer-footer">
+        <div class="drawer-footer-stats">
+          <span id="cmpDrawerStatsActive"><strong>0</strong> activas</span>
+          <span class="drawer-stats-sep">•</span>
+          <span id="cmpDrawerStatsTotal">0 actividades Livva</span>
+        </div>
+        <button type="button" id="cmpBtnDrawerApply" class="btn btn-primary drawer-apply-btn">
+          ✓ Listo y Aplicar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       5. MAIN WORKSPACE (Calendario Mensual + Tabla Comparativa)
+       ======================================================================== -->
+  <main class="main-workspace">
+    <!-- Vista 1: Calendario Mensual Comparativo -->
+    <div id="cmpCalendarWrapper" class="calendar-wrapper">
+      <div class="calendar-container" id="cmpCalendarContainer"></div>
+    </div>
+
+    <!-- Vista 2: Tabla Comparativa Oct vs Nov -->
+    <div id="cmpTableWrapper" class="compare-table-wrapper" style="display:none">
+      <div class="compare-table-card">
+        <div class="compare-table-scroll">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>#No</th>
+                <th>Marca</th>
+                <th>Actividad</th>
+                <th>Área / Proceso</th>
+                <th>Campaña</th>
+                <th>DH</th>
+                <th>⬜ Fecha 19 Oct (Base)</th>
+                <th>🟦 Fecha 18 Nov (Nuevo)</th>
+                <th>Diferencia</th>
+              </tr>
+            </thead>
+            <tbody id="cmpTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       6. PIE DE PÁGINA: RESUMEN DE CAMBIOS Y DIFERENCIAS GENERALES
+       ======================================================================== -->
+  <footer class="compare-footer">
+    <div class="compare-footer-inner">
+      <div class="compare-footer-header">
+        <h2>📝 Resumen de Cambios y Diferencias Generales (Octubre vs Noviembre)</h2>
+        <span class="compare-footer-meta" id="cmpFooterMeta">
+          Comparativo generado entre 19oct ABS (Hoja1) y 18nov Fórmulas (Hoja 'Cronograma')
+        </span>
+      </div>
+
+      <div class="compare-footer-grid">
+        <div class="footer-diff-card card-highlight-indigo">
+          <h3>🔄 1. Cambio Estructural de Campañas (Livva Solo NAL)</h3>
+          <ul>
+            <li>
+              <strong>Antes (<span class="footer-legend-inline oct">19 Oct</span>):</strong> Tanto <strong>Azzorti</strong> como <strong>Livva</strong> compartían la misma estructura doble <code>ADV - NAL</code> (ej. <code>ADV 202616 / NAL 202701</code>, con +3 campañas de desfase).
+            </li>
+            <li>
+              <strong>Ahora (<span class="footer-legend-inline nov">18 Nov</span>):</strong> <strong>Azzorti</strong> conserva su estructura <code>ADV - NAL</code> (fila 6 <code>ADV</code> + fila 8 <code>NAL AZZ</code>), mientras que <strong>Livva pasa a manejar únicamente campaña <code>NAL</code></strong> (nueva fila 7 <code>Nal Livva</code>).
+            </li>
+            <li>
+              <strong>Impacto directo en fechas Livva:</strong> En <code>18nov</code>, <code>Nal Livva 202701</code> queda ubicada sobre la columna de <code>ADV 202618</code> (en lugar de <code>ADV 202616</code>). Esto desplaza las entregas de cada campaña de Livva en <strong>2 campañas (~+41 días calendario en promedio)</strong> hacia adelante frente a <code>19oct</code>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-diff-card">
+          <h3>📂 2. Diferencias de Formato y Estructura del Excel</h3>
+          <ul>
+            <li>
+              <strong>Hojas y Fórmulas:</strong> <code>19oct</code> es un archivo plano de <strong>1 sola hoja (<code>Hoja1</code>)</strong> con valores pegados. <code>18nov</code> es el libro maestro de <strong>19 hojas</strong> con fórmulas activas (<code>WORKDAY</code>, <code>VLOOKUP</code>, festivos) y el cronograma oficial reside en la <strong>4ª hoja llamada <code>Cronograma</code></strong>.
+            </li>
+            <li>
+              <strong>Columnas y Encabezados:</strong> <code>18nov</code> agrega <strong>5 filas auxiliares</strong> arriba y <strong>2 columnas extra</strong> de dependencias (<code>No Antecesora</code> y <code>ANTECESAORA / PREDECESORA</code>), desplazando las campañas de la columna G a la columna I.
+            </li>
+            <li>
+              <strong>Rango de Campañas:</strong> <code>18nov</code> incluye <strong>9 campañas anteriores de 2026</strong> (<code>202601</code> a <code>202609</code>) adicionales a las 52 campañas de <code>19oct</code>. En las últimas 3 campañas de 2029 (<code>202905–202907</code>) aparecen <code>192</code> errores <code>#N/A</code> por falta de fechas en la hoja auxiliar <code>Fechas Facturacion</code>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-diff-card">
+          <h3>📊 3. Cambios en Actividades y Fechas Puntuales (por columna ADV)</h3>
+          <ul>
+            <li>
+              <strong>Nueva actividad y corrimiento de numeración:</strong> En <code>18nov</code> se insertó la actividad <strong><code>#177</code></strong> (<em>DisGraf Cuelga a Impresor y Aprobación Insite Nal Per ABS</em>, <code>Azz Livv</code>, 1 DH). Esto corrió en <strong>+1</strong> la numeración de todas las actividades desde la antigua <code>#177</code> hasta la <code>#265</code> (ahora <code>#178</code> a <code>#266</code>). Este comparador empareja por nombre exacto para evitar falsos cruces.
+            </li>
+            <li>
+              <strong>Actividades AG LAB:</strong> Al comparar por la misma columna <code>ADV</code>, las actividades de <strong>AG LAB no tuvieron cambios de fecha (0 cambios)</strong>; su variación visible en el comparador proviene del cambio de estructura a <strong>Solo NAL Livva</strong>.
+            </li>
+            <li>
+              <strong>Ajustes puntuales dentro de la misma columna ADV:</strong> Solo cambiaron <strong>37 celdas</strong> en 9 actividades de <code>DisGraf</code>, <code>Mercadeo</code>, <code>Ciencia de Datos</code> e <code>Ingeniería</code> (bloque <code>ADV 202616</code> con +1 a +12 días, y cierre de catálogo/impresor <code>#153, #154, #175, #176</code> en 8 campañas de 2026–2027 con ajustes entre -6 y +3 días).
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Tooltip -->
+  <div id="cmpTooltip" class="gantt-tooltip"></div>
+
+  <script src="datos_comparativo_livva.js?v=1"></script>
+  <script src="comparador-livva.js?v=2"></script>
+</body>
+</html>

@@ -3196,6 +3196,27 @@ body {
   border: 1px solid #e2e8f0;
 }
 
+.btn-compare-livva {
+  background: #eef2ff;
+  color: #312e81;
+  border: 1px solid #a5b4fc;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  padding: 7px 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+.btn-compare-livva:hover {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(67, 56, 202, 0.25);
+}
+
 .btn-add-event {
   background: #000000;
   color: #ffffff;
