@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRONOGRAMA AGLAB — Azzorti &amp; Livva</title>
+  <title>CRONOGRAMA AGLAB — Multi-Marca</title>
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AGLAB Cal" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="ag-b.png" />
+  <link rel="icon" type="image/png" href="ag-b.png" />
   <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="calendar-v2.css?v=1" />
   <!-- Cliente oficial Supabase JS + Fallback REST integrado -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Librería SheetJS para lectura de nuevos archivos Excel (.xlsx / .csv) -->
@@ -119,6 +127,29 @@
         📊 .CSV
       </button>
 
+      <input type="file" id="excelUploadInput" accept=".xlsx,.xls,.csv" style="display:none" />
+      <button type="button" id="btnUploadExcel" class="btn btn-secondary btn-upload-excel" style="display:none" title="Subir nueva versión oficial del cronograma Excel (.xlsx / .csv) sin perder notas, responsables ni eventos">
+        📂 Cargar Excel
+      </button>
+
+      <!-- Centro de Notificaciones y Push PWA -->
+      <div id="notifBellWrap" class="notif-bell-wrap">
+        <button type="button" id="btnNotifBell" class="notif-bell-btn" title="Notificaciones y alertas de entregas">
+          🔔
+          <span id="notifUnreadBadge" class="notif-unread-badge" style="display:none">0</span>
+        </button>
+        <div id="notifDropdownPanel" class="notif-dropdown-panel" style="display:none">
+          <div class="notif-header">
+            <span class="notif-title">🔔 Notificaciones</span>
+          </div>
+          <div id="notifPushBanner" class="notif-push-banner">
+            <span id="notifPushStatus">Activa alertas en tu celular o PC.</span>
+            <button type="button" id="btnEnablePush" class="btn-enable-push">🔔 Activar</button>
+          </div>
+          <div id="notifListBody" class="notif-list-body"></div>
+        </div>
+      </div>
+
       <!-- User Profile Pill -->
       <div class="user-profile-menu">
         <button type="button" id="btnSwitchUser" class="user-chip-btn" title="Cambiar de usuario o cerrar sesión">
@@ -190,13 +221,15 @@
 
       <div class="controls-divider"></div>
 
-      <!-- 2. Segmento rápido de Marca (Todas | Livva | Azzorti | Azz Livv) -->
+      <!-- 2. Segmento dinámico de Marcas (AG LAB | NATIVA | AZZORTI | LIVVA | Azz Livv + futuras) -->
       <div class="brand-filter-wrap">
-        <div class="brand-pills">
+        <div id="brandPillsContainer" class="brand-pills">
           <button type="button" class="brand-pill active" data-brand="ALL">Todas</button>
-          <button type="button" class="brand-pill" data-brand="Livva">Livva</button>
-          <button type="button" class="brand-pill" data-brand="Azzorti">Azzorti</button>
-          <button type="button" class="brand-pill" data-brand="Azz Livv">Azz Livv</button>
+          <button type="button" class="brand-pill" data-brand="AG LAB" style="--brand-color:#4f46e5;--brand-bg:rgba(79,70,229,0.11);--brand-border:rgba(79,70,229,0.38)"><span class="brand-pill-dot" style="background:#4f46e5"></span>AG LAB</button>
+          <button type="button" class="brand-pill" data-brand="NATIVA" style="--brand-color:#059669;--brand-bg:rgba(5,150,105,0.11);--brand-border:rgba(5,150,105,0.38)"><span class="brand-pill-dot" style="background:#059669"></span>NATIVA</button>
+          <button type="button" class="brand-pill" data-brand="AZZORTI" style="--brand-color:#e11d48;--brand-bg:rgba(225,29,72,0.11);--brand-border:rgba(225,29,72,0.38)"><span class="brand-pill-dot" style="background:#e11d48"></span>AZZORTI</button>
+          <button type="button" class="brand-pill" data-brand="LIVVA" style="--brand-color:#8b5cf6;--brand-bg:rgba(139,92,246,0.11);--brand-border:rgba(139,92,246,0.38)"><span class="brand-pill-dot" style="background:#8b5cf6"></span>LIVVA</button>
+          <button type="button" class="brand-pill" data-brand="Azz Livv" style="--brand-color:#0284c7;--brand-bg:rgba(2,132,199,0.11);--brand-border:rgba(2,132,199,0.38)"><span class="brand-pill-dot" style="background:#0284c7"></span>Azz Livv</button>
         </div>
         <label id="sharedBrandWrap" class="inline-check shared-brand-wrap" style="display:none" title="Incluir actividades compartidas 'Azz Livv'">
           <input type="checkbox" id="chkSharedBrand" checked /> +Azz Livv
@@ -275,6 +308,21 @@
 
       <!-- Calendar Toolbar Options (Visible por defecto) -->
       <div class="calendar-toolbar-options" id="calendarToolbarOptions">
+        <div id="calSubviewSegmented" class="cal-subview-segmented" role="group" aria-label="Modo de calendario">
+          <button type="button" class="cal-subview-btn active" data-subview="month">🗓️ Mes</button>
+          <button type="button" class="cal-subview-btn" data-subview="week">📆 Semana</button>
+          <button type="button" class="cal-subview-btn" data-subview="agenda">📋 Agenda</button>
+        </div>
+        <button type="button" id="btnCalOnlyMine" class="cal-quick-chip" title="Mostrar únicamente tarjetas asignadas a mi perfil">
+          🙋‍♀️ Mis tarjetas
+        </button>
+        <select id="calStatusFilter" class="cal-status-filter" title="Filtrar tarjetas por estado">
+          <option value="">Todos los estados</option>
+          <option value="pendiente">⏳ Pendiente</option>
+          <option value="en_progreso">🔨 En progreso</option>
+          <option value="revision">👀 En revisión</option>
+          <option value="listo">✅ Listo</option>
+        </select>
         <button type="button" id="btnCalToday" class="btn btn-today" title="Ir a la fecha de hoy en el calendario">📍 Hoy</button>
         <button type="button" id="btnCalPrevMonth" class="btn btn-outline" style="padding:3px 8px;font-size:11px">◀ Anterior</button>
         <span id="calCurrentMonthLabel" style="font-weight:700;font-size:12px;color:var(--text-main)">Todos los meses</span>
@@ -323,9 +371,13 @@
       </div>
 
       <div class="kpi-chips">
-        <span class="kpi-chip"><span class="legend-dot dot-livva"></span> Livva</span>
-        <span class="kpi-chip"><span class="legend-dot dot-azzorti"></span> Azzorti</span>
-        <span class="kpi-chip"><span class="legend-dot dot-both"></span> Azz Livv</span>
+        <span id="kpiBrandsLegend" class="kpi-brands-legend">
+          <span class="kpi-chip"><span class="legend-dot" style="background:#4f46e5"></span> AG LAB</span>
+          <span class="kpi-chip"><span class="legend-dot" style="background:#059669"></span> NATIVA</span>
+          <span class="kpi-chip"><span class="legend-dot" style="background:#e11d48"></span> AZZORTI</span>
+          <span class="kpi-chip"><span class="legend-dot" style="background:#8b5cf6"></span> LIVVA</span>
+          <span class="kpi-chip"><span class="legend-dot" style="background:#0284c7"></span> Azz Livv</span>
+        </span>
         <span class="kpi-chip"><span class="legend-dot dot-custom"></span> 📌 Evento Extra</span>
         <span id="kpiActivities" class="kpi-chip">Cronograma: <strong>0</strong></span>
         <span id="kpiCustomEvents" class="kpi-chip">Extras: <strong>0</strong></span>
@@ -488,29 +540,33 @@
           <div id="evOwnersGrid" class="ev-owners-grid"></div>
         </div>
 
-        <div class="form-row-2">
-          <div class="form-field">
-            <label for="evAreaInput">Área o Rol (Para filtrar) *</label>
-            <select id="evAreaInput" class="filter-select">
-              <option value="AG LAB (Diseño Textil y Moda)">AG LAB (Diseño Textil y Moda)</option>
-              <option value="Diseño Textil (Aglab)">Diseño Textil (AG LAB)</option>
-              <option value="Desarrollos Moda MO">Desarrollos Moda MO (AG LAB)</option>
-              <option value="Diseño Gráfico (DisGraf)">Diseño Gráfico (DisGraf)</option>
-              <option value="Patronaje e Ingeniería">Patronaje e Ingeniería</option>
-              <option value="Muestras y Taller">Muestras y Taller</option>
-              <option value="Reunión / Fit / Comité">Reunión / Fit / Comité</option>
-              <option value="Compras y Suministros">Compras y Suministros</option>
-              <option value="Mercadeo y Ventas">Mercadeo y Ventas</option>
-              <option value="General / Equipo">General / Equipo</option>
-            </select>
+        <div class="form-field">
+          <label for="evMarcaInput">Marca protagonista de la tarjeta *</label>
+          <select id="evMarcaInput" class="filter-select">
+            <option value="AG LAB">AG LAB</option>
+            <option value="NATIVA">NATIVA</option>
+            <option value="AZZORTI">AZZORTI</option>
+            <option value="LIVVA">LIVVA</option>
+            <option value="Azz Livv">Azz Livv (Compartida / Ambas)</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <div class="form-label-row">
+            <label for="evAreaInput">
+              Área o Rol <span class="sub-label-hint">— Escribe o elige un área propia de esta marca (se guardará para futuros usos)</span>
+            </label>
+            <span id="evAreaActivePreview" class="area-active-chip">General</span>
           </div>
-          <div class="form-field">
-            <label for="evMarcaInput">Marca</label>
-            <select id="evMarcaInput" class="filter-select">
-              <option value="Azz Livv">Azz Livv (Ambas marcas)</option>
-              <option value="Livva">Livva</option>
-              <option value="Azzorti">Azzorti</option>
-            </select>
+          <div class="custom-area-input-group">
+            <input type="text" id="evAreaInput" class="filter-input custom-area-input-field" placeholder="Ej. Utilería y Modelos, Diseño Textil, Fotografía, Fit..." autocomplete="off" />
+            <button type="button" id="btnClearArea" class="hashtag-clear-btn" title="Limpiar área">×</button>
+          </div>
+          <div class="saved-hashtags-section saved-areas-section">
+            <div class="saved-hashtags-header">
+              <span id="savedBrandAreasLabel" class="saved-hashtags-label">🏢 Áreas de esta marca (clic para elegir):</span>
+            </div>
+            <div id="savedBrandAreasList" class="saved-hashtags-list"></div>
           </div>
         </div>
 
@@ -631,31 +687,44 @@
   </div>
 
   <!-- ========================================================================
-       6. MODAL ADMIN: GESTIÓN DE CLAVES PIN (Solo DANI)
+       6. MODAL ADMIN: GESTIÓN DE PERFILES, CORREOS TEAMS Y CLAVES PIN
        ======================================================================== -->
   <div id="adminPinsModal" class="modal-backdrop" style="display:none">
-    <div class="modal-card" style="max-width:520px">
+    <div class="modal-card" style="max-width:680px">
       <div class="modal-header">
-        <h3>🔑 Administración de Perfiles y Claves (PIN)</h3>
+        <h3>🔑 Administración de Perfiles, Correos Teams y Claves (PIN)</h3>
         <button type="button" id="btnCloseAdminPins" class="modal-close-btn">✕</button>
       </div>
       <div class="modal-body">
         <p style="font-size:12px;color:#64748b;margin-bottom:12px">
-          Como administrador (<strong>DANI</strong>), puedes consultar o modificar la clave de acceso de cualquier integrante del equipo. Los cambios se actualizan de inmediato en la nube.
+          Como administrador (<strong>DANI / ANDRE</strong>), puedes configurar el correo corporativo (usado para pre-cargar invitaciones en Microsoft Teams) y la clave PIN de cada integrante.
         </p>
         <div id="adminPinsList" class="admin-pins-list"></div>
         <div class="modal-footer" style="margin-top:14px">
           <button type="button" id="btnCloseAdminPinsFooter" class="btn btn-outline">Cerrar</button>
-          <button type="button" id="btnSaveAllPins" class="btn btn-primary">💾 Guardar Claves</button>
+          <button type="button" id="btnSaveAllPins" class="btn btn-primary">💾 Guardar Perfiles y Correos</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ========================================================================
+       7. PANEL LATERAL DE TARJETA V2 & GESTOR DE MARCAS
+       ======================================================================== -->
+  <div id="cardDetailBackdrop" class="card-drawer-backdrop" style="display:none">
+    <aside id="cardDetailDrawer" class="card-detail-drawer" role="dialog" aria-label="Detalle de tarjeta"></aside>
+  </div>
+
+  <div id="brandsManagerModal" class="modal-backdrop" style="display:none"></div>
+
   <!-- Floating Tooltip -->
   <div id="ganttTooltip" class="gantt-tooltip"></div>
 
   <script src="datos_cronograma.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
+  <script>
+    window.AGLAB_VAPID_PUBLIC_KEY = "BKiWs8OQ78Z_qwGmn9CYlCfsgeLI8V7y8wiRd50H25SyH6i0h9zJz_jKVvVdYWdRvP7yowbRdA_FM4q9IJMs79o";
+  </script>
+  <script src="calendar-v2.js?v=1"></script>
 </body>
 </html>

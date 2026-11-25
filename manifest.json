@@ -1,0 +1,26 @@
+{
+  "name": "Cronograma AGLAB — Calendario V2",
+  "short_name": "AGLAB Cal",
+  "description": "Calendario colaborativo multi-marca de Diseño AG LAB, Azzorti, Livva y Nativa.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "es",
+  "theme_color": "#4f46e5",
+  "background_color": "#f8fafc",
+  "icons": [
+    {
+      "src": "ag-b.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "ag-b.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
