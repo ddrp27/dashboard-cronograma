@@ -1,474 +1,738 @@
 window.CRONOGRAMA_INITIAL_DATA = {
   "title": "CRONOGRAMA AZZORTI LIVVA 2026-2027-2028-2029",
-  "sourceFile": "CRONOGRAMA ROPA V1 (2026-2027-2028) 19oct ABS.xlsx",
-  "updatedAt": "2026-11-05",
+  "sourceFile": "CRONOGRAMA V1  2026 2027 FORMULAS_ 18nov 2026.xlsx",
+  "updatedAt": "2026-11-25",
   "campaigns": [
     {
+      "id": "ADV_202601_NAL_202604",
+      "colIndex": 8,
+      "adv": "202601",
+      "nal": "202604",
+      "nalLivva": null,
+      "shortLabel": "C1-4 2026",
+      "fullLabel": "ADV 202601 / NAL 202604",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202602_NAL_202605",
+      "colIndex": 10,
+      "adv": "202602",
+      "nal": "202605",
+      "nalLivva": null,
+      "shortLabel": "C2-5 2026",
+      "fullLabel": "ADV 202602 / NAL 202605",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202603_NAL_202606",
+      "colIndex": 12,
+      "adv": "202603",
+      "nal": "202606",
+      "nalLivva": null,
+      "shortLabel": "C3-6 2026",
+      "fullLabel": "ADV 202603 / NAL 202606",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202604_NAL_202607",
+      "colIndex": 14,
+      "adv": "202604",
+      "nal": "202607",
+      "nalLivva": null,
+      "shortLabel": "C4-7 2026",
+      "fullLabel": "ADV 202604 / NAL 202607",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202605_NAL_202608",
+      "colIndex": 16,
+      "adv": "202605",
+      "nal": "202608",
+      "nalLivva": null,
+      "shortLabel": "C5-8 2026",
+      "fullLabel": "ADV 202605 / NAL 202608",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202606_NAL_202609",
+      "colIndex": 18,
+      "adv": "202606",
+      "nal": "202609",
+      "nalLivva": null,
+      "shortLabel": "C6-9 2026",
+      "fullLabel": "ADV 202606 / NAL 202609",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202607_NAL_202610",
+      "colIndex": 20,
+      "adv": "202607",
+      "nal": "202610",
+      "nalLivva": null,
+      "shortLabel": "C7-10 2026",
+      "fullLabel": "ADV 202607 / NAL 202610",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202608_NAL_202611",
+      "colIndex": 22,
+      "adv": "202608",
+      "nal": "202611",
+      "nalLivva": null,
+      "shortLabel": "C8-11 2026",
+      "fullLabel": "ADV 202608 / NAL 202611",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
+      "id": "ADV_202609_NAL_202612",
+      "colIndex": 24,
+      "adv": "202609",
+      "nal": "202612",
+      "nalLivva": null,
+      "shortLabel": "C9-12 2026",
+      "fullLabel": "ADV 202609 / NAL 202612",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
+      "fromC1_4_2027": false
+    },
+    {
       "id": "ADV_202610_NAL_202613",
-      "colIndex": 6,
+      "colIndex": 26,
       "adv": "202610",
       "nal": "202613",
+      "nalLivva": null,
       "shortLabel": "C10-13 2026",
       "fullLabel": "ADV 202610 / NAL 202613",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202611_NAL_202614",
-      "colIndex": 8,
+      "colIndex": 28,
       "adv": "202611",
       "nal": "202614",
+      "nalLivva": null,
       "shortLabel": "C11-14 2026",
       "fullLabel": "ADV 202611 / NAL 202614",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202612_NAL_202615",
-      "colIndex": 10,
+      "colIndex": 30,
       "adv": "202612",
       "nal": "202615",
+      "nalLivva": null,
       "shortLabel": "C12-15 2026",
       "fullLabel": "ADV 202612 / NAL 202615",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202613_NAL_202616",
-      "colIndex": 12,
+      "colIndex": 32,
       "adv": "202613",
       "nal": "202616",
+      "nalLivva": null,
       "shortLabel": "C13-16 2026",
       "fullLabel": "ADV 202613 / NAL 202616",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202614_NAL_202617",
-      "colIndex": 14,
+      "colIndex": 34,
       "adv": "202614",
       "nal": "202617",
+      "nalLivva": null,
       "shortLabel": "C14-17 2026",
       "fullLabel": "ADV 202614 / NAL 202617",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202615_NAL_202618",
-      "colIndex": 16,
+      "colIndex": 36,
       "adv": "202615",
       "nal": "202618",
+      "nalLivva": null,
       "shortLabel": "C15-18 2026",
       "fullLabel": "ADV 202615 / NAL 202618",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202616_NAL_202701",
-      "colIndex": 18,
+      "colIndex": 38,
       "adv": "202616",
       "nal": "202701",
+      "nalLivva": null,
       "shortLabel": "C16 (2026) - C1 (2027)",
       "fullLabel": "ADV 202616 / NAL 202701",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202617_NAL_202702",
-      "colIndex": 20,
+      "colIndex": 40,
       "adv": "202617",
       "nal": "202702",
+      "nalLivva": null,
       "shortLabel": "C17 (2026) - C2 (2027)",
       "fullLabel": "ADV 202617 / NAL 202702",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202618_NAL_202703",
-      "colIndex": 22,
+      "colIndex": 42,
       "adv": "202618",
       "nal": "202703",
+      "nalLivva": "202701",
       "shortLabel": "C18 (2026) - C3 (2027)",
       "fullLabel": "ADV 202618 / NAL 202703",
+      "livvaShortLabel": "Livva C1 2027",
+      "livvaFullLabel": "NAL Livva 202701",
       "fromC1_4_2027": false
     },
     {
       "id": "ADV_202701_NAL_202704",
-      "colIndex": 24,
+      "colIndex": 44,
       "adv": "202701",
       "nal": "202704",
+      "nalLivva": "202702",
       "shortLabel": "C1-4 2027",
       "fullLabel": "ADV 202701 / NAL 202704",
+      "livvaShortLabel": "Livva C2 2027",
+      "livvaFullLabel": "NAL Livva 202702",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202702_NAL_202705",
-      "colIndex": 26,
+      "colIndex": 46,
       "adv": "202702",
       "nal": "202705",
+      "nalLivva": "202703",
       "shortLabel": "C2-5 2027",
       "fullLabel": "ADV 202702 / NAL 202705",
+      "livvaShortLabel": "Livva C3 2027",
+      "livvaFullLabel": "NAL Livva 202703",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202703_NAL_202706",
-      "colIndex": 28,
+      "colIndex": 48,
       "adv": "202703",
       "nal": "202706",
+      "nalLivva": "202704",
       "shortLabel": "C3-6 2027",
       "fullLabel": "ADV 202703 / NAL 202706",
+      "livvaShortLabel": "Livva C4 2027",
+      "livvaFullLabel": "NAL Livva 202704",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202704_NAL_202707",
-      "colIndex": 30,
+      "colIndex": 50,
       "adv": "202704",
       "nal": "202707",
+      "nalLivva": "202705",
       "shortLabel": "C4-7 2027",
       "fullLabel": "ADV 202704 / NAL 202707",
+      "livvaShortLabel": "Livva C5 2027",
+      "livvaFullLabel": "NAL Livva 202705",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202705_NAL_202708",
-      "colIndex": 32,
+      "colIndex": 52,
       "adv": "202705",
       "nal": "202708",
+      "nalLivva": "202706",
       "shortLabel": "C5-8 2027",
       "fullLabel": "ADV 202705 / NAL 202708",
+      "livvaShortLabel": "Livva C6 2027",
+      "livvaFullLabel": "NAL Livva 202706",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202706_NAL_202709",
-      "colIndex": 34,
+      "colIndex": 54,
       "adv": "202706",
       "nal": "202709",
+      "nalLivva": "202707",
       "shortLabel": "C6-9 2027",
       "fullLabel": "ADV 202706 / NAL 202709",
+      "livvaShortLabel": "Livva C7 2027",
+      "livvaFullLabel": "NAL Livva 202707",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202707_NAL_202710",
-      "colIndex": 36,
+      "colIndex": 56,
       "adv": "202707",
       "nal": "202710",
+      "nalLivva": "202708",
       "shortLabel": "C7-10 2027",
       "fullLabel": "ADV 202707 / NAL 202710",
+      "livvaShortLabel": "Livva C8 2027",
+      "livvaFullLabel": "NAL Livva 202708",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202708_NAL_202711",
-      "colIndex": 38,
+      "colIndex": 58,
       "adv": "202708",
       "nal": "202711",
+      "nalLivva": "202709",
       "shortLabel": "C8-11 2027",
       "fullLabel": "ADV 202708 / NAL 202711",
+      "livvaShortLabel": "Livva C9 2027",
+      "livvaFullLabel": "NAL Livva 202709",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202709_NAL_202712",
-      "colIndex": 40,
+      "colIndex": 60,
       "adv": "202709",
       "nal": "202712",
+      "nalLivva": "202710",
       "shortLabel": "C9-12 2027",
       "fullLabel": "ADV 202709 / NAL 202712",
+      "livvaShortLabel": "Livva C10 2027",
+      "livvaFullLabel": "NAL Livva 202710",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202710_NAL_202713",
-      "colIndex": 42,
+      "colIndex": 62,
       "adv": "202710",
       "nal": "202713",
+      "nalLivva": "202711",
       "shortLabel": "C10-13 2027",
       "fullLabel": "ADV 202710 / NAL 202713",
+      "livvaShortLabel": "Livva C11 2027",
+      "livvaFullLabel": "NAL Livva 202711",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202711_NAL_202714",
-      "colIndex": 44,
+      "colIndex": 64,
       "adv": "202711",
       "nal": "202714",
+      "nalLivva": "202712",
       "shortLabel": "C11-14 2027",
       "fullLabel": "ADV 202711 / NAL 202714",
+      "livvaShortLabel": "Livva C12 2027",
+      "livvaFullLabel": "NAL Livva 202712",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202712_NAL_202715",
-      "colIndex": 46,
+      "colIndex": 66,
       "adv": "202712",
       "nal": "202715",
+      "nalLivva": "202713",
       "shortLabel": "C12-15 2027",
       "fullLabel": "ADV 202712 / NAL 202715",
+      "livvaShortLabel": "Livva C13 2027",
+      "livvaFullLabel": "NAL Livva 202713",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202713_NAL_202716",
-      "colIndex": 48,
+      "colIndex": 68,
       "adv": "202713",
       "nal": "202716",
+      "nalLivva": "202714",
       "shortLabel": "C13-16 2027",
       "fullLabel": "ADV 202713 / NAL 202716",
+      "livvaShortLabel": "Livva C14 2027",
+      "livvaFullLabel": "NAL Livva 202714",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202714_NAL_202717",
-      "colIndex": 50,
+      "colIndex": 70,
       "adv": "202714",
       "nal": "202717",
+      "nalLivva": "202715",
       "shortLabel": "C14-17 2027",
       "fullLabel": "ADV 202714 / NAL 202717",
+      "livvaShortLabel": "Livva C15 2027",
+      "livvaFullLabel": "NAL Livva 202715",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202715_NAL_202718",
-      "colIndex": 52,
+      "colIndex": 72,
       "adv": "202715",
       "nal": "202718",
+      "nalLivva": "202716",
       "shortLabel": "C15-18 2027",
       "fullLabel": "ADV 202715 / NAL 202718",
+      "livvaShortLabel": "Livva C16 2027",
+      "livvaFullLabel": "NAL Livva 202716",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202716_NAL_202801",
-      "colIndex": 54,
+      "colIndex": 74,
       "adv": "202716",
       "nal": "202801",
+      "nalLivva": "202717",
       "shortLabel": "C16 (2027) - C1 (2028)",
       "fullLabel": "ADV 202716 / NAL 202801",
+      "livvaShortLabel": "Livva C17 2027",
+      "livvaFullLabel": "NAL Livva 202717",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202717_NAL_202802",
-      "colIndex": 56,
+      "colIndex": 76,
       "adv": "202717",
       "nal": "202802",
+      "nalLivva": "202718",
       "shortLabel": "C17 (2027) - C2 (2028)",
       "fullLabel": "ADV 202717 / NAL 202802",
+      "livvaShortLabel": "Livva C18 2027",
+      "livvaFullLabel": "NAL Livva 202718",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202718_NAL_202803",
-      "colIndex": 58,
+      "colIndex": 78,
       "adv": "202718",
       "nal": "202803",
+      "nalLivva": "202801",
       "shortLabel": "C18 (2027) - C3 (2028)",
       "fullLabel": "ADV 202718 / NAL 202803",
+      "livvaShortLabel": "Livva C1 2028",
+      "livvaFullLabel": "NAL Livva 202801",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202801_NAL_202804",
-      "colIndex": 60,
+      "colIndex": 80,
       "adv": "202801",
       "nal": "202804",
+      "nalLivva": "202802",
       "shortLabel": "C1-4 2028",
       "fullLabel": "ADV 202801 / NAL 202804",
+      "livvaShortLabel": "Livva C2 2028",
+      "livvaFullLabel": "NAL Livva 202802",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202802_NAL_202805",
-      "colIndex": 62,
+      "colIndex": 82,
       "adv": "202802",
       "nal": "202805",
+      "nalLivva": "202803",
       "shortLabel": "C2-5 2028",
       "fullLabel": "ADV 202802 / NAL 202805",
+      "livvaShortLabel": "Livva C3 2028",
+      "livvaFullLabel": "NAL Livva 202803",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202803_NAL_202806",
-      "colIndex": 64,
+      "colIndex": 84,
       "adv": "202803",
       "nal": "202806",
+      "nalLivva": "202804",
       "shortLabel": "C3-6 2028",
       "fullLabel": "ADV 202803 / NAL 202806",
+      "livvaShortLabel": "Livva C4 2028",
+      "livvaFullLabel": "NAL Livva 202804",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202804_NAL_202807",
-      "colIndex": 66,
+      "colIndex": 86,
       "adv": "202804",
       "nal": "202807",
+      "nalLivva": "202805",
       "shortLabel": "C4-7 2028",
       "fullLabel": "ADV 202804 / NAL 202807",
+      "livvaShortLabel": "Livva C5 2028",
+      "livvaFullLabel": "NAL Livva 202805",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202805_NAL_202808",
-      "colIndex": 68,
+      "colIndex": 88,
       "adv": "202805",
       "nal": "202808",
+      "nalLivva": "202806",
       "shortLabel": "C5-8 2028",
       "fullLabel": "ADV 202805 / NAL 202808",
+      "livvaShortLabel": "Livva C6 2028",
+      "livvaFullLabel": "NAL Livva 202806",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202806_NAL_202809",
-      "colIndex": 70,
+      "colIndex": 90,
       "adv": "202806",
       "nal": "202809",
+      "nalLivva": "202807",
       "shortLabel": "C6-9 2028",
       "fullLabel": "ADV 202806 / NAL 202809",
+      "livvaShortLabel": "Livva C7 2028",
+      "livvaFullLabel": "NAL Livva 202807",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202807_NAL_202810",
-      "colIndex": 72,
+      "colIndex": 92,
       "adv": "202807",
       "nal": "202810",
+      "nalLivva": "202808",
       "shortLabel": "C7-10 2028",
       "fullLabel": "ADV 202807 / NAL 202810",
+      "livvaShortLabel": "Livva C8 2028",
+      "livvaFullLabel": "NAL Livva 202808",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202808_NAL_202811",
-      "colIndex": 74,
+      "colIndex": 94,
       "adv": "202808",
       "nal": "202811",
+      "nalLivva": "202809",
       "shortLabel": "C8-11 2028",
       "fullLabel": "ADV 202808 / NAL 202811",
+      "livvaShortLabel": "Livva C9 2028",
+      "livvaFullLabel": "NAL Livva 202809",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202809_NAL_202812",
-      "colIndex": 76,
+      "colIndex": 96,
       "adv": "202809",
       "nal": "202812",
+      "nalLivva": "202810",
       "shortLabel": "C9-12 2028",
       "fullLabel": "ADV 202809 / NAL 202812",
+      "livvaShortLabel": "Livva C10 2028",
+      "livvaFullLabel": "NAL Livva 202810",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202810_NAL_202813",
-      "colIndex": 78,
+      "colIndex": 98,
       "adv": "202810",
       "nal": "202813",
+      "nalLivva": "202811",
       "shortLabel": "C10-13 2028",
       "fullLabel": "ADV 202810 / NAL 202813",
+      "livvaShortLabel": "Livva C11 2028",
+      "livvaFullLabel": "NAL Livva 202811",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202811_NAL_202814",
-      "colIndex": 80,
+      "colIndex": 100,
       "adv": "202811",
       "nal": "202814",
+      "nalLivva": "202812",
       "shortLabel": "C11-14 2028",
       "fullLabel": "ADV 202811 / NAL 202814",
+      "livvaShortLabel": "Livva C12 2028",
+      "livvaFullLabel": "NAL Livva 202812",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202812_NAL_202815",
-      "colIndex": 82,
+      "colIndex": 102,
       "adv": "202812",
       "nal": "202815",
+      "nalLivva": "202813",
       "shortLabel": "C12-15 2028",
       "fullLabel": "ADV 202812 / NAL 202815",
+      "livvaShortLabel": "Livva C13 2028",
+      "livvaFullLabel": "NAL Livva 202813",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202813_NAL_202816",
-      "colIndex": 84,
+      "colIndex": 104,
       "adv": "202813",
       "nal": "202816",
+      "nalLivva": "202814",
       "shortLabel": "C13-16 2028",
       "fullLabel": "ADV 202813 / NAL 202816",
+      "livvaShortLabel": "Livva C14 2028",
+      "livvaFullLabel": "NAL Livva 202814",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202814_NAL_202817",
-      "colIndex": 86,
+      "colIndex": 106,
       "adv": "202814",
       "nal": "202817",
+      "nalLivva": "202815",
       "shortLabel": "C14-17 2028",
       "fullLabel": "ADV 202814 / NAL 202817",
+      "livvaShortLabel": "Livva C15 2028",
+      "livvaFullLabel": "NAL Livva 202815",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202815_NAL_202818",
-      "colIndex": 88,
+      "colIndex": 108,
       "adv": "202815",
       "nal": "202818",
+      "nalLivva": "202816",
       "shortLabel": "C15-18 2028",
       "fullLabel": "ADV 202815 / NAL 202818",
+      "livvaShortLabel": "Livva C16 2028",
+      "livvaFullLabel": "NAL Livva 202816",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202816_NAL_202901",
-      "colIndex": 90,
+      "colIndex": 110,
       "adv": "202816",
       "nal": "202901",
+      "nalLivva": "202817",
       "shortLabel": "C16 (2028) - C1 (2029)",
       "fullLabel": "ADV 202816 / NAL 202901",
+      "livvaShortLabel": "Livva C17 2028",
+      "livvaFullLabel": "NAL Livva 202817",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202817_NAL_202902",
-      "colIndex": 92,
+      "colIndex": 112,
       "adv": "202817",
       "nal": "202902",
+      "nalLivva": "202818",
       "shortLabel": "C17 (2028) - C2 (2029)",
       "fullLabel": "ADV 202817 / NAL 202902",
+      "livvaShortLabel": "Livva C18 2028",
+      "livvaFullLabel": "NAL Livva 202818",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202818_NAL_202903",
-      "colIndex": 94,
+      "colIndex": 114,
       "adv": "202818",
       "nal": "202903",
+      "nalLivva": "202819",
       "shortLabel": "C18 (2028) - C3 (2029)",
       "fullLabel": "ADV 202818 / NAL 202903",
+      "livvaShortLabel": "Livva C19 2028",
+      "livvaFullLabel": "NAL Livva 202819",
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202901_NAL_202904",
-      "colIndex": 96,
+      "colIndex": 116,
       "adv": "202901",
       "nal": "202904",
+      "nalLivva": null,
       "shortLabel": "C1-4 2029",
       "fullLabel": "ADV 202901 / NAL 202904",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202902_NAL_202905",
-      "colIndex": 98,
+      "colIndex": 118,
       "adv": "202902",
       "nal": "202905",
+      "nalLivva": null,
       "shortLabel": "C2-5 2029",
       "fullLabel": "ADV 202902 / NAL 202905",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202903_NAL_202906",
-      "colIndex": 100,
+      "colIndex": 120,
       "adv": "202903",
       "nal": "202906",
+      "nalLivva": null,
       "shortLabel": "C3-6 2029",
       "fullLabel": "ADV 202903 / NAL 202906",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202904_NAL_202907",
-      "colIndex": 102,
+      "colIndex": 122,
       "adv": "202904",
       "nal": "202907",
+      "nalLivva": null,
       "shortLabel": "C4-7 2029",
       "fullLabel": "ADV 202904 / NAL 202907",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202905_NAL_202908",
-      "colIndex": 104,
+      "colIndex": 124,
       "adv": "202905",
       "nal": "202908",
+      "nalLivva": null,
       "shortLabel": "C5-8 2029",
       "fullLabel": "ADV 202905 / NAL 202908",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202906_NAL_202909",
-      "colIndex": 106,
+      "colIndex": 126,
       "adv": "202906",
       "nal": "202909",
+      "nalLivva": null,
       "shortLabel": "C6-9 2029",
       "fullLabel": "ADV 202906 / NAL 202909",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     },
     {
       "id": "ADV_202907_NAL_202910",
-      "colIndex": 108,
+      "colIndex": 128,
       "adv": "202907",
       "nal": "202910",
+      "nalLivva": null,
       "shortLabel": "C7-10 2029",
       "fullLabel": "ADV 202907 / NAL 202910",
+      "livvaShortLabel": null,
+      "livvaFullLabel": null,
       "fromC1_4_2027": true
     }
   ],
@@ -481,6 +745,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 13,
       "dh": {
+        "ADV_202601_NAL_202604": 13,
+        "ADV_202602_NAL_202605": 13,
+        "ADV_202603_NAL_202606": 13,
+        "ADV_202604_NAL_202607": 13,
+        "ADV_202605_NAL_202608": 13,
+        "ADV_202606_NAL_202609": 13,
+        "ADV_202607_NAL_202610": 13,
+        "ADV_202608_NAL_202611": 13,
+        "ADV_202609_NAL_202612": 13,
         "ADV_202610_NAL_202613": 13,
         "ADV_202611_NAL_202614": 13,
         "ADV_202612_NAL_202615": 13,
@@ -535,6 +808,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 13
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-19",
+        "ADV_202602_NAL_202605": "2025-07-14",
+        "ADV_202603_NAL_202606": "2025-08-01",
+        "ADV_202604_NAL_202607": "2025-08-21",
+        "ADV_202605_NAL_202608": "2025-09-08",
+        "ADV_202606_NAL_202609": "2025-09-25",
+        "ADV_202607_NAL_202610": "2025-10-15",
+        "ADV_202608_NAL_202611": "2025-11-05",
+        "ADV_202609_NAL_202612": "2025-11-27",
         "ADV_202610_NAL_202613": "2025-12-16",
         "ADV_202611_NAL_202614": "2026-01-09",
         "ADV_202612_NAL_202615": "2026-01-29",
@@ -587,6 +869,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-14",
         "ADV_202906_NAL_202909": "2028-09-28",
         "ADV_202907_NAL_202910": "2028-10-20"
+      },
+      "predecesora": {
+        "no": "11",
+        "actividad": "Disenador Moda recibe y aprueba estampacion continua y Disenador Textil envia arte a ingenieria Livva"
       }
     },
     {
@@ -597,6 +883,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 13,
       "dh": {
+        "ADV_202601_NAL_202604": 13,
+        "ADV_202602_NAL_202605": 13,
+        "ADV_202603_NAL_202606": 13,
+        "ADV_202604_NAL_202607": 13,
+        "ADV_202605_NAL_202608": 13,
+        "ADV_202606_NAL_202609": 13,
+        "ADV_202607_NAL_202610": 13,
+        "ADV_202608_NAL_202611": 13,
+        "ADV_202609_NAL_202612": 13,
         "ADV_202610_NAL_202613": 13,
         "ADV_202611_NAL_202614": 13,
         "ADV_202612_NAL_202615": 13,
@@ -651,6 +946,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 13
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-25",
+        "ADV_202602_NAL_202605": "2025-07-16",
+        "ADV_202603_NAL_202606": "2025-08-05",
+        "ADV_202604_NAL_202607": "2025-08-25",
+        "ADV_202605_NAL_202608": "2025-09-10",
+        "ADV_202606_NAL_202609": "2025-09-29",
+        "ADV_202607_NAL_202610": "2025-10-17",
+        "ADV_202608_NAL_202611": "2025-11-07",
+        "ADV_202609_NAL_202612": "2025-12-01",
         "ADV_202610_NAL_202613": "2025-12-18",
         "ADV_202611_NAL_202614": "2026-01-14",
         "ADV_202612_NAL_202615": "2026-02-02",
@@ -703,6 +1007,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-18",
         "ADV_202906_NAL_202909": "2028-10-02",
         "ADV_202907_NAL_202910": "2028-10-24"
+      },
+      "predecesora": {
+        "no": "12",
+        "actividad": "Disenador Moda recibe y aprueba estampacion continua y Disenador Textil envia arte a ingenieria Azzorti"
       }
     },
     {
@@ -713,6 +1021,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -767,6 +1084,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-10",
+        "ADV_202602_NAL_202605": "2025-07-31",
+        "ADV_202603_NAL_202606": "2025-08-22",
+        "ADV_202604_NAL_202607": "2025-09-09",
+        "ADV_202605_NAL_202608": "2025-09-25",
+        "ADV_202606_NAL_202609": "2025-10-15",
+        "ADV_202607_NAL_202610": "2025-11-04",
+        "ADV_202608_NAL_202611": "2025-11-25",
+        "ADV_202609_NAL_202612": "2025-12-17",
         "ADV_202610_NAL_202613": "2026-01-08",
         "ADV_202611_NAL_202614": "2026-01-29",
         "ADV_202612_NAL_202615": "2026-02-17",
@@ -819,6 +1145,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-03",
         "ADV_202906_NAL_202909": "2028-10-18",
         "ADV_202907_NAL_202910": "2028-11-09"
+      },
+      "predecesora": {
+        "no": "15",
+        "actividad": "Asistente Ingenieria analiza costea estampacion continua Livva y realiza reserva de 50 cm por cada diseño de tela"
       }
     },
     {
@@ -829,6 +1159,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -883,6 +1222,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-15",
+        "ADV_202602_NAL_202605": "2025-08-04",
+        "ADV_202603_NAL_202606": "2025-08-26",
+        "ADV_202604_NAL_202607": "2025-09-11",
+        "ADV_202605_NAL_202608": "2025-09-29",
+        "ADV_202606_NAL_202609": "2025-10-17",
+        "ADV_202607_NAL_202610": "2025-11-06",
+        "ADV_202608_NAL_202611": "2025-11-27",
+        "ADV_202609_NAL_202612": "2025-12-19",
         "ADV_202610_NAL_202613": "2026-01-13",
         "ADV_202611_NAL_202614": "2026-02-02",
         "ADV_202612_NAL_202615": "2026-02-19",
@@ -935,6 +1283,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-05",
         "ADV_202906_NAL_202909": "2028-10-20",
         "ADV_202907_NAL_202910": "2028-11-14"
+      },
+      "predecesora": {
+        "no": "16",
+        "actividad": "Asistente Ingenieria analiza costea estampacion continua Azzorti y realiza reserva de 50 cm por cada diseño de tela"
       }
     },
     {
@@ -945,6 +1297,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -999,6 +1360,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-10",
+        "ADV_202602_NAL_202605": "2025-07-31",
+        "ADV_202603_NAL_202606": "2025-08-22",
+        "ADV_202604_NAL_202607": "2025-09-09",
+        "ADV_202605_NAL_202608": "2025-09-25",
+        "ADV_202606_NAL_202609": "2025-10-15",
+        "ADV_202607_NAL_202610": "2025-11-04",
+        "ADV_202608_NAL_202611": "2025-11-25",
+        "ADV_202609_NAL_202612": "2025-12-17",
         "ADV_202610_NAL_202613": "2026-01-08",
         "ADV_202611_NAL_202614": "2026-01-29",
         "ADV_202612_NAL_202615": "2026-02-17",
@@ -1051,6 +1421,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-03",
         "ADV_202906_NAL_202909": "2028-10-18",
         "ADV_202907_NAL_202910": "2028-11-09"
+      },
+      "predecesora": {
+        "no": "20",
+        "actividad": "Disenador Moda _Hace montaje de coleccion Livva MO y una campana antes PC_Kids PC Colombia e indigo"
       }
     },
     {
@@ -1061,6 +1435,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -1115,6 +1498,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-14",
+        "ADV_202602_NAL_202605": "2025-08-01",
+        "ADV_202603_NAL_202606": "2025-08-25",
+        "ADV_202604_NAL_202607": "2025-09-10",
+        "ADV_202605_NAL_202608": "2025-09-26",
+        "ADV_202606_NAL_202609": "2025-10-16",
+        "ADV_202607_NAL_202610": "2025-11-05",
+        "ADV_202608_NAL_202611": "2025-11-26",
+        "ADV_202609_NAL_202612": "2025-12-18",
         "ADV_202610_NAL_202613": "2026-01-09",
         "ADV_202611_NAL_202614": "2026-01-30",
         "ADV_202612_NAL_202615": "2026-02-18",
@@ -1167,6 +1559,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-04",
         "ADV_202906_NAL_202909": "2028-10-19",
         "ADV_202907_NAL_202910": "2028-11-10"
+      },
+      "predecesora": {
+        "no": "21",
+        "actividad": "Disenador Moda Hace montaje de coleccion Azzorti MO y una campana antes PC_Kids PC Colombia e indigo"
       }
     },
     {
@@ -1177,6 +1573,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -1231,6 +1636,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-11",
+        "ADV_202602_NAL_202605": "2025-08-01",
+        "ADV_202603_NAL_202606": "2025-08-25",
+        "ADV_202604_NAL_202607": "2025-09-10",
+        "ADV_202605_NAL_202608": "2025-09-26",
+        "ADV_202606_NAL_202609": "2025-10-16",
+        "ADV_202607_NAL_202610": "2025-11-05",
+        "ADV_202608_NAL_202611": "2025-11-26",
+        "ADV_202609_NAL_202612": "2025-12-18",
         "ADV_202610_NAL_202613": "2026-01-09",
         "ADV_202611_NAL_202614": "2026-01-30",
         "ADV_202612_NAL_202615": "2026-02-18",
@@ -1283,6 +1697,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-04",
         "ADV_202906_NAL_202909": "2028-10-19",
         "ADV_202907_NAL_202910": "2028-11-10"
+      },
+      "predecesora": {
+        "no": "24",
+        "actividad": "Asistente Ingenieria envia tela estampacion continua y recibe aprobacion de Diseno Grafico Livva"
       }
     },
     {
@@ -1293,6 +1711,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -1347,6 +1774,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-16",
+        "ADV_202602_NAL_202605": "2025-08-05",
+        "ADV_202603_NAL_202606": "2025-08-27",
+        "ADV_202604_NAL_202607": "2025-09-12",
+        "ADV_202605_NAL_202608": "2025-09-30",
+        "ADV_202606_NAL_202609": "2025-10-20",
+        "ADV_202607_NAL_202610": "2025-11-07",
+        "ADV_202608_NAL_202611": "2025-11-28",
+        "ADV_202609_NAL_202612": "2025-12-22",
         "ADV_202610_NAL_202613": "2026-01-14",
         "ADV_202611_NAL_202614": "2026-02-03",
         "ADV_202612_NAL_202615": "2026-02-20",
@@ -1399,6 +1835,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-06",
         "ADV_202906_NAL_202909": "2028-10-23",
         "ADV_202907_NAL_202910": "2028-11-15"
+      },
+      "predecesora": {
+        "no": "23",
+        "actividad": "Asistente Ingenieria recibe tela proveedor, hace revision de tela estampacion continua y crea codigos de estampado Azzorti"
       }
     },
     {
@@ -1409,6 +1849,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -1463,6 +1912,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-11",
+        "ADV_202602_NAL_202605": "2025-08-01",
+        "ADV_202603_NAL_202606": "2025-08-25",
+        "ADV_202604_NAL_202607": "2025-09-10",
+        "ADV_202605_NAL_202608": "2025-09-26",
+        "ADV_202606_NAL_202609": "2025-10-16",
+        "ADV_202607_NAL_202610": "2025-11-05",
+        "ADV_202608_NAL_202611": "2025-11-26",
+        "ADV_202609_NAL_202612": "2025-12-18",
         "ADV_202610_NAL_202613": "2026-01-09",
         "ADV_202611_NAL_202614": "2026-01-30",
         "ADV_202612_NAL_202615": "2026-02-18",
@@ -1515,6 +1973,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-04",
         "ADV_202906_NAL_202909": "2028-10-19",
         "ADV_202907_NAL_202910": "2028-11-10"
+      },
+      "predecesora": {
+        "no": "20",
+        "actividad": "Disenador Moda _Hace montaje de coleccion Livva MO y una campana antes PC_Kids PC Colombia e indigo"
       }
     },
     {
@@ -1525,6 +1987,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 10,
       "dh": {
+        "ADV_202601_NAL_202604": 10,
+        "ADV_202602_NAL_202605": 10,
+        "ADV_202603_NAL_202606": 10,
+        "ADV_202604_NAL_202607": 10,
+        "ADV_202605_NAL_202608": 10,
+        "ADV_202606_NAL_202609": 10,
+        "ADV_202607_NAL_202610": 10,
+        "ADV_202608_NAL_202611": 10,
+        "ADV_202609_NAL_202612": 10,
         "ADV_202610_NAL_202613": 10,
         "ADV_202611_NAL_202614": 10,
         "ADV_202612_NAL_202615": 10,
@@ -1579,6 +2050,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 10
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-16",
+        "ADV_202602_NAL_202605": "2025-08-06",
+        "ADV_202603_NAL_202606": "2025-08-28",
+        "ADV_202604_NAL_202607": "2025-09-15",
+        "ADV_202605_NAL_202608": "2025-10-01",
+        "ADV_202606_NAL_202609": "2025-10-21",
+        "ADV_202607_NAL_202610": "2025-11-10",
+        "ADV_202608_NAL_202611": "2025-12-01",
+        "ADV_202609_NAL_202612": "2025-12-23",
         "ADV_202610_NAL_202613": "2026-01-15",
         "ADV_202611_NAL_202614": "2026-02-04",
         "ADV_202612_NAL_202615": "2026-02-23",
@@ -1631,6 +2111,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-09",
         "ADV_202906_NAL_202909": "2028-10-24",
         "ADV_202907_NAL_202910": "2028-11-16"
+      },
+      "predecesora": {
+        "no": "38",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Livva MO"
       }
     },
     {
@@ -1641,6 +2125,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 12,
       "dh": {
+        "ADV_202601_NAL_202604": 12,
+        "ADV_202602_NAL_202605": 12,
+        "ADV_202603_NAL_202606": 12,
+        "ADV_202604_NAL_202607": 12,
+        "ADV_202605_NAL_202608": 12,
+        "ADV_202606_NAL_202609": 12,
+        "ADV_202607_NAL_202610": 12,
+        "ADV_202608_NAL_202611": 12,
+        "ADV_202609_NAL_202612": 12,
         "ADV_202610_NAL_202613": 12,
         "ADV_202611_NAL_202614": 12,
         "ADV_202612_NAL_202615": 12,
@@ -1695,6 +2188,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 12
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-18",
+        "ADV_202602_NAL_202605": "2025-08-08",
+        "ADV_202603_NAL_202606": "2025-08-29",
+        "ADV_202604_NAL_202607": "2025-09-16",
+        "ADV_202605_NAL_202608": "2025-10-02",
+        "ADV_202606_NAL_202609": "2025-10-22",
+        "ADV_202607_NAL_202610": "2025-11-11",
+        "ADV_202608_NAL_202611": "2025-12-02",
+        "ADV_202609_NAL_202612": "2025-12-26",
         "ADV_202610_NAL_202613": "2026-01-16",
         "ADV_202611_NAL_202614": "2026-02-05",
         "ADV_202612_NAL_202615": "2026-02-24",
@@ -1747,6 +2249,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-10",
         "ADV_202906_NAL_202909": "2028-10-25",
         "ADV_202907_NAL_202910": "2028-11-17"
+      },
+      "predecesora": {
+        "no": "39",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Azzorti MO"
       }
     },
     {
@@ -1757,6 +2263,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -1811,6 +2326,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-17",
+        "ADV_202602_NAL_202605": "2025-08-08",
+        "ADV_202603_NAL_202606": "2025-08-29",
+        "ADV_202604_NAL_202607": "2025-09-16",
+        "ADV_202605_NAL_202608": "2025-10-02",
+        "ADV_202606_NAL_202609": "2025-10-22",
+        "ADV_202607_NAL_202610": "2025-11-11",
+        "ADV_202608_NAL_202611": "2025-12-02",
+        "ADV_202609_NAL_202612": "2025-12-26",
         "ADV_202610_NAL_202613": "2026-01-16",
         "ADV_202611_NAL_202614": "2026-02-05",
         "ADV_202612_NAL_202615": "2026-02-24",
@@ -1863,6 +2387,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-10",
         "ADV_202906_NAL_202909": "2028-10-25",
         "ADV_202907_NAL_202910": "2028-11-17"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -1873,6 +2401,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -1927,6 +2464,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-22",
+        "ADV_202602_NAL_202605": "2025-08-12",
+        "ADV_202603_NAL_202606": "2025-09-02",
+        "ADV_202604_NAL_202607": "2025-09-18",
+        "ADV_202605_NAL_202608": "2025-10-06",
+        "ADV_202606_NAL_202609": "2025-10-24",
+        "ADV_202607_NAL_202610": "2025-11-13",
+        "ADV_202608_NAL_202611": "2025-12-04",
+        "ADV_202609_NAL_202612": "2025-12-30",
         "ADV_202610_NAL_202613": "2026-01-20",
         "ADV_202611_NAL_202614": "2026-02-09",
         "ADV_202612_NAL_202615": "2026-02-26",
@@ -1979,6 +2525,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-12",
         "ADV_202906_NAL_202909": "2028-10-27",
         "ADV_202907_NAL_202910": "2028-11-21"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -1989,6 +2539,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2043,6 +2602,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-22",
+        "ADV_202602_NAL_202605": "2025-08-13",
+        "ADV_202603_NAL_202606": "2025-09-03",
+        "ADV_202604_NAL_202607": "2025-09-19",
+        "ADV_202605_NAL_202608": "2025-10-07",
+        "ADV_202606_NAL_202609": "2025-10-27",
+        "ADV_202607_NAL_202610": "2025-11-14",
+        "ADV_202608_NAL_202611": "2025-12-05",
+        "ADV_202609_NAL_202612": "2026-01-02",
         "ADV_202610_NAL_202613": "2026-01-21",
         "ADV_202611_NAL_202614": "2026-02-10",
         "ADV_202612_NAL_202615": "2026-02-27",
@@ -2095,6 +2663,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-13",
         "ADV_202906_NAL_202909": "2028-10-30",
         "ADV_202907_NAL_202910": "2028-11-22"
+      },
+      "predecesora": {
+        "no": "24",
+        "actividad": "Asistente Ingenieria envia tela estampacion continua y recibe aprobacion de Diseno Grafico Livva"
       }
     },
     {
@@ -2105,6 +2677,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2159,6 +2740,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-28",
+        "ADV_202602_NAL_202605": "2025-08-19",
+        "ADV_202603_NAL_202606": "2025-09-08",
+        "ADV_202604_NAL_202607": "2025-09-24",
+        "ADV_202605_NAL_202608": "2025-10-10",
+        "ADV_202606_NAL_202609": "2025-10-30",
+        "ADV_202607_NAL_202610": "2025-11-20",
+        "ADV_202608_NAL_202611": "2025-12-11",
+        "ADV_202609_NAL_202612": "2026-01-07",
         "ADV_202610_NAL_202613": "2026-01-26",
         "ADV_202611_NAL_202614": "2026-02-13",
         "ADV_202612_NAL_202615": "2026-03-04",
@@ -2211,6 +2801,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-19",
         "ADV_202906_NAL_202909": "2028-11-02",
         "ADV_202907_NAL_202910": "2028-11-27"
+      },
+      "predecesora": {
+        "no": "25",
+        "actividad": "Asistente Ingenieria envia tela estampacion continua y recibe aprobacion de Diseno Grafico Azzorti"
       }
     },
     {
@@ -2221,6 +2815,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2275,6 +2878,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-23",
+        "ADV_202602_NAL_202605": "2025-08-14",
+        "ADV_202603_NAL_202606": "2025-09-04",
+        "ADV_202604_NAL_202607": "2025-09-22",
+        "ADV_202605_NAL_202608": "2025-10-08",
+        "ADV_202606_NAL_202609": "2025-10-28",
+        "ADV_202607_NAL_202610": "2025-11-18",
+        "ADV_202608_NAL_202611": "2025-12-09",
+        "ADV_202609_NAL_202612": "2026-01-05",
         "ADV_202610_NAL_202613": "2026-01-22",
         "ADV_202611_NAL_202614": "2026-02-11",
         "ADV_202612_NAL_202615": "2026-03-02",
@@ -2327,6 +2939,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-17",
         "ADV_202906_NAL_202909": "2028-10-31",
         "ADV_202907_NAL_202910": "2028-11-23"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -2337,6 +2953,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2391,6 +3016,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-29",
+        "ADV_202602_NAL_202605": "2025-08-20",
+        "ADV_202603_NAL_202606": "2025-09-09",
+        "ADV_202604_NAL_202607": "2025-09-25",
+        "ADV_202605_NAL_202608": "2025-10-14",
+        "ADV_202606_NAL_202609": "2025-10-31",
+        "ADV_202607_NAL_202610": "2025-11-21",
+        "ADV_202608_NAL_202611": "2025-12-12",
+        "ADV_202609_NAL_202612": "2026-01-08",
         "ADV_202610_NAL_202613": "2026-01-27",
         "ADV_202611_NAL_202614": "2026-02-16",
         "ADV_202612_NAL_202615": "2026-03-05",
@@ -2443,6 +3077,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-20",
         "ADV_202906_NAL_202909": "2028-11-03",
         "ADV_202907_NAL_202910": "2028-11-28"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -2453,6 +3091,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2507,6 +3154,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-23",
+        "ADV_202602_NAL_202605": "2025-08-14",
+        "ADV_202603_NAL_202606": "2025-09-04",
+        "ADV_202604_NAL_202607": "2025-09-22",
+        "ADV_202605_NAL_202608": "2025-10-08",
+        "ADV_202606_NAL_202609": "2025-10-28",
+        "ADV_202607_NAL_202610": "2025-11-18",
+        "ADV_202608_NAL_202611": "2025-12-09",
+        "ADV_202609_NAL_202612": "2026-01-05",
         "ADV_202610_NAL_202613": "2026-01-22",
         "ADV_202611_NAL_202614": "2026-02-11",
         "ADV_202612_NAL_202615": "2026-03-02",
@@ -2559,6 +3215,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-17",
         "ADV_202906_NAL_202909": "2028-10-31",
         "ADV_202907_NAL_202910": "2028-11-23"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -2569,6 +3229,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2623,6 +3292,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-29",
+        "ADV_202602_NAL_202605": "2025-08-20",
+        "ADV_202603_NAL_202606": "2025-09-09",
+        "ADV_202604_NAL_202607": "2025-09-25",
+        "ADV_202605_NAL_202608": "2025-10-14",
+        "ADV_202606_NAL_202609": "2025-10-31",
+        "ADV_202607_NAL_202610": "2025-11-21",
+        "ADV_202608_NAL_202611": "2025-12-12",
+        "ADV_202609_NAL_202612": "2026-01-08",
         "ADV_202610_NAL_202613": "2026-01-27",
         "ADV_202611_NAL_202614": "2026-02-16",
         "ADV_202612_NAL_202615": "2026-03-05",
@@ -2675,6 +3353,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-20",
         "ADV_202906_NAL_202909": "2028-11-03",
         "ADV_202907_NAL_202910": "2028-11-28"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -2685,6 +3367,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -2739,6 +3430,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-24",
+        "ADV_202602_NAL_202605": "2025-08-15",
+        "ADV_202603_NAL_202606": "2025-09-05",
+        "ADV_202604_NAL_202607": "2025-09-23",
+        "ADV_202605_NAL_202608": "2025-10-09",
+        "ADV_202606_NAL_202609": "2025-10-29",
+        "ADV_202607_NAL_202610": "2025-11-19",
+        "ADV_202608_NAL_202611": "2025-12-10",
+        "ADV_202609_NAL_202612": "2026-01-06",
         "ADV_202610_NAL_202613": "2026-01-23",
         "ADV_202611_NAL_202614": "2026-02-12",
         "ADV_202612_NAL_202615": "2026-03-03",
@@ -2791,6 +3491,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-18",
         "ADV_202906_NAL_202909": "2028-11-01",
         "ADV_202907_NAL_202910": "2028-11-24"
+      },
+      "predecesora": {
+        "no": "38",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Livva MO"
       }
     },
     {
@@ -2801,6 +3505,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -2855,6 +3568,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-25",
+        "ADV_202602_NAL_202605": "2025-08-19",
+        "ADV_202603_NAL_202606": "2025-09-08",
+        "ADV_202604_NAL_202607": "2025-09-24",
+        "ADV_202605_NAL_202608": "2025-10-10",
+        "ADV_202606_NAL_202609": "2025-10-30",
+        "ADV_202607_NAL_202610": "2025-11-20",
+        "ADV_202608_NAL_202611": "2025-12-11",
+        "ADV_202609_NAL_202612": "2026-01-07",
         "ADV_202610_NAL_202613": "2026-01-26",
         "ADV_202611_NAL_202614": "2026-02-13",
         "ADV_202612_NAL_202615": "2026-03-04",
@@ -2907,6 +3629,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-19",
         "ADV_202906_NAL_202909": "2028-11-02",
         "ADV_202907_NAL_202910": "2028-11-27"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -2917,6 +3643,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -2971,6 +3706,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-30",
+        "ADV_202602_NAL_202605": "2025-08-21",
+        "ADV_202603_NAL_202606": "2025-09-10",
+        "ADV_202604_NAL_202607": "2025-09-26",
+        "ADV_202605_NAL_202608": "2025-10-15",
+        "ADV_202606_NAL_202609": "2025-11-04",
+        "ADV_202607_NAL_202610": "2025-11-24",
+        "ADV_202608_NAL_202611": "2025-12-15",
+        "ADV_202609_NAL_202612": "2026-01-09",
         "ADV_202610_NAL_202613": "2026-01-28",
         "ADV_202611_NAL_202614": "2026-02-17",
         "ADV_202612_NAL_202615": "2026-03-06",
@@ -3023,6 +3767,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-23",
         "ADV_202906_NAL_202909": "2028-11-07",
         "ADV_202907_NAL_202910": "2028-11-29"
+      },
+      "predecesora": {
+        "no": "39",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Azzorti MO"
       }
     },
     {
@@ -3033,6 +3781,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3087,6 +3844,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-31",
+        "ADV_202602_NAL_202605": "2025-08-22",
+        "ADV_202603_NAL_202606": "2025-09-11",
+        "ADV_202604_NAL_202607": "2025-09-29",
+        "ADV_202605_NAL_202608": "2025-10-16",
+        "ADV_202606_NAL_202609": "2025-11-05",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-16",
+        "ADV_202609_NAL_202612": "2026-01-13",
         "ADV_202610_NAL_202613": "2026-01-29",
         "ADV_202611_NAL_202614": "2026-02-18",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -3139,6 +3905,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-08",
         "ADV_202907_NAL_202910": "2028-11-30"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -3149,6 +3919,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3203,6 +3982,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-25",
+        "ADV_202602_NAL_202605": "2025-08-19",
+        "ADV_202603_NAL_202606": "2025-09-08",
+        "ADV_202604_NAL_202607": "2025-09-24",
+        "ADV_202605_NAL_202608": "2025-10-10",
+        "ADV_202606_NAL_202609": "2025-10-30",
+        "ADV_202607_NAL_202610": "2025-11-20",
+        "ADV_202608_NAL_202611": "2025-12-11",
+        "ADV_202609_NAL_202612": "2026-01-07",
         "ADV_202610_NAL_202613": "2026-01-26",
         "ADV_202611_NAL_202614": "2026-02-13",
         "ADV_202612_NAL_202615": "2026-03-04",
@@ -3255,6 +4043,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-19",
         "ADV_202906_NAL_202909": "2028-11-02",
         "ADV_202907_NAL_202910": "2028-11-27"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -3265,6 +4057,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3319,6 +4120,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-31",
+        "ADV_202602_NAL_202605": "2025-08-22",
+        "ADV_202603_NAL_202606": "2025-09-11",
+        "ADV_202604_NAL_202607": "2025-09-29",
+        "ADV_202605_NAL_202608": "2025-10-16",
+        "ADV_202606_NAL_202609": "2025-11-05",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-16",
+        "ADV_202609_NAL_202612": "2026-01-13",
         "ADV_202610_NAL_202613": "2026-01-29",
         "ADV_202611_NAL_202614": "2026-02-18",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -3371,6 +4181,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-08",
         "ADV_202907_NAL_202910": "2028-11-30"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -3381,6 +4195,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3435,6 +4258,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-25",
+        "ADV_202602_NAL_202605": "2025-08-19",
+        "ADV_202603_NAL_202606": "2025-09-08",
+        "ADV_202604_NAL_202607": "2025-09-24",
+        "ADV_202605_NAL_202608": "2025-10-10",
+        "ADV_202606_NAL_202609": "2025-10-30",
+        "ADV_202607_NAL_202610": "2025-11-20",
+        "ADV_202608_NAL_202611": "2025-12-11",
+        "ADV_202609_NAL_202612": "2026-01-07",
         "ADV_202610_NAL_202613": "2026-01-26",
         "ADV_202611_NAL_202614": "2026-02-13",
         "ADV_202612_NAL_202615": "2026-03-04",
@@ -3487,6 +4319,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-19",
         "ADV_202906_NAL_202909": "2028-11-02",
         "ADV_202907_NAL_202910": "2028-11-27"
+      },
+      "predecesora": {
+        "no": "28",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Livva , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -3497,6 +4333,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3551,6 +4396,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-31",
+        "ADV_202602_NAL_202605": "2025-08-22",
+        "ADV_202603_NAL_202606": "2025-09-11",
+        "ADV_202604_NAL_202607": "2025-09-29",
+        "ADV_202605_NAL_202608": "2025-10-16",
+        "ADV_202606_NAL_202609": "2025-11-05",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-16",
+        "ADV_202609_NAL_202612": "2026-01-13",
         "ADV_202610_NAL_202613": "2026-01-29",
         "ADV_202611_NAL_202614": "2026-02-18",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -3603,6 +4457,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-08",
         "ADV_202907_NAL_202910": "2028-11-30"
+      },
+      "predecesora": {
+        "no": "30",
+        "actividad": "Ingenieria Coordinadora Programa comite de premuestras marca Azzorti , Diseño presenta bocetos con diseños e Inegnieria Analista y Patronista inicia Precosteo MO"
       }
     },
     {
@@ -3613,6 +4471,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3667,6 +4534,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-29",
+        "ADV_202602_NAL_202605": "2025-08-21",
+        "ADV_202603_NAL_202606": "2025-09-10",
+        "ADV_202604_NAL_202607": "2025-09-26",
+        "ADV_202605_NAL_202608": "2025-10-15",
+        "ADV_202606_NAL_202609": "2025-11-04",
+        "ADV_202607_NAL_202610": "2025-11-24",
+        "ADV_202608_NAL_202611": "2025-12-15",
+        "ADV_202609_NAL_202612": "2026-01-09",
         "ADV_202610_NAL_202613": "2026-01-28",
         "ADV_202611_NAL_202614": "2026-02-17",
         "ADV_202612_NAL_202615": "2026-03-06",
@@ -3719,6 +4595,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-23",
         "ADV_202906_NAL_202909": "2028-11-07",
         "ADV_202907_NAL_202910": "2028-11-29"
+      },
+      "predecesora": {
+        "no": "38",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Livva MO"
       }
     },
     {
@@ -3729,6 +4609,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -3783,6 +4672,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-04",
+        "ADV_202602_NAL_202605": "2025-08-26",
+        "ADV_202603_NAL_202606": "2025-09-15",
+        "ADV_202604_NAL_202607": "2025-10-01",
+        "ADV_202605_NAL_202608": "2025-10-20",
+        "ADV_202606_NAL_202609": "2025-11-07",
+        "ADV_202607_NAL_202610": "2025-11-27",
+        "ADV_202608_NAL_202611": "2025-12-18",
+        "ADV_202609_NAL_202612": "2026-01-15",
         "ADV_202610_NAL_202613": "2026-02-02",
         "ADV_202611_NAL_202614": "2026-02-20",
         "ADV_202612_NAL_202615": "2026-03-11",
@@ -3835,6 +4733,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-26",
         "ADV_202906_NAL_202909": "2028-11-10",
         "ADV_202907_NAL_202910": "2028-12-04"
+      },
+      "predecesora": {
+        "no": "39",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Azzorti MO"
       }
     },
     {
@@ -3845,6 +4747,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -3899,6 +4810,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-30",
+        "ADV_202602_NAL_202605": "2025-08-22",
+        "ADV_202603_NAL_202606": "2025-09-11",
+        "ADV_202604_NAL_202607": "2025-09-29",
+        "ADV_202605_NAL_202608": "2025-10-16",
+        "ADV_202606_NAL_202609": "2025-11-05",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-16",
+        "ADV_202609_NAL_202612": "2026-01-13",
         "ADV_202610_NAL_202613": "2026-01-29",
         "ADV_202611_NAL_202614": "2026-02-18",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -3951,6 +4871,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-08",
         "ADV_202907_NAL_202910": "2028-11-30"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -3961,6 +4885,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -4015,6 +4948,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-05",
+        "ADV_202602_NAL_202605": "2025-08-27",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-02",
+        "ADV_202605_NAL_202608": "2025-10-21",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-11-28",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-16",
         "ADV_202610_NAL_202613": "2026-02-03",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-12",
@@ -4067,6 +5009,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-27",
         "ADV_202906_NAL_202909": "2028-11-14",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "75",
+        "actividad": "Modelacion Azzorti 2D MO"
       }
     },
     {
@@ -4077,6 +5023,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -4131,6 +5086,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-29",
+        "ADV_202602_NAL_202605": "2025-08-21",
+        "ADV_202603_NAL_202606": "2025-09-10",
+        "ADV_202604_NAL_202607": "2025-09-26",
+        "ADV_202605_NAL_202608": "2025-10-15",
+        "ADV_202606_NAL_202609": "2025-11-04",
+        "ADV_202607_NAL_202610": "2025-11-24",
+        "ADV_202608_NAL_202611": "2025-12-15",
+        "ADV_202609_NAL_202612": "2026-01-09",
         "ADV_202610_NAL_202613": "2026-01-28",
         "ADV_202611_NAL_202614": "2026-02-17",
         "ADV_202612_NAL_202615": "2026-03-06",
@@ -4183,6 +5147,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-23",
         "ADV_202906_NAL_202909": "2028-11-07",
         "ADV_202907_NAL_202910": "2028-11-29"
+      },
+      "predecesora": {
+        "no": "32",
+        "actividad": "Ingenieria Asistente de Diseño Revisa Unidad de Colección livva, determina telas aprobadas y realiza reserva de 4 mts de tela por cada diseño para confeccion prendas"
       }
     },
     {
@@ -4193,6 +5161,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -4247,6 +5224,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-04",
+        "ADV_202602_NAL_202605": "2025-08-26",
+        "ADV_202603_NAL_202606": "2025-09-15",
+        "ADV_202604_NAL_202607": "2025-10-01",
+        "ADV_202605_NAL_202608": "2025-10-20",
+        "ADV_202606_NAL_202609": "2025-11-07",
+        "ADV_202607_NAL_202610": "2025-11-27",
+        "ADV_202608_NAL_202611": "2025-12-18",
+        "ADV_202609_NAL_202612": "2026-01-15",
         "ADV_202610_NAL_202613": "2026-02-02",
         "ADV_202611_NAL_202614": "2026-02-20",
         "ADV_202612_NAL_202615": "2026-03-11",
@@ -4299,6 +5285,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-26",
         "ADV_202906_NAL_202909": "2028-11-10",
         "ADV_202907_NAL_202910": "2028-12-04"
+      },
+      "predecesora": {
+        "no": "33",
+        "actividad": "Ingenieria Asistente de Diseño Revisa Unidad de Colección Azzorti, determina telas aprobadas y realiza reserva de 4 mts de tela por cada diseño para confeccion prendas"
       }
     },
     {
@@ -4309,6 +5299,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Produccion",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4363,6 +5362,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-30",
+        "ADV_202602_NAL_202605": "2025-08-22",
+        "ADV_202603_NAL_202606": "2025-09-11",
+        "ADV_202604_NAL_202607": "2025-09-29",
+        "ADV_202605_NAL_202608": "2025-10-16",
+        "ADV_202606_NAL_202609": "2025-11-05",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-16",
+        "ADV_202609_NAL_202612": "2026-01-13",
         "ADV_202610_NAL_202613": "2026-01-29",
         "ADV_202611_NAL_202614": "2026-02-18",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -4415,6 +5423,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-08",
         "ADV_202907_NAL_202910": "2028-11-30"
+      },
+      "predecesora": {
+        "no": "40",
+        "actividad": "Ingenieria Asistente de Diseño Entrega Tela Estampado Continuo y Fichas de Livva al area de estampacion"
       }
     },
     {
@@ -4425,6 +5437,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Produccion",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4479,6 +5500,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-05",
+        "ADV_202602_NAL_202605": "2025-08-27",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-02",
+        "ADV_202605_NAL_202608": "2025-10-21",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-11-28",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-16",
         "ADV_202610_NAL_202613": "2026-02-03",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-12",
@@ -4531,6 +5561,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-27",
         "ADV_202906_NAL_202909": "2028-11-14",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "41",
+        "actividad": "Ingenieria Asistente de Diseño Entrega Tela Estampado Continuo y Fichas de Azzorti al area de estampacion"
       }
     },
     {
@@ -4541,6 +5575,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4595,6 +5638,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-31",
+        "ADV_202602_NAL_202605": "2025-08-25",
+        "ADV_202603_NAL_202606": "2025-09-12",
+        "ADV_202604_NAL_202607": "2025-09-30",
+        "ADV_202605_NAL_202608": "2025-10-17",
+        "ADV_202606_NAL_202609": "2025-11-06",
+        "ADV_202607_NAL_202610": "2025-11-26",
+        "ADV_202608_NAL_202611": "2025-12-17",
+        "ADV_202609_NAL_202612": "2026-01-14",
         "ADV_202610_NAL_202613": "2026-01-30",
         "ADV_202611_NAL_202614": "2026-02-19",
         "ADV_202612_NAL_202615": "2026-03-10",
@@ -4647,6 +5699,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-25",
         "ADV_202906_NAL_202909": "2028-11-09",
         "ADV_202907_NAL_202910": "2028-12-01"
+      },
+      "predecesora": {
+        "no": "38",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Livva MO"
       }
     },
     {
@@ -4657,6 +5713,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4711,6 +5776,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-06",
+        "ADV_202602_NAL_202605": "2025-08-28",
+        "ADV_202603_NAL_202606": "2025-09-17",
+        "ADV_202604_NAL_202607": "2025-10-03",
+        "ADV_202605_NAL_202608": "2025-10-22",
+        "ADV_202606_NAL_202609": "2025-11-11",
+        "ADV_202607_NAL_202610": "2025-12-01",
+        "ADV_202608_NAL_202611": "2025-12-22",
+        "ADV_202609_NAL_202612": "2026-01-19",
         "ADV_202610_NAL_202613": "2026-02-04",
         "ADV_202611_NAL_202614": "2026-02-24",
         "ADV_202612_NAL_202615": "2026-03-13",
@@ -4763,6 +5837,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-30",
         "ADV_202906_NAL_202909": "2028-11-15",
         "ADV_202907_NAL_202910": "2028-12-06"
+      },
+      "predecesora": {
+        "no": "39",
+        "actividad": "Disenador Moda Entrega fichas diseno (bocetos) y linesheet a ingenieria Azzorti MO"
       }
     },
     {
@@ -4773,6 +5851,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4827,6 +5914,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-01",
+        "ADV_202602_NAL_202605": "2025-08-26",
+        "ADV_202603_NAL_202606": "2025-09-15",
+        "ADV_202604_NAL_202607": "2025-10-01",
+        "ADV_202605_NAL_202608": "2025-10-20",
+        "ADV_202606_NAL_202609": "2025-11-07",
+        "ADV_202607_NAL_202610": "2025-11-27",
+        "ADV_202608_NAL_202611": "2025-12-18",
+        "ADV_202609_NAL_202612": "2026-01-15",
         "ADV_202610_NAL_202613": "2026-02-02",
         "ADV_202611_NAL_202614": "2026-02-20",
         "ADV_202612_NAL_202615": "2026-03-11",
@@ -4879,6 +5975,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-26",
         "ADV_202906_NAL_202909": "2028-11-10",
         "ADV_202907_NAL_202910": "2028-12-04"
+      },
+      "predecesora": {
+        "no": "44",
+        "actividad": "Ingenieria Recibe Bocetos Livva, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -4889,6 +5989,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -4943,6 +6052,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-08",
+        "ADV_202602_NAL_202605": "2025-08-29",
+        "ADV_202603_NAL_202606": "2025-09-18",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-12",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-23",
+        "ADV_202609_NAL_202612": "2026-01-20",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-25",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -4995,6 +6113,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-16",
         "ADV_202907_NAL_202910": "2028-12-07"
+      },
+      "predecesora": {
+        "no": "45",
+        "actividad": "Ingenieria Recibe Bocetos Azzorti, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -5005,6 +6127,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -5059,6 +6190,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-04",
+        "ADV_202602_NAL_202605": "2025-08-27",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-02",
+        "ADV_202605_NAL_202608": "2025-10-21",
+        "ADV_202606_NAL_202609": "2025-11-06",
+        "ADV_202607_NAL_202610": "2025-11-28",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-16",
         "ADV_202610_NAL_202613": "2026-02-03",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-12",
@@ -5111,6 +6251,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-27",
         "ADV_202906_NAL_202909": "2028-11-14",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "44",
+        "actividad": "Ingenieria Recibe Bocetos Livva, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -5121,6 +6265,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -5175,6 +6328,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-08",
+        "ADV_202602_NAL_202605": "2025-08-29",
+        "ADV_202603_NAL_202606": "2025-09-18",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-11",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-23",
+        "ADV_202609_NAL_202612": "2026-01-20",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-25",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -5227,6 +6389,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-16",
         "ADV_202907_NAL_202910": "2028-12-07"
+      },
+      "predecesora": {
+        "no": "45",
+        "actividad": "Ingenieria Recibe Bocetos Azzorti, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -5237,6 +6403,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -5291,6 +6466,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-08",
+        "ADV_202602_NAL_202605": "2025-09-01",
+        "ADV_202603_NAL_202606": "2025-09-19",
+        "ADV_202604_NAL_202607": "2025-10-07",
+        "ADV_202605_NAL_202608": "2025-10-24",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-12-03",
+        "ADV_202608_NAL_202611": "2025-12-26",
+        "ADV_202609_NAL_202612": "2026-01-21",
         "ADV_202610_NAL_202613": "2026-02-06",
         "ADV_202611_NAL_202614": "2026-02-26",
         "ADV_202612_NAL_202615": "2026-03-17",
@@ -5343,6 +6527,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-01",
         "ADV_202906_NAL_202909": "2028-11-17",
         "ADV_202907_NAL_202910": "2028-12-11"
+      },
+      "predecesora": {
+        "no": "48",
+        "actividad": "Diseno Grafico inicia entrega de artes Localizados Livva Segun Programacion MO"
       }
     },
     {
@@ -5353,6 +6541,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -5407,6 +6604,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-13",
+        "ADV_202602_NAL_202605": "2025-09-03",
+        "ADV_202603_NAL_202606": "2025-09-23",
+        "ADV_202604_NAL_202607": "2025-10-09",
+        "ADV_202605_NAL_202608": "2025-10-28",
+        "ADV_202606_NAL_202609": "2025-11-13",
+        "ADV_202607_NAL_202610": "2025-12-05",
+        "ADV_202608_NAL_202611": "2025-12-30",
+        "ADV_202609_NAL_202612": "2026-01-23",
         "ADV_202610_NAL_202613": "2026-02-10",
         "ADV_202611_NAL_202614": "2026-03-02",
         "ADV_202612_NAL_202615": "2026-03-19",
@@ -5459,6 +6665,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-03",
         "ADV_202906_NAL_202909": "2028-11-21",
         "ADV_202907_NAL_202910": "2028-12-13"
+      },
+      "predecesora": {
+        "no": "49",
+        "actividad": "Diseno Grafico inicia entrega de artes Localizados Azzorti Segun Programacion MO"
       }
     },
     {
@@ -5469,6 +6679,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -5523,6 +6742,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-01",
+        "ADV_202602_NAL_202605": "2025-08-26",
+        "ADV_202603_NAL_202606": "2025-09-15",
+        "ADV_202604_NAL_202607": "2025-10-01",
+        "ADV_202605_NAL_202608": "2025-10-20",
+        "ADV_202606_NAL_202609": "2025-11-07",
+        "ADV_202607_NAL_202610": "2025-11-27",
+        "ADV_202608_NAL_202611": "2025-12-18",
+        "ADV_202609_NAL_202612": "2026-01-15",
         "ADV_202610_NAL_202613": "2026-02-02",
         "ADV_202611_NAL_202614": "2026-02-20",
         "ADV_202612_NAL_202615": "2026-03-11",
@@ -5575,6 +6803,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-26",
         "ADV_202906_NAL_202909": "2028-11-10",
         "ADV_202907_NAL_202910": "2028-12-04"
+      },
+      "predecesora": {
+        "no": "44",
+        "actividad": "Ingenieria Recibe Bocetos Livva, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -5585,6 +6817,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -5639,6 +6880,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-08",
+        "ADV_202602_NAL_202605": "2025-08-29",
+        "ADV_202603_NAL_202606": "2025-09-18",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-12",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-23",
+        "ADV_202609_NAL_202612": "2026-01-20",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-25",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -5691,6 +6941,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-16",
         "ADV_202907_NAL_202910": "2028-12-07"
+      },
+      "predecesora": {
+        "no": "45",
+        "actividad": "Ingenieria Recibe Bocetos Azzorti, define prendas que se desarrollan por 3D y 2D e inician Patronaje"
       }
     },
     {
@@ -5701,6 +6955,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -5755,6 +7018,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-04",
+        "ADV_202602_NAL_202605": "2025-08-27",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-02",
+        "ADV_202605_NAL_202608": "2025-10-21",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-11-28",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-16",
         "ADV_202610_NAL_202613": "2026-02-03",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-12",
@@ -5807,6 +7079,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-27",
         "ADV_202906_NAL_202909": "2028-11-14",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "52",
+        "actividad": "Taller Corte Inicia Corte de prendas 2D Livva"
       }
     },
     {
@@ -5817,6 +7093,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -5871,6 +7156,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-11",
+        "ADV_202602_NAL_202605": "2025-09-01",
+        "ADV_202603_NAL_202606": "2025-09-19",
+        "ADV_202604_NAL_202607": "2025-10-07",
+        "ADV_202605_NAL_202608": "2025-10-24",
+        "ADV_202606_NAL_202609": "2025-11-13",
+        "ADV_202607_NAL_202610": "2025-12-03",
+        "ADV_202608_NAL_202611": "2025-12-26",
+        "ADV_202609_NAL_202612": "2026-01-21",
         "ADV_202610_NAL_202613": "2026-02-06",
         "ADV_202611_NAL_202614": "2026-02-26",
         "ADV_202612_NAL_202615": "2026-03-17",
@@ -5923,6 +7217,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-01",
         "ADV_202906_NAL_202909": "2028-11-17",
         "ADV_202907_NAL_202910": "2028-12-11"
+      },
+      "predecesora": {
+        "no": "53",
+        "actividad": "Taller Corte Inicia Corte de prendas 2D Azzorti"
       }
     },
     {
@@ -5933,6 +7231,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -5987,6 +7294,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-06",
+        "ADV_202602_NAL_202605": "2025-08-29",
+        "ADV_202603_NAL_202606": "2025-09-18",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-12",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-23",
+        "ADV_202609_NAL_202612": "2026-01-20",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-25",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -6039,6 +7355,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-16",
         "ADV_202907_NAL_202910": "2028-12-07"
+      },
+      "predecesora": {
+        "no": "54",
+        "actividad": "Taller inicia proceso especial Livva (Estampado, Laser, Bordado, etc) 2D"
       }
     },
     {
@@ -6049,6 +7369,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -6103,6 +7432,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-13",
+        "ADV_202602_NAL_202605": "2025-09-03",
+        "ADV_202603_NAL_202606": "2025-09-23",
+        "ADV_202604_NAL_202607": "2025-10-09",
+        "ADV_202605_NAL_202608": "2025-10-28",
+        "ADV_202606_NAL_202609": "2025-11-18",
+        "ADV_202607_NAL_202610": "2025-12-05",
+        "ADV_202608_NAL_202611": "2025-12-30",
+        "ADV_202609_NAL_202612": "2026-01-23",
         "ADV_202610_NAL_202613": "2026-02-10",
         "ADV_202611_NAL_202614": "2026-03-02",
         "ADV_202612_NAL_202615": "2026-03-19",
@@ -6155,6 +7493,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-03",
         "ADV_202906_NAL_202909": "2028-11-21",
         "ADV_202907_NAL_202910": "2028-12-13"
+      },
+      "predecesora": {
+        "no": "55",
+        "actividad": "Taller inicia proceso especial Azzorti (Estampado, Laser, Bordado, etc) 2D"
       }
     },
     {
@@ -6165,6 +7507,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6219,6 +7570,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-04",
+        "ADV_202602_NAL_202605": "2025-08-27",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-02",
+        "ADV_202605_NAL_202608": "2025-10-21",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-11-28",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-16",
         "ADV_202610_NAL_202613": "2026-02-03",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-12",
@@ -6271,6 +7631,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-27",
         "ADV_202906_NAL_202909": "2028-11-14",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "52",
+        "actividad": "Taller Corte Inicia Corte de prendas 2D Livva"
       }
     },
     {
@@ -6281,6 +7645,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6335,6 +7708,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-11",
+        "ADV_202602_NAL_202605": "2025-09-01",
+        "ADV_202603_NAL_202606": "2025-09-19",
+        "ADV_202604_NAL_202607": "2025-10-07",
+        "ADV_202605_NAL_202608": "2025-10-24",
+        "ADV_202606_NAL_202609": "2025-11-13",
+        "ADV_202607_NAL_202610": "2025-12-03",
+        "ADV_202608_NAL_202611": "2025-12-26",
+        "ADV_202609_NAL_202612": "2026-01-21",
         "ADV_202610_NAL_202613": "2026-02-06",
         "ADV_202611_NAL_202614": "2026-02-26",
         "ADV_202612_NAL_202615": "2026-03-17",
@@ -6387,6 +7769,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-01",
         "ADV_202906_NAL_202909": "2028-11-17",
         "ADV_202907_NAL_202910": "2028-12-11"
+      },
+      "predecesora": {
+        "no": "53",
+        "actividad": "Taller Corte Inicia Corte de prendas 2D Azzorti"
       }
     },
     {
@@ -6397,6 +7783,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6451,6 +7846,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-05",
+        "ADV_202602_NAL_202605": "2025-08-28",
+        "ADV_202603_NAL_202606": "2025-09-17",
+        "ADV_202604_NAL_202607": "2025-10-03",
+        "ADV_202605_NAL_202608": "2025-10-22",
+        "ADV_202606_NAL_202609": "2025-11-11",
+        "ADV_202607_NAL_202610": "2025-12-01",
+        "ADV_202608_NAL_202611": "2025-12-22",
+        "ADV_202609_NAL_202612": "2026-01-19",
         "ADV_202610_NAL_202613": "2026-02-04",
         "ADV_202611_NAL_202614": "2026-02-24",
         "ADV_202612_NAL_202615": "2026-03-13",
@@ -6503,6 +7907,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-30",
         "ADV_202906_NAL_202909": "2028-11-15",
         "ADV_202907_NAL_202910": "2028-12-06"
+      },
+      "predecesora": {
+        "no": "58",
+        "actividad": "Taller Inicia Confeccion 2D Livva"
       }
     },
     {
@@ -6513,6 +7921,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6567,6 +7984,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-12",
+        "ADV_202602_NAL_202605": "2025-09-02",
+        "ADV_202603_NAL_202606": "2025-09-22",
+        "ADV_202604_NAL_202607": "2025-10-08",
+        "ADV_202605_NAL_202608": "2025-10-27",
+        "ADV_202606_NAL_202609": "2025-11-14",
+        "ADV_202607_NAL_202610": "2025-12-04",
+        "ADV_202608_NAL_202611": "2025-12-29",
+        "ADV_202609_NAL_202612": "2026-01-22",
         "ADV_202610_NAL_202613": "2026-02-09",
         "ADV_202611_NAL_202614": "2026-02-27",
         "ADV_202612_NAL_202615": "2026-03-18",
@@ -6619,6 +8045,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-02",
         "ADV_202906_NAL_202909": "2028-11-20",
         "ADV_202907_NAL_202910": "2028-12-12"
+      },
+      "predecesora": {
+        "no": "59",
+        "actividad": "Taller Inicia Confeccion 2D Azzorti"
       }
     },
     {
@@ -6629,6 +8059,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6683,6 +8122,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-06",
+        "ADV_202602_NAL_202605": "2025-08-29",
+        "ADV_202603_NAL_202606": "2025-09-18",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-12",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-23",
+        "ADV_202609_NAL_202612": "2026-01-20",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-25",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -6735,6 +8183,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-16",
         "ADV_202907_NAL_202910": "2028-12-07"
+      },
+      "predecesora": {
+        "no": "60",
+        "actividad": "Patronista Analista Inicia revision Prendas 2D en Missy Livva"
       }
     },
     {
@@ -6745,6 +8197,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6799,6 +8260,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-13",
+        "ADV_202602_NAL_202605": "2025-09-03",
+        "ADV_202603_NAL_202606": "2025-09-23",
+        "ADV_202604_NAL_202607": "2025-10-09",
+        "ADV_202605_NAL_202608": "2025-10-28",
+        "ADV_202606_NAL_202609": "2025-11-18",
+        "ADV_202607_NAL_202610": "2025-12-05",
+        "ADV_202608_NAL_202611": "2025-12-30",
+        "ADV_202609_NAL_202612": "2026-01-23",
         "ADV_202610_NAL_202613": "2026-02-10",
         "ADV_202611_NAL_202614": "2026-03-02",
         "ADV_202612_NAL_202615": "2026-03-19",
@@ -6851,6 +8321,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-03",
         "ADV_202906_NAL_202909": "2028-11-21",
         "ADV_202907_NAL_202910": "2028-12-13"
+      },
+      "predecesora": {
+        "no": "61",
+        "actividad": "Patronista Analista Inicia revision Prendas 2D en Missy Azzorti"
       }
     },
     {
@@ -6861,6 +8335,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -6915,6 +8398,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-19",
+        "ADV_202602_NAL_202605": "2025-09-09",
+        "ADV_202603_NAL_202606": "2025-09-29",
+        "ADV_202604_NAL_202607": "2025-10-16",
+        "ADV_202605_NAL_202608": "2025-11-04",
+        "ADV_202606_NAL_202609": "2025-11-24",
+        "ADV_202607_NAL_202610": "2025-12-12",
+        "ADV_202608_NAL_202611": "2026-01-07",
+        "ADV_202609_NAL_202612": "2026-01-29",
         "ADV_202610_NAL_202613": "2026-02-16",
         "ADV_202611_NAL_202614": "2026-03-06",
         "ADV_202612_NAL_202615": "2026-03-26",
@@ -6967,6 +8459,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-10",
         "ADV_202906_NAL_202909": "2028-11-27",
         "ADV_202907_NAL_202910": "2028-12-19"
+      },
+      "predecesora": {
+        "no": "66",
+        "actividad": "Patronista Analista Termina revision Prendas 2D en Missy Livva"
       }
     },
     {
@@ -6977,6 +8473,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7031,6 +8536,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-25",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -7083,6 +8597,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "67",
+        "actividad": "Patronista Analista Termina revision Prendas 2D en Missy Azzorti"
       }
     },
     {
@@ -7093,6 +8611,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7147,6 +8674,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-20",
+        "ADV_202602_NAL_202605": "2025-09-10",
+        "ADV_202603_NAL_202606": "2025-09-30",
+        "ADV_202604_NAL_202607": "2025-10-17",
+        "ADV_202605_NAL_202608": "2025-11-05",
+        "ADV_202606_NAL_202609": "2025-11-25",
+        "ADV_202607_NAL_202610": "2025-12-15",
+        "ADV_202608_NAL_202611": "2026-01-08",
+        "ADV_202609_NAL_202612": "2026-01-30",
         "ADV_202610_NAL_202613": "2026-02-17",
         "ADV_202611_NAL_202614": "2026-03-09",
         "ADV_202612_NAL_202615": "2026-03-27",
@@ -7199,6 +8735,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-14",
         "ADV_202906_NAL_202909": "2028-11-28",
         "ADV_202907_NAL_202910": "2028-12-20"
+      },
+      "predecesora": {
+        "no": "68",
+        "actividad": "Ingenieria Analista termina de entregar costos para modelacion 2D Livva MO"
       }
     },
     {
@@ -7209,6 +8749,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7263,6 +8812,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-10-03",
+        "ADV_202604_NAL_202607": "2025-10-22",
+        "ADV_202605_NAL_202608": "2025-11-10",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -7315,6 +8873,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "69",
+        "actividad": "Ingenieria Analista termina de entregar costos para modelacion 2D Azzorti MO"
       }
     },
     {
@@ -7325,6 +8887,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7379,6 +8950,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-21",
+        "ADV_202602_NAL_202605": "2025-09-11",
+        "ADV_202603_NAL_202606": "2025-10-01",
+        "ADV_202604_NAL_202607": "2025-10-20",
+        "ADV_202605_NAL_202608": "2025-11-06",
+        "ADV_202606_NAL_202609": "2025-11-26",
+        "ADV_202607_NAL_202610": "2025-12-16",
+        "ADV_202608_NAL_202611": "2026-01-09",
+        "ADV_202609_NAL_202612": "2026-02-02",
         "ADV_202610_NAL_202613": "2026-02-18",
         "ADV_202611_NAL_202614": "2026-03-10",
         "ADV_202612_NAL_202615": "2026-03-30",
@@ -7431,6 +9011,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-15",
         "ADV_202906_NAL_202909": "2028-11-29",
         "ADV_202907_NAL_202910": "2028-12-21"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -7441,6 +9025,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7495,6 +9088,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-27",
+        "ADV_202602_NAL_202605": "2025-09-16",
+        "ADV_202603_NAL_202606": "2025-10-06",
+        "ADV_202604_NAL_202607": "2025-10-23",
+        "ADV_202605_NAL_202608": "2025-11-11",
+        "ADV_202606_NAL_202609": "2025-12-01",
+        "ADV_202607_NAL_202610": "2025-12-19",
+        "ADV_202608_NAL_202611": "2026-01-15",
+        "ADV_202609_NAL_202612": "2026-02-05",
         "ADV_202610_NAL_202613": "2026-02-23",
         "ADV_202611_NAL_202614": "2026-03-13",
         "ADV_202612_NAL_202615": "2026-04-06",
@@ -7547,6 +9149,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-20",
         "ADV_202906_NAL_202909": "2028-12-04",
         "ADV_202907_NAL_202910": "2028-12-27"
+      },
+      "predecesora": {
+        "no": "75",
+        "actividad": "Modelacion Azzorti 2D MO"
       }
     },
     {
@@ -7557,6 +9163,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7611,6 +9226,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-19",
+        "ADV_202602_NAL_202605": "2025-09-09",
+        "ADV_202603_NAL_202606": "2025-09-29",
+        "ADV_202604_NAL_202607": "2025-10-16",
+        "ADV_202605_NAL_202608": "2025-11-04",
+        "ADV_202606_NAL_202609": "2025-11-24",
+        "ADV_202607_NAL_202610": "2025-12-12",
+        "ADV_202608_NAL_202611": "2026-01-07",
+        "ADV_202609_NAL_202612": "2026-01-29",
         "ADV_202610_NAL_202613": "2026-02-16",
         "ADV_202611_NAL_202614": "2026-03-06",
         "ADV_202612_NAL_202615": "2026-03-26",
@@ -7663,6 +9287,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-10",
         "ADV_202906_NAL_202909": "2028-11-27",
         "ADV_202907_NAL_202910": "2028-12-19"
+      },
+      "predecesora": {
+        "no": "72",
+        "actividad": "Modelacion Virtual 3D Livva MO"
       }
     },
     {
@@ -7673,6 +9301,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -7727,6 +9364,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-25",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -7779,6 +9425,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "74",
+        "actividad": "Modelacion Virtual 3D Azzorti MO"
       }
     },
     {
@@ -7789,6 +9439,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -7843,6 +9502,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-20",
+        "ADV_202602_NAL_202605": "2025-09-10",
+        "ADV_202603_NAL_202606": "2025-09-30",
+        "ADV_202604_NAL_202607": "2025-10-17",
+        "ADV_202605_NAL_202608": "2025-11-05",
+        "ADV_202606_NAL_202609": "2025-11-25",
+        "ADV_202607_NAL_202610": "2025-12-15",
+        "ADV_202608_NAL_202611": "2026-01-08",
+        "ADV_202609_NAL_202612": "2026-01-30",
         "ADV_202610_NAL_202613": "2026-02-17",
         "ADV_202611_NAL_202614": "2026-03-09",
         "ADV_202612_NAL_202615": "2026-03-27",
@@ -7895,6 +9563,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-14",
         "ADV_202906_NAL_202909": "2028-11-28",
         "ADV_202907_NAL_202910": "2028-12-20"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -7905,6 +9577,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 7,
       "dh": {
+        "ADV_202601_NAL_202604": 7,
+        "ADV_202602_NAL_202605": 7,
+        "ADV_202603_NAL_202606": 7,
+        "ADV_202604_NAL_202607": 7,
+        "ADV_202605_NAL_202608": 7,
+        "ADV_202606_NAL_202609": 7,
+        "ADV_202607_NAL_202610": 7,
+        "ADV_202608_NAL_202611": 7,
+        "ADV_202609_NAL_202612": 7,
         "ADV_202610_NAL_202613": 7,
         "ADV_202611_NAL_202614": 7,
         "ADV_202612_NAL_202615": 7,
@@ -7959,6 +9640,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 7
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-22",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -8011,6 +9701,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "86",
+        "actividad": "Ingenieria Analista Patronista revisan y entregan arreglos 2D de Livva MO"
       }
     },
     {
@@ -8021,6 +9715,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -8075,6 +9778,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-10-03",
+        "ADV_202604_NAL_202607": "2025-10-22",
+        "ADV_202605_NAL_202608": "2025-11-10",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -8127,6 +9839,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "75",
+        "actividad": "Modelacion Azzorti 2D MO"
       }
     },
     {
@@ -8137,6 +9853,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -8191,6 +9916,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-28",
+        "ADV_202602_NAL_202605": "2025-09-17",
+        "ADV_202603_NAL_202606": "2025-10-07",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-12",
+        "ADV_202606_NAL_202609": "2025-12-02",
+        "ADV_202607_NAL_202610": "2025-12-22",
+        "ADV_202608_NAL_202611": "2026-01-16",
+        "ADV_202609_NAL_202612": "2026-02-06",
         "ADV_202610_NAL_202613": "2026-02-24",
         "ADV_202611_NAL_202614": "2026-03-16",
         "ADV_202612_NAL_202615": "2026-04-07",
@@ -8243,6 +9977,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-21",
         "ADV_202906_NAL_202909": "2028-12-05",
         "ADV_202907_NAL_202910": "2028-12-28"
+      },
+      "predecesora": {
+        "no": "87",
+        "actividad": "Ingenieria Analista Patronista revisan y entregna arreglos 2D de Azzorti MO"
       }
     },
     {
@@ -8253,6 +9991,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -8307,6 +10054,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-20",
+        "ADV_202602_NAL_202605": "2025-09-10",
+        "ADV_202603_NAL_202606": "2025-09-30",
+        "ADV_202604_NAL_202607": "2025-10-17",
+        "ADV_202605_NAL_202608": "2025-11-05",
+        "ADV_202606_NAL_202609": "2025-11-25",
+        "ADV_202607_NAL_202610": "2025-12-15",
+        "ADV_202608_NAL_202611": "2026-01-08",
+        "ADV_202609_NAL_202612": "2026-01-30",
         "ADV_202610_NAL_202613": "2026-02-17",
         "ADV_202611_NAL_202614": "2026-03-09",
         "ADV_202612_NAL_202615": "2026-03-27",
@@ -8359,6 +10115,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-14",
         "ADV_202906_NAL_202909": "2028-11-28",
         "ADV_202907_NAL_202910": "2028-12-20"
+      },
+      "predecesora": {
+        "no": "72",
+        "actividad": "Modelacion Virtual 3D Livva MO"
       }
     },
     {
@@ -8369,6 +10129,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -8423,6 +10192,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-22",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -8475,6 +10253,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -8485,6 +10267,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -8539,6 +10330,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-10-03",
+        "ADV_202604_NAL_202607": "2025-10-22",
+        "ADV_202605_NAL_202608": "2025-11-10",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -8591,6 +10391,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "74",
+        "actividad": "Modelacion Virtual 3D Azzorti MO"
       }
     },
     {
@@ -8601,6 +10405,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -8655,6 +10468,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-28",
+        "ADV_202602_NAL_202605": "2025-09-17",
+        "ADV_202603_NAL_202606": "2025-10-07",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-12",
+        "ADV_202606_NAL_202609": "2025-12-02",
+        "ADV_202607_NAL_202610": "2025-12-22",
+        "ADV_202608_NAL_202611": "2026-01-16",
+        "ADV_202609_NAL_202612": "2026-02-06",
         "ADV_202610_NAL_202613": "2026-02-24",
         "ADV_202611_NAL_202614": "2026-03-16",
         "ADV_202612_NAL_202615": "2026-04-07",
@@ -8707,6 +10529,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-21",
         "ADV_202906_NAL_202909": "2028-12-05",
         "ADV_202907_NAL_202910": "2028-12-28"
+      },
+      "predecesora": {
+        "no": "75",
+        "actividad": "Modelacion Azzorti 2D MO"
       }
     },
     {
@@ -8717,6 +10543,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -8771,6 +10606,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-25",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-10-03",
+        "ADV_202604_NAL_202607": "2025-10-22",
+        "ADV_202605_NAL_202608": "2025-11-10",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -8823,6 +10667,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "77",
+        "actividad": "Disenador Moda realiza los cambios en el boceto (ARREGLOS) de la modelacion de Livva 2D y entrega MO"
       }
     },
     {
@@ -8833,6 +10681,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -8887,6 +10744,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-29",
+        "ADV_202602_NAL_202605": "2025-09-18",
+        "ADV_202603_NAL_202606": "2025-10-08",
+        "ADV_202604_NAL_202607": "2025-10-27",
+        "ADV_202605_NAL_202608": "2025-11-13",
+        "ADV_202606_NAL_202609": "2025-12-03",
+        "ADV_202607_NAL_202610": "2025-12-23",
+        "ADV_202608_NAL_202611": "2026-01-19",
+        "ADV_202609_NAL_202612": "2026-02-09",
         "ADV_202610_NAL_202613": "2026-02-25",
         "ADV_202611_NAL_202614": "2026-03-17",
         "ADV_202612_NAL_202615": "2026-04-08",
@@ -8939,6 +10805,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-22",
         "ADV_202906_NAL_202909": "2028-12-06",
         "ADV_202907_NAL_202910": "2028-12-29"
+      },
+      "predecesora": {
+        "no": "79",
+        "actividad": "Disenador Moda realiza los cambios en el boceto (ARREGLOS) de la modelacion de Azzorti 2D y entrega MO"
       }
     },
     {
@@ -8949,6 +10819,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9003,6 +10882,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-21",
+        "ADV_202602_NAL_202605": "2025-09-11",
+        "ADV_202603_NAL_202606": "2025-10-01",
+        "ADV_202604_NAL_202607": "2025-10-20",
+        "ADV_202605_NAL_202608": "2025-11-06",
+        "ADV_202606_NAL_202609": "2025-11-26",
+        "ADV_202607_NAL_202610": "2025-12-16",
+        "ADV_202608_NAL_202611": "2026-01-09",
+        "ADV_202609_NAL_202612": "2026-02-02",
         "ADV_202610_NAL_202613": "2026-02-18",
         "ADV_202611_NAL_202614": "2026-03-10",
         "ADV_202612_NAL_202615": "2026-03-30",
@@ -9055,6 +10943,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-15",
         "ADV_202906_NAL_202909": "2028-11-29",
         "ADV_202907_NAL_202910": "2028-12-21"
+      },
+      "predecesora": {
+        "no": "72",
+        "actividad": "Modelacion Virtual 3D Livva MO"
       }
     },
     {
@@ -9065,6 +10957,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9119,6 +11020,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-27",
+        "ADV_202602_NAL_202605": "2025-09-16",
+        "ADV_202603_NAL_202606": "2025-10-06",
+        "ADV_202604_NAL_202607": "2025-10-23",
+        "ADV_202605_NAL_202608": "2025-11-11",
+        "ADV_202606_NAL_202609": "2025-12-01",
+        "ADV_202607_NAL_202610": "2025-12-19",
+        "ADV_202608_NAL_202611": "2026-01-15",
+        "ADV_202609_NAL_202612": "2026-02-05",
         "ADV_202610_NAL_202613": "2026-02-23",
         "ADV_202611_NAL_202614": "2026-03-13",
         "ADV_202612_NAL_202615": "2026-04-06",
@@ -9171,6 +11081,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-20",
         "ADV_202906_NAL_202909": "2028-12-04",
         "ADV_202907_NAL_202910": "2028-12-27"
+      },
+      "predecesora": {
+        "no": "74",
+        "actividad": "Modelacion Virtual 3D Azzorti MO"
       }
     },
     {
@@ -9181,6 +11095,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9235,6 +11158,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-01",
+        "ADV_202602_NAL_202605": "2025-09-22",
+        "ADV_202603_NAL_202606": "2025-10-10",
+        "ADV_202604_NAL_202607": "2025-10-29",
+        "ADV_202605_NAL_202608": "2025-11-18",
+        "ADV_202606_NAL_202609": "2025-12-05",
+        "ADV_202607_NAL_202610": "2025-12-29",
+        "ADV_202608_NAL_202611": "2026-01-21",
+        "ADV_202609_NAL_202612": "2026-02-11",
         "ADV_202610_NAL_202613": "2026-02-27",
         "ADV_202611_NAL_202614": "2026-03-19",
         "ADV_202612_NAL_202615": "2026-04-10",
@@ -9287,6 +11219,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-24",
         "ADV_202906_NAL_202909": "2028-12-11",
         "ADV_202907_NAL_202910": "2029-01-03"
+      },
+      "predecesora": {
+        "no": "86",
+        "actividad": "Ingenieria Analista Patronista revisan y entregan arreglos 2D de Livva MO"
       }
     },
     {
@@ -9297,6 +11233,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9351,6 +11296,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-08",
+        "ADV_202602_NAL_202605": "2025-09-26",
+        "ADV_202603_NAL_202606": "2025-10-17",
+        "ADV_202604_NAL_202607": "2025-11-05",
+        "ADV_202605_NAL_202608": "2025-11-24",
+        "ADV_202606_NAL_202609": "2025-12-12",
+        "ADV_202607_NAL_202610": "2026-01-06",
+        "ADV_202608_NAL_202611": "2026-01-27",
+        "ADV_202609_NAL_202612": "2026-02-17",
         "ADV_202610_NAL_202613": "2026-03-05",
         "ADV_202611_NAL_202614": "2026-03-26",
         "ADV_202612_NAL_202615": "2026-04-16",
@@ -9403,6 +11357,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-30",
         "ADV_202906_NAL_202909": "2028-12-15",
         "ADV_202907_NAL_202910": "2029-01-09"
+      },
+      "predecesora": {
+        "no": "87",
+        "actividad": "Ingenieria Analista Patronista revisan y entregna arreglos 2D de Azzorti MO"
       }
     },
     {
@@ -9413,6 +11371,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9467,6 +11434,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-02",
+        "ADV_202602_NAL_202605": "2025-09-23",
+        "ADV_202603_NAL_202606": "2025-10-14",
+        "ADV_202604_NAL_202607": "2025-10-30",
+        "ADV_202605_NAL_202608": "2025-11-19",
+        "ADV_202606_NAL_202609": "2025-12-09",
+        "ADV_202607_NAL_202610": "2025-12-30",
+        "ADV_202608_NAL_202611": "2026-01-22",
+        "ADV_202609_NAL_202612": "2026-02-12",
         "ADV_202610_NAL_202613": "2026-03-02",
         "ADV_202611_NAL_202614": "2026-03-20",
         "ADV_202612_NAL_202615": "2026-04-13",
@@ -9519,6 +11495,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-27",
         "ADV_202906_NAL_202909": "2028-12-12",
         "ADV_202907_NAL_202910": "2029-01-04"
+      },
+      "predecesora": {
+        "no": "107",
+        "actividad": "Asistente Ingenieria Muestras entrega prendas 2D y 3D nuevas de campaña para Armado de estampillas mas 2da salidas Livva a Mercadeo MO"
       }
     },
     {
@@ -9529,6 +11509,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9583,6 +11572,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-09",
+        "ADV_202602_NAL_202605": "2025-09-29",
+        "ADV_202603_NAL_202606": "2025-10-20",
+        "ADV_202604_NAL_202607": "2025-11-06",
+        "ADV_202605_NAL_202608": "2025-11-25",
+        "ADV_202606_NAL_202609": "2025-12-15",
+        "ADV_202607_NAL_202610": "2026-01-07",
+        "ADV_202608_NAL_202611": "2026-01-28",
+        "ADV_202609_NAL_202612": "2026-02-18",
         "ADV_202610_NAL_202613": "2026-03-06",
         "ADV_202611_NAL_202614": "2026-03-27",
         "ADV_202612_NAL_202615": "2026-04-17",
@@ -9635,6 +11633,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-01",
         "ADV_202906_NAL_202909": "2028-12-18",
         "ADV_202907_NAL_202910": "2029-01-10"
+      },
+      "predecesora": {
+        "no": "108",
+        "actividad": "Asistente Ingenieria Muestras entrega prendas 2D y 3D nuevas de campaña para Armado de estampillas mas 2da salidas Azzorti a Mercadeo MO"
       }
     },
     {
@@ -9645,6 +11647,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -9699,6 +11710,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-16",
+        "ADV_202603_NAL_202606": "2025-10-06",
+        "ADV_202604_NAL_202607": "2025-10-23",
+        "ADV_202605_NAL_202608": "2025-11-11",
+        "ADV_202606_NAL_202609": "2025-12-01",
+        "ADV_202607_NAL_202610": "2025-12-19",
+        "ADV_202608_NAL_202611": "2026-01-15",
+        "ADV_202609_NAL_202612": "2026-02-05",
         "ADV_202610_NAL_202613": "2026-02-23",
         "ADV_202611_NAL_202614": "2026-03-13",
         "ADV_202612_NAL_202615": "2026-04-06",
@@ -9751,6 +11771,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-20",
         "ADV_202906_NAL_202909": "2028-12-04",
         "ADV_202907_NAL_202910": "2028-12-27"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -9761,6 +11785,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -9815,6 +11848,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-01",
+        "ADV_202602_NAL_202605": "2025-09-19",
+        "ADV_202603_NAL_202606": "2025-10-09",
+        "ADV_202604_NAL_202607": "2025-10-28",
+        "ADV_202605_NAL_202608": "2025-11-14",
+        "ADV_202606_NAL_202609": "2025-12-04",
+        "ADV_202607_NAL_202610": "2025-12-26",
+        "ADV_202608_NAL_202611": "2026-01-20",
+        "ADV_202609_NAL_202612": "2026-02-10",
         "ADV_202610_NAL_202613": "2026-02-26",
         "ADV_202611_NAL_202614": "2026-03-18",
         "ADV_202612_NAL_202615": "2026-04-09",
@@ -9867,6 +11909,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-23",
         "ADV_202906_NAL_202909": "2028-12-07",
         "ADV_202907_NAL_202910": "2029-01-02"
+      },
+      "predecesora": {
+        "no": "75",
+        "actividad": "Modelacion Azzorti 2D MO"
       }
     },
     {
@@ -9877,6 +11923,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -9931,6 +11986,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-22",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -9983,6 +12047,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "82",
+        "actividad": "Patronista Inicia conversion de molderia a Programa Optitex entrega Boceto de Livva de referencia Aprobadas y Arreglos 3D MO"
       }
     },
     {
@@ -9993,6 +12061,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10047,6 +12124,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-25",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-10-03",
+        "ADV_202604_NAL_202607": "2025-10-22",
+        "ADV_202605_NAL_202608": "2025-11-10",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -10099,6 +12185,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "90",
+        "actividad": "Taller Ingenieria recibe Molderia e inicia corte de prendas aprobadas de Livva 3D MO"
       }
     },
     {
@@ -10109,6 +12199,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -10163,6 +12262,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-27",
+        "ADV_202602_NAL_202605": "2025-09-17",
+        "ADV_202603_NAL_202606": "2025-10-07",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-12",
+        "ADV_202606_NAL_202609": "2025-12-02",
+        "ADV_202607_NAL_202610": "2025-12-22",
+        "ADV_202608_NAL_202611": "2026-01-16",
+        "ADV_202609_NAL_202612": "2026-02-06",
         "ADV_202610_NAL_202613": "2026-02-24",
         "ADV_202611_NAL_202614": "2026-03-16",
         "ADV_202612_NAL_202615": "2026-04-07",
@@ -10215,6 +12323,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-21",
         "ADV_202906_NAL_202909": "2028-12-05",
         "ADV_202907_NAL_202910": "2028-12-28"
+      },
+      "predecesora": {
+        "no": "91",
+        "actividad": "Taller Ingenieria realiza Proceso especial de prendas 3D Livva"
       }
     },
     {
@@ -10225,6 +12337,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10279,6 +12400,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-28",
+        "ADV_202602_NAL_202605": "2025-09-17",
+        "ADV_202603_NAL_202606": "2025-10-07",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-12",
+        "ADV_202606_NAL_202609": "2025-12-02",
+        "ADV_202607_NAL_202610": "2025-12-22",
+        "ADV_202608_NAL_202611": "2026-01-16",
+        "ADV_202609_NAL_202612": "2026-02-06",
         "ADV_202610_NAL_202613": "2026-02-24",
         "ADV_202611_NAL_202614": "2026-03-16",
         "ADV_202612_NAL_202615": "2026-04-07",
@@ -10331,6 +12461,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-21",
         "ADV_202906_NAL_202909": "2028-12-05",
         "ADV_202907_NAL_202910": "2028-12-28"
+      },
+      "predecesora": {
+        "no": "83",
+        "actividad": "Patronista Inicia conversion de molderia a Programa Optitex entrega Boceto de Azzorti de referencia Aprobadas y arreglos 3D MO"
       }
     },
     {
@@ -10341,6 +12475,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10395,6 +12538,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-29",
+        "ADV_202602_NAL_202605": "2025-09-18",
+        "ADV_202603_NAL_202606": "2025-10-08",
+        "ADV_202604_NAL_202607": "2025-10-27",
+        "ADV_202605_NAL_202608": "2025-11-13",
+        "ADV_202606_NAL_202609": "2025-12-03",
+        "ADV_202607_NAL_202610": "2025-12-23",
+        "ADV_202608_NAL_202611": "2026-01-19",
+        "ADV_202609_NAL_202612": "2026-02-09",
         "ADV_202610_NAL_202613": "2026-02-25",
         "ADV_202611_NAL_202614": "2026-03-17",
         "ADV_202612_NAL_202615": "2026-04-08",
@@ -10447,6 +12599,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-22",
         "ADV_202906_NAL_202909": "2028-12-06",
         "ADV_202907_NAL_202910": "2028-12-29"
+      },
+      "predecesora": {
+        "no": "93",
+        "actividad": "Ingenieria taller recibe Molderia e inicia corte de prendas aprobadas de Azzorti 3D MO"
       }
     },
     {
@@ -10457,6 +12613,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -10511,6 +12676,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-02",
+        "ADV_202602_NAL_202605": "2025-09-22",
+        "ADV_202603_NAL_202606": "2025-10-10",
+        "ADV_202604_NAL_202607": "2025-10-29",
+        "ADV_202605_NAL_202608": "2025-11-18",
+        "ADV_202606_NAL_202609": "2025-12-05",
+        "ADV_202607_NAL_202610": "2025-12-29",
+        "ADV_202608_NAL_202611": "2026-01-21",
+        "ADV_202609_NAL_202612": "2026-02-11",
         "ADV_202610_NAL_202613": "2026-02-27",
         "ADV_202611_NAL_202614": "2026-03-19",
         "ADV_202612_NAL_202615": "2026-04-10",
@@ -10563,6 +12737,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-24",
         "ADV_202906_NAL_202909": "2028-12-11",
         "ADV_202907_NAL_202910": "2029-01-03"
+      },
+      "predecesora": {
+        "no": "94",
+        "actividad": "Taller Ingenieria realiza Proceso especial de prendas 3D Azzorti"
       }
     },
     {
@@ -10573,6 +12751,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10627,6 +12814,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-28",
+        "ADV_202602_NAL_202605": "2025-09-18",
+        "ADV_202603_NAL_202606": "2025-10-08",
+        "ADV_202604_NAL_202607": "2025-10-27",
+        "ADV_202605_NAL_202608": "2025-11-13",
+        "ADV_202606_NAL_202609": "2025-12-03",
+        "ADV_202607_NAL_202610": "2025-12-23",
+        "ADV_202608_NAL_202611": "2026-01-19",
+        "ADV_202609_NAL_202612": "2026-02-09",
         "ADV_202610_NAL_202613": "2026-02-25",
         "ADV_202611_NAL_202614": "2026-03-17",
         "ADV_202612_NAL_202615": "2026-04-08",
@@ -10679,6 +12875,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-22",
         "ADV_202906_NAL_202909": "2028-12-06",
         "ADV_202907_NAL_202910": "2028-12-29"
+      },
+      "predecesora": {
+        "no": "92",
+        "actividad": "Taller Ingenieria realiza confeccion de prendas 3D Livva"
       }
     },
     {
@@ -10689,6 +12889,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10743,6 +12952,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-03",
+        "ADV_202602_NAL_202605": "2025-09-23",
+        "ADV_202603_NAL_202606": "2025-10-14",
+        "ADV_202604_NAL_202607": "2025-10-30",
+        "ADV_202605_NAL_202608": "2025-11-19",
+        "ADV_202606_NAL_202609": "2025-12-09",
+        "ADV_202607_NAL_202610": "2025-12-30",
+        "ADV_202608_NAL_202611": "2026-01-22",
+        "ADV_202609_NAL_202612": "2026-02-12",
         "ADV_202610_NAL_202613": "2026-03-02",
         "ADV_202611_NAL_202614": "2026-03-20",
         "ADV_202612_NAL_202615": "2026-04-13",
@@ -10795,6 +13013,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-27",
         "ADV_202906_NAL_202909": "2028-12-12",
         "ADV_202907_NAL_202910": "2029-01-04"
+      },
+      "predecesora": {
+        "no": "95",
+        "actividad": "Taller Ingenieria realiza confeccion de prendas 3D Azzorti"
       }
     },
     {
@@ -10805,6 +13027,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10859,6 +13090,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-21",
+        "ADV_202602_NAL_202605": "2025-09-11",
+        "ADV_202603_NAL_202606": "2025-10-01",
+        "ADV_202604_NAL_202607": "2025-10-20",
+        "ADV_202605_NAL_202608": "2025-11-06",
+        "ADV_202606_NAL_202609": "2025-11-26",
+        "ADV_202607_NAL_202610": "2025-12-16",
+        "ADV_202608_NAL_202611": "2026-01-09",
+        "ADV_202609_NAL_202612": "2026-02-02",
         "ADV_202610_NAL_202613": "2026-02-18",
         "ADV_202611_NAL_202614": "2026-03-10",
         "ADV_202612_NAL_202615": "2026-03-30",
@@ -10911,6 +13151,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-15",
         "ADV_202906_NAL_202909": "2028-11-29",
         "ADV_202907_NAL_202910": "2028-12-21"
+      },
+      "predecesora": {
+        "no": "72",
+        "actividad": "Modelacion Virtual 3D Livva MO"
       }
     },
     {
@@ -10921,6 +13165,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -10975,6 +13228,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-16",
+        "ADV_202603_NAL_202606": "2025-10-06",
+        "ADV_202604_NAL_202607": "2025-10-23",
+        "ADV_202605_NAL_202608": "2025-11-11",
+        "ADV_202606_NAL_202609": "2025-11-28",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-14",
+        "ADV_202609_NAL_202612": "2026-02-04",
         "ADV_202610_NAL_202613": "2026-02-20",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-01",
@@ -11027,6 +13289,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-17",
         "ADV_202906_NAL_202909": "2028-12-01",
         "ADV_202907_NAL_202910": "2028-12-26"
+      },
+      "predecesora": {
+        "no": "73",
+        "actividad": "Modelacion Livva 2D MO"
       }
     },
     {
@@ -11037,6 +13303,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -11091,6 +13366,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-22",
+        "ADV_202602_NAL_202605": "2025-09-12",
+        "ADV_202603_NAL_202606": "2025-10-02",
+        "ADV_202604_NAL_202607": "2025-10-21",
+        "ADV_202605_NAL_202608": "2025-11-07",
+        "ADV_202606_NAL_202609": "2025-11-27",
+        "ADV_202607_NAL_202610": "2025-12-17",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-03",
         "ADV_202610_NAL_202613": "2026-02-19",
         "ADV_202611_NAL_202614": "2026-03-11",
         "ADV_202612_NAL_202615": "2026-03-31",
@@ -11143,6 +13427,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-16",
         "ADV_202906_NAL_202909": "2028-11-30",
         "ADV_202907_NAL_202910": "2028-12-22"
+      },
+      "predecesora": {
+        "no": "98",
+        "actividad": "Ingeneria inicia proceso de patronaje 3D final Industrializacion Livva Azzorti"
       }
     },
     {
@@ -11153,6 +13441,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -11207,6 +13504,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-27",
+        "ADV_202602_NAL_202605": "2025-09-17",
+        "ADV_202603_NAL_202606": "2025-10-07",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-12",
+        "ADV_202606_NAL_202609": "2025-12-01",
+        "ADV_202607_NAL_202610": "2025-12-19",
+        "ADV_202608_NAL_202611": "2026-01-15",
+        "ADV_202609_NAL_202612": "2026-02-05",
         "ADV_202610_NAL_202613": "2026-02-23",
         "ADV_202611_NAL_202614": "2026-03-13",
         "ADV_202612_NAL_202615": "2026-04-06",
@@ -11259,6 +13565,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-20",
         "ADV_202906_NAL_202909": "2028-12-04",
         "ADV_202907_NAL_202910": "2028-12-27"
+      },
+      "predecesora": {
+        "no": "99",
+        "actividad": "Ingeneria inicia proceso de patronaje 2D Industrializacion Livva Azzorti"
       }
     },
     {
@@ -11269,6 +13579,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -11323,6 +13642,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-16",
+        "ADV_202602_NAL_202605": "2025-10-06",
+        "ADV_202603_NAL_202606": "2025-10-27",
+        "ADV_202604_NAL_202607": "2025-11-13",
+        "ADV_202605_NAL_202608": "2025-12-02",
+        "ADV_202606_NAL_202609": "2025-12-22",
+        "ADV_202607_NAL_202610": "2026-01-15",
+        "ADV_202608_NAL_202611": "2026-02-04",
+        "ADV_202609_NAL_202612": "2026-02-25",
         "ADV_202610_NAL_202613": "2026-03-13",
         "ADV_202611_NAL_202614": "2026-04-07",
         "ADV_202612_NAL_202615": "2026-04-24",
@@ -11375,6 +13703,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-11",
         "ADV_202906_NAL_202909": "2028-12-26",
         "ADV_202907_NAL_202910": "2029-01-17"
+      },
+      "predecesora": {
+        "no": "103",
+        "actividad": "Ingenieria Analista Termina FT, FC y Estructuras 2D y 3D para industrializacion Azzorti y Livva"
       }
     },
     {
@@ -11385,6 +13717,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -11439,6 +13780,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-17",
+        "ADV_202602_NAL_202605": "2025-10-07",
+        "ADV_202603_NAL_202606": "2025-10-28",
+        "ADV_202604_NAL_202607": "2025-11-14",
+        "ADV_202605_NAL_202608": "2025-12-03",
+        "ADV_202606_NAL_202609": "2025-12-23",
+        "ADV_202607_NAL_202610": "2026-01-16",
+        "ADV_202608_NAL_202611": "2026-02-05",
+        "ADV_202609_NAL_202612": "2026-02-26",
         "ADV_202610_NAL_202613": "2026-03-16",
         "ADV_202611_NAL_202614": "2026-04-08",
         "ADV_202612_NAL_202615": "2026-04-27",
@@ -11491,6 +13841,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-12",
         "ADV_202906_NAL_202909": "2028-12-27",
         "ADV_202907_NAL_202910": "2029-01-18"
+      },
+      "predecesora": {
+        "no": "104",
+        "actividad": "Ingenieria Coordinadora Termina Proceso de Calculo de costo y desbloqeo 2D y 3D Azzorti y Livva"
       }
     },
     {
@@ -11501,6 +13855,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -11555,6 +13918,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -11607,6 +13979,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "105",
+        "actividad": "Ingenieria entrega fichas tecnica, molderia, estructuras 2D y 3D a Produccion lanzamientos campana Adv Azzorti Livva"
       }
     },
     {
@@ -11617,6 +13993,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -11671,6 +14056,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -11723,6 +14117,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "155 y 174",
+        "actividad": "Mercadeo entrega listado de Nuevos Adv Per Azzorti y Mercadeo entrega listado de Nuevos Adv Col Azzorti"
       }
     },
     {
@@ -11733,6 +14131,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -11787,6 +14194,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-19",
+        "ADV_202602_NAL_202605": "2026-01-13",
+        "ADV_202603_NAL_202606": "2026-01-29",
+        "ADV_202604_NAL_202607": "2026-02-18",
+        "ADV_202605_NAL_202608": "2026-03-10",
+        "ADV_202606_NAL_202609": "2026-03-30",
+        "ADV_202607_NAL_202610": "2026-04-20",
+        "ADV_202608_NAL_202611": "2026-05-12",
+        "ADV_202609_NAL_202612": "2026-06-01",
         "ADV_202610_NAL_202613": "2026-06-19",
         "ADV_202611_NAL_202614": "2026-07-09",
         "ADV_202612_NAL_202615": "2026-07-31",
@@ -11839,16 +14255,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-09",
         "ADV_202906_NAL_202909": "2029-03-28",
         "ADV_202907_NAL_202910": "2029-04-20"
+      },
+      "predecesora": {
+        "no": "248",
+        "actividad": "Planeacion Regional hace previsionales Nal"
       }
     },
     {
       "no": 107,
       "actividad": "Asistente Ingenieria Muestras entrega prendas 2D y 3D nuevas de campaña para Armado de estampillas mas 2da salidas Livva a Mercadeo MO",
-      "proceso": "Desarrollos Moda MO ¨Prog 3D y 2D",
+      "proceso": "Desarrollos Moda MO Prog 3D y 2D",
       "marca": "Livva",
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -11903,6 +14332,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-03",
+        "ADV_202602_NAL_202605": "2025-09-24",
+        "ADV_202603_NAL_202606": "2025-10-15",
+        "ADV_202604_NAL_202607": "2025-10-31",
+        "ADV_202605_NAL_202608": "2025-11-20",
+        "ADV_202606_NAL_202609": "2025-12-10",
+        "ADV_202607_NAL_202610": "2026-01-02",
+        "ADV_202608_NAL_202611": "2026-01-23",
+        "ADV_202609_NAL_202612": "2026-02-13",
         "ADV_202610_NAL_202613": "2026-03-03",
         "ADV_202611_NAL_202614": "2026-03-24",
         "ADV_202612_NAL_202615": "2026-04-14",
@@ -11955,6 +14393,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-28",
         "ADV_202906_NAL_202909": "2028-12-13",
         "ADV_202907_NAL_202910": "2029-01-05"
+      },
+      "predecesora": {
+        "no": "109",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Livva MO"
       }
     },
     {
@@ -11965,6 +14407,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -12019,6 +14470,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-10",
+        "ADV_202602_NAL_202605": "2025-09-30",
+        "ADV_202603_NAL_202606": "2025-10-21",
+        "ADV_202604_NAL_202607": "2025-11-07",
+        "ADV_202605_NAL_202608": "2025-11-26",
+        "ADV_202606_NAL_202609": "2025-12-16",
+        "ADV_202607_NAL_202610": "2026-01-08",
+        "ADV_202608_NAL_202611": "2026-01-29",
+        "ADV_202609_NAL_202612": "2026-02-19",
         "ADV_202610_NAL_202613": "2026-03-09",
         "ADV_202611_NAL_202614": "2026-03-30",
         "ADV_202612_NAL_202615": "2026-04-20",
@@ -12071,6 +14531,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-04",
         "ADV_202906_NAL_202909": "2028-12-19",
         "ADV_202907_NAL_202910": "2029-01-11"
+      },
+      "predecesora": {
+        "no": "110",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Livva MO"
       }
     },
     {
@@ -12081,6 +14545,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -12135,6 +14608,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-04",
+        "ADV_202602_NAL_202605": "2025-09-25",
+        "ADV_202603_NAL_202606": "2025-10-16",
+        "ADV_202604_NAL_202607": "2025-11-04",
+        "ADV_202605_NAL_202608": "2025-11-21",
+        "ADV_202606_NAL_202609": "2025-12-11",
+        "ADV_202607_NAL_202610": "2026-01-05",
+        "ADV_202608_NAL_202611": "2026-01-26",
+        "ADV_202609_NAL_202612": "2026-02-16",
         "ADV_202610_NAL_202613": "2026-03-04",
         "ADV_202611_NAL_202614": "2026-03-25",
         "ADV_202612_NAL_202615": "2026-04-15",
@@ -12187,6 +14669,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-29",
         "ADV_202906_NAL_202909": "2028-12-14",
         "ADV_202907_NAL_202910": "2029-01-08"
+      },
+      "predecesora": {
+        "no": "113",
+        "actividad": "Especialista creativo Programa Reunion Brief Creativo Ropa Livva Adv"
       }
     },
     {
@@ -12197,6 +14683,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -12251,6 +14746,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-11",
+        "ADV_202602_NAL_202605": "2025-10-01",
+        "ADV_202603_NAL_202606": "2025-10-22",
+        "ADV_202604_NAL_202607": "2025-11-10",
+        "ADV_202605_NAL_202608": "2025-11-27",
+        "ADV_202606_NAL_202609": "2025-12-17",
+        "ADV_202607_NAL_202610": "2026-01-09",
+        "ADV_202608_NAL_202611": "2026-01-30",
+        "ADV_202609_NAL_202612": "2026-02-20",
         "ADV_202610_NAL_202613": "2026-03-10",
         "ADV_202611_NAL_202614": "2026-03-31",
         "ADV_202612_NAL_202615": "2026-04-21",
@@ -12303,6 +14807,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-05",
         "ADV_202906_NAL_202909": "2028-12-20",
         "ADV_202907_NAL_202910": "2029-01-12"
+      },
+      "predecesora": {
+        "no": "115",
+        "actividad": "Especialista creativo programa Reunion Brief Creativo Ropa Azzorti Adv"
       }
     },
     {
@@ -12313,6 +14821,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -12367,6 +14884,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-01",
+        "ADV_202602_NAL_202605": "2025-09-22",
+        "ADV_202603_NAL_202606": "2025-10-10",
+        "ADV_202604_NAL_202607": "2025-10-29",
+        "ADV_202605_NAL_202608": "2025-11-18",
+        "ADV_202606_NAL_202609": "2025-12-05",
+        "ADV_202607_NAL_202610": "2025-12-29",
+        "ADV_202608_NAL_202611": "2026-01-21",
+        "ADV_202609_NAL_202612": "2026-02-11",
         "ADV_202610_NAL_202613": "2026-02-27",
         "ADV_202611_NAL_202614": "2026-03-19",
         "ADV_202612_NAL_202615": "2026-04-10",
@@ -12419,6 +14945,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-24",
         "ADV_202906_NAL_202909": "2028-12-11",
         "ADV_202907_NAL_202910": "2029-01-03"
+      },
+      "predecesora": {
+        "no": "113",
+        "actividad": "Especialista creativo Programa Reunion Brief Creativo Ropa Livva Adv"
       }
     },
     {
@@ -12429,6 +14959,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -12483,6 +15022,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-05",
+        "ADV_202602_NAL_202605": "2025-09-25",
+        "ADV_202603_NAL_202606": "2025-10-16",
+        "ADV_202604_NAL_202607": "2025-11-04",
+        "ADV_202605_NAL_202608": "2025-11-21",
+        "ADV_202606_NAL_202609": "2025-12-11",
+        "ADV_202607_NAL_202610": "2026-01-05",
+        "ADV_202608_NAL_202611": "2026-01-26",
+        "ADV_202609_NAL_202612": "2026-02-16",
         "ADV_202610_NAL_202613": "2026-03-04",
         "ADV_202611_NAL_202614": "2026-03-25",
         "ADV_202612_NAL_202615": "2026-04-15",
@@ -12535,6 +15083,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-29",
         "ADV_202906_NAL_202909": "2028-12-14",
         "ADV_202907_NAL_202910": "2029-01-08"
+      },
+      "predecesora": {
+        "no": "115",
+        "actividad": "Especialista creativo programa Reunion Brief Creativo Ropa Azzorti Adv"
       }
     },
     {
@@ -12542,9 +15094,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Especialista creativo Programa Reunion Brief Creativo Ropa Livva Adv",
       "proceso": "Toma de Fotos",
       "marca": "Livva",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -12599,6 +15160,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-05",
+        "ADV_202602_NAL_202605": "2025-09-26",
+        "ADV_202603_NAL_202606": "2025-10-17",
+        "ADV_202604_NAL_202607": "2025-11-05",
+        "ADV_202605_NAL_202608": "2025-11-24",
+        "ADV_202606_NAL_202609": "2025-12-12",
+        "ADV_202607_NAL_202610": "2026-01-06",
+        "ADV_202608_NAL_202611": "2026-01-27",
+        "ADV_202609_NAL_202612": "2026-02-17",
         "ADV_202610_NAL_202613": "2026-03-05",
         "ADV_202611_NAL_202614": "2026-03-26",
         "ADV_202612_NAL_202615": "2026-04-16",
@@ -12651,6 +15221,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-30",
         "ADV_202906_NAL_202909": "2028-12-15",
         "ADV_202907_NAL_202910": "2029-01-09"
+      },
+      "predecesora": {
+        "no": "121",
+        "actividad": "Creatividad Moda Realiza Sesion Fotografica y Selección Ropa A Livva"
       }
     },
     {
@@ -12661,6 +15235,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -12715,6 +15298,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-29",
+        "ADV_202602_NAL_202605": "2025-09-19",
+        "ADV_202603_NAL_202606": "2025-10-09",
+        "ADV_202604_NAL_202607": "2025-10-28",
+        "ADV_202605_NAL_202608": "2025-11-14",
+        "ADV_202606_NAL_202609": "2025-12-04",
+        "ADV_202607_NAL_202610": "2025-12-26",
+        "ADV_202608_NAL_202611": "2026-01-20",
+        "ADV_202609_NAL_202612": "2026-02-10",
         "ADV_202610_NAL_202613": "2026-02-26",
         "ADV_202611_NAL_202614": "2026-03-18",
         "ADV_202612_NAL_202615": "2026-04-09",
@@ -12767,6 +15359,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-23",
         "ADV_202906_NAL_202909": "2028-12-07",
         "ADV_202907_NAL_202910": "2029-01-02"
+      },
+      "predecesora": {
+        "no": "113",
+        "actividad": "Especialista creativo Programa Reunion Brief Creativo Ropa Livva Adv"
       }
     },
     {
@@ -12774,9 +15370,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Especialista creativo programa Reunion Brief Creativo Ropa Azzorti Adv",
       "proceso": "Toma de Fotos",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -12831,6 +15436,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-12",
+        "ADV_202602_NAL_202605": "2025-10-02",
+        "ADV_202603_NAL_202606": "2025-10-23",
+        "ADV_202604_NAL_202607": "2025-11-11",
+        "ADV_202605_NAL_202608": "2025-11-28",
+        "ADV_202606_NAL_202609": "2025-12-18",
+        "ADV_202607_NAL_202610": "2026-01-13",
+        "ADV_202608_NAL_202611": "2026-02-02",
+        "ADV_202609_NAL_202612": "2026-02-23",
         "ADV_202610_NAL_202613": "2026-03-11",
         "ADV_202611_NAL_202614": "2026-04-01",
         "ADV_202612_NAL_202615": "2026-04-22",
@@ -12883,6 +15497,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-06",
         "ADV_202906_NAL_202909": "2028-12-21",
         "ADV_202907_NAL_202910": "2029-01-15"
+      },
+      "predecesora": {
+        "no": "122",
+        "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti"
       }
     },
     {
@@ -12893,6 +15511,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -12947,6 +15574,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-05",
+        "ADV_202602_NAL_202605": "2025-09-25",
+        "ADV_202603_NAL_202606": "2025-10-16",
+        "ADV_202604_NAL_202607": "2025-11-04",
+        "ADV_202605_NAL_202608": "2025-11-21",
+        "ADV_202606_NAL_202609": "2025-12-11",
+        "ADV_202607_NAL_202610": "2026-01-05",
+        "ADV_202608_NAL_202611": "2026-01-26",
+        "ADV_202609_NAL_202612": "2026-02-16",
         "ADV_202610_NAL_202613": "2026-03-04",
         "ADV_202611_NAL_202614": "2026-03-25",
         "ADV_202612_NAL_202615": "2026-04-15",
@@ -12999,6 +15635,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-29",
         "ADV_202906_NAL_202909": "2028-12-14",
         "ADV_202907_NAL_202910": "2029-01-08"
+      },
+      "predecesora": {
+        "no": "115",
+        "actividad": "Especialista creativo programa Reunion Brief Creativo Ropa Azzorti Adv"
       }
     },
     {
@@ -13009,6 +15649,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -13063,6 +15712,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-05",
+        "ADV_202602_NAL_202605": "2025-09-26",
+        "ADV_202603_NAL_202606": "2025-10-17",
+        "ADV_202604_NAL_202607": "2025-11-05",
+        "ADV_202605_NAL_202608": "2025-11-24",
+        "ADV_202606_NAL_202609": "2025-12-12",
+        "ADV_202607_NAL_202610": "2026-01-06",
+        "ADV_202608_NAL_202611": "2026-01-27",
+        "ADV_202609_NAL_202612": "2026-02-17",
         "ADV_202610_NAL_202613": "2026-03-05",
         "ADV_202611_NAL_202614": "2026-03-26",
         "ADV_202612_NAL_202615": "2026-04-16",
@@ -13115,6 +15773,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-30",
         "ADV_202906_NAL_202909": "2028-12-15",
         "ADV_202907_NAL_202910": "2029-01-09"
+      },
+      "predecesora": {
+        "no": "109",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Livva MO"
       }
     },
     {
@@ -13125,6 +15787,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -13179,6 +15850,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-17",
+        "ADV_202602_NAL_202605": "2025-10-07",
+        "ADV_202603_NAL_202606": "2025-10-28",
+        "ADV_202604_NAL_202607": "2025-11-14",
+        "ADV_202605_NAL_202608": "2025-12-03",
+        "ADV_202606_NAL_202609": "2025-12-23",
+        "ADV_202607_NAL_202610": "2026-01-16",
+        "ADV_202608_NAL_202611": "2026-02-05",
+        "ADV_202609_NAL_202612": "2026-02-26",
         "ADV_202610_NAL_202613": "2026-03-16",
         "ADV_202611_NAL_202614": "2026-04-08",
         "ADV_202612_NAL_202615": "2026-04-27",
@@ -13231,6 +15911,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-12",
         "ADV_202906_NAL_202909": "2028-12-27",
         "ADV_202907_NAL_202910": "2029-01-18"
+      },
+      "predecesora": {
+        "no": "122",
+        "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti"
       }
     },
     {
@@ -13241,6 +15925,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -13295,6 +15988,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-11",
+        "ADV_202602_NAL_202605": "2025-10-01",
+        "ADV_202603_NAL_202606": "2025-10-22",
+        "ADV_202604_NAL_202607": "2025-11-10",
+        "ADV_202605_NAL_202608": "2025-11-27",
+        "ADV_202606_NAL_202609": "2025-12-17",
+        "ADV_202607_NAL_202610": "2026-01-09",
+        "ADV_202608_NAL_202611": "2026-01-30",
+        "ADV_202609_NAL_202612": "2026-02-20",
         "ADV_202610_NAL_202613": "2026-03-10",
         "ADV_202611_NAL_202614": "2026-03-31",
         "ADV_202612_NAL_202615": "2026-04-21",
@@ -13347,6 +16049,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-05",
         "ADV_202906_NAL_202909": "2028-12-20",
         "ADV_202907_NAL_202910": "2029-01-12"
+      },
+      "predecesora": {
+        "no": "121",
+        "actividad": "Creatividad Moda Realiza Sesion Fotografica y Selección Ropa A Livva"
       }
     },
     {
@@ -13357,6 +16063,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -13411,6 +16126,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-17",
+        "ADV_202602_NAL_202605": "2025-10-07",
+        "ADV_202603_NAL_202606": "2025-10-28",
+        "ADV_202604_NAL_202607": "2025-11-14",
+        "ADV_202605_NAL_202608": "2025-12-03",
+        "ADV_202606_NAL_202609": "2025-12-23",
+        "ADV_202607_NAL_202610": "2026-01-16",
+        "ADV_202608_NAL_202611": "2026-02-05",
+        "ADV_202609_NAL_202612": "2026-02-26",
         "ADV_202610_NAL_202613": "2026-03-16",
         "ADV_202611_NAL_202614": "2026-04-08",
         "ADV_202612_NAL_202615": "2026-04-27",
@@ -13463,6 +16187,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-12",
         "ADV_202906_NAL_202909": "2028-12-27",
         "ADV_202907_NAL_202910": "2029-01-18"
+      },
+      "predecesora": {
+        "no": "122",
+        "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti"
       }
     },
     {
@@ -13470,9 +16198,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Creatividad Moda Realiza Sesion Fotografica y Selección Ropa A Livva",
       "proceso": "Toma de Fotos",
       "marca": "Livva",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -13527,6 +16264,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-15",
+        "ADV_202602_NAL_202605": "2025-10-03",
+        "ADV_202603_NAL_202606": "2025-10-24",
+        "ADV_202604_NAL_202607": "2025-11-12",
+        "ADV_202605_NAL_202608": "2025-12-01",
+        "ADV_202606_NAL_202609": "2025-12-19",
+        "ADV_202607_NAL_202610": "2026-01-14",
+        "ADV_202608_NAL_202611": "2026-02-03",
+        "ADV_202609_NAL_202612": "2026-02-24",
         "ADV_202610_NAL_202613": "2026-03-12",
         "ADV_202611_NAL_202614": "2026-04-06",
         "ADV_202612_NAL_202615": "2026-04-23",
@@ -13579,6 +16325,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-07",
         "ADV_202906_NAL_202909": "2028-12-22",
         "ADV_202907_NAL_202910": "2029-01-16"
+      },
+      "predecesora": {
+        "no": "122",
+        "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti"
       }
     },
     {
@@ -13586,9 +16336,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti",
       "proceso": "Toma de Fotos",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -13643,6 +16402,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-19",
+        "ADV_202602_NAL_202605": "2025-10-09",
+        "ADV_202603_NAL_202606": "2025-10-30",
+        "ADV_202604_NAL_202607": "2025-11-19",
+        "ADV_202605_NAL_202608": "2025-12-05",
+        "ADV_202606_NAL_202609": "2025-12-29",
+        "ADV_202607_NAL_202610": "2026-01-20",
+        "ADV_202608_NAL_202611": "2026-02-09",
+        "ADV_202609_NAL_202612": "2026-03-02",
         "ADV_202610_NAL_202613": "2026-03-18",
         "ADV_202611_NAL_202614": "2026-04-10",
         "ADV_202612_NAL_202615": "2026-04-29",
@@ -13695,6 +16463,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-14",
         "ADV_202906_NAL_202909": "2028-12-29",
         "ADV_202907_NAL_202910": "2029-01-22"
+      },
+      "predecesora": {
+        "no": "147",
+        "actividad": "DisGraf Inicia Machote Ropa Regional Adv"
       }
     },
     {
@@ -13705,6 +16477,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -13759,6 +16540,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-31",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-10",
+        "ADV_202609_NAL_202612": "2026-03-03",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-30",
@@ -13811,6 +16601,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "121",
+        "actividad": "Creatividad Moda Realiza Sesion Fotografica y Selección Ropa A Livva"
       }
     },
     {
@@ -13821,6 +16615,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -13875,6 +16678,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-26",
+        "ADV_202602_NAL_202605": "2025-10-17",
+        "ADV_202603_NAL_202606": "2025-11-07",
+        "ADV_202604_NAL_202607": "2025-11-26",
+        "ADV_202605_NAL_202608": "2025-12-15",
+        "ADV_202606_NAL_202609": "2026-01-07",
+        "ADV_202607_NAL_202610": "2026-01-27",
+        "ADV_202608_NAL_202611": "2026-02-16",
+        "ADV_202609_NAL_202612": "2026-03-09",
         "ADV_202610_NAL_202613": "2026-03-26",
         "ADV_202611_NAL_202614": "2026-04-17",
         "ADV_202612_NAL_202615": "2026-05-07",
@@ -13927,6 +16739,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-21",
         "ADV_202906_NAL_202909": "2029-01-08",
         "ADV_202907_NAL_202910": "2029-01-29"
+      },
+      "predecesora": {
+        "no": "122",
+        "actividad": "Creatividad Moda Moda Realiza Sesion Fotografica y Selección Ropa Azzorti"
       }
     },
     {
@@ -13937,6 +16753,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -13991,6 +16816,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-23",
+        "ADV_202602_NAL_202605": "2025-10-14",
+        "ADV_202603_NAL_202606": "2025-11-04",
+        "ADV_202604_NAL_202607": "2025-11-21",
+        "ADV_202605_NAL_202608": "2025-12-10",
+        "ADV_202606_NAL_202609": "2026-01-02",
+        "ADV_202607_NAL_202610": "2026-01-22",
+        "ADV_202608_NAL_202611": "2026-02-11",
+        "ADV_202609_NAL_202612": "2026-03-04",
         "ADV_202610_NAL_202613": "2026-03-20",
         "ADV_202611_NAL_202614": "2026-04-14",
         "ADV_202612_NAL_202615": "2026-05-04",
@@ -14043,6 +16877,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-18",
         "ADV_202906_NAL_202909": "2029-01-03",
         "ADV_202907_NAL_202910": "2029-01-24"
+      },
+      "predecesora": {
+        "no": "123",
+        "actividad": "Asistente Aglab realiza devolucion de prendas utilizadas en fotos Livva"
       }
     },
     {
@@ -14053,6 +16891,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -14107,6 +16954,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-29",
+        "ADV_202602_NAL_202605": "2025-10-20",
+        "ADV_202603_NAL_202606": "2025-11-10",
+        "ADV_202604_NAL_202607": "2025-11-27",
+        "ADV_202605_NAL_202608": "2025-12-16",
+        "ADV_202606_NAL_202609": "2026-01-08",
+        "ADV_202607_NAL_202610": "2026-01-28",
+        "ADV_202608_NAL_202611": "2026-02-17",
+        "ADV_202609_NAL_202612": "2026-03-10",
         "ADV_202610_NAL_202613": "2026-03-27",
         "ADV_202611_NAL_202614": "2026-04-20",
         "ADV_202612_NAL_202615": "2026-05-08",
@@ -14159,6 +17015,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-22",
         "ADV_202906_NAL_202909": "2029-01-09",
         "ADV_202907_NAL_202910": "2029-01-30"
+      },
+      "predecesora": {
+        "no": "124",
+        "actividad": "Asistente Aglab realiza devolucion de prendas utilizadas en fotos Azzorti"
       }
     },
     {
@@ -14169,6 +17029,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -14223,6 +17092,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-24",
+        "ADV_202602_NAL_202605": "2025-10-15",
+        "ADV_202603_NAL_202606": "2025-11-05",
+        "ADV_202604_NAL_202607": "2025-11-24",
+        "ADV_202605_NAL_202608": "2025-12-11",
+        "ADV_202606_NAL_202609": "2026-01-05",
+        "ADV_202607_NAL_202610": "2026-01-23",
+        "ADV_202608_NAL_202611": "2026-02-12",
+        "ADV_202609_NAL_202612": "2026-03-05",
         "ADV_202610_NAL_202613": "2026-03-24",
         "ADV_202611_NAL_202614": "2026-04-15",
         "ADV_202612_NAL_202615": "2026-05-05",
@@ -14275,6 +17153,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-19",
         "ADV_202906_NAL_202909": "2029-01-04",
         "ADV_202907_NAL_202910": "2029-01-25"
+      },
+      "predecesora": {
+        "no": "125",
+        "actividad": "Asistente Ingenieria Muestras entrega prendas Livva a Coordinadora Moda en Ingenieria medellin para su respectiva socializacion con analistas de mercadeo"
       }
     },
     {
@@ -14285,6 +17167,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -14339,6 +17230,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-30",
+        "ADV_202602_NAL_202605": "2025-10-21",
+        "ADV_202603_NAL_202606": "2025-11-11",
+        "ADV_202604_NAL_202607": "2025-11-28",
+        "ADV_202605_NAL_202608": "2025-12-17",
+        "ADV_202606_NAL_202609": "2026-01-09",
+        "ADV_202607_NAL_202610": "2026-01-29",
+        "ADV_202608_NAL_202611": "2026-02-18",
+        "ADV_202609_NAL_202612": "2026-03-11",
         "ADV_202610_NAL_202613": "2026-03-30",
         "ADV_202611_NAL_202614": "2026-04-21",
         "ADV_202612_NAL_202615": "2026-05-11",
@@ -14391,6 +17291,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-26",
         "ADV_202906_NAL_202909": "2029-01-10",
         "ADV_202907_NAL_202910": "2029-01-31"
+      },
+      "predecesora": {
+        "no": "126",
+        "actividad": "Asistente Ingenieria Muestras envia prendas Azzorti a Asistente de diseño Mercadeo Bogota para entrega Disgraf"
       }
     },
     {
@@ -14401,6 +17305,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 10,
       "dh": {
+        "ADV_202601_NAL_202604": 10,
+        "ADV_202602_NAL_202605": 10,
+        "ADV_202603_NAL_202606": 10,
+        "ADV_202604_NAL_202607": 10,
+        "ADV_202605_NAL_202608": 10,
+        "ADV_202606_NAL_202609": 10,
+        "ADV_202607_NAL_202610": 10,
+        "ADV_202608_NAL_202611": 10,
+        "ADV_202609_NAL_202612": 10,
         "ADV_202610_NAL_202613": 10,
         "ADV_202611_NAL_202614": 10,
         "ADV_202612_NAL_202615": 10,
@@ -14455,6 +17368,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 10
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-09",
+        "ADV_202603_NAL_202606": "2025-10-30",
+        "ADV_202604_NAL_202607": "2025-11-19",
+        "ADV_202605_NAL_202608": "2025-12-05",
+        "ADV_202606_NAL_202609": "2025-12-29",
+        "ADV_202607_NAL_202610": "2026-01-20",
+        "ADV_202608_NAL_202611": "2026-02-09",
+        "ADV_202609_NAL_202612": "2026-03-02",
         "ADV_202610_NAL_202613": "2026-03-18",
         "ADV_202611_NAL_202614": "2026-04-10",
         "ADV_202612_NAL_202615": "2026-04-29",
@@ -14507,6 +17429,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-14",
         "ADV_202906_NAL_202909": "2028-12-29",
         "ADV_202907_NAL_202910": "2029-01-22"
+      },
+      "predecesora": {
+        "no": "109",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Livva MO"
       }
     },
     {
@@ -14517,6 +17443,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -14571,6 +17506,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-27",
+        "ADV_202602_NAL_202605": "2025-07-17",
+        "ADV_202603_NAL_202606": "2025-08-08",
+        "ADV_202604_NAL_202607": "2025-08-29",
+        "ADV_202605_NAL_202608": "2025-09-16",
+        "ADV_202606_NAL_202609": "2025-10-02",
+        "ADV_202607_NAL_202610": "2025-10-22",
+        "ADV_202608_NAL_202611": "2025-11-11",
+        "ADV_202609_NAL_202612": "2025-12-02",
         "ADV_202610_NAL_202613": "2025-12-26",
         "ADV_202611_NAL_202614": "2026-01-16",
         "ADV_202612_NAL_202615": "2026-02-05",
@@ -14623,6 +17567,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-21",
         "ADV_202906_NAL_202909": "2028-10-10",
         "ADV_202907_NAL_202910": "2028-10-25"
+      },
+      "predecesora": {
+        "no": "13",
+        "actividad": "Mercadeo Entrega mezcla de productos en cuadricula Livva, para PC una campaña antes y para Indigo dos campaña antes"
       }
     },
     {
@@ -14633,6 +17581,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Proveedor",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -14687,6 +17644,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-08",
+        "ADV_202602_NAL_202605": "2025-07-25",
+        "ADV_202603_NAL_202606": "2025-08-19",
+        "ADV_202604_NAL_202607": "2025-09-08",
+        "ADV_202605_NAL_202608": "2025-09-24",
+        "ADV_202606_NAL_202609": "2025-10-10",
+        "ADV_202607_NAL_202610": "2025-10-30",
+        "ADV_202608_NAL_202611": "2025-11-20",
+        "ADV_202609_NAL_202612": "2025-12-11",
         "ADV_202610_NAL_202613": "2026-01-07",
         "ADV_202611_NAL_202614": "2026-01-26",
         "ADV_202612_NAL_202615": "2026-02-13",
@@ -14739,6 +17705,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-29",
         "ADV_202906_NAL_202909": "2028-10-19",
         "ADV_202907_NAL_202910": "2028-11-02"
+      },
+      "predecesora": {
+        "no": "130",
+        "actividad": "ID Recibe de Disenador Moda archivo requerimiento de PC y PC KIDS Peru o Colombia Azzorti Livva un campaña Antes"
       }
     },
     {
@@ -14749,6 +17719,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -14803,6 +17782,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-10",
+        "ADV_202602_NAL_202605": "2025-07-29",
+        "ADV_202603_NAL_202606": "2025-08-21",
+        "ADV_202604_NAL_202607": "2025-09-10",
+        "ADV_202605_NAL_202608": "2025-09-26",
+        "ADV_202606_NAL_202609": "2025-10-15",
+        "ADV_202607_NAL_202610": "2025-11-04",
+        "ADV_202608_NAL_202611": "2025-11-24",
+        "ADV_202609_NAL_202612": "2025-12-15",
         "ADV_202610_NAL_202613": "2026-01-09",
         "ADV_202611_NAL_202614": "2026-01-28",
         "ADV_202612_NAL_202615": "2026-02-17",
@@ -14855,6 +17843,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-03",
         "ADV_202906_NAL_202909": "2028-10-23",
         "ADV_202907_NAL_202910": "2028-11-07"
+      },
+      "predecesora": {
+        "no": "131",
+        "actividad": "El proveedor realiza cotizacion de PC y PC KIDS Peru o Colombia Azzorti Livva"
       }
     },
     {
@@ -14865,6 +17857,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -14919,6 +17920,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-11",
+        "ADV_202602_NAL_202605": "2025-07-30",
+        "ADV_202603_NAL_202606": "2025-08-22",
+        "ADV_202604_NAL_202607": "2025-09-11",
+        "ADV_202605_NAL_202608": "2025-09-29",
+        "ADV_202606_NAL_202609": "2025-10-16",
+        "ADV_202607_NAL_202610": "2025-11-05",
+        "ADV_202608_NAL_202611": "2025-11-25",
+        "ADV_202609_NAL_202612": "2025-12-16",
         "ADV_202610_NAL_202613": "2026-01-13",
         "ADV_202611_NAL_202614": "2026-01-29",
         "ADV_202612_NAL_202615": "2026-02-18",
@@ -14971,6 +17981,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-04",
         "ADV_202906_NAL_202909": "2028-10-24",
         "ADV_202907_NAL_202910": "2028-11-08"
+      },
+      "predecesora": {
+        "no": "132",
+        "actividad": "ID Realiza validacion con Mercadeo PC y PC Kids Peru Azzorti Livva"
       }
     },
     {
@@ -14981,6 +17995,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 11,
       "dh": {
+        "ADV_202601_NAL_202604": 11,
+        "ADV_202602_NAL_202605": 11,
+        "ADV_202603_NAL_202606": 11,
+        "ADV_202604_NAL_202607": 11,
+        "ADV_202605_NAL_202608": 11,
+        "ADV_202606_NAL_202609": 11,
+        "ADV_202607_NAL_202610": 11,
+        "ADV_202608_NAL_202611": 11,
+        "ADV_202609_NAL_202612": 11,
         "ADV_202610_NAL_202613": 11,
         "ADV_202611_NAL_202614": 11,
         "ADV_202612_NAL_202615": 11,
@@ -15035,6 +18058,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 11
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-28",
+        "ADV_202602_NAL_202605": "2025-08-15",
+        "ADV_202603_NAL_202606": "2025-09-08",
+        "ADV_202604_NAL_202607": "2025-09-26",
+        "ADV_202605_NAL_202608": "2025-10-15",
+        "ADV_202606_NAL_202609": "2025-10-31",
+        "ADV_202607_NAL_202610": "2025-11-21",
+        "ADV_202608_NAL_202611": "2025-12-11",
+        "ADV_202609_NAL_202612": "2026-01-06",
         "ADV_202610_NAL_202613": "2026-01-28",
         "ADV_202611_NAL_202614": "2026-02-13",
         "ADV_202612_NAL_202615": "2026-03-05",
@@ -15087,6 +18119,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-20",
         "ADV_202906_NAL_202909": "2028-11-09",
         "ADV_202907_NAL_202910": "2028-11-24"
+      },
+      "predecesora": {
+        "no": "133",
+        "actividad": "ID Entrega Estampacion Continua y Localizada PC y PC Kids a Proveedor Peru Azzorti Livva"
       }
     },
     {
@@ -15097,6 +18133,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ing Peru",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -15151,6 +18196,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-31",
+        "ADV_202602_NAL_202605": "2025-08-19",
+        "ADV_202603_NAL_202606": "2025-09-10",
+        "ADV_202604_NAL_202607": "2025-09-30",
+        "ADV_202605_NAL_202608": "2025-10-17",
+        "ADV_202606_NAL_202609": "2025-11-04",
+        "ADV_202607_NAL_202610": "2025-11-25",
+        "ADV_202608_NAL_202611": "2025-12-15",
+        "ADV_202609_NAL_202612": "2026-01-08",
         "ADV_202610_NAL_202613": "2026-01-30",
         "ADV_202611_NAL_202614": "2026-02-17",
         "ADV_202612_NAL_202615": "2026-03-09",
@@ -15203,6 +18257,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-24",
         "ADV_202906_NAL_202909": "2028-11-13",
         "ADV_202907_NAL_202910": "2028-11-28"
+      },
+      "predecesora": {
+        "no": "134",
+        "actividad": "ID Hace elaboracion de muestras PC y PC kids en Peru Azzorti Livva"
       }
     },
     {
@@ -15213,6 +18271,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Proveedor",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -15267,6 +18334,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-07",
+        "ADV_202602_NAL_202605": "2025-08-25",
+        "ADV_202603_NAL_202606": "2025-09-16",
+        "ADV_202604_NAL_202607": "2025-10-06",
+        "ADV_202605_NAL_202608": "2025-10-23",
+        "ADV_202606_NAL_202609": "2025-11-10",
+        "ADV_202607_NAL_202610": "2025-12-01",
+        "ADV_202608_NAL_202611": "2025-12-19",
+        "ADV_202609_NAL_202612": "2026-01-14",
         "ADV_202610_NAL_202613": "2026-02-05",
         "ADV_202611_NAL_202614": "2026-02-23",
         "ADV_202612_NAL_202615": "2026-03-13",
@@ -15319,6 +18395,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-30",
         "ADV_202906_NAL_202909": "2028-11-17",
         "ADV_202907_NAL_202910": "2028-12-04"
+      },
+      "predecesora": {
+        "no": "135",
+        "actividad": "Ingenieria Per y Col hace revision de prototipo de PC y PC KIDS en Peru"
       }
     },
     {
@@ -15329,6 +18409,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ing Peru",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -15383,6 +18472,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-08",
+        "ADV_202602_NAL_202605": "2025-08-26",
+        "ADV_202603_NAL_202606": "2025-09-17",
+        "ADV_202604_NAL_202607": "2025-10-07",
+        "ADV_202605_NAL_202608": "2025-10-24",
+        "ADV_202606_NAL_202609": "2025-11-11",
+        "ADV_202607_NAL_202610": "2025-12-02",
+        "ADV_202608_NAL_202611": "2025-12-22",
+        "ADV_202609_NAL_202612": "2026-01-15",
         "ADV_202610_NAL_202613": "2026-02-06",
         "ADV_202611_NAL_202614": "2026-02-24",
         "ADV_202612_NAL_202615": "2026-03-16",
@@ -15435,6 +18533,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-10-31",
         "ADV_202906_NAL_202909": "2028-11-20",
         "ADV_202907_NAL_202910": "2028-12-05"
+      },
+      "predecesora": {
+        "no": "136",
+        "actividad": "Proveedor hace ajustes de Prototipo de PC y PC KIDS"
       }
     },
     {
@@ -15445,6 +18547,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ing Peru",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -15499,6 +18610,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-15",
+        "ADV_202602_NAL_202605": "2025-09-02",
+        "ADV_202603_NAL_202606": "2025-09-24",
+        "ADV_202604_NAL_202607": "2025-10-15",
+        "ADV_202605_NAL_202608": "2025-10-31",
+        "ADV_202606_NAL_202609": "2025-11-18",
+        "ADV_202607_NAL_202610": "2025-12-10",
+        "ADV_202608_NAL_202611": "2026-01-02",
+        "ADV_202609_NAL_202612": "2026-01-22",
         "ADV_202610_NAL_202613": "2026-02-13",
         "ADV_202611_NAL_202614": "2026-03-03",
         "ADV_202612_NAL_202615": "2026-03-23",
@@ -15551,6 +18671,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-07",
         "ADV_202906_NAL_202909": "2028-11-27",
         "ADV_202907_NAL_202910": "2028-12-13"
+      },
+      "predecesora": {
+        "no": "137",
+        "actividad": "Ingenieria Per y Col hace revision de arreglos de prototipo de PC y PC KIDS en Peru"
       }
     },
     {
@@ -15558,9 +18682,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Coordinadora de comunicaciones solicita muestras para lanzamiento de conferencia de campaña de Azzorti y Livva",
       "proceso": "Muestras Bogota",
       "marca": "Azz Livv",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -15615,6 +18748,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-28",
+        "ADV_202602_NAL_202605": "2025-09-18",
+        "ADV_202603_NAL_202606": "2025-10-08",
+        "ADV_202604_NAL_202607": "2025-10-27",
+        "ADV_202605_NAL_202608": "2025-11-13",
+        "ADV_202606_NAL_202609": "2025-12-03",
+        "ADV_202607_NAL_202610": "2025-12-23",
+        "ADV_202608_NAL_202611": "2026-01-19",
+        "ADV_202609_NAL_202612": "2026-02-09",
         "ADV_202610_NAL_202613": "2026-02-25",
         "ADV_202611_NAL_202614": "2026-03-17",
         "ADV_202612_NAL_202615": "2026-04-08",
@@ -15667,6 +18809,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-22",
         "ADV_202906_NAL_202909": "2028-12-06",
         "ADV_202907_NAL_202910": "2028-12-29"
+      },
+      "predecesora": {
+        "no": "117",
+        "actividad": "Feha Traida en ABS de Entrega de estampillas Cronograma de Disgraf"
       }
     },
     {
@@ -15674,9 +18820,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Feha Traida en ABS de Entrega de estampillas Cronograma de Disgraf",
       "proceso": "Estampillas",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -15731,6 +18886,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-02",
+        "ADV_202602_NAL_202605": "2025-10-23",
+        "ADV_202603_NAL_202606": "2025-11-13",
+        "ADV_202604_NAL_202607": "2026-12-01",
+        "ADV_202605_NAL_202608": "2025-12-19",
+        "ADV_202606_NAL_202609": "2026-01-13",
+        "ADV_202607_NAL_202610": "2026-02-02",
+        "ADV_202608_NAL_202611": "2026-02-20",
+        "ADV_202609_NAL_202612": "2026-03-13",
         "ADV_202610_NAL_202613": "2026-04-01",
         "ADV_202611_NAL_202614": "2026-04-23",
         "ADV_202612_NAL_202615": "2026-05-13",
@@ -15783,6 +18947,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-22",
         "ADV_202906_NAL_202909": "2029-01-12",
         "ADV_202907_NAL_202910": "2029-02-02"
+      },
+      "predecesora": {
+        "no": "ABS",
+        "actividad": "Fecha sacado de Disgraf PDF Imagen"
       }
     },
     {
@@ -15793,6 +18961,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -15847,6 +19024,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-16",
+        "ADV_202602_NAL_202605": "2025-10-06",
+        "ADV_202603_NAL_202606": "2025-10-27",
+        "ADV_202604_NAL_202607": "2025-11-13",
+        "ADV_202605_NAL_202608": "2025-12-02",
+        "ADV_202606_NAL_202609": "2025-12-22",
+        "ADV_202607_NAL_202610": "2026-01-15",
+        "ADV_202608_NAL_202611": "2026-02-04",
+        "ADV_202609_NAL_202612": "2026-02-25",
         "ADV_202610_NAL_202613": "2026-03-13",
         "ADV_202611_NAL_202614": "2026-04-07",
         "ADV_202612_NAL_202615": "2026-04-24",
@@ -15899,6 +19085,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-11",
         "ADV_202906_NAL_202909": "2028-12-26",
         "ADV_202907_NAL_202910": "2029-01-17"
+      },
+      "predecesora": {
+        "no": "110",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Azzorti MO"
       }
     },
     {
@@ -15909,6 +19099,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -15963,6 +19162,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-17",
+        "ADV_202602_NAL_202605": "2025-10-07",
+        "ADV_202603_NAL_202606": "2025-10-28",
+        "ADV_202604_NAL_202607": "2025-11-14",
+        "ADV_202605_NAL_202608": "2025-12-03",
+        "ADV_202606_NAL_202609": "2025-12-23",
+        "ADV_202607_NAL_202610": "2026-01-16",
+        "ADV_202608_NAL_202611": "2026-02-05",
+        "ADV_202609_NAL_202612": "2026-02-26",
         "ADV_202610_NAL_202613": "2026-03-16",
         "ADV_202611_NAL_202614": "2026-04-08",
         "ADV_202612_NAL_202615": "2026-04-27",
@@ -16015,6 +19223,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-12",
         "ADV_202906_NAL_202909": "2028-12-27",
         "ADV_202907_NAL_202910": "2029-01-18"
+      },
+      "predecesora": {
+        "no": "141",
+        "actividad": "Disenador Moda hace construccion del cuadro de las referencias sublego de telas importadas y envia correo"
       }
     },
     {
@@ -16025,6 +19237,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -16079,6 +19300,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -16131,6 +19361,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "142",
+        "actividad": "Ingenieria diligencia consumos en el cuadro de sublego telas importadas"
       }
     },
     {
@@ -16141,6 +19375,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Compras",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -16195,6 +19438,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-19",
+        "ADV_202602_NAL_202605": "2025-10-09",
+        "ADV_202603_NAL_202606": "2025-10-30",
+        "ADV_202604_NAL_202607": "2025-11-19",
+        "ADV_202605_NAL_202608": "2025-12-05",
+        "ADV_202606_NAL_202609": "2025-12-29",
+        "ADV_202607_NAL_202610": "2026-01-20",
+        "ADV_202608_NAL_202611": "2026-02-09",
+        "ADV_202609_NAL_202612": "2026-03-02",
         "ADV_202610_NAL_202613": "2026-03-18",
         "ADV_202611_NAL_202614": "2026-04-10",
         "ADV_202612_NAL_202615": "2026-04-29",
@@ -16247,6 +19499,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-14",
         "ADV_202906_NAL_202909": "2028-12-29",
         "ADV_202907_NAL_202910": "2029-01-22"
+      },
+      "predecesora": {
+        "no": "143",
+        "actividad": "Mercadeo diligencia unidades estimadas Adv y Nal en el cuadro de sublego telas importadas"
       }
     },
     {
@@ -16257,6 +19513,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Logistica Internacional",
       "dias": 66,
       "dh": {
+        "ADV_202601_NAL_202604": 66,
+        "ADV_202602_NAL_202605": 66,
+        "ADV_202603_NAL_202606": 66,
+        "ADV_202604_NAL_202607": 66,
+        "ADV_202605_NAL_202608": 66,
+        "ADV_202606_NAL_202609": 66,
+        "ADV_202607_NAL_202610": 66,
+        "ADV_202608_NAL_202611": 66,
+        "ADV_202609_NAL_202612": 66,
         "ADV_202610_NAL_202613": 66,
         "ADV_202611_NAL_202614": 66,
         "ADV_202612_NAL_202615": 66,
@@ -16311,6 +19576,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 66
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-30",
+        "ADV_202602_NAL_202605": "2026-01-22",
+        "ADV_202603_NAL_202606": "2026-02-11",
+        "ADV_202604_NAL_202607": "2026-02-27",
+        "ADV_202605_NAL_202608": "2026-03-17",
+        "ADV_202606_NAL_202609": "2026-04-08",
+        "ADV_202607_NAL_202610": "2026-04-27",
+        "ADV_202608_NAL_202611": "2026-05-19",
+        "ADV_202609_NAL_202612": "2026-06-10",
         "ADV_202610_NAL_202613": "2026-06-30",
         "ADV_202611_NAL_202614": "2026-07-22",
         "ADV_202612_NAL_202615": "2026-08-11",
@@ -16363,6 +19637,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-20",
         "ADV_202906_NAL_202909": "2029-04-03",
         "ADV_202907_NAL_202910": "2029-04-24"
+      },
+      "predecesora": {
+        "no": "144",
+        "actividad": "Compras realiza la compra de telas correspondientes en el cuadro de sublego telas importadas"
       }
     },
     {
@@ -16373,6 +19651,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -16427,6 +19714,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-08",
+        "ADV_202602_NAL_202605": "2025-09-26",
+        "ADV_202603_NAL_202606": "2025-10-17",
+        "ADV_202604_NAL_202607": "2025-11-05",
+        "ADV_202605_NAL_202608": "2025-11-24",
+        "ADV_202606_NAL_202609": "2025-12-12",
+        "ADV_202607_NAL_202610": "2026-01-06",
+        "ADV_202608_NAL_202611": "2026-01-27",
+        "ADV_202609_NAL_202612": "2026-02-17",
         "ADV_202610_NAL_202613": "2026-03-05",
         "ADV_202611_NAL_202614": "2026-03-26",
         "ADV_202612_NAL_202615": "2026-04-16",
@@ -16479,6 +19775,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-11-30",
         "ADV_202906_NAL_202909": "2028-12-15",
         "ADV_202907_NAL_202910": "2029-01-09"
+      },
+      "predecesora": {
+        "no": "119",
+        "actividad": "Asistente Ingenieria Muestras Entrega prendas de inventario, Nuevos y 2das Salidas de Azzorti para Toma de Fotos"
       }
     },
     {
@@ -16486,9 +19786,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf Inicia Machote Ropa Regional Adv",
       "proceso": "Machote",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -16543,6 +19852,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-23",
+        "ADV_202602_NAL_202605": "2025-10-14",
+        "ADV_202603_NAL_202606": "2025-11-04",
+        "ADV_202604_NAL_202607": "2025-11-21",
+        "ADV_202605_NAL_202608": "2025-12-10",
+        "ADV_202606_NAL_202609": "2026-01-02",
+        "ADV_202607_NAL_202610": "2026-01-22",
+        "ADV_202608_NAL_202611": "2026-02-11",
+        "ADV_202609_NAL_202612": "2026-03-04",
         "ADV_202610_NAL_202613": "2026-03-20",
         "ADV_202611_NAL_202614": "2026-04-14",
         "ADV_202612_NAL_202615": "2026-05-04",
@@ -16595,6 +19913,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-18",
         "ADV_202906_NAL_202909": "2029-01-03",
         "ADV_202907_NAL_202910": "2029-01-24"
+      },
+      "predecesora": {
+        "no": "148",
+        "actividad": "DisGraf Programa Reunion Machote Ropa Col y Peru Azzorti Adv"
       }
     },
     {
@@ -16602,9 +19924,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf Programa Reunion Machote Ropa Col y Peru Azzorti Adv",
       "proceso": "Machote",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -16659,6 +19990,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-29",
+        "ADV_202602_NAL_202605": "2025-10-20",
+        "ADV_202603_NAL_202606": "2025-11-10",
+        "ADV_202604_NAL_202607": "2025-11-27",
+        "ADV_202605_NAL_202608": "2025-12-16",
+        "ADV_202606_NAL_202609": "2026-01-08",
+        "ADV_202607_NAL_202610": "2026-01-28",
+        "ADV_202608_NAL_202611": "2026-02-17",
+        "ADV_202609_NAL_202612": "2026-03-10",
         "ADV_202610_NAL_202613": "2026-03-27",
         "ADV_202611_NAL_202614": "2026-04-20",
         "ADV_202612_NAL_202615": "2026-05-08",
@@ -16711,6 +20051,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-22",
         "ADV_202906_NAL_202909": "2029-01-09",
         "ADV_202907_NAL_202910": "2029-01-30"
+      },
+      "predecesora": {
+        "no": "149",
+        "actividad": "Disenador Moda Entrega Revision de Elaborados y Beneficios de Producto 1PM Adv"
       }
     },
     {
@@ -16721,6 +20065,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -16775,6 +20128,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-30",
+        "ADV_202602_NAL_202605": "2025-10-21",
+        "ADV_202603_NAL_202606": "2025-11-11",
+        "ADV_202604_NAL_202607": "2025-11-28",
+        "ADV_202605_NAL_202608": "2025-12-17",
+        "ADV_202606_NAL_202609": "2026-01-09",
+        "ADV_202607_NAL_202610": "2026-01-29",
+        "ADV_202608_NAL_202611": "2026-02-18",
+        "ADV_202609_NAL_202612": "2026-03-11",
         "ADV_202610_NAL_202613": "2026-03-30",
         "ADV_202611_NAL_202614": "2026-04-21",
         "ADV_202612_NAL_202615": "2026-05-11",
@@ -16827,6 +20189,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-25",
         "ADV_202906_NAL_202909": "2029-01-10",
         "ADV_202907_NAL_202910": "2029-01-31"
+      },
+      "predecesora": {
+        "no": "150",
+        "actividad": "DisGraf entrega ajustes finales diseno 1PM y entrega aprobacion final de ID final del Dia Adv"
       }
     },
     {
@@ -16834,9 +20200,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf entrega ajustes finales diseno 1PM y entrega aprobacion final de ID final del Dia Adv",
       "proceso": "Ajustes Finales",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -16891,6 +20266,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-01",
+        "ADV_202602_NAL_202605": "2025-10-22",
+        "ADV_202603_NAL_202606": "2025-11-12",
+        "ADV_202604_NAL_202607": "2025-12-01",
+        "ADV_202605_NAL_202608": "2025-12-18",
+        "ADV_202606_NAL_202609": "2026-01-12",
+        "ADV_202607_NAL_202610": "2026-01-30",
+        "ADV_202608_NAL_202611": "2026-02-19",
+        "ADV_202609_NAL_202612": "2026-03-12",
         "ADV_202610_NAL_202613": "2026-03-31",
         "ADV_202611_NAL_202614": "2026-04-22",
         "ADV_202612_NAL_202615": "2026-05-12",
@@ -16943,6 +20327,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-26",
         "ADV_202906_NAL_202909": "2029-01-11",
         "ADV_202907_NAL_202910": "2029-02-01"
+      },
+      "predecesora": {
+        "no": "151",
+        "actividad": "DisGraf Hace Ajustes y Empaquetado Moda Adv"
       }
     },
     {
@@ -16950,9 +20338,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf Hace Ajustes y Empaquetado Moda Adv",
       "proceso": "Ajustes",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -17007,6 +20404,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-02",
+        "ADV_202602_NAL_202605": "2025-10-23",
+        "ADV_202603_NAL_202606": "2025-11-13",
+        "ADV_202604_NAL_202607": "2025-12-02",
+        "ADV_202605_NAL_202608": "2025-12-19",
+        "ADV_202606_NAL_202609": "2026-01-13",
+        "ADV_202607_NAL_202610": "2026-02-02",
+        "ADV_202608_NAL_202611": "2026-02-20",
+        "ADV_202609_NAL_202612": "2026-03-13",
         "ADV_202610_NAL_202613": "2026-04-01",
         "ADV_202611_NAL_202614": "2026-04-23",
         "ADV_202612_NAL_202615": "2026-05-13",
@@ -17059,6 +20465,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-27",
         "ADV_202906_NAL_202909": "2029-01-12",
         "ADV_202907_NAL_202910": "2029-02-02"
+      },
+      "predecesora": {
+        "no": "158",
+        "actividad": "Mercadeo Regional ropa entrega LL y estampillas Adv Per Col y Nal Bol Gua Ecu Azzorti_Livva"
       }
     },
     {
@@ -17069,6 +20479,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 14,
       "dh": {
+        "ADV_202601_NAL_202604": 14,
+        "ADV_202602_NAL_202605": 14,
+        "ADV_202603_NAL_202606": 14,
+        "ADV_202604_NAL_202607": 14,
+        "ADV_202605_NAL_202608": 14,
+        "ADV_202606_NAL_202609": 14,
+        "ADV_202607_NAL_202610": 14,
+        "ADV_202608_NAL_202611": 14,
+        "ADV_202609_NAL_202612": 14,
         "ADV_202610_NAL_202613": 14,
         "ADV_202611_NAL_202614": 14,
         "ADV_202612_NAL_202615": 14,
@@ -17123,6 +20542,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 14
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-08",
+        "ADV_202602_NAL_202605": "2025-10-29",
+        "ADV_202603_NAL_202606": "2025-11-20",
+        "ADV_202604_NAL_202607": "2025-12-09",
+        "ADV_202605_NAL_202608": "2025-12-29",
+        "ADV_202606_NAL_202609": "2026-01-20",
+        "ADV_202607_NAL_202610": "2026-02-06",
+        "ADV_202608_NAL_202611": "2026-02-26",
+        "ADV_202609_NAL_202612": "2026-03-19",
         "ADV_202610_NAL_202613": "2026-04-09",
         "ADV_202611_NAL_202614": "2026-04-29",
         "ADV_202612_NAL_202615": "2026-05-20",
@@ -17175,6 +20603,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-01-04",
         "ADV_202906_NAL_202909": "2029-01-18",
         "ADV_202907_NAL_202910": "2029-02-08"
+      },
+      "predecesora": {
+        "no": "105",
+        "actividad": "Ingenieria entrega fichas tecnica, molderia, estructuras 2D y 3D a Produccion lanzamientos campana Adv Azzorti Livva"
       }
     },
     {
@@ -17182,9 +20614,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf hace entrega completa de prendas Azzorti Livva para devolver a medellin a Asistente diseño mercadeo para el proceso de malla",
       "proceso": "Desarrollos Moda",
       "marca": "Azz Livv",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -17239,6 +20680,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-17",
+        "ADV_202602_NAL_202605": "2025-11-10",
+        "ADV_202603_NAL_202606": "2025-11-27",
+        "ADV_202604_NAL_202607": "2025-12-17",
+        "ADV_202605_NAL_202608": "2026-01-07",
+        "ADV_202606_NAL_202609": "2026-01-27",
+        "ADV_202607_NAL_202610": "2026-02-16",
+        "ADV_202608_NAL_202611": "2026-03-09",
+        "ADV_202609_NAL_202612": "2026-03-30",
         "ADV_202610_NAL_202613": "2026-04-17",
         "ADV_202611_NAL_202614": "2026-05-08",
         "ADV_202612_NAL_202615": "2026-05-27",
@@ -17247,22 +20697,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202615_NAL_202618": "2026-09-24",
         "ADV_202616_NAL_202701": "2026-10-14",
         "ADV_202617_NAL_202702": "2026-11-04",
-        "ADV_202618_NAL_202703": "2026-11-24",
+        "ADV_202618_NAL_202703": "2026-11-25",
         "ADV_202701_NAL_202704": "2026-12-15",
         "ADV_202702_NAL_202705": "2027-01-07",
         "ADV_202703_NAL_202706": "2027-01-28",
         "ADV_202704_NAL_202707": "2027-02-17",
         "ADV_202705_NAL_202708": "2027-03-08",
-        "ADV_202706_NAL_202709": "2027-03-31",
-        "ADV_202707_NAL_202710": "2027-04-21",
-        "ADV_202708_NAL_202711": "2027-05-13",
-        "ADV_202709_NAL_202712": "2027-06-02",
-        "ADV_202710_NAL_202713": "2027-06-23",
-        "ADV_202711_NAL_202714": "2027-07-13",
+        "ADV_202706_NAL_202709": "2027-03-30",
+        "ADV_202707_NAL_202710": "2027-04-19",
+        "ADV_202708_NAL_202711": "2027-05-07",
+        "ADV_202709_NAL_202712": "2027-05-28",
+        "ADV_202710_NAL_202713": "2027-06-21",
+        "ADV_202711_NAL_202714": "2027-07-09",
         "ADV_202712_NAL_202715": "2027-08-02",
         "ADV_202713_NAL_202716": "2027-08-23",
         "ADV_202714_NAL_202717": "2027-09-10",
-        "ADV_202715_NAL_202718": "2027-09-30",
+        "ADV_202715_NAL_202718": "2027-09-29",
         "ADV_202716_NAL_202801": "2027-10-13",
         "ADV_202717_NAL_202802": "2027-11-04",
         "ADV_202718_NAL_202803": "2027-11-24",
@@ -17291,6 +20741,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-07",
         "ADV_202906_NAL_202909": "2029-04-02",
         "ADV_202907_NAL_202910": "2029-04-23"
+      },
+      "predecesora": {
+        "no": "154",
+        "actividad": "Asistente diseño mercadeo realiza devolucion de prendas utilizadas en grafico Azzorti livva"
       }
     },
     {
@@ -17301,6 +20755,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -17355,6 +20818,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-21",
+        "ADV_202602_NAL_202605": "2025-11-12",
+        "ADV_202603_NAL_202606": "2025-12-01",
+        "ADV_202604_NAL_202607": "2025-12-19",
+        "ADV_202605_NAL_202608": "2026-01-09",
+        "ADV_202606_NAL_202609": "2026-01-29",
+        "ADV_202607_NAL_202610": "2026-02-18",
+        "ADV_202608_NAL_202611": "2026-03-11",
+        "ADV_202609_NAL_202612": "2026-04-01",
         "ADV_202610_NAL_202613": "2026-04-21",
         "ADV_202611_NAL_202614": "2026-05-12",
         "ADV_202612_NAL_202615": "2026-05-29",
@@ -17363,22 +20835,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202615_NAL_202618": "2026-09-28",
         "ADV_202616_NAL_202701": "2026-10-16",
         "ADV_202617_NAL_202702": "2026-11-06",
-        "ADV_202618_NAL_202703": "2026-11-26",
+        "ADV_202618_NAL_202703": "2026-11-27",
         "ADV_202701_NAL_202704": "2026-12-17",
         "ADV_202702_NAL_202705": "2027-01-12",
         "ADV_202703_NAL_202706": "2027-02-01",
         "ADV_202704_NAL_202707": "2027-02-19",
         "ADV_202705_NAL_202708": "2027-03-10",
-        "ADV_202706_NAL_202709": "2027-04-02",
-        "ADV_202707_NAL_202710": "2027-04-23",
-        "ADV_202708_NAL_202711": "2027-05-17",
-        "ADV_202709_NAL_202712": "2027-06-04",
-        "ADV_202710_NAL_202713": "2027-06-25",
-        "ADV_202711_NAL_202714": "2027-07-15",
+        "ADV_202706_NAL_202709": "2027-04-01",
+        "ADV_202707_NAL_202710": "2027-04-21",
+        "ADV_202708_NAL_202711": "2027-05-12",
+        "ADV_202709_NAL_202712": "2027-06-02",
+        "ADV_202710_NAL_202713": "2027-06-23",
+        "ADV_202711_NAL_202714": "2027-07-14",
         "ADV_202712_NAL_202715": "2027-08-04",
         "ADV_202713_NAL_202716": "2027-08-25",
         "ADV_202714_NAL_202717": "2027-09-14",
-        "ADV_202715_NAL_202718": "2027-10-04",
+        "ADV_202715_NAL_202718": "2027-10-01",
         "ADV_202716_NAL_202801": "2027-10-15",
         "ADV_202717_NAL_202802": "2027-11-08",
         "ADV_202718_NAL_202803": "2027-11-26",
@@ -17407,6 +20879,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-09",
         "ADV_202906_NAL_202909": "2029-04-04",
         "ADV_202907_NAL_202910": "2029-04-25"
+      },
+      "predecesora": {
+        "no": "175",
+        "actividad": "Mercadeo Entrega Aprobacion Marketing Adv Col Azzorti"
       }
     },
     {
@@ -17417,6 +20893,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -17471,6 +20956,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -17523,6 +21017,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "110",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Azzorti MO"
       }
     },
     {
@@ -17533,6 +21031,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Planeacion Estrategica",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -17587,6 +21094,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-31",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-10",
+        "ADV_202609_NAL_202612": "2026-03-03",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-30",
@@ -17639,6 +21155,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "155",
+        "actividad": "Mercadeo entrega listado de Nuevos Adv Per Azzorti"
       }
     },
     {
@@ -17649,6 +21169,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -17703,6 +21232,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-23",
+        "ADV_202602_NAL_202605": "2025-10-13",
+        "ADV_202603_NAL_202606": "2025-11-03",
+        "ADV_202604_NAL_202607": "2025-11-21",
+        "ADV_202605_NAL_202608": "2025-12-10",
+        "ADV_202606_NAL_202609": "2026-01-02",
+        "ADV_202607_NAL_202610": "2026-01-22",
+        "ADV_202608_NAL_202611": "2026-02-11",
+        "ADV_202609_NAL_202612": "2026-03-04",
         "ADV_202610_NAL_202613": "2026-03-20",
         "ADV_202611_NAL_202614": "2026-04-14",
         "ADV_202612_NAL_202615": "2026-05-04",
@@ -17755,6 +21293,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-18",
         "ADV_202906_NAL_202909": "2029-01-03",
         "ADV_202907_NAL_202910": "2029-01-24"
+      },
+      "predecesora": {
+        "no": "156",
+        "actividad": "Planeacion Hace Reunion para Definir Origen de Produccion Adv"
       }
     },
     {
@@ -17765,6 +21307,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -17819,6 +21370,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-02",
+        "ADV_202602_NAL_202605": "2025-10-23",
+        "ADV_202603_NAL_202606": "2025-11-13",
+        "ADV_202604_NAL_202607": "2025-12-02",
+        "ADV_202605_NAL_202608": "2025-12-19",
+        "ADV_202606_NAL_202609": "2026-01-13",
+        "ADV_202607_NAL_202610": "2026-02-02",
+        "ADV_202608_NAL_202611": "2026-02-20",
+        "ADV_202609_NAL_202612": "2026-03-13",
         "ADV_202610_NAL_202613": "2026-04-01",
         "ADV_202611_NAL_202614": "2026-04-23",
         "ADV_202612_NAL_202615": "2026-05-13",
@@ -17871,6 +21431,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-27",
         "ADV_202906_NAL_202909": "2029-01-12",
         "ADV_202907_NAL_202910": "2029-02-02"
+      },
+      "predecesora": {
+        "no": "159",
+        "actividad": "DisGraf entrega PDF imagen Adv Per Azzorti"
       }
     },
     {
@@ -17878,9 +21442,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf entrega PDF imagen Adv Per Azzorti",
       "proceso": "DisGraf",
       "marca": "Azzorti",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -17935,6 +21508,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-10",
+        "ADV_202602_NAL_202605": "2025-10-30",
+        "ADV_202603_NAL_202606": "2025-11-21",
+        "ADV_202604_NAL_202607": "2025-12-10",
+        "ADV_202605_NAL_202608": "2025-12-30",
+        "ADV_202606_NAL_202609": "2026-01-20",
+        "ADV_202607_NAL_202610": "2026-02-09",
+        "ADV_202608_NAL_202611": "2026-02-27",
+        "ADV_202609_NAL_202612": "2026-03-20",
         "ADV_202610_NAL_202613": "2026-04-10",
         "ADV_202611_NAL_202614": "2026-04-30",
         "ADV_202612_NAL_202615": "2026-05-21",
@@ -17987,6 +21569,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-01-04",
         "ADV_202906_NAL_202909": "2029-01-19",
         "ADV_202907_NAL_202910": "2029-02-09"
+      },
+      "predecesora": {
+        "no": "160",
+        "actividad": "Mercadeo Regional entrega correcciones PDF 1 Adv Per Azzorti Livva"
       }
     },
     {
@@ -17997,6 +21583,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -18051,6 +21646,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-16",
+        "ADV_202602_NAL_202605": "2025-11-05",
+        "ADV_202603_NAL_202606": "2025-11-26",
+        "ADV_202604_NAL_202607": "2025-12-15",
+        "ADV_202605_NAL_202608": "2026-01-06",
+        "ADV_202606_NAL_202609": "2026-01-23",
+        "ADV_202607_NAL_202610": "2026-02-12",
+        "ADV_202608_NAL_202611": "2026-03-04",
+        "ADV_202609_NAL_202612": "2026-03-26",
         "ADV_202610_NAL_202613": "2026-04-15",
         "ADV_202611_NAL_202614": "2026-05-06",
         "ADV_202612_NAL_202615": "2026-05-26",
@@ -18103,6 +21707,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-01-09",
         "ADV_202906_NAL_202909": "2029-01-24",
         "ADV_202907_NAL_202910": "2029-02-14"
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Fecha de Facturacion 3 Campañas antes"
       }
     },
     {
@@ -18113,6 +21721,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -18167,6 +21784,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-11",
+        "ADV_202602_NAL_202605": "2025-12-31",
+        "ADV_202603_NAL_202606": "2026-01-21",
+        "ADV_202604_NAL_202607": "2026-02-10",
+        "ADV_202605_NAL_202608": "2026-03-02",
+        "ADV_202606_NAL_202609": "2026-03-20",
+        "ADV_202607_NAL_202610": "2026-04-10",
+        "ADV_202608_NAL_202611": "2026-04-30",
+        "ADV_202609_NAL_202612": "2026-05-21",
         "ADV_202610_NAL_202613": "2026-06-10",
         "ADV_202611_NAL_202614": "2026-06-30",
         "ADV_202612_NAL_202615": "2026-07-20",
@@ -18219,6 +21845,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-03",
         "ADV_202906_NAL_202909": "2029-03-23",
         "ADV_202907_NAL_202910": "2029-04-14"
+      },
+      "predecesora": {
+        "no": "173",
+        "actividad": "Facturacion Nal Per"
       }
     },
     {
@@ -18229,6 +21859,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ciencia de Datos",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -18283,13 +21922,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-11",
+        "ADV_202602_NAL_202605": "2026-01-02",
+        "ADV_202603_NAL_202606": "2026-01-21",
+        "ADV_202604_NAL_202607": "2026-02-10",
+        "ADV_202605_NAL_202608": "2026-03-02",
+        "ADV_202606_NAL_202609": "2026-03-24",
+        "ADV_202607_NAL_202610": "2026-04-13",
+        "ADV_202608_NAL_202611": "2026-05-04",
+        "ADV_202609_NAL_202612": "2026-05-22",
         "ADV_202610_NAL_202613": "2026-06-10",
         "ADV_202611_NAL_202614": "2026-07-01",
         "ADV_202612_NAL_202615": "2026-07-21",
         "ADV_202613_NAL_202616": "2026-08-12",
         "ADV_202614_NAL_202617": "2026-09-01",
         "ADV_202615_NAL_202618": "2026-09-21",
-        "ADV_202616_NAL_202701": "2026-10-09",
+        "ADV_202616_NAL_202701": "2026-10-13",
         "ADV_202617_NAL_202702": "2026-10-29",
         "ADV_202618_NAL_202703": "2026-11-20",
         "ADV_202701_NAL_202704": "2026-12-10",
@@ -18335,6 +21983,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-05",
         "ADV_202906_NAL_202909": "2029-03-26",
         "ADV_202907_NAL_202910": "2029-04-16"
+      },
+      "predecesora": {
+        "no": "161 y 178",
+        "actividad": "Facturacion Adv Per Azzorti Livva y Facturacion Adv Col"
       }
     },
     {
@@ -18345,6 +21997,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -18399,13 +22060,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-11",
+        "ADV_202602_NAL_202605": "2026-01-02",
+        "ADV_202603_NAL_202606": "2026-01-21",
+        "ADV_202604_NAL_202607": "2026-02-10",
+        "ADV_202605_NAL_202608": "2026-03-02",
+        "ADV_202606_NAL_202609": "2026-03-24",
+        "ADV_202607_NAL_202610": "2026-04-13",
+        "ADV_202608_NAL_202611": "2026-05-04",
+        "ADV_202609_NAL_202612": "2026-05-22",
         "ADV_202610_NAL_202613": "2026-06-10",
         "ADV_202611_NAL_202614": "2026-07-01",
         "ADV_202612_NAL_202615": "2026-07-21",
         "ADV_202613_NAL_202616": "2026-08-12",
         "ADV_202614_NAL_202617": "2026-09-01",
         "ADV_202615_NAL_202618": "2026-09-21",
-        "ADV_202616_NAL_202701": "2026-10-09",
+        "ADV_202616_NAL_202701": "2026-10-13",
         "ADV_202617_NAL_202702": "2026-10-29",
         "ADV_202618_NAL_202703": "2026-11-20",
         "ADV_202701_NAL_202704": "2026-12-10",
@@ -18451,6 +22121,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-05",
         "ADV_202906_NAL_202909": "2029-03-26",
         "ADV_202907_NAL_202910": "2029-04-16"
+      },
+      "predecesora": {
+        "no": "162",
+        "actividad": "Ciencia de datos entrega resultados proyeccion Adv Per Col"
       }
     },
     {
@@ -18461,6 +22135,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -18515,13 +22198,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-12",
+        "ADV_202602_NAL_202605": "2026-01-05",
+        "ADV_202603_NAL_202606": "2026-01-22",
+        "ADV_202604_NAL_202607": "2026-02-11",
+        "ADV_202605_NAL_202608": "2026-03-03",
+        "ADV_202606_NAL_202609": "2026-03-25",
+        "ADV_202607_NAL_202610": "2026-04-14",
+        "ADV_202608_NAL_202611": "2026-05-05",
+        "ADV_202609_NAL_202612": "2026-05-25",
         "ADV_202610_NAL_202613": "2026-06-11",
         "ADV_202611_NAL_202614": "2026-07-02",
         "ADV_202612_NAL_202615": "2026-07-22",
         "ADV_202613_NAL_202616": "2026-08-13",
         "ADV_202614_NAL_202617": "2026-09-02",
         "ADV_202615_NAL_202618": "2026-09-22",
-        "ADV_202616_NAL_202701": "2026-10-13",
+        "ADV_202616_NAL_202701": "2026-10-14",
         "ADV_202617_NAL_202702": "2026-10-30",
         "ADV_202618_NAL_202703": "2026-11-23",
         "ADV_202701_NAL_202704": "2026-12-11",
@@ -18567,6 +22259,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-06",
         "ADV_202906_NAL_202909": "2029-03-27",
         "ADV_202907_NAL_202910": "2029-04-17"
+      },
+      "predecesora": {
+        "no": "163",
+        "actividad": "Mercadeo Regional Per y Col hacen concertacion de ajustes rop Adv a Nal"
       }
     },
     {
@@ -18577,6 +22273,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -18631,6 +22336,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-10",
+        "ADV_202602_NAL_202605": "2026-03-02",
+        "ADV_202603_NAL_202606": "2026-03-24",
+        "ADV_202604_NAL_202607": "2026-04-13",
+        "ADV_202605_NAL_202608": "2026-05-04",
+        "ADV_202606_NAL_202609": "2026-05-22",
+        "ADV_202607_NAL_202610": "2026-06-10",
+        "ADV_202608_NAL_202611": "2026-07-01",
+        "ADV_202609_NAL_202612": "2026-07-21",
         "ADV_202610_NAL_202613": "2026-08-12",
         "ADV_202611_NAL_202614": "2026-09-01",
         "ADV_202612_NAL_202615": "2026-09-21",
@@ -18683,6 +22397,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "173 y 179",
+        "actividad": "Facturacion Nal Per y Facturacion Nal Col"
       }
     },
     {
@@ -18693,6 +22411,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -18747,6 +22474,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-18",
+        "ADV_202602_NAL_202605": "2026-01-09",
+        "ADV_202603_NAL_202606": "2026-01-28",
+        "ADV_202604_NAL_202607": "2026-02-17",
+        "ADV_202605_NAL_202608": "2026-05-11",
+        "ADV_202606_NAL_202609": "2026-03-27",
+        "ADV_202607_NAL_202610": "2026-04-17",
+        "ADV_202608_NAL_202611": "2026-05-11",
+        "ADV_202609_NAL_202612": "2026-05-29",
         "ADV_202610_NAL_202613": "2026-06-18",
         "ADV_202611_NAL_202614": "2026-07-08",
         "ADV_202612_NAL_202615": "2026-07-30",
@@ -18799,6 +22535,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-08",
         "ADV_202906_NAL_202909": "2029-03-27",
         "ADV_202907_NAL_202910": "2029-04-19"
+      },
+      "predecesora": {
+        "no": "167",
+        "actividad": "Mercadeo Regional hace cargue y validacion de ajuste estimados Nal Azzorti_ Fecha ABS"
       }
     },
     {
@@ -18809,6 +22549,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -18863,6 +22612,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-19",
+        "ADV_202602_NAL_202605": "2026-01-13",
+        "ADV_202603_NAL_202606": "2026-01-29",
+        "ADV_202604_NAL_202607": "2026-02-18",
+        "ADV_202605_NAL_202608": "2026-03-10",
+        "ADV_202606_NAL_202609": "2026-03-30",
+        "ADV_202607_NAL_202610": "2026-04-20",
+        "ADV_202608_NAL_202611": "2026-05-12",
+        "ADV_202609_NAL_202612": "2026-06-01",
         "ADV_202610_NAL_202613": "2026-06-19",
         "ADV_202611_NAL_202614": "2026-07-09",
         "ADV_202612_NAL_202615": "2026-07-31",
@@ -18915,6 +22673,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-09",
         "ADV_202906_NAL_202909": "2029-03-28",
         "ADV_202907_NAL_202910": "2029-04-20"
+      },
+      "predecesora": {
+        "no": "ABS",
+        "actividad": "Fecha Traida en Abs de Cronograma Mercadeo"
       }
     },
     {
@@ -18925,6 +22687,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Suministros Paises",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -18979,6 +22750,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-22",
+        "ADV_202602_NAL_202605": "2026-01-14",
+        "ADV_202603_NAL_202606": "2026-01-30",
+        "ADV_202604_NAL_202607": "2026-02-19",
+        "ADV_202605_NAL_202608": "2026-03-11",
+        "ADV_202606_NAL_202609": "2026-03-31",
+        "ADV_202607_NAL_202610": "2026-04-21",
+        "ADV_202608_NAL_202611": "2026-05-13",
+        "ADV_202609_NAL_202612": "2026-06-02",
         "ADV_202610_NAL_202613": "2026-06-22",
         "ADV_202611_NAL_202614": "2026-07-10",
         "ADV_202612_NAL_202615": "2026-08-03",
@@ -19031,6 +22811,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-12",
         "ADV_202906_NAL_202909": "2029-03-29",
         "ADV_202907_NAL_202910": "2029-04-23"
+      },
+      "predecesora": {
+        "no": "167",
+        "actividad": "Mercadeo Regional hace cargue y validacion de ajuste estimados Nal Azzorti_ Fecha ABS"
       }
     },
     {
@@ -19041,6 +22825,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Suministros Paises",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -19095,6 +22888,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-23",
+        "ADV_202602_NAL_202605": "2026-01-15",
+        "ADV_202603_NAL_202606": "2026-02-02",
+        "ADV_202604_NAL_202607": "2026-02-20",
+        "ADV_202605_NAL_202608": "2026-03-12",
+        "ADV_202606_NAL_202609": "2026-04-01",
+        "ADV_202607_NAL_202610": "2026-04-22",
+        "ADV_202608_NAL_202611": "2026-05-14",
+        "ADV_202609_NAL_202612": "2026-06-03",
         "ADV_202610_NAL_202613": "2026-06-23",
         "ADV_202611_NAL_202614": "2026-07-14",
         "ADV_202612_NAL_202615": "2026-08-04",
@@ -19147,6 +22949,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-13",
         "ADV_202906_NAL_202909": "2029-03-30",
         "ADV_202907_NAL_202910": "2029-04-24"
+      },
+      "predecesora": {
+        "no": "167",
+        "actividad": "Mercadeo Regional hace cargue y validacion de ajuste estimados Nal Azzorti_ Fecha ABS"
       }
     },
     {
@@ -19157,6 +22963,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -19211,13 +23026,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-15",
+        "ADV_202602_NAL_202605": "2026-01-06",
+        "ADV_202603_NAL_202606": "2026-01-23",
+        "ADV_202604_NAL_202607": "2026-02-12",
+        "ADV_202605_NAL_202608": "2026-03-03",
+        "ADV_202606_NAL_202609": "2026-03-25",
+        "ADV_202607_NAL_202610": "2026-04-14",
+        "ADV_202608_NAL_202611": "2026-05-05",
+        "ADV_202609_NAL_202612": "2026-05-25",
         "ADV_202610_NAL_202613": "2026-06-11",
         "ADV_202611_NAL_202614": "2026-07-02",
         "ADV_202612_NAL_202615": "2026-07-23",
         "ADV_202613_NAL_202616": "2026-08-13",
         "ADV_202614_NAL_202617": "2026-09-02",
         "ADV_202615_NAL_202618": "2026-09-22",
-        "ADV_202616_NAL_202701": "2026-10-13",
+        "ADV_202616_NAL_202701": "2026-10-23",
         "ADV_202617_NAL_202702": "2026-10-30",
         "ADV_202618_NAL_202703": "2026-11-23",
         "ADV_202701_NAL_202704": "2026-12-11",
@@ -19263,6 +23087,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-06",
         "ADV_202906_NAL_202909": "2029-03-27",
         "ADV_202907_NAL_202910": "2029-04-17"
+      },
+      "predecesora": {
+        "no": "178",
+        "actividad": "Facturacion Adv Col"
       }
     },
     {
@@ -19270,9 +23098,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "Mercadeo Regional hace solicitud costos de Canasta Azzorti_Livva Ecu Bol Gua",
       "proceso": "Sin Proceso",
       "marca": "Azz Livv",
-      "area": "General",
+      "area": "Sin Área",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -19327,6 +23164,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": null,
+        "ADV_202602_NAL_202605": null,
+        "ADV_202603_NAL_202606": null,
+        "ADV_202604_NAL_202607": null,
+        "ADV_202605_NAL_202608": null,
+        "ADV_202606_NAL_202609": null,
+        "ADV_202607_NAL_202610": null,
+        "ADV_202608_NAL_202611": null,
+        "ADV_202609_NAL_202612": null,
         "ADV_202610_NAL_202613": null,
         "ADV_202611_NAL_202614": null,
         "ADV_202612_NAL_202615": null,
@@ -19389,6 +23235,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ingenieria",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -19443,13 +23298,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-18",
+        "ADV_202602_NAL_202605": "2026-01-09",
+        "ADV_202603_NAL_202606": "2026-01-28",
+        "ADV_202604_NAL_202607": "2026-02-17",
+        "ADV_202605_NAL_202608": "2026-03-09",
+        "ADV_202606_NAL_202609": "2026-03-30",
+        "ADV_202607_NAL_202610": "2026-04-17",
+        "ADV_202608_NAL_202611": "2026-05-08",
+        "ADV_202609_NAL_202612": "2026-05-28",
         "ADV_202610_NAL_202613": "2026-06-17",
         "ADV_202611_NAL_202614": "2026-07-07",
         "ADV_202612_NAL_202615": "2026-07-28",
         "ADV_202613_NAL_202616": "2026-08-19",
         "ADV_202614_NAL_202617": "2026-09-07",
         "ADV_202615_NAL_202618": "2026-09-25",
-        "ADV_202616_NAL_202701": "2026-10-16",
+        "ADV_202616_NAL_202701": "2026-10-28",
         "ADV_202617_NAL_202702": "2026-11-05",
         "ADV_202618_NAL_202703": "2026-11-26",
         "ADV_202701_NAL_202704": "2026-12-16",
@@ -19495,6 +23359,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-09",
         "ADV_202906_NAL_202909": "2029-03-30",
         "ADV_202907_NAL_202910": "2029-04-20"
+      },
+      "predecesora": {
+        "no": "170",
+        "actividad": "Mercadeo Regional hace solicitud costos de Canasta Azzorti_Livva Peru Colombia y una campaña antes RD"
       }
     },
     {
@@ -19505,6 +23373,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -19559,6 +23436,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-10",
+        "ADV_202602_NAL_202605": "2026-03-02",
+        "ADV_202603_NAL_202606": "2026-03-20",
+        "ADV_202604_NAL_202607": "2026-04-10",
+        "ADV_202605_NAL_202608": "2026-04-30",
+        "ADV_202606_NAL_202609": "2026-05-21",
+        "ADV_202607_NAL_202610": "2026-06-10",
+        "ADV_202608_NAL_202611": "2026-06-30",
+        "ADV_202609_NAL_202612": "2026-07-20",
         "ADV_202610_NAL_202613": "2026-08-12",
         "ADV_202611_NAL_202614": "2026-09-01",
         "ADV_202612_NAL_202615": "2026-09-21",
@@ -19611,6 +23497,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Peru"
       }
     },
     {
@@ -19621,6 +23511,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -19675,6 +23574,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -19727,6 +23635,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "110",
+        "actividad": "Mercadeo hace revision de prendas totales de campana Azzorti MO"
       }
     },
     {
@@ -19737,6 +23649,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -19791,6 +23712,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-21",
+        "ADV_202602_NAL_202605": "2025-11-12",
+        "ADV_202603_NAL_202606": "2025-12-01",
+        "ADV_202604_NAL_202607": "2025-12-19",
+        "ADV_202605_NAL_202608": "2026-01-09",
+        "ADV_202606_NAL_202609": "2026-01-29",
+        "ADV_202607_NAL_202610": "2026-02-18",
+        "ADV_202608_NAL_202611": "2026-03-11",
+        "ADV_202609_NAL_202612": "2026-04-01",
         "ADV_202610_NAL_202613": "2026-04-21",
         "ADV_202611_NAL_202614": "2026-05-12",
         "ADV_202612_NAL_202615": "2026-05-29",
@@ -19799,22 +23729,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202615_NAL_202618": "2026-09-28",
         "ADV_202616_NAL_202701": "2026-10-16",
         "ADV_202617_NAL_202702": "2026-11-06",
-        "ADV_202618_NAL_202703": "2026-11-26",
+        "ADV_202618_NAL_202703": "2026-11-27",
         "ADV_202701_NAL_202704": "2026-12-17",
         "ADV_202702_NAL_202705": "2027-01-12",
         "ADV_202703_NAL_202706": "2027-02-01",
         "ADV_202704_NAL_202707": "2027-02-19",
         "ADV_202705_NAL_202708": "2027-03-10",
-        "ADV_202706_NAL_202709": "2027-04-02",
-        "ADV_202707_NAL_202710": "2027-04-23",
-        "ADV_202708_NAL_202711": "2027-05-17",
-        "ADV_202709_NAL_202712": "2027-06-04",
-        "ADV_202710_NAL_202713": "2027-06-25",
-        "ADV_202711_NAL_202714": "2027-07-15",
+        "ADV_202706_NAL_202709": "2027-04-01",
+        "ADV_202707_NAL_202710": "2027-04-21",
+        "ADV_202708_NAL_202711": "2027-05-12",
+        "ADV_202709_NAL_202712": "2027-06-02",
+        "ADV_202710_NAL_202713": "2027-06-23",
+        "ADV_202711_NAL_202714": "2027-07-14",
         "ADV_202712_NAL_202715": "2027-08-04",
         "ADV_202713_NAL_202716": "2027-08-25",
         "ADV_202714_NAL_202717": "2027-09-14",
-        "ADV_202715_NAL_202718": "2027-10-04",
+        "ADV_202715_NAL_202718": "2027-10-01",
         "ADV_202716_NAL_202801": "2027-10-15",
         "ADV_202717_NAL_202802": "2027-11-08",
         "ADV_202718_NAL_202803": "2027-11-26",
@@ -19843,6 +23773,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-09",
         "ADV_202906_NAL_202909": "2029-04-04",
         "ADV_202907_NAL_202910": "2029-04-25"
+      },
+      "predecesora": {
+        "no": "176",
+        "actividad": "DisGraf Cuelga a Impresor y Aprobacion Insite Nal Col ABS"
       }
     },
     {
@@ -19850,9 +23784,18 @@ window.CRONOGRAMA_INITIAL_DATA = {
       "actividad": "DisGraf Cuelga a Impresor y Aprobacion Insite Nal Col ABS",
       "proceso": "DisGraf",
       "marca": "Azz Livv",
-      "area": "Disgraf",
+      "area": "DisGraf",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -19907,6 +23850,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-22",
+        "ADV_202602_NAL_202605": "2025-11-13",
+        "ADV_202603_NAL_202606": "2025-12-02",
+        "ADV_202604_NAL_202607": "2025-12-22",
+        "ADV_202605_NAL_202608": "2026-01-12",
+        "ADV_202606_NAL_202609": "2026-01-30",
+        "ADV_202607_NAL_202610": "2026-02-19",
+        "ADV_202608_NAL_202611": "2026-03-12",
+        "ADV_202609_NAL_202612": "2026-04-02",
         "ADV_202610_NAL_202613": "2026-04-22",
         "ADV_202611_NAL_202614": "2026-05-13",
         "ADV_202612_NAL_202615": "2026-06-01",
@@ -19915,22 +23867,22 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202615_NAL_202618": "2026-09-29",
         "ADV_202616_NAL_202701": "2026-10-19",
         "ADV_202617_NAL_202702": "2026-11-09",
-        "ADV_202618_NAL_202703": "2026-11-27",
+        "ADV_202618_NAL_202703": "2026-11-30",
         "ADV_202701_NAL_202704": "2026-12-18",
         "ADV_202702_NAL_202705": "2027-01-13",
         "ADV_202703_NAL_202706": "2027-02-02",
         "ADV_202704_NAL_202707": "2027-02-22",
         "ADV_202705_NAL_202708": "2027-03-11",
-        "ADV_202706_NAL_202709": "2027-04-05",
-        "ADV_202707_NAL_202710": "2027-04-26",
-        "ADV_202708_NAL_202711": "2027-05-18",
-        "ADV_202709_NAL_202712": "2027-06-08",
-        "ADV_202710_NAL_202713": "2027-06-28",
-        "ADV_202711_NAL_202714": "2027-07-16",
+        "ADV_202706_NAL_202709": "2027-04-02",
+        "ADV_202707_NAL_202710": "2027-04-22",
+        "ADV_202708_NAL_202711": "2027-05-13",
+        "ADV_202709_NAL_202712": "2027-06-03",
+        "ADV_202710_NAL_202713": "2027-06-24",
+        "ADV_202711_NAL_202714": "2027-07-15",
         "ADV_202712_NAL_202715": "2027-08-05",
         "ADV_202713_NAL_202716": "2027-08-26",
         "ADV_202714_NAL_202717": "2027-09-15",
-        "ADV_202715_NAL_202718": "2027-10-05",
+        "ADV_202715_NAL_202718": "2027-10-04",
         "ADV_202716_NAL_202801": "2027-10-19",
         "ADV_202717_NAL_202802": "2027-11-09",
         "ADV_202718_NAL_202803": "2027-11-27",
@@ -19959,16 +23911,167 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-11",
         "ADV_202906_NAL_202909": "2029-04-05",
         "ADV_202907_NAL_202910": "2029-04-26"
+      },
+      "predecesora": {
+        "no": "ABS",
+        "actividad": "Fecha entregada por DisGraf"
       }
     },
     {
       "no": 177,
+      "actividad": "DisGraf Cuelga a Impresor y Aprobacion Insite Nal Per ABS",
+      "proceso": "DisGraf",
+      "marca": "Azz Livv",
+      "area": "DisGraf",
+      "dias": 1,
+      "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
+        "ADV_202610_NAL_202613": 1,
+        "ADV_202611_NAL_202614": 1,
+        "ADV_202612_NAL_202615": 1,
+        "ADV_202613_NAL_202616": 1,
+        "ADV_202614_NAL_202617": 1,
+        "ADV_202615_NAL_202618": 1,
+        "ADV_202616_NAL_202701": 1,
+        "ADV_202617_NAL_202702": 1,
+        "ADV_202618_NAL_202703": 1,
+        "ADV_202701_NAL_202704": 1,
+        "ADV_202702_NAL_202705": 1,
+        "ADV_202703_NAL_202706": 1,
+        "ADV_202704_NAL_202707": 1,
+        "ADV_202705_NAL_202708": 1,
+        "ADV_202706_NAL_202709": 1,
+        "ADV_202707_NAL_202710": 1,
+        "ADV_202708_NAL_202711": 1,
+        "ADV_202709_NAL_202712": 1,
+        "ADV_202710_NAL_202713": 1,
+        "ADV_202711_NAL_202714": 1,
+        "ADV_202712_NAL_202715": 1,
+        "ADV_202713_NAL_202716": 1,
+        "ADV_202714_NAL_202717": 1,
+        "ADV_202715_NAL_202718": 1,
+        "ADV_202716_NAL_202801": 1,
+        "ADV_202717_NAL_202802": 1,
+        "ADV_202718_NAL_202803": 1,
+        "ADV_202801_NAL_202804": 1,
+        "ADV_202802_NAL_202805": 1,
+        "ADV_202803_NAL_202806": 1,
+        "ADV_202804_NAL_202807": 1,
+        "ADV_202805_NAL_202808": 1,
+        "ADV_202806_NAL_202809": 1,
+        "ADV_202807_NAL_202810": 1,
+        "ADV_202808_NAL_202811": 1,
+        "ADV_202809_NAL_202812": 1,
+        "ADV_202810_NAL_202813": 1,
+        "ADV_202811_NAL_202814": 1,
+        "ADV_202812_NAL_202815": 1,
+        "ADV_202813_NAL_202816": 1,
+        "ADV_202814_NAL_202817": 1,
+        "ADV_202815_NAL_202818": 1,
+        "ADV_202816_NAL_202901": 1,
+        "ADV_202817_NAL_202902": 1,
+        "ADV_202818_NAL_202903": 1,
+        "ADV_202901_NAL_202904": 1,
+        "ADV_202902_NAL_202905": 1,
+        "ADV_202903_NAL_202906": 1,
+        "ADV_202904_NAL_202907": 1,
+        "ADV_202905_NAL_202908": 1,
+        "ADV_202906_NAL_202909": 1,
+        "ADV_202907_NAL_202910": 1
+      },
+      "fechas": {
+        "ADV_202601_NAL_202604": null,
+        "ADV_202602_NAL_202605": null,
+        "ADV_202603_NAL_202606": null,
+        "ADV_202604_NAL_202607": null,
+        "ADV_202605_NAL_202608": null,
+        "ADV_202606_NAL_202609": null,
+        "ADV_202607_NAL_202610": null,
+        "ADV_202608_NAL_202611": null,
+        "ADV_202609_NAL_202612": null,
+        "ADV_202610_NAL_202613": null,
+        "ADV_202611_NAL_202614": null,
+        "ADV_202612_NAL_202615": null,
+        "ADV_202613_NAL_202616": null,
+        "ADV_202614_NAL_202617": null,
+        "ADV_202615_NAL_202618": null,
+        "ADV_202616_NAL_202701": "2026-10-21",
+        "ADV_202617_NAL_202702": "2026-11-11",
+        "ADV_202618_NAL_202703": "2026-11-30",
+        "ADV_202701_NAL_202704": "2026-12-21",
+        "ADV_202702_NAL_202705": "2027-01-13",
+        "ADV_202703_NAL_202706": "2027-02-02",
+        "ADV_202704_NAL_202707": "2027-02-22",
+        "ADV_202705_NAL_202708": "2027-03-15",
+        "ADV_202706_NAL_202709": "2027-04-06",
+        "ADV_202707_NAL_202710": "2027-04-26",
+        "ADV_202708_NAL_202711": "2027-05-13",
+        "ADV_202709_NAL_202712": "2027-06-02",
+        "ADV_202710_NAL_202713": "2027-06-21",
+        "ADV_202711_NAL_202714": "2027-07-13",
+        "ADV_202712_NAL_202715": "2027-08-03",
+        "ADV_202713_NAL_202716": "2027-08-24",
+        "ADV_202714_NAL_202717": "2027-09-14",
+        "ADV_202715_NAL_202718": "2027-10-04",
+        "ADV_202716_NAL_202801": null,
+        "ADV_202717_NAL_202802": null,
+        "ADV_202718_NAL_202803": null,
+        "ADV_202801_NAL_202804": null,
+        "ADV_202802_NAL_202805": null,
+        "ADV_202803_NAL_202806": null,
+        "ADV_202804_NAL_202807": null,
+        "ADV_202805_NAL_202808": null,
+        "ADV_202806_NAL_202809": null,
+        "ADV_202807_NAL_202810": null,
+        "ADV_202808_NAL_202811": null,
+        "ADV_202809_NAL_202812": null,
+        "ADV_202810_NAL_202813": null,
+        "ADV_202811_NAL_202814": null,
+        "ADV_202812_NAL_202815": null,
+        "ADV_202813_NAL_202816": null,
+        "ADV_202814_NAL_202817": null,
+        "ADV_202815_NAL_202818": null,
+        "ADV_202816_NAL_202901": null,
+        "ADV_202817_NAL_202902": null,
+        "ADV_202818_NAL_202903": null,
+        "ADV_202901_NAL_202904": null,
+        "ADV_202902_NAL_202905": null,
+        "ADV_202903_NAL_202906": null,
+        "ADV_202904_NAL_202907": null,
+        "ADV_202905_NAL_202908": null,
+        "ADV_202906_NAL_202909": null,
+        "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "ABS",
+        "actividad": "Fecha entregada por DisGraf"
+      }
+    },
+    {
+      "no": 178,
       "actividad": "Facturacion Adv Col",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20023,6 +24126,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-10",
+        "ADV_202602_NAL_202605": "2025-12-30",
+        "ADV_202603_NAL_202606": "2026-01-20",
+        "ADV_202604_NAL_202607": "2026-02-09",
+        "ADV_202605_NAL_202608": "2026-02-27",
+        "ADV_202606_NAL_202609": "2026-03-20",
+        "ADV_202607_NAL_202610": "2026-04-10",
+        "ADV_202608_NAL_202611": "2026-04-30",
+        "ADV_202609_NAL_202612": "2026-05-21",
         "ADV_202610_NAL_202613": "2026-06-09",
         "ADV_202611_NAL_202614": "2026-06-30",
         "ADV_202612_NAL_202615": "2026-07-21",
@@ -20075,16 +24187,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-03",
         "ADV_202906_NAL_202909": "2029-03-23",
         "ADV_202907_NAL_202910": "2029-04-14"
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Facturacion Nal Col"
       }
     },
     {
-      "no": 178,
+      "no": 179,
       "actividad": "Facturacion Nal Col",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20139,6 +24264,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-09",
+        "ADV_202602_NAL_202605": "2026-02-27",
+        "ADV_202603_NAL_202606": "2026-03-20",
+        "ADV_202604_NAL_202607": "2026-04-10",
+        "ADV_202605_NAL_202608": "2026-04-30",
+        "ADV_202606_NAL_202609": "2026-05-21",
+        "ADV_202607_NAL_202610": "2026-06-09",
+        "ADV_202608_NAL_202611": "2026-06-30",
+        "ADV_202609_NAL_202612": "2026-07-21",
         "ADV_202610_NAL_202613": "2026-08-11",
         "ADV_202611_NAL_202614": "2026-08-31",
         "ADV_202612_NAL_202615": "2026-09-18",
@@ -20191,16 +24325,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Colombia"
       }
     },
     {
-      "no": 179,
+      "no": 180,
       "actividad": "Facturacion Nal Ecu",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20255,6 +24402,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-12",
+        "ADV_202602_NAL_202605": "2026-03-04",
+        "ADV_202603_NAL_202606": "2026-03-23",
+        "ADV_202604_NAL_202607": "2026-04-13",
+        "ADV_202605_NAL_202608": "2026-04-30",
+        "ADV_202606_NAL_202609": "2026-05-21",
+        "ADV_202607_NAL_202610": "2026-06-11",
+        "ADV_202608_NAL_202611": "2026-07-02",
+        "ADV_202609_NAL_202612": "2026-07-22",
         "ADV_202610_NAL_202613": "2026-08-12",
         "ADV_202611_NAL_202614": "2026-08-31",
         "ADV_202612_NAL_202615": "2026-09-18",
@@ -20307,16 +24463,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Ecuador"
       }
     },
     {
-      "no": 180,
+      "no": 181,
       "actividad": "Facturacion Nal Gua",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20371,6 +24540,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-10",
+        "ADV_202602_NAL_202605": "2026-03-02",
+        "ADV_202603_NAL_202606": "2026-03-20",
+        "ADV_202604_NAL_202607": "2026-04-13",
+        "ADV_202605_NAL_202608": "2026-05-04",
+        "ADV_202606_NAL_202609": "2026-05-22",
+        "ADV_202607_NAL_202610": "2026-06-11",
+        "ADV_202608_NAL_202611": "2026-07-03",
+        "ADV_202609_NAL_202612": "2026-07-23",
         "ADV_202610_NAL_202613": "2026-08-12",
         "ADV_202611_NAL_202614": "2026-09-01",
         "ADV_202612_NAL_202615": "2026-09-22",
@@ -20423,16 +24601,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Guaivia"
       }
     },
     {
-      "no": 181,
+      "no": 182,
       "actividad": "Facturacion Nal Bol",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20487,6 +24678,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-13",
+        "ADV_202602_NAL_202605": "2026-03-06",
+        "ADV_202603_NAL_202606": "2026-03-25",
+        "ADV_202604_NAL_202607": "2026-04-15",
+        "ADV_202605_NAL_202608": "2026-05-05",
+        "ADV_202606_NAL_202609": "2026-05-25",
+        "ADV_202607_NAL_202610": "2026-06-12",
+        "ADV_202608_NAL_202611": "2026-07-01",
+        "ADV_202609_NAL_202612": "2026-07-22",
         "ADV_202610_NAL_202613": "2026-08-13",
         "ADV_202611_NAL_202614": "2026-09-03",
         "ADV_202612_NAL_202615": "2026-09-23",
@@ -20539,16 +24739,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Bolivia"
       }
     },
     {
-      "no": 182,
+      "no": 183,
       "actividad": "Facturacion Nal RD",
       "proceso": "Facturacion",
       "marca": "Azzorti",
       "area": "Ventas",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -20603,6 +24816,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-12",
+        "ADV_202602_NAL_202605": "2026-03-04",
+        "ADV_202603_NAL_202606": "2026-03-24",
+        "ADV_202604_NAL_202607": "2026-04-13",
+        "ADV_202605_NAL_202608": "2026-04-30",
+        "ADV_202606_NAL_202609": "2026-05-22",
+        "ADV_202607_NAL_202610": "2026-06-12",
+        "ADV_202608_NAL_202611": "2026-07-03",
+        "ADV_202609_NAL_202612": "2026-07-24",
         "ADV_202610_NAL_202613": "2026-08-13",
         "ADV_202611_NAL_202614": "2026-09-03",
         "ADV_202612_NAL_202615": "2026-09-23",
@@ -20655,16 +24877,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Definida por Ventas Republica Dominicana"
       }
     },
     {
-      "no": 183,
+      "no": 184,
       "actividad": "ID Ropa entrega requerimiento con fichas de exploración Importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -20719,6 +24954,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-07-16",
+        "ADV_202602_NAL_202605": "2024-08-12",
+        "ADV_202603_NAL_202606": "2024-08-23",
+        "ADV_202604_NAL_202607": "2024-09-06",
+        "ADV_202605_NAL_202608": "2024-09-27",
+        "ADV_202606_NAL_202609": "2024-10-23",
+        "ADV_202607_NAL_202610": "2024-11-13",
+        "ADV_202608_NAL_202611": "2024-11-28",
+        "ADV_202609_NAL_202612": "2025-01-02",
         "ADV_202610_NAL_202613": "2025-01-07",
         "ADV_202611_NAL_202614": "2025-01-16",
         "ADV_202612_NAL_202615": "2025-02-17",
@@ -20771,16 +25015,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "185",
+        "actividad": "Star Trading realiza búsqueda proveedor, Proceso cotización, filtro de costo referencial (exploración) de PC importados"
       }
     },
     {
-      "no": 184,
+      "no": 185,
       "actividad": "Star Trading realiza búsqueda proveedor, Proceso cotización, filtro de costo referencial (exploración) de PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 25,
       "dh": {
+        "ADV_202601_NAL_202604": 25,
+        "ADV_202602_NAL_202605": 25,
+        "ADV_202603_NAL_202606": 25,
+        "ADV_202604_NAL_202607": 25,
+        "ADV_202605_NAL_202608": 25,
+        "ADV_202606_NAL_202609": 25,
+        "ADV_202607_NAL_202610": 25,
+        "ADV_202608_NAL_202611": 25,
+        "ADV_202609_NAL_202612": 25,
         "ADV_202610_NAL_202613": 25,
         "ADV_202611_NAL_202614": 25,
         "ADV_202612_NAL_202615": 25,
@@ -20835,6 +25092,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 25
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-07-18",
+        "ADV_202602_NAL_202605": "2024-08-14",
+        "ADV_202603_NAL_202606": "2024-08-27",
+        "ADV_202604_NAL_202607": "2024-09-10",
+        "ADV_202605_NAL_202608": "2024-10-09",
+        "ADV_202606_NAL_202609": "2024-10-25",
+        "ADV_202607_NAL_202610": "2024-11-15",
+        "ADV_202608_NAL_202611": "2024-12-02",
+        "ADV_202609_NAL_202612": "2025-01-07",
         "ADV_202610_NAL_202613": "2025-01-09",
         "ADV_202611_NAL_202614": "2025-01-23",
         "ADV_202612_NAL_202615": "2025-02-19",
@@ -20887,16 +25153,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "186",
+        "actividad": "ID Ropa seleccióna y hace comentarios de producto y pre-aprobación Costos FOB exploración de Pc Importados"
       }
     },
     {
-      "no": 185,
+      "no": 186,
       "actividad": "ID Ropa seleccióna y hace comentarios de producto y pre-aprobación Costos FOB exploración de Pc Importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -20951,6 +25230,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-08-22",
+        "ADV_202602_NAL_202605": "2024-09-19",
+        "ADV_202603_NAL_202606": "2024-10-09",
+        "ADV_202604_NAL_202607": "2024-10-23",
+        "ADV_202605_NAL_202608": "2024-11-13",
+        "ADV_202606_NAL_202609": "2024-11-29",
+        "ADV_202607_NAL_202610": "2024-12-20",
+        "ADV_202608_NAL_202611": "2025-01-08",
+        "ADV_202609_NAL_202612": "2025-02-25",
         "ADV_202610_NAL_202613": "2025-02-27",
         "ADV_202611_NAL_202614": "2025-03-13",
         "ADV_202612_NAL_202615": "2025-03-26",
@@ -21003,16 +25291,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "187",
+        "actividad": "Star Trading realiza Solicitud y elaboración de muestras exploración de PC Importados"
       }
     },
     {
-      "no": 186,
+      "no": 187,
       "actividad": "Star Trading realiza Solicitud y elaboración de muestras exploración de PC Importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -21067,6 +25368,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-08-27",
+        "ADV_202602_NAL_202605": "2024-09-24",
+        "ADV_202603_NAL_202606": "2024-10-15",
+        "ADV_202604_NAL_202607": "2024-10-28",
+        "ADV_202605_NAL_202608": "2024-11-18",
+        "ADV_202606_NAL_202609": "2024-12-04",
+        "ADV_202607_NAL_202610": "2024-12-26",
+        "ADV_202608_NAL_202611": "2025-01-13",
+        "ADV_202609_NAL_202612": "2025-02-28",
         "ADV_202610_NAL_202613": "2025-03-04",
         "ADV_202611_NAL_202614": "2025-03-18",
         "ADV_202612_NAL_202615": "2025-03-31",
@@ -21119,16 +25429,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "188",
+        "actividad": "Star Trading Valida muestra óptima para test en Colombia de PC Importados"
       }
     },
     {
-      "no": 187,
+      "no": 188,
       "actividad": "Star Trading Valida muestra óptima para test en Colombia de PC Importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -21183,6 +25506,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-09-19",
+        "ADV_202602_NAL_202605": "2024-10-24",
+        "ADV_202603_NAL_202606": "2024-11-07",
+        "ADV_202604_NAL_202607": "2024-11-21",
+        "ADV_202605_NAL_202608": "2024-12-09",
+        "ADV_202606_NAL_202609": "2024-12-27",
+        "ADV_202607_NAL_202610": "2025-01-24",
+        "ADV_202608_NAL_202611": "2025-03-03",
+        "ADV_202609_NAL_202612": "2025-03-21",
         "ADV_202610_NAL_202613": "2025-03-26",
         "ADV_202611_NAL_202614": "2025-04-10",
         "ADV_202612_NAL_202615": "2025-04-30",
@@ -21235,16 +25567,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "189",
+        "actividad": "Star Trading hace envío de muestras a Colombia de PC importados"
       }
     },
     {
-      "no": 188,
+      "no": 189,
       "actividad": "Star Trading hace envío de muestras a Colombia de PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -21299,6 +25644,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-09-24",
+        "ADV_202602_NAL_202605": "2024-10-29",
+        "ADV_202603_NAL_202606": "2024-11-12",
+        "ADV_202604_NAL_202607": "2024-11-26",
+        "ADV_202605_NAL_202608": "2024-12-12",
+        "ADV_202606_NAL_202609": "2025-01-02",
+        "ADV_202607_NAL_202610": "2025-02-12",
+        "ADV_202608_NAL_202611": "2025-03-06",
+        "ADV_202609_NAL_202612": "2025-03-26",
         "ADV_202610_NAL_202613": "2025-03-31",
         "ADV_202611_NAL_202614": "2025-04-17",
         "ADV_202612_NAL_202615": "2025-05-07",
@@ -21351,16 +25705,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "190",
+        "actividad": "ID Ropa Mercadeo Recepciona y hace validación de muestras PC importados"
       }
     },
     {
-      "no": 189,
+      "no": 190,
       "actividad": "ID Ropa Mercadeo Recepciona y hace validación de muestras PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -21415,6 +25782,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-10-11",
+        "ADV_202602_NAL_202605": "2024-11-08",
+        "ADV_202603_NAL_202606": "2024-11-22",
+        "ADV_202604_NAL_202607": "2024-12-06",
+        "ADV_202605_NAL_202608": "2024-12-24",
+        "ADV_202606_NAL_202609": "2025-01-14",
+        "ADV_202607_NAL_202610": "2025-02-24",
+        "ADV_202608_NAL_202611": "2025-03-18",
+        "ADV_202609_NAL_202612": "2025-04-08",
         "ADV_202610_NAL_202613": "2025-04-11",
         "ADV_202611_NAL_202614": "2025-05-05",
         "ADV_202612_NAL_202615": "2025-05-19",
@@ -21467,16 +25843,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "191",
+        "actividad": "Ingenieria realiza Revisión calidad (laboratorio + pruebas de uso) de PC importados"
       }
     },
     {
-      "no": 190,
+      "no": 191,
       "actividad": "Ingenieria realiza Revisión calidad (laboratorio + pruebas de uso) de PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 10,
       "dh": {
+        "ADV_202601_NAL_202604": 10,
+        "ADV_202602_NAL_202605": 10,
+        "ADV_202603_NAL_202606": 10,
+        "ADV_202604_NAL_202607": 10,
+        "ADV_202605_NAL_202608": 10,
+        "ADV_202606_NAL_202609": 10,
+        "ADV_202607_NAL_202610": 10,
+        "ADV_202608_NAL_202611": 10,
+        "ADV_202609_NAL_202612": 10,
         "ADV_202610_NAL_202613": 10,
         "ADV_202611_NAL_202614": 10,
         "ADV_202612_NAL_202615": 10,
@@ -21531,6 +25920,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 10
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-10-15",
+        "ADV_202602_NAL_202605": "2024-11-12",
+        "ADV_202603_NAL_202606": "2024-11-25",
+        "ADV_202604_NAL_202607": "2024-12-10",
+        "ADV_202605_NAL_202608": "2024-12-26",
+        "ADV_202606_NAL_202609": "2025-01-15",
+        "ADV_202607_NAL_202610": "2025-02-25",
+        "ADV_202608_NAL_202611": "2025-03-19",
+        "ADV_202609_NAL_202612": "2025-04-09",
         "ADV_202610_NAL_202613": "2025-04-14",
         "ADV_202611_NAL_202614": "2025-05-06",
         "ADV_202612_NAL_202615": "2025-05-20",
@@ -21583,16 +25981,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "192",
+        "actividad": "Ingenieria hace validación de muestras de PC importados"
       }
     },
     {
-      "no": 191,
+      "no": 192,
       "actividad": "Ingenieria hace validación de muestras de PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -21647,6 +26058,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-10-29",
+        "ADV_202602_NAL_202605": "2024-11-26",
+        "ADV_202603_NAL_202606": "2024-12-10",
+        "ADV_202604_NAL_202607": "2024-12-24",
+        "ADV_202605_NAL_202608": "2025-01-13",
+        "ADV_202606_NAL_202609": "2025-02-26",
+        "ADV_202607_NAL_202610": "2025-03-11",
+        "ADV_202608_NAL_202611": "2025-04-03",
+        "ADV_202609_NAL_202612": "2025-05-05",
         "ADV_202610_NAL_202613": "2025-05-08",
         "ADV_202611_NAL_202614": "2025-05-20",
         "ADV_202612_NAL_202615": "2025-06-05",
@@ -21699,16 +26119,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "193",
+        "actividad": "ID Ropa Mercadeo hace revisión final y asiganción de campañas de PC importados"
       }
     },
     {
-      "no": 192,
+      "no": 193,
       "actividad": "ID Ropa Mercadeo hace revisión final y asiganción de campañas de PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -21763,6 +26196,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-11-05",
+        "ADV_202602_NAL_202605": "2024-11-29",
+        "ADV_202603_NAL_202606": "2024-12-13",
+        "ADV_202604_NAL_202607": "2024-12-30",
+        "ADV_202605_NAL_202608": "2025-01-16",
+        "ADV_202606_NAL_202609": "2025-03-03",
+        "ADV_202607_NAL_202610": "2025-03-14",
+        "ADV_202608_NAL_202611": "2025-04-09",
+        "ADV_202609_NAL_202612": "2025-05-08",
         "ADV_202610_NAL_202613": "2025-05-13",
         "ADV_202611_NAL_202614": "2025-05-23",
         "ADV_202612_NAL_202615": "2025-06-10",
@@ -21815,16 +26257,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "194",
+        "actividad": "Diseñador Moda realiza montaje de Fichas de ropa PC importados China y Bangladesh hace reunion de entrega con diseño, mercadeo e ingenieria"
       }
     },
     {
-      "no": 193,
+      "no": 194,
       "actividad": "Star trading realiza solicitud y elaboracion de set de tallas al proveedor",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 12,
       "dh": {
+        "ADV_202601_NAL_202604": 12,
+        "ADV_202602_NAL_202605": 12,
+        "ADV_202603_NAL_202606": 12,
+        "ADV_202604_NAL_202607": 12,
+        "ADV_202605_NAL_202608": 12,
+        "ADV_202606_NAL_202609": 12,
+        "ADV_202607_NAL_202610": 12,
+        "ADV_202608_NAL_202611": 12,
+        "ADV_202609_NAL_202612": 12,
         "ADV_202610_NAL_202613": 12,
         "ADV_202611_NAL_202614": 12,
         "ADV_202612_NAL_202615": 12,
@@ -21879,6 +26334,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 12
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-11-13",
+        "ADV_202602_NAL_202605": "2024-12-06",
+        "ADV_202603_NAL_202606": "2024-12-20",
+        "ADV_202604_NAL_202607": "2025-01-08",
+        "ADV_202605_NAL_202608": "2025-02-20",
+        "ADV_202606_NAL_202609": "2025-03-10",
+        "ADV_202607_NAL_202610": "2025-03-21",
+        "ADV_202608_NAL_202611": "2025-04-22",
+        "ADV_202609_NAL_202612": "2025-05-15",
         "ADV_202610_NAL_202613": "2025-05-20",
         "ADV_202611_NAL_202614": "2025-06-03",
         "ADV_202612_NAL_202615": "2025-06-17",
@@ -21931,16 +26395,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "195",
+        "actividad": "Star Trading envia set de tallas a ID en Colombia"
       }
     },
     {
-      "no": 194,
+      "no": 195,
       "actividad": "Star Trading envia set de tallas a ID en Colombia",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -21995,6 +26472,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-11-29",
+        "ADV_202602_NAL_202605": "2024-12-26",
+        "ADV_202603_NAL_202606": "2025-01-10",
+        "ADV_202604_NAL_202607": "2025-02-21",
+        "ADV_202605_NAL_202608": "2025-03-10",
+        "ADV_202606_NAL_202609": "2025-03-27",
+        "ADV_202607_NAL_202610": "2025-04-10",
+        "ADV_202608_NAL_202611": "2025-05-14",
+        "ADV_202609_NAL_202612": "2025-06-04",
         "ADV_202610_NAL_202613": "2025-06-09",
         "ADV_202611_NAL_202614": "2025-06-19",
         "ADV_202612_NAL_202615": "2025-07-07",
@@ -22047,16 +26533,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "196",
+        "actividad": "ID Ropa Mercado realiza recepcion y validacion de set de tallas"
       }
     },
     {
-      "no": 195,
+      "no": 196,
       "actividad": "ID Ropa Mercado realiza recepcion y validacion de set de tallas",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -22111,6 +26610,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-12-12",
+        "ADV_202602_NAL_202605": "2025-01-09",
+        "ADV_202603_NAL_202606": "2025-02-19",
+        "ADV_202604_NAL_202607": "2025-03-05",
+        "ADV_202605_NAL_202608": "2025-03-20",
+        "ADV_202606_NAL_202609": "2025-04-09",
+        "ADV_202607_NAL_202610": "2025-04-30",
+        "ADV_202608_NAL_202611": "2025-05-26",
+        "ADV_202609_NAL_202612": "2025-06-16",
         "ADV_202610_NAL_202613": "2025-06-19",
         "ADV_202611_NAL_202614": "2025-07-03",
         "ADV_202612_NAL_202615": "2025-07-17",
@@ -22163,16 +26671,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "197",
+        "actividad": "Ingenieria Col reraliza validacion de set de tallas"
       }
     },
     {
-      "no": 196,
+      "no": 197,
       "actividad": "Ingenieria Col reraliza validacion de set de tallas",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -22227,6 +26748,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-12-13",
+        "ADV_202602_NAL_202605": "2025-01-10",
+        "ADV_202603_NAL_202606": "2025-02-20",
+        "ADV_202604_NAL_202607": "2025-03-06",
+        "ADV_202605_NAL_202608": "2025-03-21",
+        "ADV_202606_NAL_202609": "2025-04-10",
+        "ADV_202607_NAL_202610": "2025-05-05",
+        "ADV_202608_NAL_202611": "2025-05-27",
+        "ADV_202609_NAL_202612": "2025-06-17",
         "ADV_202610_NAL_202613": "2025-06-20",
         "ADV_202611_NAL_202614": "2025-07-04",
         "ADV_202612_NAL_202615": "2025-07-18",
@@ -22279,16 +26809,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "198",
+        "actividad": "Diseñador Moda realiza montaje de Fichas de ropa PC importados China y Bangladesh hace reunion de entrega con diseño, mercadeo e ingenieria"
       }
     },
     {
-      "no": 197,
+      "no": 198,
       "actividad": "Diseñador Moda realiza montaje de Fichas de ropa PC importados China y Bangladesh hace reunion de entrega con diseño, mercadeo e ingenieria",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Aglab",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -22343,6 +26886,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-12-20",
+        "ADV_202602_NAL_202605": "2025-01-17",
+        "ADV_202603_NAL_202606": "2025-02-27",
+        "ADV_202604_NAL_202607": "2025-03-13",
+        "ADV_202605_NAL_202608": "2025-03-31",
+        "ADV_202606_NAL_202609": "2025-04-25",
+        "ADV_202607_NAL_202610": "2025-05-12",
+        "ADV_202608_NAL_202611": "2025-06-05",
+        "ADV_202609_NAL_202612": "2025-06-25",
         "ADV_202610_NAL_202613": "2025-07-01",
         "ADV_202611_NAL_202614": "2025-07-11",
         "ADV_202612_NAL_202615": "2025-07-25",
@@ -22395,16 +26947,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "199",
+        "actividad": "Ingenieria Hace Complemento de Ficha Tecnicas de ropa PC importados y entrega a ID"
       }
     },
     {
-      "no": 198,
+      "no": 199,
       "actividad": "Ingenieria Hace Complemento de Ficha Tecnicas de ropa PC importados y entrega a ID",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -22459,6 +27024,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2024-12-31",
+        "ADV_202602_NAL_202605": "2025-02-24",
+        "ADV_202603_NAL_202606": "2025-03-07",
+        "ADV_202604_NAL_202607": "2025-03-21",
+        "ADV_202605_NAL_202608": "2025-04-09",
+        "ADV_202606_NAL_202609": "2025-05-07",
+        "ADV_202607_NAL_202610": "2025-05-20",
+        "ADV_202608_NAL_202611": "2025-06-13",
+        "ADV_202609_NAL_202612": "2025-07-04",
         "ADV_202610_NAL_202613": "2025-07-09",
         "ADV_202611_NAL_202614": "2025-07-21",
         "ADV_202612_NAL_202615": "2025-08-08",
@@ -22511,16 +27085,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "200",
+        "actividad": "ID realiza Proceso y confirmacion de requerimiento de producto PC importados"
       }
     },
     {
-      "no": 199,
+      "no": 200,
       "actividad": "ID realiza Proceso y confirmacion de requerimiento de producto PC importados",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -22575,6 +27162,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-01-03",
+        "ADV_202602_NAL_202605": "2025-02-26",
+        "ADV_202603_NAL_202606": "2025-03-11",
+        "ADV_202604_NAL_202607": "2025-03-26",
+        "ADV_202605_NAL_202608": "2025-04-11",
+        "ADV_202606_NAL_202609": "2025-05-09",
+        "ADV_202607_NAL_202610": "2025-05-22",
+        "ADV_202608_NAL_202611": "2025-06-17",
+        "ADV_202609_NAL_202612": "2025-07-08",
         "ADV_202610_NAL_202613": "2025-07-11",
         "ADV_202611_NAL_202614": "2025-07-23",
         "ADV_202612_NAL_202615": "2025-08-12",
@@ -22627,16 +27223,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "201",
+        "actividad": "Star Trading realiza Recotización de producto PC importados (varia diseño, misma tela)"
       }
     },
     {
-      "no": 200,
+      "no": 201,
       "actividad": "Star Trading realiza Recotización de producto PC importados (varia diseño, misma tela)",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -22691,6 +27300,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-01-08",
+        "ADV_202602_NAL_202605": "2025-02-28",
+        "ADV_202603_NAL_202606": "2025-03-13",
+        "ADV_202604_NAL_202607": "2025-03-28",
+        "ADV_202605_NAL_202608": "2025-04-18",
+        "ADV_202606_NAL_202609": "2025-05-13",
+        "ADV_202607_NAL_202610": "2025-05-26",
+        "ADV_202608_NAL_202611": "2025-06-19",
+        "ADV_202609_NAL_202612": "2025-07-10",
         "ADV_202610_NAL_202613": "2025-07-15",
         "ADV_202611_NAL_202614": "2025-07-25",
         "ADV_202612_NAL_202615": "2025-08-14",
@@ -22743,16 +27361,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "202",
+        "actividad": "Mercadeo Recibe informacion de ropa importados para asignar precio de venta publico y unidades por referencia e ID envia a Star Trading / ID solicita creacion de codigos de prendas a Ingenieria y envía formalización a Startrading (FORMALIZACIÓN DE COMPRA)"
       }
     },
     {
-      "no": 201,
+      "no": 202,
       "actividad": "Mercadeo Recibe informacion de ropa importados para asignar precio de venta publico y unidades por referencia e ID envia a Star Trading / ID solicita creacion de codigos de prendas a Ingenieria y envía formalización a Startrading (FORMALIZACIÓN DE COMPRA)",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -22807,6 +27438,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-01-15",
+        "ADV_202602_NAL_202605": "2025-03-07",
+        "ADV_202603_NAL_202606": "2025-03-20",
+        "ADV_202604_NAL_202607": "2025-04-07",
+        "ADV_202605_NAL_202608": "2025-04-29",
+        "ADV_202606_NAL_202609": "2025-05-20",
+        "ADV_202607_NAL_202610": "2025-06-03",
+        "ADV_202608_NAL_202611": "2025-06-26",
+        "ADV_202609_NAL_202612": "2025-07-17",
         "ADV_202610_NAL_202613": "2025-07-22",
         "ADV_202611_NAL_202614": "2025-08-01",
         "ADV_202612_NAL_202615": "2025-08-21",
@@ -22859,16 +27499,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "204",
+        "actividad": "Star Trading realiza solicitud y firma de Proforma a fábricas"
       }
     },
     {
-      "no": 202,
+      "no": 203,
       "actividad": "Ingenieria Dato maestro entrega codigos de ropa importada solicitados por campaña",
       "proceso": "Dato Maestro",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -22923,6 +27576,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-02-19",
+        "ADV_202602_NAL_202605": "2025-03-14",
+        "ADV_202603_NAL_202606": "2025-03-28",
+        "ADV_202604_NAL_202607": "2025-04-14",
+        "ADV_202605_NAL_202608": "2025-05-08",
+        "ADV_202606_NAL_202609": "2025-05-27",
+        "ADV_202607_NAL_202610": "2025-06-10",
+        "ADV_202608_NAL_202611": "2025-07-04",
+        "ADV_202609_NAL_202612": "2025-07-24",
         "ADV_202610_NAL_202613": "2025-07-31",
         "ADV_202611_NAL_202614": "2025-08-12",
         "ADV_202612_NAL_202615": "2025-08-28",
@@ -22975,16 +27637,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "204",
+        "actividad": "Star Trading realiza solicitud y firma de Proforma a fábricas"
       }
     },
     {
-      "no": 203,
+      "no": 204,
       "actividad": "Star Trading realiza solicitud y firma de Proforma a fábricas",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -23039,6 +27714,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-02-20",
+        "ADV_202602_NAL_202605": "2025-03-17",
+        "ADV_202603_NAL_202606": "2025-03-31",
+        "ADV_202604_NAL_202607": "2025-04-17",
+        "ADV_202605_NAL_202608": "2025-05-09",
+        "ADV_202606_NAL_202609": "2025-05-28",
+        "ADV_202607_NAL_202610": "2025-06-11",
+        "ADV_202608_NAL_202611": "2025-07-07",
+        "ADV_202609_NAL_202612": "2025-07-25",
         "ADV_202610_NAL_202613": "2025-08-01",
         "ADV_202611_NAL_202614": "2025-08-13",
         "ADV_202612_NAL_202615": "2025-08-29",
@@ -23091,16 +27775,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "205",
+        "actividad": "Star Trading realiza emision y recepción Proforma Producción"
       }
     },
     {
-      "no": 204,
+      "no": 205,
       "actividad": "Star Trading realiza emision y recepción Proforma Producción",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -23155,6 +27852,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-02-26",
+        "ADV_202602_NAL_202605": "2025-03-21",
+        "ADV_202603_NAL_202606": "2025-04-07",
+        "ADV_202604_NAL_202607": "2025-04-25",
+        "ADV_202605_NAL_202608": "2025-05-15",
+        "ADV_202606_NAL_202609": "2025-06-04",
+        "ADV_202607_NAL_202610": "2025-06-17",
+        "ADV_202608_NAL_202611": "2025-07-11",
+        "ADV_202609_NAL_202612": "2025-07-31",
         "ADV_202610_NAL_202613": "2025-08-07",
         "ADV_202611_NAL_202614": "2025-08-19",
         "ADV_202612_NAL_202615": "2025-09-04",
@@ -23207,16 +27913,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "206",
+        "actividad": "Star Trading realiza formalización de producción"
       }
     },
     {
-      "no": 205,
+      "no": 206,
       "actividad": "Star Trading realiza formalización de producción",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -23271,6 +27990,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-02-27",
+        "ADV_202602_NAL_202605": "2025-03-24",
+        "ADV_202603_NAL_202606": "2025-04-08",
+        "ADV_202604_NAL_202607": "2025-04-28",
+        "ADV_202605_NAL_202608": "2025-05-16",
+        "ADV_202606_NAL_202609": "2025-06-05",
+        "ADV_202607_NAL_202610": "2025-06-18",
+        "ADV_202608_NAL_202611": "2025-07-14",
+        "ADV_202609_NAL_202612": "2025-08-01",
         "ADV_202610_NAL_202613": "2025-08-08",
         "ADV_202611_NAL_202614": "2025-08-20",
         "ADV_202612_NAL_202615": "2025-09-05",
@@ -23323,16 +28051,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "207",
+        "actividad": "Star Trading realiza Solicitud y elaboración de lab dip, counter sample"
       }
     },
     {
-      "no": 206,
+      "no": 207,
       "actividad": "Star Trading realiza Solicitud y elaboración de lab dip, counter sample",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -23387,6 +28128,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-04",
+        "ADV_202602_NAL_202605": "2025-03-27",
+        "ADV_202603_NAL_202606": "2025-04-11",
+        "ADV_202604_NAL_202607": "2025-05-05",
+        "ADV_202605_NAL_202608": "2025-05-21",
+        "ADV_202606_NAL_202609": "2025-06-10",
+        "ADV_202607_NAL_202610": "2025-06-23",
+        "ADV_202608_NAL_202611": "2025-07-17",
+        "ADV_202609_NAL_202612": "2025-08-06",
         "ADV_202610_NAL_202613": "2025-08-13",
         "ADV_202611_NAL_202614": "2025-08-25",
         "ADV_202612_NAL_202615": "2025-09-10",
@@ -23439,16 +28189,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "208",
+        "actividad": "Star Trading realiza envío de counter sample y labdip a Colombia"
       }
     },
     {
-      "no": 207,
+      "no": 208,
       "actividad": "Star Trading realiza envío de counter sample y labdip a Colombia",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -23503,6 +28266,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-25",
+        "ADV_202602_NAL_202605": "2025-04-22",
+        "ADV_202603_NAL_202606": "2025-05-12",
+        "ADV_202604_NAL_202607": "2025-05-26",
+        "ADV_202605_NAL_202608": "2025-06-12",
+        "ADV_202606_NAL_202609": "2025-07-01",
+        "ADV_202607_NAL_202610": "2025-07-14",
+        "ADV_202608_NAL_202611": "2025-08-07",
+        "ADV_202609_NAL_202612": "2025-08-27",
         "ADV_202610_NAL_202613": "2025-09-03",
         "ADV_202611_NAL_202614": "2025-09-15",
         "ADV_202612_NAL_202615": "2025-10-08",
@@ -23555,16 +28327,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "209",
+        "actividad": "ID Ropa Mercadeo realiza Recepción y validación de Labdip y Counter sample"
       }
     },
     {
-      "no": 208,
+      "no": 209,
       "actividad": "ID Ropa Mercadeo realiza Recepción y validación de Labdip y Counter sample",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -23619,6 +28404,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-07",
+        "ADV_202602_NAL_202605": "2025-05-08",
+        "ADV_202603_NAL_202606": "2025-05-22",
+        "ADV_202604_NAL_202607": "2025-06-06",
+        "ADV_202605_NAL_202608": "2025-06-24",
+        "ADV_202606_NAL_202609": "2025-07-11",
+        "ADV_202607_NAL_202610": "2025-07-24",
+        "ADV_202608_NAL_202611": "2025-08-19",
+        "ADV_202609_NAL_202612": "2025-09-08",
         "ADV_202610_NAL_202613": "2025-09-15",
         "ADV_202611_NAL_202614": "2025-09-25",
         "ADV_202612_NAL_202615": "2025-10-22",
@@ -23671,16 +28465,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "210",
+        "actividad": "Ingenieria Col realiza Validación de Lab Dip y Counter sample"
       }
     },
     {
-      "no": 209,
+      "no": 210,
       "actividad": "Ingenieria Col realiza Validación de Lab Dip y Counter sample",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -23735,6 +28542,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-08",
+        "ADV_202602_NAL_202605": "2025-05-09",
+        "ADV_202603_NAL_202606": "2025-05-23",
+        "ADV_202604_NAL_202607": "2025-06-09",
+        "ADV_202605_NAL_202608": "2025-06-25",
+        "ADV_202606_NAL_202609": "2025-07-14",
+        "ADV_202607_NAL_202610": "2025-07-25",
+        "ADV_202608_NAL_202611": "2025-08-20",
+        "ADV_202609_NAL_202612": "2025-09-09",
         "ADV_202610_NAL_202613": "2025-09-16",
         "ADV_202611_NAL_202614": "2025-09-26",
         "ADV_202612_NAL_202615": "2025-10-27",
@@ -23787,16 +28603,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "211",
+        "actividad": "Star Trading Proveedor procede con fabricación de Tela"
       }
     },
     {
-      "no": 210,
+      "no": 211,
       "actividad": "Star Trading Proveedor procede con fabricación de Tela",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -23851,6 +28680,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-21",
+        "ADV_202602_NAL_202605": "2025-05-16",
+        "ADV_202603_NAL_202606": "2025-06-02",
+        "ADV_202604_NAL_202607": "2025-06-16",
+        "ADV_202605_NAL_202608": "2025-07-03",
+        "ADV_202606_NAL_202609": "2025-07-21",
+        "ADV_202607_NAL_202610": "2025-08-05",
+        "ADV_202608_NAL_202611": "2025-08-27",
+        "ADV_202609_NAL_202612": "2025-09-16",
         "ADV_202610_NAL_202613": "2025-09-23",
         "ADV_202611_NAL_202614": "2025-10-13",
         "ADV_202612_NAL_202615": "2025-11-05",
@@ -23903,16 +28741,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "212",
+        "actividad": "Star Trading Provedor realiza Elaboracion de PP Sample de Bangladeh y China"
       }
     },
     {
-      "no": 211,
+      "no": 212,
       "actividad": "Star Trading Provedor realiza Elaboracion de PP Sample de Bangladeh y China",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -23967,6 +28818,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-16",
+        "ADV_202602_NAL_202605": "2025-06-09",
+        "ADV_202603_NAL_202606": "2025-06-23",
+        "ADV_202604_NAL_202607": "2025-07-07",
+        "ADV_202605_NAL_202608": "2025-07-24",
+        "ADV_202606_NAL_202609": "2025-08-14",
+        "ADV_202607_NAL_202610": "2025-08-27",
+        "ADV_202608_NAL_202611": "2025-09-17",
+        "ADV_202609_NAL_202612": "2025-10-17",
         "ADV_202610_NAL_202613": "2025-10-28",
         "ADV_202611_NAL_202614": "2025-11-10",
         "ADV_202612_NAL_202615": "2025-11-26",
@@ -24019,16 +28879,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "213",
+        "actividad": "Star Trading realiza envío de muestra tela y PP sample de Bangladeh y China"
       }
     },
     {
-      "no": 212,
+      "no": 213,
       "actividad": "Star Trading realiza envío de muestra tela y PP sample de Bangladeh y China",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -24083,6 +28956,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-09",
+        "ADV_202602_NAL_202605": "2025-06-30",
+        "ADV_202603_NAL_202606": "2025-07-14",
+        "ADV_202604_NAL_202607": "2025-07-30",
+        "ADV_202605_NAL_202608": "2025-08-19",
+        "ADV_202606_NAL_202609": "2025-09-04",
+        "ADV_202607_NAL_202610": "2025-09-17",
+        "ADV_202608_NAL_202611": "2025-10-20",
+        "ADV_202609_NAL_202612": "2025-11-12",
         "ADV_202610_NAL_202613": "2025-11-19",
         "ADV_202611_NAL_202614": "2025-12-01",
         "ADV_202612_NAL_202615": "2025-12-19",
@@ -24135,16 +29017,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "214",
+        "actividad": "ID Ropa Mercadeo realiza recepcion y validacion de PP Sample Bangladesh y China"
       }
     },
     {
-      "no": 213,
+      "no": 214,
       "actividad": "ID Ropa Mercadeo realiza recepcion y validacion de PP Sample Bangladesh y China",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -24199,6 +29094,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-19",
+        "ADV_202602_NAL_202605": "2025-07-10",
+        "ADV_202603_NAL_202606": "2025-07-24",
+        "ADV_202604_NAL_202607": "2025-08-11",
+        "ADV_202605_NAL_202608": "2025-08-29",
+        "ADV_202606_NAL_202609": "2025-09-16",
+        "ADV_202607_NAL_202610": "2025-09-29",
+        "ADV_202608_NAL_202611": "2025-11-04",
+        "ADV_202609_NAL_202612": "2025-11-24",
         "ADV_202610_NAL_202613": "2025-12-01",
         "ADV_202611_NAL_202614": "2025-12-11",
         "ADV_202612_NAL_202615": "2026-01-06",
@@ -24251,16 +29155,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "215",
+        "actividad": "Ingenieria recibe y analiza PP de Bangladesh y China y tela Lab Test"
       }
     },
     {
-      "no": 214,
+      "no": 215,
       "actividad": "Ingenieria recibe y analiza PP de Bangladesh y China y tela Lab Test",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -24315,6 +29232,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-20",
+        "ADV_202602_NAL_202605": "2025-07-11",
+        "ADV_202603_NAL_202606": "2025-07-25",
+        "ADV_202604_NAL_202607": "2025-08-12",
+        "ADV_202605_NAL_202608": "2025-09-01",
+        "ADV_202606_NAL_202609": "2025-09-17",
+        "ADV_202607_NAL_202610": "2025-09-30",
+        "ADV_202608_NAL_202611": "2025-11-05",
+        "ADV_202609_NAL_202612": "2025-11-25",
         "ADV_202610_NAL_202613": "2025-12-02",
         "ADV_202611_NAL_202614": "2025-12-12",
         "ADV_202612_NAL_202615": "2026-01-07",
@@ -24367,16 +29293,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "216",
+        "actividad": "Stra Trading envia aprobacion a Fabrica"
       }
     },
     {
-      "no": 215,
+      "no": 216,
       "actividad": "Stra Trading envia aprobacion a Fabrica",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -24431,6 +29370,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-30",
+        "ADV_202602_NAL_202605": "2025-07-18",
+        "ADV_202603_NAL_202606": "2025-08-05",
+        "ADV_202604_NAL_202607": "2025-08-20",
+        "ADV_202605_NAL_202608": "2025-09-08",
+        "ADV_202606_NAL_202609": "2025-09-24",
+        "ADV_202607_NAL_202610": "2025-10-20",
+        "ADV_202608_NAL_202611": "2025-11-12",
+        "ADV_202609_NAL_202612": "2025-12-02",
         "ADV_202610_NAL_202613": "2025-12-11",
         "ADV_202611_NAL_202614": "2025-12-19",
         "ADV_202612_NAL_202615": "2026-01-15",
@@ -24483,16 +29431,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "217",
+        "actividad": "Ingenieria genera las FT finales en PDF para inspeccion"
       }
     },
     {
-      "no": 216,
+      "no": 217,
       "actividad": "Ingenieria genera las FT finales en PDF para inspeccion",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -24547,6 +29508,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-01",
+        "ADV_202602_NAL_202605": "2025-07-21",
+        "ADV_202603_NAL_202606": "2025-08-07",
+        "ADV_202604_NAL_202607": "2025-08-21",
+        "ADV_202605_NAL_202608": "2025-09-09",
+        "ADV_202606_NAL_202609": "2025-09-25",
+        "ADV_202607_NAL_202610": "2025-10-21",
+        "ADV_202608_NAL_202611": "2025-11-13",
+        "ADV_202609_NAL_202612": "2025-12-03",
         "ADV_202610_NAL_202613": "2025-12-12",
         "ADV_202611_NAL_202614": "2025-12-22",
         "ADV_202612_NAL_202615": "2026-01-16",
@@ -24599,16 +29569,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "218",
+        "actividad": "Star Trading procede con producción en masa"
       }
     },
     {
-      "no": 217,
+      "no": 218,
       "actividad": "Star Trading procede con producción en masa",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 35,
       "dh": {
+        "ADV_202601_NAL_202604": 35,
+        "ADV_202602_NAL_202605": 35,
+        "ADV_202603_NAL_202606": 35,
+        "ADV_202604_NAL_202607": 35,
+        "ADV_202605_NAL_202608": 35,
+        "ADV_202606_NAL_202609": 35,
+        "ADV_202607_NAL_202610": 35,
+        "ADV_202608_NAL_202611": 35,
+        "ADV_202609_NAL_202612": 35,
         "ADV_202610_NAL_202613": 35,
         "ADV_202611_NAL_202614": 35,
         "ADV_202612_NAL_202615": 35,
@@ -24663,6 +29646,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 35
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-07-03",
+        "ADV_202602_NAL_202605": "2025-07-23",
+        "ADV_202603_NAL_202606": "2025-08-11",
+        "ADV_202604_NAL_202607": "2025-08-25",
+        "ADV_202605_NAL_202608": "2025-09-11",
+        "ADV_202606_NAL_202609": "2025-09-29",
+        "ADV_202607_NAL_202610": "2025-10-27",
+        "ADV_202608_NAL_202611": "2025-11-17",
+        "ADV_202609_NAL_202612": "2025-12-05",
         "ADV_202610_NAL_202613": "2025-12-16",
         "ADV_202611_NAL_202614": "2025-12-29",
         "ADV_202612_NAL_202615": "2026-01-20",
@@ -24715,16 +29707,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "219",
+        "actividad": "Inspección pre-embarque ABS Bangladesh"
       }
     },
     {
-      "no": 218,
+      "no": 219,
       "actividad": "Inspección pre-embarque ABS Bangladesh",
       "proceso": "Importados",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -24779,6 +29784,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-08-26",
+        "ADV_202602_NAL_202605": "2025-09-15",
+        "ADV_202603_NAL_202606": "2025-09-29",
+        "ADV_202604_NAL_202607": "2025-10-24",
+        "ADV_202605_NAL_202608": "2025-11-14",
+        "ADV_202606_NAL_202609": "2025-12-02",
+        "ADV_202607_NAL_202610": "2025-12-18",
+        "ADV_202608_NAL_202611": "2026-01-13",
+        "ADV_202609_NAL_202612": "2026-02-02",
         "ADV_202610_NAL_202613": "2026-02-23",
         "ADV_202611_NAL_202614": "2026-03-12",
         "ADV_202612_NAL_202615": "2026-04-03",
@@ -24831,16 +29845,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "ABS",
+        "actividad": "Fecha entregada por Comercio Exterior"
       }
     },
     {
-      "no": 219,
+      "no": 220,
       "actividad": "Planeacion Hace Previsional Adv Col",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -24895,6 +29922,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-31",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-10",
+        "ADV_202609_NAL_202612": "2026-03-03",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-30",
@@ -24947,16 +29983,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "174",
+        "actividad": "Mercadeo entrega listado de Nuevos Adv Col Azzorti"
       }
     },
     {
-      "no": 220,
+      "no": 221,
       "actividad": "Diseñador entrega Investigación de tendencias / competencia / ferias / viajes / muestras físicas X bloque – con imagen de producto referente, entrega a importados moda de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Aglab",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -25011,6 +30060,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-03",
+        "ADV_202602_NAL_202605": "2025-03-18",
+        "ADV_202603_NAL_202606": "2025-04-04",
+        "ADV_202604_NAL_202607": "2025-05-05",
+        "ADV_202605_NAL_202608": "2025-05-20",
+        "ADV_202606_NAL_202609": "2025-06-16",
+        "ADV_202607_NAL_202610": "2025-06-27",
+        "ADV_202608_NAL_202611": "2025-07-08",
+        "ADV_202609_NAL_202612": "2025-07-29",
         "ADV_202610_NAL_202613": "2025-08-19",
         "ADV_202611_NAL_202614": "2025-09-10",
         "ADV_202612_NAL_202615": "2025-09-23",
@@ -25063,16 +30121,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-05-26",
         "ADV_202906_NAL_202909": "2028-06-16",
         "ADV_202907_NAL_202910": "2028-07-11"
+      },
+      "predecesora": {
+        "no": "222",
+        "actividad": "Star trading recepciona requerimentos y revisa especificaciones y solicita a fábricas cotización de Telas especiales"
       }
     },
     {
-      "no": 221,
+      "no": 222,
       "actividad": "Star trading recepciona requerimentos y revisa especificaciones y solicita a fábricas cotización de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -25127,6 +30198,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-04",
+        "ADV_202602_NAL_202605": "2025-03-19",
+        "ADV_202603_NAL_202606": "2025-04-07",
+        "ADV_202604_NAL_202607": "2025-05-06",
+        "ADV_202605_NAL_202608": "2025-05-21",
+        "ADV_202606_NAL_202609": "2025-06-17",
+        "ADV_202607_NAL_202610": "2025-07-01",
+        "ADV_202608_NAL_202611": "2025-07-09",
+        "ADV_202609_NAL_202612": "2025-07-30",
         "ADV_202610_NAL_202613": "2025-08-20",
         "ADV_202611_NAL_202614": "2025-09-11",
         "ADV_202612_NAL_202615": "2025-09-24",
@@ -25179,16 +30259,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-05-29",
         "ADV_202906_NAL_202909": "2028-06-20",
         "ADV_202907_NAL_202910": "2028-07-12"
+      },
+      "predecesora": {
+        "no": "223",
+        "actividad": "Star Trading hace Elaboración de cotización por fabricas de Telas especiales"
       }
     },
     {
-      "no": 222,
+      "no": 223,
       "actividad": "Star Trading hace Elaboración de cotización por fabricas de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -25243,6 +30336,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-06",
+        "ADV_202602_NAL_202605": "2025-03-21",
+        "ADV_202603_NAL_202606": "2025-04-09",
+        "ADV_202604_NAL_202607": "2025-05-08",
+        "ADV_202605_NAL_202608": "2025-05-23",
+        "ADV_202606_NAL_202609": "2025-06-19",
+        "ADV_202607_NAL_202610": "2025-07-03",
+        "ADV_202608_NAL_202611": "2025-07-11",
+        "ADV_202609_NAL_202612": "2025-08-01",
         "ADV_202610_NAL_202613": "2025-08-22",
         "ADV_202611_NAL_202614": "2025-09-15",
         "ADV_202612_NAL_202615": "2025-09-26",
@@ -25295,16 +30397,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-05-31",
         "ADV_202906_NAL_202909": "2028-06-22",
         "ADV_202907_NAL_202910": "2028-07-14"
+      },
+      "predecesora": {
+        "no": "224",
+        "actividad": "Star trading envia cotización a ID telas de Telas especiales"
       }
     },
     {
-      "no": 223,
+      "no": 224,
       "actividad": "Star trading envia cotización a ID telas de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -25359,6 +30474,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-18",
+        "ADV_202602_NAL_202605": "2025-04-02",
+        "ADV_202603_NAL_202606": "2025-04-23",
+        "ADV_202604_NAL_202607": "2025-05-20",
+        "ADV_202605_NAL_202608": "2025-06-05",
+        "ADV_202606_NAL_202609": "2025-07-01",
+        "ADV_202607_NAL_202610": "2025-07-15",
+        "ADV_202608_NAL_202611": "2025-07-23",
+        "ADV_202609_NAL_202612": "2025-08-13",
         "ADV_202610_NAL_202613": "2025-09-03",
         "ADV_202611_NAL_202614": "2025-09-25",
         "ADV_202612_NAL_202615": "2025-10-16",
@@ -25411,16 +30535,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-06-12",
         "ADV_202906_NAL_202909": "2028-07-04",
         "ADV_202907_NAL_202910": "2028-07-26"
+      },
+      "predecesora": {
+        "no": "225",
+        "actividad": "ID importados Moda Entrega selección de telas para envío de hanger de Telas especiales"
       }
     },
     {
-      "no": 224,
+      "no": 225,
       "actividad": "ID importados Moda Entrega selección de telas para envío de hanger de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -25475,6 +30612,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-19",
+        "ADV_202602_NAL_202605": "2025-04-03",
+        "ADV_202603_NAL_202606": "2025-04-24",
+        "ADV_202604_NAL_202607": "2025-05-21",
+        "ADV_202605_NAL_202608": "2025-06-06",
+        "ADV_202606_NAL_202609": "2025-07-02",
+        "ADV_202607_NAL_202610": "2025-07-16",
+        "ADV_202608_NAL_202611": "2025-07-24",
+        "ADV_202609_NAL_202612": "2025-08-14",
         "ADV_202610_NAL_202613": "2025-09-04",
         "ADV_202611_NAL_202614": "2025-09-26",
         "ADV_202612_NAL_202615": "2025-10-17",
@@ -25527,16 +30673,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-06-13",
         "ADV_202906_NAL_202909": "2028-07-05",
         "ADV_202907_NAL_202910": "2028-07-27"
+      },
+      "predecesora": {
+        "no": "226",
+        "actividad": "Star Trading Solicita Preparación de hangers para envío a Colombia'- 3 dias preparacion hanger (proveedor) 3 dias tránsito a oficina china de Telas especiales"
       }
     },
     {
-      "no": 225,
+      "no": 226,
       "actividad": "Star Trading Solicita Preparación de hangers para envío a Colombia'- 3 dias preparacion hanger (proveedor) 3 dias tránsito a oficina china de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 6,
       "dh": {
+        "ADV_202601_NAL_202604": 6,
+        "ADV_202602_NAL_202605": 6,
+        "ADV_202603_NAL_202606": 6,
+        "ADV_202604_NAL_202607": 6,
+        "ADV_202605_NAL_202608": 6,
+        "ADV_202606_NAL_202609": 6,
+        "ADV_202607_NAL_202610": 6,
+        "ADV_202608_NAL_202611": 6,
+        "ADV_202609_NAL_202612": 6,
         "ADV_202610_NAL_202613": 6,
         "ADV_202611_NAL_202614": 6,
         "ADV_202612_NAL_202615": 6,
@@ -25591,6 +30750,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 6
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-21",
+        "ADV_202602_NAL_202605": "2025-04-07",
+        "ADV_202603_NAL_202606": "2025-04-28",
+        "ADV_202604_NAL_202607": "2025-05-23",
+        "ADV_202605_NAL_202608": "2025-06-10",
+        "ADV_202606_NAL_202609": "2025-07-04",
+        "ADV_202607_NAL_202610": "2025-07-18",
+        "ADV_202608_NAL_202611": "2025-07-28",
+        "ADV_202609_NAL_202612": "2025-08-18",
         "ADV_202610_NAL_202613": "2025-09-08",
         "ADV_202611_NAL_202614": "2025-09-30",
         "ADV_202612_NAL_202615": "2025-10-21",
@@ -25643,16 +30811,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-06-15",
         "ADV_202906_NAL_202909": "2028-07-07",
         "ADV_202907_NAL_202910": "2028-07-31"
+      },
+      "predecesora": {
+        "no": "227",
+        "actividad": "Star trading envia hangers de Telas especiales"
       }
     },
     {
-      "no": 226,
+      "no": 227,
       "actividad": "Star trading envia hangers de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -25707,6 +30888,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-03-30",
+        "ADV_202602_NAL_202605": "2025-04-16",
+        "ADV_202603_NAL_202606": "2025-05-08",
+        "ADV_202604_NAL_202607": "2025-06-03",
+        "ADV_202605_NAL_202608": "2025-06-18",
+        "ADV_202606_NAL_202609": "2025-07-13",
+        "ADV_202607_NAL_202610": "2025-07-28",
+        "ADV_202608_NAL_202611": "2025-08-05",
+        "ADV_202609_NAL_202612": "2025-08-26",
         "ADV_202610_NAL_202613": "2025-09-16",
         "ADV_202611_NAL_202614": "2025-10-16",
         "ADV_202612_NAL_202615": "2025-11-02",
@@ -25759,16 +30949,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-06-27",
         "ADV_202906_NAL_202909": "2028-07-16",
         "ADV_202907_NAL_202910": "2028-08-08"
+      },
+      "predecesora": {
+        "no": "228",
+        "actividad": "Ingeniera hace revision productiva (corte como confeccion) al hanger de Telas especiales"
       }
     },
     {
-      "no": 227,
+      "no": 228,
       "actividad": "Ingeniera hace revision productiva (corte como confeccion) al hanger de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -25823,6 +31026,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-07",
+        "ADV_202602_NAL_202605": "2025-04-24",
+        "ADV_202603_NAL_202606": "2025-05-16",
+        "ADV_202604_NAL_202607": "2025-06-11",
+        "ADV_202605_NAL_202608": "2025-06-26",
+        "ADV_202606_NAL_202609": "2025-07-21",
+        "ADV_202607_NAL_202610": "2025-08-05",
+        "ADV_202608_NAL_202611": "2025-08-13",
+        "ADV_202609_NAL_202612": "2025-09-03",
         "ADV_202610_NAL_202613": "2025-09-24",
         "ADV_202611_NAL_202614": "2025-10-24",
         "ADV_202612_NAL_202615": "2025-11-10",
@@ -25875,16 +31087,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-07-05",
         "ADV_202906_NAL_202909": "2028-07-24",
         "ADV_202907_NAL_202910": "2028-08-16"
+      },
+      "predecesora": {
+        "no": "229",
+        "actividad": "ID importados Moda hace solicitud de 10 mtrs. Deben ser en el color aprobado. de Telas especiales"
       }
     },
     {
-      "no": 228,
+      "no": 229,
       "actividad": "ID importados Moda hace solicitud de 10 mtrs. Deben ser en el color aprobado. de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Mercadeo",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -25939,6 +31164,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-09",
+        "ADV_202602_NAL_202605": "2025-04-28",
+        "ADV_202603_NAL_202606": "2025-05-20",
+        "ADV_202604_NAL_202607": "2025-06-13",
+        "ADV_202605_NAL_202608": "2025-07-01",
+        "ADV_202606_NAL_202609": "2025-07-23",
+        "ADV_202607_NAL_202610": "2025-08-08",
+        "ADV_202608_NAL_202611": "2025-08-15",
+        "ADV_202609_NAL_202612": "2025-09-05",
         "ADV_202610_NAL_202613": "2025-09-26",
         "ADV_202611_NAL_202614": "2025-10-28",
         "ADV_202612_NAL_202615": "2025-11-12",
@@ -25991,16 +31225,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-07-07",
         "ADV_202906_NAL_202909": "2028-07-26",
         "ADV_202907_NAL_202910": "2028-08-18"
+      },
+      "predecesora": {
+        "no": "230",
+        "actividad": "Star trading recibe solicitud de 10m muestras y prepara las muestras para envío a Colombia, reconfimar stock and color - preparar paquetes de Telas especiales"
       }
     },
     {
-      "no": 229,
+      "no": 230,
       "actividad": "Star trading recibe solicitud de 10m muestras y prepara las muestras para envío a Colombia, reconfimar stock and color - preparar paquetes de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 10,
       "dh": {
+        "ADV_202601_NAL_202604": 10,
+        "ADV_202602_NAL_202605": 10,
+        "ADV_202603_NAL_202606": 10,
+        "ADV_202604_NAL_202607": 10,
+        "ADV_202605_NAL_202608": 10,
+        "ADV_202606_NAL_202609": 10,
+        "ADV_202607_NAL_202610": 10,
+        "ADV_202608_NAL_202611": 10,
+        "ADV_202609_NAL_202612": 10,
         "ADV_202610_NAL_202613": 10,
         "ADV_202611_NAL_202614": 10,
         "ADV_202612_NAL_202615": 10,
@@ -26055,6 +31302,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 10
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-10",
+        "ADV_202602_NAL_202605": "2025-04-29",
+        "ADV_202603_NAL_202606": "2025-05-21",
+        "ADV_202604_NAL_202607": "2025-06-16",
+        "ADV_202605_NAL_202608": "2025-07-02",
+        "ADV_202606_NAL_202609": "2025-07-24",
+        "ADV_202607_NAL_202610": "2025-08-11",
+        "ADV_202608_NAL_202611": "2025-08-18",
+        "ADV_202609_NAL_202612": "2025-09-08",
         "ADV_202610_NAL_202613": "2025-09-29",
         "ADV_202611_NAL_202614": "2025-10-29",
         "ADV_202612_NAL_202615": "2025-11-13",
@@ -26107,16 +31363,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-07-10",
         "ADV_202906_NAL_202909": "2028-07-27",
         "ADV_202907_NAL_202910": "2028-08-21"
+      },
+      "predecesora": {
+        "no": "231",
+        "actividad": "Star trading envia 10m de Telas especiales"
       }
     },
     {
-      "no": 230,
+      "no": 231,
       "actividad": "Star trading envia 10m de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 8,
       "dh": {
+        "ADV_202601_NAL_202604": 8,
+        "ADV_202602_NAL_202605": 8,
+        "ADV_202603_NAL_202606": 8,
+        "ADV_202604_NAL_202607": 8,
+        "ADV_202605_NAL_202608": 8,
+        "ADV_202606_NAL_202609": 8,
+        "ADV_202607_NAL_202610": 8,
+        "ADV_202608_NAL_202611": 8,
+        "ADV_202609_NAL_202612": 8,
         "ADV_202610_NAL_202613": 8,
         "ADV_202611_NAL_202614": 8,
         "ADV_202612_NAL_202615": 8,
@@ -26171,6 +31440,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 8
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-04-30",
+        "ADV_202602_NAL_202605": "2025-05-15",
+        "ADV_202603_NAL_202606": "2025-06-05",
+        "ADV_202604_NAL_202607": "2025-06-29",
+        "ADV_202605_NAL_202608": "2025-07-16",
+        "ADV_202606_NAL_202609": "2025-08-07",
+        "ADV_202607_NAL_202610": "2025-08-24",
+        "ADV_202608_NAL_202611": "2025-09-01",
+        "ADV_202609_NAL_202612": "2025-09-21",
         "ADV_202610_NAL_202613": "2025-10-22",
         "ADV_202611_NAL_202614": "2025-11-13",
         "ADV_202612_NAL_202615": "2025-11-27",
@@ -26223,16 +31501,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-07-23",
         "ADV_202906_NAL_202909": "2028-08-10",
         "ADV_202907_NAL_202910": "2028-09-03"
+      },
+      "predecesora": {
+        "no": "232",
+        "actividad": "Calidad Telas hace Pruebas de calidad de Telas especiales"
       }
     },
     {
-      "no": 231,
+      "no": 232,
       "actividad": "Calidad Telas hace Pruebas de calidad de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Calidad",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -26287,6 +31578,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-08",
+        "ADV_202602_NAL_202605": "2025-05-23",
+        "ADV_202603_NAL_202606": "2025-06-13",
+        "ADV_202604_NAL_202607": "2025-07-07",
+        "ADV_202605_NAL_202608": "2025-07-24",
+        "ADV_202606_NAL_202609": "2025-08-15",
+        "ADV_202607_NAL_202610": "2025-09-01",
+        "ADV_202608_NAL_202611": "2025-09-09",
+        "ADV_202609_NAL_202612": "2025-09-29",
         "ADV_202610_NAL_202613": "2025-10-30",
         "ADV_202611_NAL_202614": "2025-11-21",
         "ADV_202612_NAL_202615": "2025-12-05",
@@ -26339,16 +31639,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-07-31",
         "ADV_202906_NAL_202909": "2028-08-18",
         "ADV_202907_NAL_202910": "2028-09-11"
+      },
+      "predecesora": {
+        "no": "233",
+        "actividad": "Ingenieria hace las pruebas de corte y confeccion de telas especiales"
       }
     },
     {
-      "no": 232,
+      "no": 233,
       "actividad": "Ingenieria hace las pruebas de corte y confeccion de telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -26403,6 +31716,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-09",
+        "ADV_202602_NAL_202605": "2025-05-26",
+        "ADV_202603_NAL_202606": "2025-06-16",
+        "ADV_202604_NAL_202607": "2025-07-08",
+        "ADV_202605_NAL_202608": "2025-07-25",
+        "ADV_202606_NAL_202609": "2025-08-19",
+        "ADV_202607_NAL_202610": "2025-09-02",
+        "ADV_202608_NAL_202611": "2025-09-10",
+        "ADV_202609_NAL_202612": "2025-09-30",
         "ADV_202610_NAL_202613": "2025-10-31",
         "ADV_202611_NAL_202614": "2025-11-24",
         "ADV_202612_NAL_202615": "2025-12-09",
@@ -26455,16 +31777,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-01",
         "ADV_202906_NAL_202909": "2028-08-22",
         "ADV_202907_NAL_202910": "2028-09-12"
+      },
+      "predecesora": {
+        "no": "234",
+        "actividad": "Ingenieria Inicia las pruebas de uso y diligencia el seguimiento de telas especiales"
       }
     },
     {
-      "no": 233,
+      "no": 234,
       "actividad": "Ingenieria Inicia las pruebas de uso y diligencia el seguimiento de telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Ingenieria",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -26519,6 +31854,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-16",
+        "ADV_202602_NAL_202605": "2025-06-03",
+        "ADV_202603_NAL_202606": "2025-06-24",
+        "ADV_202604_NAL_202607": "2025-07-15",
+        "ADV_202605_NAL_202608": "2025-08-01",
+        "ADV_202606_NAL_202609": "2025-08-26",
+        "ADV_202607_NAL_202610": "2025-09-09",
+        "ADV_202608_NAL_202611": "2025-09-17",
+        "ADV_202609_NAL_202612": "2025-10-07",
         "ADV_202610_NAL_202613": "2025-11-10",
         "ADV_202611_NAL_202614": "2025-12-01",
         "ADV_202612_NAL_202615": "2025-12-16",
@@ -26571,16 +31915,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-09",
         "ADV_202906_NAL_202909": "2028-08-29",
         "ADV_202907_NAL_202910": "2028-09-19"
+      },
+      "predecesora": {
+        "no": "235",
+        "actividad": "Suministro hace la estimacion de compras de metros de telas especiales azzorti para campaña"
       }
     },
     {
-      "no": 234,
+      "no": 235,
       "actividad": "Suministro hace la estimacion de compras de metros de telas especiales azzorti para campaña",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Suministros",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -26635,6 +31992,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-23",
+        "ADV_202602_NAL_202605": "2025-06-10",
+        "ADV_202603_NAL_202606": "2025-07-02",
+        "ADV_202604_NAL_202607": "2025-07-22",
+        "ADV_202605_NAL_202608": "2025-08-11",
+        "ADV_202606_NAL_202609": "2025-09-02",
+        "ADV_202607_NAL_202610": "2025-09-16",
+        "ADV_202608_NAL_202611": "2025-09-24",
+        "ADV_202609_NAL_202612": "2025-10-15",
         "ADV_202610_NAL_202613": "2025-11-18",
         "ADV_202611_NAL_202614": "2025-12-09",
         "ADV_202612_NAL_202615": "2025-12-23",
@@ -26687,16 +32053,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-16",
         "ADV_202906_NAL_202909": "2028-09-05",
         "ADV_202907_NAL_202910": "2028-09-26"
+      },
+      "predecesora": {
+        "no": "236",
+        "actividad": "Compras monta requerimiento de telas especiales azzorti a proveedor para producir tela"
       }
     },
     {
-      "no": 235,
+      "no": 236,
       "actividad": "Compras monta requerimiento de telas especiales azzorti a proveedor para producir tela",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -26751,6 +32130,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-05-29",
+        "ADV_202602_NAL_202605": "2025-06-16",
+        "ADV_202603_NAL_202606": "2025-07-08",
+        "ADV_202604_NAL_202607": "2025-07-28",
+        "ADV_202605_NAL_202608": "2025-08-15",
+        "ADV_202606_NAL_202609": "2025-09-08",
+        "ADV_202607_NAL_202610": "2025-09-22",
+        "ADV_202608_NAL_202611": "2025-09-30",
+        "ADV_202609_NAL_202612": "2025-10-21",
         "ADV_202610_NAL_202613": "2025-11-24",
         "ADV_202611_NAL_202614": "2025-12-15",
         "ADV_202612_NAL_202615": "2026-01-02",
@@ -26803,16 +32191,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-23",
         "ADV_202906_NAL_202909": "2028-09-11",
         "ADV_202907_NAL_202910": "2028-10-02"
+      },
+      "predecesora": {
+        "no": "237",
+        "actividad": "Star Trading inicia solicitud y firma de Proforma a fábricas de Telas especiales"
       }
     },
     {
-      "no": 236,
+      "no": 237,
       "actividad": "Star Trading inicia solicitud y firma de Proforma a fábricas de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -26867,6 +32268,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-04",
+        "ADV_202602_NAL_202605": "2025-06-18",
+        "ADV_202603_NAL_202606": "2025-07-10",
+        "ADV_202604_NAL_202607": "2025-07-30",
+        "ADV_202605_NAL_202608": "2025-08-20",
+        "ADV_202606_NAL_202609": "2025-09-10",
+        "ADV_202607_NAL_202610": "2025-09-24",
+        "ADV_202608_NAL_202611": "2025-10-09",
+        "ADV_202609_NAL_202612": "2025-10-27",
         "ADV_202610_NAL_202613": "2025-11-26",
         "ADV_202611_NAL_202614": "2025-12-17",
         "ADV_202612_NAL_202615": "2026-01-06",
@@ -26919,16 +32329,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-25",
         "ADV_202906_NAL_202909": "2028-09-13",
         "ADV_202907_NAL_202910": "2028-10-04"
+      },
+      "predecesora": {
+        "no": "238",
+        "actividad": "Star Trading realiza formalización documentos de producción de Telas especiales"
       }
     },
     {
-      "no": 237,
+      "no": 238,
       "actividad": "Star Trading Entrega emision y recepción Proforma Producción de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -26983,6 +32406,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-10",
+        "ADV_202602_NAL_202605": "2025-06-25",
+        "ADV_202603_NAL_202606": "2025-07-16",
+        "ADV_202604_NAL_202607": "2025-08-05",
+        "ADV_202605_NAL_202608": "2025-08-26",
+        "ADV_202606_NAL_202609": "2025-09-16",
+        "ADV_202607_NAL_202610": "2025-09-30",
+        "ADV_202608_NAL_202611": "2025-10-20",
+        "ADV_202609_NAL_202612": "2025-11-04",
         "ADV_202610_NAL_202613": "2025-12-02",
         "ADV_202611_NAL_202614": "2025-12-23",
         "ADV_202612_NAL_202615": "2026-01-13",
@@ -27035,16 +32467,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-08-31",
         "ADV_202906_NAL_202909": "2028-09-19",
         "ADV_202907_NAL_202910": "2028-10-10"
+      },
+      "predecesora": {
+        "no": "239",
+        "actividad": "Star Trading realiza formalización documentos de producción de Telas especiales"
       }
     },
     {
-      "no": 238,
+      "no": 239,
       "actividad": "Star Trading realiza formalización documentos de producción de Telas especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Star Trading",
       "dias": 3,
       "dh": {
+        "ADV_202601_NAL_202604": 3,
+        "ADV_202602_NAL_202605": 3,
+        "ADV_202603_NAL_202606": 3,
+        "ADV_202604_NAL_202607": 3,
+        "ADV_202605_NAL_202608": 3,
+        "ADV_202606_NAL_202609": 3,
+        "ADV_202607_NAL_202610": 3,
+        "ADV_202608_NAL_202611": 3,
+        "ADV_202609_NAL_202612": 3,
         "ADV_202610_NAL_202613": 3,
         "ADV_202611_NAL_202614": 3,
         "ADV_202612_NAL_202615": 3,
@@ -27099,6 +32544,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 3
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-11",
+        "ADV_202602_NAL_202605": "2025-06-26",
+        "ADV_202603_NAL_202606": "2025-07-17",
+        "ADV_202604_NAL_202607": "2025-08-06",
+        "ADV_202605_NAL_202608": "2025-08-27",
+        "ADV_202606_NAL_202609": "2025-09-17",
+        "ADV_202607_NAL_202610": "2025-10-08",
+        "ADV_202608_NAL_202611": "2025-10-21",
+        "ADV_202609_NAL_202612": "2025-11-05",
         "ADV_202610_NAL_202613": "2025-12-03",
         "ADV_202611_NAL_202614": "2025-12-29",
         "ADV_202612_NAL_202615": "2026-01-14",
@@ -27151,16 +32605,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-01",
         "ADV_202906_NAL_202909": "2028-09-20",
         "ADV_202907_NAL_202910": "2028-10-11"
+      },
+      "predecesora": {
+        "no": "240",
+        "actividad": "Star Trading hace produccion y envia tela a Colombia"
       }
     },
     {
-      "no": 239,
+      "no": 240,
       "actividad": "Star Trading hace produccion y envia tela a Colombia",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 100,
       "dh": {
+        "ADV_202601_NAL_202604": 100,
+        "ADV_202602_NAL_202605": 100,
+        "ADV_202603_NAL_202606": 100,
+        "ADV_202604_NAL_202607": 100,
+        "ADV_202605_NAL_202608": 100,
+        "ADV_202606_NAL_202609": 100,
+        "ADV_202607_NAL_202610": 100,
+        "ADV_202608_NAL_202611": 100,
+        "ADV_202609_NAL_202612": 100,
         "ADV_202610_NAL_202613": 100,
         "ADV_202611_NAL_202614": 100,
         "ADV_202612_NAL_202615": 100,
@@ -27215,6 +32682,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 100
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-06-14",
+        "ADV_202602_NAL_202605": "2025-07-02",
+        "ADV_202603_NAL_202606": "2025-07-22",
+        "ADV_202604_NAL_202607": "2025-08-12",
+        "ADV_202605_NAL_202608": "2025-08-31",
+        "ADV_202606_NAL_202609": "2025-09-21",
+        "ADV_202607_NAL_202610": "2025-10-13",
+        "ADV_202608_NAL_202611": "2025-10-28",
+        "ADV_202609_NAL_202612": "2025-11-08",
         "ADV_202610_NAL_202613": "2025-12-09",
         "ADV_202611_NAL_202614": "2026-01-03",
         "ADV_202612_NAL_202615": "2026-01-19",
@@ -27267,16 +32743,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-09-06",
         "ADV_202906_NAL_202909": "2028-09-24",
         "ADV_202907_NAL_202910": "2028-10-15"
+      },
+      "predecesora": {
+        "no": "241",
+        "actividad": "LogInter entrega telas especiales Azzorti Livva en Bodega de Medellin"
       }
     },
     {
-      "no": 240,
+      "no": 241,
       "actividad": "LogInter entrega telas especiales Azzorti Livva en Bodega de Medellin",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Logistica Internacional",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -27331,6 +32820,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-30",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-05",
+        "ADV_202609_NAL_202612": "2026-02-16",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-29",
@@ -27383,16 +32881,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "242",
+        "actividad": "Compras hace Corrida de Mrp Previsional Adv Col"
       }
     },
     {
-      "no": 241,
+      "no": 242,
       "actividad": "Compras hace Corrida de Mrp Previsional Adv Col",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -27447,6 +32958,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-24",
+        "ADV_202602_NAL_202605": "2025-10-15",
+        "ADV_202603_NAL_202606": "2025-11-05",
+        "ADV_202604_NAL_202607": "2025-11-24",
+        "ADV_202605_NAL_202608": "2025-12-11",
+        "ADV_202606_NAL_202609": "2026-01-05",
+        "ADV_202607_NAL_202610": "2026-01-23",
+        "ADV_202608_NAL_202611": "2026-02-12",
+        "ADV_202609_NAL_202612": "2026-03-05",
         "ADV_202610_NAL_202613": "2026-03-24",
         "ADV_202611_NAL_202614": "2026-04-15",
         "ADV_202612_NAL_202615": "2026-05-05",
@@ -27499,16 +33019,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-19",
         "ADV_202906_NAL_202909": "2029-01-04",
         "ADV_202907_NAL_202910": "2029-01-25"
+      },
+      "predecesora": {
+        "no": "220",
+        "actividad": "Planeacion Hace Previsional Adv Col"
       }
     },
     {
-      "no": 242,
+      "no": 243,
       "actividad": "Termina Preproduccion lote piloto tela especiales",
       "proceso": "Telas Especiales",
       "marca": "Azz Livv",
       "area": "Suministros Produccion",
       "dias": 15,
       "dh": {
+        "ADV_202601_NAL_202604": 15,
+        "ADV_202602_NAL_202605": 15,
+        "ADV_202603_NAL_202606": 15,
+        "ADV_202604_NAL_202607": 15,
+        "ADV_202605_NAL_202608": 15,
+        "ADV_202606_NAL_202609": 15,
+        "ADV_202607_NAL_202610": 15,
+        "ADV_202608_NAL_202611": 15,
+        "ADV_202609_NAL_202612": 15,
         "ADV_202610_NAL_202613": 15,
         "ADV_202611_NAL_202614": 15,
         "ADV_202612_NAL_202615": 15,
@@ -27563,6 +33096,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 15
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-10-16",
+        "ADV_202602_NAL_202605": "2025-11-06",
+        "ADV_202603_NAL_202606": "2025-11-27",
+        "ADV_202604_NAL_202607": "2025-12-16",
+        "ADV_202605_NAL_202608": "2026-01-07",
+        "ADV_202606_NAL_202609": "2026-01-27",
+        "ADV_202607_NAL_202610": "2026-02-13",
+        "ADV_202608_NAL_202611": "2026-03-05",
+        "ADV_202609_NAL_202612": "2026-03-27",
         "ADV_202610_NAL_202613": "2026-04-16",
         "ADV_202611_NAL_202614": "2026-05-07",
         "ADV_202612_NAL_202615": "2026-05-27",
@@ -27615,16 +33157,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-01-11",
         "ADV_202906_NAL_202909": "2029-01-25",
         "ADV_202907_NAL_202910": "2029-02-15"
+      },
+      "predecesora": {
+        "no": "242",
+        "actividad": "Compras hace Corrida de Mrp Previsional Adv Col"
       }
     },
     {
-      "no": 243,
+      "no": 244,
       "actividad": "Planeacion Corre Duproyecta Nal Col",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -27679,6 +33234,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-03",
+        "ADV_202602_NAL_202605": "2026-02-23",
+        "ADV_202603_NAL_202606": "2026-03-16",
+        "ADV_202604_NAL_202607": "2026-04-06",
+        "ADV_202605_NAL_202608": "2026-04-27",
+        "ADV_202606_NAL_202609": "2026-05-04",
+        "ADV_202607_NAL_202610": "2026-05-22",
+        "ADV_202608_NAL_202611": "2026-06-10",
+        "ADV_202609_NAL_202612": "2026-07-01",
         "ADV_202610_NAL_202613": "2026-07-21",
         "ADV_202611_NAL_202614": "2026-08-12",
         "ADV_202612_NAL_202615": "2026-09-01",
@@ -27731,16 +33295,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-16",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Una Campaña Antes mas un dia"
       }
     },
     {
-      "no": 244,
+      "no": 245,
       "actividad": "Planeacion Hace Reaccion Col",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -27795,6 +33372,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-10",
+        "ADV_202602_NAL_202605": "2026-03-02",
+        "ADV_202603_NAL_202606": "2026-03-24",
+        "ADV_202604_NAL_202607": "2026-04-13",
+        "ADV_202605_NAL_202608": "2026-05-04",
+        "ADV_202606_NAL_202609": "2026-05-22",
+        "ADV_202607_NAL_202610": "2026-06-10",
+        "ADV_202608_NAL_202611": "2026-07-01",
+        "ADV_202609_NAL_202612": "2026-07-22",
         "ADV_202610_NAL_202613": "2026-08-12",
         "ADV_202611_NAL_202614": "2026-09-01",
         "ADV_202612_NAL_202615": "2026-09-21",
@@ -27847,16 +33433,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": null,
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Fecha Facturacion Campana Actual"
       }
     },
     {
-      "no": 245,
+      "no": 246,
       "actividad": "Planeacion Hace Previsional Adv Peru",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -27911,6 +33510,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-31",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-10",
+        "ADV_202609_NAL_202612": "2026-03-03",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-30",
@@ -27963,16 +33571,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "155",
+        "actividad": "Mercadeo entrega listado de Nuevos Adv Per Azzorti"
       }
     },
     {
-      "no": 246,
+      "no": 247,
       "actividad": "Compras hace corrida de Mrp Previsional Adv Peru",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -28027,6 +33648,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-24",
+        "ADV_202602_NAL_202605": "2025-10-15",
+        "ADV_202603_NAL_202606": "2025-11-05",
+        "ADV_202604_NAL_202607": "2025-11-24",
+        "ADV_202605_NAL_202608": "2025-12-11",
+        "ADV_202606_NAL_202609": "2026-01-05",
+        "ADV_202607_NAL_202610": "2026-01-23",
+        "ADV_202608_NAL_202611": "2026-02-12",
+        "ADV_202609_NAL_202612": "2026-03-05",
         "ADV_202610_NAL_202613": "2026-03-24",
         "ADV_202611_NAL_202614": "2026-04-15",
         "ADV_202612_NAL_202615": "2026-05-05",
@@ -28079,16 +33709,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-19",
         "ADV_202906_NAL_202909": "2029-01-04",
         "ADV_202907_NAL_202910": "2029-01-25"
+      },
+      "predecesora": {
+        "no": "246",
+        "actividad": "Planeacion Hace Previsional Adv Peru"
       }
     },
     {
-      "no": 247,
+      "no": 248,
       "actividad": "Planeacion Regional hace previsionales Nal",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -28143,6 +33786,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-23",
+        "ADV_202602_NAL_202605": "2026-01-15",
+        "ADV_202603_NAL_202606": "2026-02-02",
+        "ADV_202604_NAL_202607": "2026-02-20",
+        "ADV_202605_NAL_202608": "2026-03-12",
+        "ADV_202606_NAL_202609": "2026-04-01",
+        "ADV_202607_NAL_202610": "2026-04-22",
+        "ADV_202608_NAL_202611": "2026-05-14",
+        "ADV_202609_NAL_202612": "2026-06-03",
         "ADV_202610_NAL_202613": "2026-06-23",
         "ADV_202611_NAL_202614": "2026-07-14",
         "ADV_202612_NAL_202615": "2026-08-04",
@@ -28195,16 +33847,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-13",
         "ADV_202906_NAL_202909": "2029-03-30",
         "ADV_202907_NAL_202910": "2029-04-24"
+      },
+      "predecesora": {
+        "no": "169",
+        "actividad": "Suministro Regional hace cargue PEDC ajuste de estimados Azzorti"
       }
     },
     {
-      "no": 248,
+      "no": 249,
       "actividad": "Compras Regional hace corrida de Mrp previsional Nal",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -28259,6 +33924,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-29",
+        "ADV_202602_NAL_202605": "2026-01-19",
+        "ADV_202603_NAL_202606": "2026-02-04",
+        "ADV_202604_NAL_202607": "2026-02-24",
+        "ADV_202605_NAL_202608": "2026-03-16",
+        "ADV_202606_NAL_202609": "2026-04-07",
+        "ADV_202607_NAL_202610": "2026-04-24",
+        "ADV_202608_NAL_202611": "2026-05-19",
+        "ADV_202609_NAL_202612": "2026-06-05",
         "ADV_202610_NAL_202613": "2026-06-25",
         "ADV_202611_NAL_202614": "2026-07-16",
         "ADV_202612_NAL_202615": "2026-08-06",
@@ -28311,16 +33985,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-03-15",
         "ADV_202906_NAL_202909": "2029-04-03",
         "ADV_202907_NAL_202910": "2029-04-26"
+      },
+      "predecesora": {
+        "no": "248",
+        "actividad": "Planeacion Regional hace previsionales Nal"
       }
     },
     {
-      "no": 249,
+      "no": 250,
       "actividad": "Planeacion hace Prepedido Peru",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -28375,6 +34062,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-28",
+        "ADV_202602_NAL_202605": "2026-02-17",
+        "ADV_202603_NAL_202606": "2026-03-09",
+        "ADV_202604_NAL_202607": "2026-03-30",
+        "ADV_202605_NAL_202608": "2026-04-17",
+        "ADV_202606_NAL_202609": "2026-05-08",
+        "ADV_202607_NAL_202610": "2026-05-28",
+        "ADV_202608_NAL_202611": "2026-06-18",
+        "ADV_202609_NAL_202612": "2026-07-07",
         "ADV_202610_NAL_202613": "2026-07-27",
         "ADV_202611_NAL_202614": "2026-08-20",
         "ADV_202612_NAL_202615": "2026-09-08",
@@ -28427,16 +34123,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-20",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "173",
+        "actividad": "Facturacion Nal Per"
       }
     },
     {
-      "no": 250,
+      "no": 251,
       "actividad": "Fecha montaje prepedi Col Per Prod",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -28491,6 +34200,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-28",
+        "ADV_202602_NAL_202605": "2026-02-17",
+        "ADV_202603_NAL_202606": "2026-03-09",
+        "ADV_202604_NAL_202607": "2026-03-30",
+        "ADV_202605_NAL_202608": "2026-04-17",
+        "ADV_202606_NAL_202609": "2026-05-04",
+        "ADV_202607_NAL_202610": "2026-05-22",
+        "ADV_202608_NAL_202611": "2026-06-10",
+        "ADV_202609_NAL_202612": "2026-07-01",
         "ADV_202610_NAL_202613": "2026-07-21",
         "ADV_202611_NAL_202614": "2026-08-12",
         "ADV_202612_NAL_202615": "2026-09-01",
@@ -28543,16 +34261,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-16",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "250 Y 244",
+        "actividad": "Planeacion Corre Duproyecta Nal Col y Planeacion hace Prepedido Peru"
       }
     },
     {
-      "no": 251,
+      "no": 252,
       "actividad": "Planeacion Hace Previsional Prepedido Per",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -28607,6 +34338,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-29",
+        "ADV_202602_NAL_202605": "2026-02-18",
+        "ADV_202603_NAL_202606": "2026-03-10",
+        "ADV_202604_NAL_202607": "2026-03-31",
+        "ADV_202605_NAL_202608": "2026-04-20",
+        "ADV_202606_NAL_202609": "2026-05-11",
+        "ADV_202607_NAL_202610": "2026-05-29",
+        "ADV_202608_NAL_202611": "2026-06-19",
+        "ADV_202609_NAL_202612": "2026-07-08",
         "ADV_202610_NAL_202613": "2026-07-28",
         "ADV_202611_NAL_202614": "2026-08-21",
         "ADV_202612_NAL_202615": "2026-09-09",
@@ -28659,16 +34399,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-23",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "250",
+        "actividad": "Planeacion hace Prepedido Peru"
       }
     },
     {
-      "no": 252,
+      "no": 253,
       "actividad": "Planeacion Hace Modelo Estadistico DPR Anticipo 1",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -28723,6 +34476,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-18",
+        "ADV_202602_NAL_202605": "2025-10-08",
+        "ADV_202603_NAL_202606": "2025-10-29",
+        "ADV_202604_NAL_202607": "2025-11-18",
+        "ADV_202605_NAL_202608": "2025-12-04",
+        "ADV_202606_NAL_202609": "2025-12-26",
+        "ADV_202607_NAL_202610": "2026-01-19",
+        "ADV_202608_NAL_202611": "2026-02-06",
+        "ADV_202609_NAL_202612": "2026-02-27",
         "ADV_202610_NAL_202613": "2026-03-17",
         "ADV_202611_NAL_202614": "2026-04-09",
         "ADV_202612_NAL_202615": "2026-04-28",
@@ -28775,16 +34537,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-13",
         "ADV_202906_NAL_202909": "2028-12-28",
         "ADV_202907_NAL_202910": "2029-01-19"
+      },
+      "predecesora": {
+        "no": "155 Y 174",
+        "actividad": "Mercadeo entrega listado de Nuevos Adv Per Azzorti Y Mercadeo entrega listado de Nuevos Adv Col Azzorti"
       }
     },
     {
-      "no": 253,
+      "no": 254,
       "actividad": "Planeacion Hace Montaje Pedido y Previsional DPR Anticipo 1",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -28839,6 +34614,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-22",
+        "ADV_202602_NAL_202605": "2025-10-10",
+        "ADV_202603_NAL_202606": "2025-10-31",
+        "ADV_202604_NAL_202607": "2025-11-20",
+        "ADV_202605_NAL_202608": "2025-12-09",
+        "ADV_202606_NAL_202609": "2025-12-30",
+        "ADV_202607_NAL_202610": "2026-01-21",
+        "ADV_202608_NAL_202611": "2026-02-10",
+        "ADV_202609_NAL_202612": "2026-03-03",
         "ADV_202610_NAL_202613": "2026-03-19",
         "ADV_202611_NAL_202614": "2026-04-13",
         "ADV_202612_NAL_202615": "2026-04-30",
@@ -28891,16 +34675,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-15",
         "ADV_202906_NAL_202909": "2029-01-02",
         "ADV_202907_NAL_202910": "2029-01-23"
+      },
+      "predecesora": {
+        "no": "253",
+        "actividad": "Planeacion Hace Modelo Estadistico DPR Anticipo 1"
       }
     },
     {
-      "no": 254,
+      "no": 255,
       "actividad": "Compras hace corrida de Mrp Previsional DPR Anticipo 1",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -28955,6 +34752,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-09-24",
+        "ADV_202602_NAL_202605": "2025-10-15",
+        "ADV_202603_NAL_202606": "2025-11-05",
+        "ADV_202604_NAL_202607": "2025-11-24",
+        "ADV_202605_NAL_202608": "2025-12-11",
+        "ADV_202606_NAL_202609": "2026-01-05",
+        "ADV_202607_NAL_202610": "2026-01-23",
+        "ADV_202608_NAL_202611": "2026-02-12",
+        "ADV_202609_NAL_202612": "2026-03-05",
         "ADV_202610_NAL_202613": "2026-03-24",
         "ADV_202611_NAL_202614": "2026-04-15",
         "ADV_202612_NAL_202615": "2026-05-05",
@@ -29007,16 +34813,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2028-12-19",
         "ADV_202906_NAL_202909": "2029-01-04",
         "ADV_202907_NAL_202910": "2029-01-25"
+      },
+      "predecesora": {
+        "no": "254",
+        "actividad": "Planeacion Hace Montaje Pedido y Previsional DPR Anticipo 1"
       }
     },
     {
-      "no": 255,
+      "no": 256,
       "actividad": "Planeacion Hace Modelo Estadistico DPR Anticipo 2",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 0,
       "dh": {
+        "ADV_202601_NAL_202604": 0,
+        "ADV_202602_NAL_202605": 0,
+        "ADV_202603_NAL_202606": 0,
+        "ADV_202604_NAL_202607": 0,
+        "ADV_202605_NAL_202608": 0,
+        "ADV_202606_NAL_202609": 0,
+        "ADV_202607_NAL_202610": 0,
+        "ADV_202608_NAL_202611": 0,
+        "ADV_202609_NAL_202612": 0,
         "ADV_202610_NAL_202613": 0,
         "ADV_202611_NAL_202614": 0,
         "ADV_202612_NAL_202615": 0,
@@ -29071,6 +34890,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 0
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-01",
+        "ADV_202602_NAL_202605": "2025-12-19",
+        "ADV_202603_NAL_202606": "2026-01-16",
+        "ADV_202604_NAL_202607": "2026-02-03",
+        "ADV_202605_NAL_202608": "2026-02-23",
+        "ADV_202606_NAL_202609": "2026-03-16",
+        "ADV_202607_NAL_202610": "2026-04-06",
+        "ADV_202608_NAL_202611": "2026-04-27",
+        "ADV_202609_NAL_202612": "2026-05-08",
         "ADV_202610_NAL_202613": "2026-05-28",
         "ADV_202611_NAL_202614": "2026-06-18",
         "ADV_202612_NAL_202615": "2026-07-07",
@@ -29123,16 +34951,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-02-16",
         "ADV_202906_NAL_202909": "2029-03-09",
         "ADV_202907_NAL_202910": "2029-03-30"
+      },
+      "predecesora": {
+        "no": "244 y 250",
+        "actividad": "Planeacion Corre Duproyecta Nal Col y Planeacion hace Prepedido Peru"
       }
     },
     {
-      "no": 256,
+      "no": 257,
       "actividad": "Planeacion Hace Montaje Pedido y Previsional DPR Anticipo 2",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -29187,6 +35028,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-03",
+        "ADV_202602_NAL_202605": "2025-12-23",
+        "ADV_202603_NAL_202606": "2026-01-20",
+        "ADV_202604_NAL_202607": "2026-02-05",
+        "ADV_202605_NAL_202608": "2026-02-25",
+        "ADV_202606_NAL_202609": "2026-03-18",
+        "ADV_202607_NAL_202610": "2026-04-08",
+        "ADV_202608_NAL_202611": "2026-04-29",
+        "ADV_202609_NAL_202612": "2026-05-12",
         "ADV_202610_NAL_202613": "2026-06-01",
         "ADV_202611_NAL_202614": "2026-06-22",
         "ADV_202612_NAL_202615": "2026-07-09",
@@ -29239,16 +35089,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-02-20",
         "ADV_202906_NAL_202909": "2029-03-13",
         "ADV_202907_NAL_202910": "2029-04-03"
+      },
+      "predecesora": {
+        "no": "256",
+        "actividad": "Planeacion Hace Modelo Estadistico DPR Anticipo 2"
       }
     },
     {
-      "no": 257,
+      "no": 258,
       "actividad": "Compras hace corrida de Mrp Previsional DPR Anticipo 2",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -29303,6 +35166,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2025-12-05",
+        "ADV_202602_NAL_202605": "2025-12-29",
+        "ADV_202603_NAL_202606": "2026-01-22",
+        "ADV_202604_NAL_202607": "2026-02-09",
+        "ADV_202605_NAL_202608": "2026-02-27",
+        "ADV_202606_NAL_202609": "2026-03-20",
+        "ADV_202607_NAL_202610": "2026-04-10",
+        "ADV_202608_NAL_202611": "2026-05-04",
+        "ADV_202609_NAL_202612": "2026-05-14",
         "ADV_202610_NAL_202613": "2026-06-03",
         "ADV_202611_NAL_202614": "2026-06-24",
         "ADV_202612_NAL_202615": "2026-07-14",
@@ -29355,16 +35227,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-02-22",
         "ADV_202906_NAL_202909": "2029-03-15",
         "ADV_202907_NAL_202910": "2029-04-05"
+      },
+      "predecesora": {
+        "no": "257",
+        "actividad": "Planeacion Hace Montaje Pedido y Previsional DPR Anticipo 2"
       }
     },
     {
-      "no": 258,
+      "no": 259,
       "actividad": "Planeacion Hace Prepedido Ecu",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -29419,6 +35304,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-30",
+        "ADV_202602_NAL_202605": "2026-02-19",
+        "ADV_202603_NAL_202606": "2026-03-11",
+        "ADV_202604_NAL_202607": "2026-03-30",
+        "ADV_202605_NAL_202608": "2026-04-21",
+        "ADV_202606_NAL_202609": "2026-05-08",
+        "ADV_202607_NAL_202610": "2026-05-29",
+        "ADV_202608_NAL_202611": "2026-06-18",
+        "ADV_202609_NAL_202612": "2026-07-09",
         "ADV_202610_NAL_202613": "2026-07-29",
         "ADV_202611_NAL_202614": "2026-08-19",
         "ADV_202612_NAL_202615": "2026-09-07",
@@ -29471,16 +35365,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-20",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "FF",
+        "actividad": "Una Campaña Antes mas 5 dias"
       }
     },
     {
-      "no": 259,
+      "no": 260,
       "actividad": "Planeacion Hace Previsional Prepedido Ecu",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -29535,6 +35442,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-02",
+        "ADV_202602_NAL_202605": "2026-02-20",
+        "ADV_202603_NAL_202606": "2026-03-12",
+        "ADV_202604_NAL_202607": "2026-03-31",
+        "ADV_202605_NAL_202608": "2026-04-22",
+        "ADV_202606_NAL_202609": "2026-05-11",
+        "ADV_202607_NAL_202610": "2026-06-01",
+        "ADV_202608_NAL_202611": "2026-06-19",
+        "ADV_202609_NAL_202612": "2026-07-10",
         "ADV_202610_NAL_202613": "2026-07-30",
         "ADV_202611_NAL_202614": "2026-08-20",
         "ADV_202612_NAL_202615": "2026-09-08",
@@ -29587,16 +35503,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-23",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "259",
+        "actividad": "Planeacion Hace Prepedido Ecu"
       }
     },
     {
-      "no": 260,
+      "no": 261,
       "actividad": "Compras hace corrida de Mrp Previsional Prepedido Ecu",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -29651,6 +35580,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-04",
+        "ADV_202602_NAL_202605": "2026-02-24",
+        "ADV_202603_NAL_202606": "2026-03-16",
+        "ADV_202604_NAL_202607": "2026-04-06",
+        "ADV_202605_NAL_202608": "2026-04-24",
+        "ADV_202606_NAL_202609": "2026-05-13",
+        "ADV_202607_NAL_202610": "2026-06-03",
+        "ADV_202608_NAL_202611": "2026-06-23",
+        "ADV_202609_NAL_202612": "2026-07-15",
         "ADV_202610_NAL_202613": "2026-08-03",
         "ADV_202611_NAL_202614": "2026-08-24",
         "ADV_202612_NAL_202615": "2026-09-10",
@@ -29703,16 +35641,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-25",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "260",
+        "actividad": "Planeacion Hace Previsional Prepedido Ecu"
       }
     },
     {
-      "no": 261,
+      "no": 262,
       "actividad": "Planeacion Hace Prepedido Gua",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 5,
       "dh": {
+        "ADV_202601_NAL_202604": 5,
+        "ADV_202602_NAL_202605": 5,
+        "ADV_202603_NAL_202606": 5,
+        "ADV_202604_NAL_202607": 5,
+        "ADV_202605_NAL_202608": 5,
+        "ADV_202606_NAL_202609": 5,
+        "ADV_202607_NAL_202610": 5,
+        "ADV_202608_NAL_202611": 5,
+        "ADV_202609_NAL_202612": 5,
         "ADV_202610_NAL_202613": 5,
         "ADV_202611_NAL_202614": 5,
         "ADV_202612_NAL_202615": 5,
@@ -29767,6 +35718,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 5
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-28",
+        "ADV_202602_NAL_202605": "2026-02-17",
+        "ADV_202603_NAL_202606": "2026-03-09",
+        "ADV_202604_NAL_202607": "2026-03-27",
+        "ADV_202605_NAL_202608": "2026-04-21",
+        "ADV_202606_NAL_202609": "2026-05-11",
+        "ADV_202607_NAL_202610": "2026-05-29",
+        "ADV_202608_NAL_202611": "2026-06-18",
+        "ADV_202609_NAL_202612": "2026-07-10",
         "ADV_202610_NAL_202613": "2026-07-30",
         "ADV_202611_NAL_202614": "2026-08-19",
         "ADV_202612_NAL_202615": "2026-09-08",
@@ -29819,16 +35779,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-20",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "181",
+        "actividad": "Facturacion Nal Gua"
       }
     },
     {
-      "no": 262,
+      "no": 263,
       "actividad": "Compras hace corrida de Mrp Previsional Prepedido Gua",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -29883,6 +35856,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-30",
+        "ADV_202602_NAL_202605": "2026-02-19",
+        "ADV_202603_NAL_202606": "2026-03-11",
+        "ADV_202604_NAL_202607": "2026-03-31",
+        "ADV_202605_NAL_202608": "2026-04-23",
+        "ADV_202606_NAL_202609": "2026-05-13",
+        "ADV_202607_NAL_202610": "2026-06-02",
+        "ADV_202608_NAL_202611": "2026-06-22",
+        "ADV_202609_NAL_202612": "2026-07-15",
         "ADV_202610_NAL_202613": "2026-08-03",
         "ADV_202611_NAL_202614": "2026-08-21",
         "ADV_202612_NAL_202615": "2026-09-10",
@@ -29935,16 +35917,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-24",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "262",
+        "actividad": "Planeacion Hace Prepedido Gua"
       }
     },
     {
-      "no": 263,
+      "no": 264,
       "actividad": "Planeacion Hace Prepedido Bol",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 4,
       "dh": {
+        "ADV_202601_NAL_202604": 4,
+        "ADV_202602_NAL_202605": 4,
+        "ADV_202603_NAL_202606": 4,
+        "ADV_202604_NAL_202607": 4,
+        "ADV_202605_NAL_202608": 4,
+        "ADV_202606_NAL_202609": 4,
+        "ADV_202607_NAL_202610": 4,
+        "ADV_202608_NAL_202611": 4,
+        "ADV_202609_NAL_202612": 4,
         "ADV_202610_NAL_202613": 4,
         "ADV_202611_NAL_202614": 4,
         "ADV_202612_NAL_202615": 4,
@@ -29999,6 +35994,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 4
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-01-30",
+        "ADV_202602_NAL_202605": "2026-02-19",
+        "ADV_202603_NAL_202606": "2026-03-12",
+        "ADV_202604_NAL_202607": "2026-03-31",
+        "ADV_202605_NAL_202608": "2026-04-22",
+        "ADV_202606_NAL_202609": "2026-05-11",
+        "ADV_202607_NAL_202610": "2026-05-29",
+        "ADV_202608_NAL_202611": "2026-06-18",
+        "ADV_202609_NAL_202612": "2026-07-07",
         "ADV_202610_NAL_202613": "2026-07-28",
         "ADV_202611_NAL_202614": "2026-08-19",
         "ADV_202612_NAL_202615": "2026-09-09",
@@ -30051,16 +36055,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-25",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "182",
+        "actividad": "Facturacion Nal Bol"
       }
     },
     {
-      "no": 264,
+      "no": 265,
       "actividad": "Planeacion Hace Previsional Prepedido Bol",
       "proceso": "Planeacion",
       "marca": "Azz Livv",
       "area": "Planeacion Estrategica",
       "dias": 1,
       "dh": {
+        "ADV_202601_NAL_202604": 1,
+        "ADV_202602_NAL_202605": 1,
+        "ADV_202603_NAL_202606": 1,
+        "ADV_202604_NAL_202607": 1,
+        "ADV_202605_NAL_202608": 1,
+        "ADV_202606_NAL_202609": 1,
+        "ADV_202607_NAL_202610": 1,
+        "ADV_202608_NAL_202611": 1,
+        "ADV_202609_NAL_202612": 1,
         "ADV_202610_NAL_202613": 1,
         "ADV_202611_NAL_202614": 1,
         "ADV_202612_NAL_202615": 1,
@@ -30115,6 +36132,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 1
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-02",
+        "ADV_202602_NAL_202605": "2026-02-20",
+        "ADV_202603_NAL_202606": "2026-03-13",
+        "ADV_202604_NAL_202607": "2026-04-01",
+        "ADV_202605_NAL_202608": "2026-04-23",
+        "ADV_202606_NAL_202609": "2026-05-12",
+        "ADV_202607_NAL_202610": "2026-06-01",
+        "ADV_202608_NAL_202611": "2026-06-19",
+        "ADV_202609_NAL_202612": "2026-07-08",
         "ADV_202610_NAL_202613": "2026-07-29",
         "ADV_202611_NAL_202614": "2026-08-20",
         "ADV_202612_NAL_202615": "2026-09-10",
@@ -30167,16 +36193,29 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-26",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "264",
+        "actividad": "Planeacion Hace Prepedido Bol"
       }
     },
     {
-      "no": 265,
+      "no": 266,
       "actividad": "Compras hace corrida de Mrp Previsional Prepedido Bol",
       "proceso": "Compras",
       "marca": "Azz Livv",
-      "area": "Compras",
+      "area": "Suministro Compras",
       "dias": 2,
       "dh": {
+        "ADV_202601_NAL_202604": 2,
+        "ADV_202602_NAL_202605": 2,
+        "ADV_202603_NAL_202606": 2,
+        "ADV_202604_NAL_202607": 2,
+        "ADV_202605_NAL_202608": 2,
+        "ADV_202606_NAL_202609": 2,
+        "ADV_202607_NAL_202610": 2,
+        "ADV_202608_NAL_202611": 2,
+        "ADV_202609_NAL_202612": 2,
         "ADV_202610_NAL_202613": 2,
         "ADV_202611_NAL_202614": 2,
         "ADV_202612_NAL_202615": 2,
@@ -30231,6 +36270,15 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202907_NAL_202910": 2
       },
       "fechas": {
+        "ADV_202601_NAL_202604": "2026-02-04",
+        "ADV_202602_NAL_202605": "2026-02-24",
+        "ADV_202603_NAL_202606": "2026-03-17",
+        "ADV_202604_NAL_202607": "2026-04-07",
+        "ADV_202605_NAL_202608": "2026-04-27",
+        "ADV_202606_NAL_202609": "2026-05-14",
+        "ADV_202607_NAL_202610": "2026-06-03",
+        "ADV_202608_NAL_202611": "2026-06-23",
+        "ADV_202609_NAL_202612": "2026-07-10",
         "ADV_202610_NAL_202613": "2026-07-31",
         "ADV_202611_NAL_202614": "2026-08-24",
         "ADV_202612_NAL_202615": "2026-09-14",
@@ -30283,6 +36331,10 @@ window.CRONOGRAMA_INITIAL_DATA = {
         "ADV_202905_NAL_202908": "2029-04-30",
         "ADV_202906_NAL_202909": null,
         "ADV_202907_NAL_202910": null
+      },
+      "predecesora": {
+        "no": "265",
+        "actividad": "Planeacion Hace Previsional Prepedido Bol"
       }
     }
   ]

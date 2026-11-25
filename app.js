@@ -12,7 +12,54 @@
   const LOCAL_CUSTOM_EVENTS_KEY = "AZZORTI_CUSTOM_EVENTS_CACHE_V2";
   const LOCAL_MASTER_CACHE_KEY = "AZZORTI_CUSTOM_CRONOGRAMA_V1";
   const LOCAL_SAVED_HASHTAGS_KEY = "AZZORTI_SAVED_HASHTAGS_V1";
-  const TODAY_STR = new Date().toISOString().slice(0, 10);
+  const LOCAL_SAVED_AREAS_BY_BRAND_KEY = "AZZORTI_SAVED_AREAS_BY_BRAND_V1";
+  const _localNow = new Date();
+  const TODAY_STR = `${_localNow.getFullYear()}-${String(_localNow.getMonth() + 1).padStart(2, "0")}-${String(_localNow.getDate()).padStart(2, "0")}`;
+
+  const DEFAULT_AREAS_BY_BRAND = {
+    "AG LAB": [
+      "Diseño Textil",
+      "Diseño de Modas",
+      "Desarrollos 2D / 3D",
+      "Estampación",
+      "Muestras y Taller",
+      "Toma de Fotos",
+      "Fit / Comité",
+    ],
+    "NATIVA": [
+      "Diseño y Desarrollo",
+      "Utilería y Modelos",
+      "Fotografía y Contenido",
+      "Producción y Taller",
+      "Mercadeo",
+      "Comité / Revisión",
+    ],
+    "AZZORTI": [
+      "Diseño Moda",
+      "Diseño Gráfico (DisGraf)",
+      "Patronaje e Ingeniería",
+      "Muestras y Fit",
+      "Compras y Suministros",
+      "Mercadeo y Ventas",
+    ],
+    "LIVVA": [
+      "Diseño Moda Livva",
+      "Estampación y Textil",
+      "Patronaje 2D / 3D",
+      "Muestras y Fit",
+      "Fotografía",
+      "Comercial",
+    ],
+    "_DEFAULT_": [
+      "Diseño",
+      "Desarrollo y Muestras",
+      "Producción y Taller",
+      "Fotografía y Contenido",
+      "Reunión / Comité",
+      "General",
+    ],
+  };
+  let savedAreasByBrand = {};
 
   const DEFAULT_HASHTAGS = [
     "#Entrega",
@@ -59,6 +106,13 @@
     if (r === "admin" || r === "administrador") return "Administrador";
     if (r === "administrativo") return "Administrativo";
     return "Diseñador(a)";
+  }
+
+  function isUserAdmin(userId) {
+    if (!userId) return false;
+    const meta = getProfileMeta(userId);
+    const r = String(meta?.role || "").toLowerCase().trim();
+    return r === "admin" || r === "administrador";
   }
 
   let TEAM_PROFILES = [
@@ -168,6 +222,8 @@
     els.btnReturnToDani = document.getElementById("btnReturnToDani");
 
     els.btnOpenAddEvent = document.getElementById("btnOpenAddEvent");
+    els.excelUploadInput = document.getElementById("excelUploadInput");
+    els.btnUploadExcel = document.getElementById("btnUploadExcel");
     els.btnExportPdfCalendar = document.getElementById("btnExportPdfCalendar");
     els.btnExportPdfGantt = document.getElementById("btnExportPdfGantt");
     els.btnExportIcs = document.getElementById("btnExportIcs");
@@ -285,6 +341,10 @@
     els.btnEvOwnerAll = document.getElementById("btnEvOwnerAll");
     els.btnEvOwnerClear = document.getElementById("btnEvOwnerClear");
     els.evAreaInput = document.getElementById("evAreaInput");
+    els.evAreaActivePreview = document.getElementById("evAreaActivePreview");
+    els.btnClearArea = document.getElementById("btnClearArea");
+    els.savedBrandAreasLabel = document.getElementById("savedBrandAreasLabel");
+    els.savedBrandAreasList = document.getElementById("savedBrandAreasList");
     els.evMarcaInput = document.getElementById("evMarcaInput");
     els.evCategoryInput = document.getElementById("evCategoryInput");
     els.evTagInput = document.getElementById("evTagInput");
@@ -359,6 +419,7 @@
       name: profile.name,
       role: profile.role,
       pin: profile.defaultPin,
+      email: profile.email || (profile.id === "DANI" ? "danieldiaz@azzorti.com" : ""),
       preferences: {
         selectedActivityNos: defaultActs, // Pre-activar las 30 actividades de AG LAB por defecto
         selectedCampaignIds: [...DEFAULT_CAMPAIGNS],
@@ -392,6 +453,7 @@
                   role: u.role || "designer",
                   color: getDeterministicColor(u.id),
                   defaultPin: u.pin || "0000",
+                  email: u.email || "",
                 };
                 TEAM_PROFILES.push(prof);
               }
@@ -402,6 +464,7 @@
                   name: u.name || base.name,
                   role: u.role || base.role,
                   pin: u.pin || base.pin,
+                  email: u.email !== undefined ? u.email : base.email,
                   preferences: { ...base.preferences, ...(u.preferences || {}) },
                 });
               } else {
@@ -410,6 +473,7 @@
                   name: u.name || u.id,
                   role: u.role || "designer",
                   pin: u.pin || "0000",
+                  email: u.email || "",
                   preferences: {
                     ...buildDefaultUserObject(prof).preferences,
                     ...(u.preferences || {}),
@@ -475,6 +539,7 @@
               name: u.name || base.name,
               role: u.role || base.role,
               pin: u.pin || base.pin,
+              email: u.email !== undefined && u.email !== null ? u.email : (base.email || ""),
               preferences: { ...base.preferences, ...(u.preferences || {}) },
             });
           } else {
@@ -483,6 +548,7 @@
               name: u.name || u.id,
               role: u.role || "designer",
               pin: u.pin || "0000",
+              email: u.email || "",
               preferences: {
                 selectedActivityNos: [],
                 selectedCampaignIds: [...DEFAULT_CAMPAIGNS],
@@ -523,6 +589,39 @@
         customEvents = eventsData;
         saveLocalCustomEventsCache();
         loadSavedHashtags();
+      }
+
+      // 3. Fetch master_schedule ("official_cronograma_v2") if an admin uploaded a newer valid Excel version
+      try {
+        const { data: masterRow, error: masterErr } = await sbClient
+          .from("master_schedule")
+          .select("file_name, data")
+          .eq("id", "official_cronograma_v2")
+          .maybeSingle();
+        if (
+          !masterErr &&
+          masterRow &&
+          masterRow.data &&
+          Array.isArray(masterRow.data.activities) &&
+          countValidDatesInCronograma(masterRow.data) >= 50
+        ) {
+          rawData = masterRow.data;
+          if (els.statusBadge) {
+            els.statusBadge.textContent = `📂 Excel nube: ${masterRow.file_name || rawData.sourceFile || "Oficial"} (${rawData.activities.length} act.)`;
+          }
+          updateCronogramaVersionBadge();
+        }
+      } catch (masterSyncErr) {
+        // Ignorar si master_schedule aún no existe en Supabase
+      }
+
+      if (window.CalendarV2) {
+        if (typeof window.CalendarV2.syncBrandsFromData === "function") {
+          window.CalendarV2.syncBrandsFromData(rawData, customEvents);
+        }
+        if (typeof window.CalendarV2.syncFromSupabase === "function") {
+          window.CalendarV2.syncFromSupabase();
+        }
       }
 
       setCloudStatus("☁️ Nube sincronizada en tiempo real", false);
@@ -605,18 +704,25 @@
     state.selectedActivityNos = new Set(savedActs.map((n) => Number(n)));
     state.explicitlyClearedActivities = explicitlyCleared;
 
-    state.brand = prefs.brand || "ALL";
+    const rawSavedBrand = prefs.brand || "ALL";
+    state.brand = window.CalendarV2 && typeof window.CalendarV2.normalizeBrandName === "function"
+      ? window.CalendarV2.normalizeBrandName(rawSavedBrand)
+      : rawSavedBrand;
     state.includeSharedBrand = prefs.includeSharedBrand !== undefined ? Boolean(prefs.includeSharedBrand) : true;
     state.showCustomEvents = prefs.showCustomEvents !== undefined ? Boolean(prefs.showCustomEvents) : true;
     state.customFilterTags = new Set(Array.isArray(prefs.customFilterTags) ? prefs.customFilterTags : []);
 
-    // Update Brand UI pills
-    els.brandPills.forEach((b) => {
-      b.classList.toggle("active", b.getAttribute("data-brand") === state.brand);
-    });
+    // Update Brand UI pills dynamically
+    if (window.CalendarV2 && typeof window.CalendarV2.renderBrandControls === "function") {
+      window.CalendarV2.renderBrandControls(true);
+    } else {
+      document.querySelectorAll("#brandPillsContainer .brand-pill").forEach((b) => {
+        b.classList.toggle("active", b.getAttribute("data-brand") === state.brand);
+      });
+      els.sharedBrandWrap.style.display =
+        state.brand !== "ALL" && state.brand !== "Azz Livv" ? "inline-flex" : "none";
+    }
     els.chkSharedBrand.checked = state.includeSharedBrand;
-    els.sharedBrandWrap.style.display =
-      state.brand === "Livva" || state.brand === "Azzorti" ? "inline-flex" : "none";
     els.chkShowCustomEvents.checked = state.showCustomEvents;
   }
 
@@ -700,18 +806,24 @@
     els.headerUserAvatar.style.color = "#ffffff";
     els.headerUserName.textContent = meta.name + (meta.role === "admin" ? " 👑" : "");
 
-    // Setup Admin Bar if DANI
-    if (meta.role === "admin") {
+    // Setup Admin Bar if DANI / ANDRE
+    if (isUserAdmin(userId)) {
       els.adminControlBar.style.display = "flex";
+      if (els.btnUploadExcel) els.btnUploadExcel.style.display = "inline-flex";
       populateAdminTargetSelect();
     } else {
       els.adminControlBar.style.display = "none";
       els.adminEditingBanner.style.display = "none";
+      if (els.btnUploadExcel) els.btnUploadExcel.style.display = "none";
     }
 
     loadUserPreferencesIntoState(state.targetUserId);
     populateFilterControls();
     renderAll();
+
+    if (window.CalendarV2 && typeof window.CalendarV2.onLogin === "function") {
+      window.CalendarV2.onLogin();
+    }
   }
 
   function populateAdminTargetSelect() {
@@ -746,17 +858,17 @@
   }
 
   function openAdminPinsModal() {
-    const currentMeta = getProfileMeta(state.loggedInUserId);
-    if (!currentMeta || currentMeta.role !== "admin") return;
+    if (!isUserAdmin(state.loggedInUserId)) return;
     els.adminPinsList.innerHTML = "";
     const allProfiles = getAllKnownProfiles();
     for (const p of allProfiles) {
       const u = usersMap.get(p.id) || buildDefaultUserObject(p);
       const div = document.createElement("div");
-      div.className = "admin-pin-item";
+      div.className = "admin-pin-row-v2";
       div.innerHTML = `
-        <span><strong>${p.name}</strong> (${getProfileRoleLabel(p.role)}) ${p.role === "admin" ? "👑" : ""}</span>
-        <input type="text" data-userid="${p.id}" value="${u.pin || p.defaultPin || "0000"}" maxlength="12" />
+        <span><strong>${escapeHtml(p.name)}</strong> <small style="color:#64748b">(${getProfileRoleLabel(p.role)})</small> ${isUserAdmin(p.id) ? "👑" : ""}</span>
+        <input type="email" class="admin-email-input" data-email-userid="${escapeHtml(p.id)}" placeholder="correo@azzorti.com" value="${escapeHtml(u.email || "")}" title="Correo para citaciones en Microsoft Teams" />
+        <input type="text" class="admin-pin-input" data-userid="${escapeHtml(p.id)}" value="${escapeHtml(u.pin || p.defaultPin || "0000")}" maxlength="12" title="Clave PIN" />
       `;
       els.adminPinsList.appendChild(div);
     }
@@ -764,15 +876,32 @@
   }
 
   async function saveAllAdminPins() {
-    const inputs = els.adminPinsList.querySelectorAll("input[data-userid]");
-    const updates = [];
-    inputs.forEach((inp) => {
+    const pinInputs = els.adminPinsList.querySelectorAll("input[data-userid]");
+    const emailInputs = els.adminPinsList.querySelectorAll("input[data-email-userid]");
+    const emailByUid = new Map();
+    emailInputs.forEach((inp) => {
+      emailByUid.set(inp.getAttribute("data-email-userid"), inp.value.trim());
+    });
+
+    const updatesWithEmail = [];
+    const updatesBasic = [];
+    pinInputs.forEach((inp) => {
       const uid = inp.getAttribute("data-userid");
       const newPin = inp.value.trim() || "1234";
+      const newEmail = emailByUid.get(uid) || "";
       if (usersMap.has(uid)) {
         const u = usersMap.get(uid);
         u.pin = newPin;
-        updates.push({
+        u.email = newEmail;
+        updatesWithEmail.push({
+          id: u.id,
+          name: u.name,
+          role: u.role,
+          pin: u.pin,
+          email: u.email,
+          preferences: u.preferences,
+        });
+        updatesBasic.push({
           id: u.id,
           name: u.name,
           role: u.role,
@@ -784,13 +913,24 @@
     saveLocalUsersCache();
     els.adminPinsModal.style.display = "none";
 
-    if (sbClient && updates.length > 0) {
-      setCloudStatus("☁️ Actualizando claves PIN...", false);
+    if (sbClient && updatesWithEmail.length > 0) {
+      setCloudStatus("☁️ Actualizando perfiles, correos y PINs...", false);
       try {
-        await sbClient.from("app_users").upsert(updates);
-        setCloudStatus("☁️ Claves PIN actualizadas en la nube", false);
+        const { error } = await sbClient.from("app_users").upsert(updatesWithEmail);
+        if (error) throw error;
+        setCloudStatus("☁️ Perfiles, correos y PINs actualizados en la nube", false);
+        if (window.CalendarV2?.showToast) window.CalendarV2.showToast("✅ Perfiles y correos Teams guardados.", "success");
       } catch (e) {
-        console.warn("Error actualizando PINs:", e);
+        console.warn("Reintentando upsert sin columna email:", e);
+        try {
+          await sbClient.from("app_users").upsert(updatesBasic);
+          setCloudStatus("☁️ PINs guardados (correos guardados en este dispositivo)", false);
+          if (window.CalendarV2?.showToast) {
+            window.CalendarV2.showToast("⚠️ PINs guardados. Ejecuta supabase_calendar_v2.sql para sincronizar correos en la nube.", "warn");
+          }
+        } catch (e2) {
+          console.warn("Error actualizando PINs:", e2);
+        }
       }
     }
   }
@@ -1025,19 +1165,59 @@
     return `${y}-${m}-${d}`;
   }
 
+  function countValidDatesInCronograma(data) {
+    if (!data || !Array.isArray(data.activities)) return 0;
+    let valid = 0;
+    for (const act of data.activities) {
+      if (!act || !act.fechas || typeof act.fechas !== "object") continue;
+      for (const k of Object.keys(act.fechas)) {
+        const f = act.fechas[k];
+        if (typeof f === "string" && /^\d{4}-\d{2}-\d{2}$/.test(f)) {
+          valid++;
+        }
+      }
+    }
+    return valid;
+  }
+
   function normalizeDateCell(val) {
     if (val === null || val === undefined) return null;
     if (val instanceof Date && !isNaN(val.getTime())) return formatYMD(val);
+    if (typeof val === "number") {
+      return val >= 30000 && val <= 75000 ? excelSerialToYMD(val) : null;
+    }
     const s = String(val).trim();
-    if (!s || s.toLowerCase() === "nan") return null;
+    if (!s) return null;
+    const low = s.toLowerCase();
+    if (low === "nan" || low === "n/a" || low === "#n/a" || low === "#ref!" || low === "#value!" || low === "#name?" || s === "-" || s === "—") {
+      return null;
+    }
     if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
-    if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(s)) {
-      const parts = s.split("/");
-      const p0 = parseInt(parts[0], 10);
-      const p1 = parseInt(parts[1], 10);
-      const yr = parts[2];
+    const slashMatch = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+    if (slashMatch) {
+      const p0 = parseInt(slashMatch[1], 10);
+      const p1 = parseInt(slashMatch[2], 10);
+      let yr = slashMatch[3];
+      if (yr.length === 2) yr = `20${yr}`;
       if (p0 > 12) return `${yr}-${String(p1).padStart(2, "0")}-${String(p0).padStart(2, "0")}`;
-      return `${yr}-${String(p0).padStart(2, "0")}-${String(p1).padStart(2, "0")}`;
+      if (p1 > 12) return `${yr}-${String(p0).padStart(2, "0")}-${String(p1).padStart(2, "0")}`;
+      return `${yr}-${String(p1).padStart(2, "0")}-${String(p0).padStart(2, "0")}`;
+    }
+    const esMonMatch = low.match(/^(\d{1,2})[\-\s]([a-záéíóú]{3,})[\-\s](\d{2,4})$/);
+    if (esMonMatch) {
+      const esMonths = {
+        ene: "01", jan: "01", feb: "02", mar: "03", abr: "04", apr: "04",
+        may: "05", jun: "06", jul: "07", ago: "08", aug: "08", sep: "09",
+        sept: "09", oct: "10", nov: "11", dic: "12", dec: "12",
+      };
+      const moKey = esMonMatch[2].slice(0, 4);
+      const mo = esMonths[moKey] || esMonths[esMonMatch[2].slice(0, 3)];
+      if (mo) {
+        const dd = String(parseInt(esMonMatch[1], 10)).padStart(2, "0");
+        let yr = esMonMatch[3];
+        if (yr.length === 2) yr = `20${yr}`;
+        return `${yr}-${mo}-${dd}`;
+      }
     }
     const num = Number(s);
     if (!isNaN(num) && num >= 30000 && num <= 75000) return excelSerialToYMD(num);
@@ -1058,49 +1238,154 @@
     return { shortLabel: `${advS}-${nalS}`, fullLabel: `ADV ${advS} / NAL ${nalS}` };
   }
 
+  function formatLivvaLabel(nalLivva) {
+    const s = String(nalLivva || "").trim();
+    if (!s) return { livvaShortLabel: null, livvaFullLabel: null };
+    if (s.length === 6 && /^\d+$/.test(s)) {
+      return {
+        livvaShortLabel: `Livva C${parseInt(s.slice(4), 10)} ${s.slice(0, 4)}`,
+        livvaFullLabel: `NAL Livva ${s}`,
+      };
+    }
+    return { livvaShortLabel: `Livva ${s}`, livvaFullLabel: `NAL Livva ${s}` };
+  }
+
   function parseGridToCronograma(grid, fileName) {
     if (!grid || grid.length < 4) {
       throw new Error("El archivo no tiene el formato esperado (mínimo 4 filas).");
     }
-    const r1 = grid[0] || [];
-    const r2 = grid[1] || [];
-    const campaigns = [];
 
-    const maxCols = Math.max(r1.length, r2.length, (grid[2] || []).length);
-    for (let c = 6; c < maxCols; c += 2) {
-      const adv = String(r1[c] ?? "").trim();
-      const nal = String(r2[c] ?? "").trim();
-      if (!adv && !nal) continue;
+    const codeRe = /^202\d{3}$/;
+    const scanRows = Math.min(20, grid.length);
+    let advRowIdx = -1;
+    let bestAdvCount = 0;
+
+    for (let r = 0; r < scanRows; r++) {
+      const row = grid[r] || [];
+      let cnt = 0;
+      for (let c = 0; c < row.length; c++) {
+        const cell = String(row[c] ?? "").trim();
+        if (codeRe.test(cell)) cnt++;
+      }
+      if (cnt >= 3) {
+        advRowIdx = r;
+        bestAdvCount = cnt;
+        break;
+      }
+    }
+
+    if (advRowIdx === -1) {
+      throw new Error("No se detectó la fila de campañas (códigos como 202701, 202702...). Verifica que sea la hoja 'Cronograma'.");
+    }
+
+    const rAdv = grid[advRowIdx] || [];
+    const campCols = [];
+    for (let c = 0; c < rAdv.length; c++) {
+      const adv = String(rAdv[c] ?? "").trim();
+      if (codeRe.test(adv)) {
+        campCols.push({ colIndex: c, adv });
+      }
+    }
+
+    // Detectar fila Nal Livva y fila NAL AZZ entre advRowIdx+1 y advRowIdx+3
+    let nalLivvaRowIdx = -1;
+    let nalRowIdx = advRowIdx + 1;
+    let bestNalMatches = -1;
+    for (let r = advRowIdx + 1; r <= Math.min(grid.length - 1, advRowIdx + 3); r++) {
+      const row = grid[r] || [];
+      const rowText = row.slice(0, 8).map((v) => String(v ?? "").toLowerCase()).join(" ");
+      if (rowText.includes("nal livva") || rowText.includes("livva")) {
+        nalLivvaRowIdx = r;
+        continue;
+      }
+      let matches = 0;
+      for (const cc of campCols) {
+        const v = String(row[cc.colIndex] ?? "").trim();
+        if (codeRe.test(v)) matches++;
+      }
+      if (matches > bestNalMatches) {
+        bestNalMatches = matches;
+        nalRowIdx = r;
+      }
+    }
+    const rNal = grid[nalRowIdx] || [];
+    const rLivva = nalLivvaRowIdx !== -1 ? (grid[nalLivvaRowIdx] || []) : [];
+
+    const campaigns = [];
+    for (const cc of campCols) {
+      const adv = cc.adv;
+      let nal = String(rNal[cc.colIndex] ?? "").trim();
+      if (!codeRe.test(nal)) {
+        // Fallback si falta NAL en alguna columna
+        nal = adv;
+      }
+      const nalLivvaRaw = String(rLivva[cc.colIndex] ?? "").trim();
+      const nalLivva = codeRe.test(nalLivvaRaw) ? nalLivvaRaw : null;
       const lbls = formatCampLabel(adv, nal);
+      const livvaLbls = formatLivvaLabel(nalLivva);
       campaigns.push({
         id: `ADV_${adv}_NAL_${nal}`,
-        colIndex: c,
+        colIndex: cc.colIndex,
         adv,
         nal,
+        nalLivva,
         shortLabel: lbls.shortLabel,
         fullLabel: lbls.fullLabel,
+        livvaShortLabel: livvaLbls.livvaShortLabel,
+        livvaFullLabel: livvaLbls.livvaFullLabel,
         fromC1_4_2027: /^\d+$/.test(adv) ? parseInt(adv, 10) >= 202701 : true,
       });
     }
 
-    if (campaigns.length === 0) {
-      throw new Error("No se detectaron columnas de campañas a partir de la columna G.");
+    if (campaigns.length === 0 || bestAdvCount === 0) {
+      throw new Error("No se detectaron columnas de campañas válidas en el archivo.");
     }
 
+    // Auto-detectar columnas de metadatos (No, Actividad, Proceso, Marca, Área, Días) antes de la primera campaña
+    const firstCampCol = campaigns[0].colIndex;
+    let noCol = -1;
+    let actCol = -1;
+    let procCol = -1;
+    let marcaCol = -1;
+    let areaCol = -1;
+    let diasCol = -1;
+
+    for (let r = 0; r <= Math.min(grid.length - 1, advRowIdx + 3); r++) {
+      const row = grid[r] || [];
+      for (let c = 0; c < firstCampCol; c++) {
+        const hdr = String(row[c] ?? "").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (!hdr) continue;
+        if (noCol === -1 && (hdr === "no" || hdr === "n°" || hdr === "no." || (hdr.includes("no") && !hdr.includes("antec")))) noCol = c;
+        else if (actCol === -1 && hdr.includes("actividad")) actCol = c;
+        else if (procCol === -1 && hdr.includes("proceso")) procCol = c;
+        else if (marcaCol === -1 && hdr.includes("marca")) marcaCol = c;
+        else if (areaCol === -1 && hdr.includes("area")) areaCol = c;
+        else if (diasCol === -1 && (hdr.includes("dias") || hdr === "dh")) diasCol = c;
+      }
+    }
+
+    if (noCol === -1) noCol = 0;
+    if (actCol === -1) actCol = 1;
+    if (procCol === -1) procCol = 2;
+    if (marcaCol === -1) marcaCol = 3;
+    if (areaCol === -1) areaCol = 4;
+    if (diasCol === -1) diasCol = 5;
+
     const activities = [];
-    for (let r = 3; r < grid.length; r++) {
+    const dataStartRow = Math.max(advRowIdx + 1, nalRowIdx + 1);
+    for (let r = dataStartRow; r < grid.length; r++) {
       const row = grid[r];
       if (!row || row.length < 2) continue;
-      const noRaw = row[0];
-      const actName = String(row[1] ?? "").trim().replace(/\s+/g, " ");
+      const noRaw = row[noCol];
+      const actName = String(row[actCol] ?? "").trim().replace(/\s+/g, " ");
       if (!actName) continue;
       const noNum = parseInt(noRaw, 10);
       if (isNaN(noNum)) continue;
 
-      const proceso = normProceso(row[2]);
-      const marca = normMarca(row[3]);
-      const area = normArea(row[4]);
-      const dias = parseInt(row[5], 10) || 0;
+      const proceso = normProceso(row[procCol]);
+      const marca = normMarca(row[marcaCol]);
+      const area = normArea(row[areaCol]);
+      const dias = parseInt(row[diasCol], 10) || 0;
 
       const dhMap = {};
       const fechasMap = {};
@@ -1135,12 +1420,18 @@
       });
     }
 
-    return {
+    const result = {
       sourceFile: fileName || "Archivo cargado",
       generatedAt: formatYMD(new Date()),
       campaigns,
       activities,
     };
+
+    if (countValidDatesInCronograma(result) === 0) {
+      throw new Error("No se encontraron fechas válidas en las columnas de campañas del archivo. Verifica que sea la hoja 'Cronograma'.");
+    }
+
+    return result;
   }
 
   /* ==========================================================================
@@ -1212,9 +1503,39 @@
       }
     }
 
-    const sheetEntry =
-      Object.keys(entries).find((k) => /^xl\/worksheets\/sheet1\.xml$/i.test(k)) ||
-      Object.keys(entries).find((k) => /^xl\/worksheets\/sheet\d+\.xml$/i.test(k));
+    let sheetEntry = null;
+    try {
+      const wbXml = await extractEntryText("xl/workbook.xml");
+      const relsXml = await extractEntryText("xl/_rels/workbook.xml.rels");
+      if (wbXml && relsXml) {
+        const wbDoc = new DOMParser().parseFromString(wbXml, "application/xml");
+        const relsDoc = new DOMParser().parseFromString(relsXml, "application/xml");
+        const relMap = {};
+        const relNodes = relsDoc.getElementsByTagName("Relationship");
+        for (let i = 0; i < relNodes.length; i++) {
+          const id = relNodes[i].getAttribute("Id");
+          const tgt = relNodes[i].getAttribute("Target") || "";
+          if (id) relMap[id] = tgt.startsWith("xl/") ? tgt : `xl/${tgt.replace(/^\/+/, "")}`;
+        }
+        const sheetNodes = wbDoc.getElementsByTagName("sheet");
+        for (let i = 0; i < sheetNodes.length; i++) {
+          const sName = String(sheetNodes[i].getAttribute("name") || "");
+          if (/cronograma/i.test(sName)) {
+            const rId = sheetNodes[i].getAttribute("r:id") || sheetNodes[i].getAttribute("id");
+            if (rId && relMap[rId] && entries[relMap[rId]]) {
+              sheetEntry = relMap[rId];
+              break;
+            }
+          }
+        }
+      }
+    } catch (_) {}
+
+    if (!sheetEntry) {
+      sheetEntry =
+        Object.keys(entries).find((k) => /^xl\/worksheets\/sheet1\.xml$/i.test(k)) ||
+        Object.keys(entries).find((k) => /^xl\/worksheets\/sheet\d+\.xml$/i.test(k));
+    }
     if (!sheetEntry) throw new Error("No se encontró hoja de cálculo en el archivo .xlsx");
 
     const sheetXml = await extractEntryText(sheetEntry);
@@ -1290,14 +1611,28 @@
         const ab = await file.arrayBuffer();
         if (window.XLSX && typeof window.XLSX.read === "function") {
           const wb = window.XLSX.read(ab, { type: "array" });
-          const firstSheet = wb.Sheets[wb.SheetNames[0]];
-          grid = window.XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: null });
+          const sheetNames = wb.SheetNames || [];
+          let targetSheetName = sheetNames.find((n) => /cronograma/i.test(n));
+          if (!targetSheetName) {
+            const codeRe = /^202\d{3}$/;
+            for (const sName of sheetNames) {
+              const testGrid = window.XLSX.utils.sheet_to_json(wb.Sheets[sName], { header: 1, raw: true, defval: null });
+              const hasCodes = testGrid.slice(0, 20).some((r) => Array.isArray(r) && r.filter((v) => codeRe.test(String(v ?? "").trim())).length >= 3);
+              if (hasCodes) {
+                targetSheetName = sName;
+                break;
+              }
+            }
+          }
+          const chosenSheet = wb.Sheets[targetSheetName || sheetNames[0]];
+          grid = window.XLSX.utils.sheet_to_json(chosenSheet, { header: 1, raw: true, defval: null });
         } else {
           grid = await parseXlsxNatively(ab);
         }
       }
 
       const parsed = parseGridToCronograma(grid, file.name);
+      const validDatesCount = countValidDatesInCronograma(parsed);
       rawData = parsed;
       try {
         localStorage.setItem(LOCAL_MASTER_CACHE_KEY, JSON.stringify(parsed));
@@ -1305,12 +1640,12 @@
         console.warn("No se pudo guardar en localStorage:", storageErr);
       }
 
-      // Subir la nueva versión oficial a Supabase (master_schedule) para que se actualice a TODOS los usuarios
-      // SIN TOCAR NI BORRAR la tabla custom_events
+      // Subir la nueva versión oficial a Supabase (master_schedule -> official_cronograma_v2) para todos
+      // SIN TOCAR NI BORRAR la tabla custom_events ni schedule_cards
       if (sbClient) {
         setCloudStatus("☁️ Publicando nuevo Excel oficial para todos...", false);
         const { error } = await sbClient.from("master_schedule").upsert({
-          id: "official_cronograma",
+          id: "official_cronograma_v2",
           file_name: file.name,
           data: parsed,
           updated_by: state.loggedInUserId || "DANI",
@@ -1322,13 +1657,19 @@
       }
 
       if (els.btnResetData) els.btnResetData.style.display = "inline-flex";
-      els.statusBadge.textContent = `📂 Excel activo: ${file.name} (${parsed.activities.length} act. | Eventos extra intactos)`;
+      els.statusBadge.textContent = `📂 Excel activo: ${file.name} (${parsed.activities.length} act. • ${validDatesCount} fechas)`;
       els.statusBadge.style.background = "#059669";
       els.statusBadge.style.color = "#ffffff";
       updateCronogramaVersionBadge();
 
+      if (window.CalendarV2 && typeof window.CalendarV2.syncBrandsFromData === "function") {
+        window.CalendarV2.syncBrandsFromData(rawData, customEvents);
+      }
       populateFilterControls();
       renderAll();
+      if (window.CalendarV2?.showToast) {
+        window.CalendarV2.showToast(`✅ Excel cargado: ${parsed.activities.length} actividades y ${validDatesCount} fechas listas como tarjetas.`, "success");
+      }
     } catch (err) {
       alert("Error al leer el archivo: " + err.message);
       console.error(err);
@@ -1338,10 +1679,59 @@
   /* ==========================================================================
      7. CHECKLISTS & UNIFIED HIERARCHY FILTER (ÁREA ➔ PROCESO ➔ ACTIVIDADES)
      ========================================================================== */
+  function getCampaignDisplayForBrand(camp, brandName) {
+    if (!camp) return { short: "—", full: "—", year: "", valid: false };
+    const bNorm = String(brandName || state.brand || "ALL").trim().toLowerCase();
+    const hasLivva = Boolean(camp.nalLivva);
+    const livvaShort = camp.livvaShortLabel || (hasLivva ? `Livva ${camp.nalLivva}` : null);
+    const livvaFull = camp.livvaFullLabel || (hasLivva ? `NAL Livva ${camp.nalLivva}` : null);
+
+    if (bNorm === "livva") {
+      return {
+        short: livvaShort || camp.shortLabel,
+        full: livvaFull || "Sin campaña Livva en esta columna",
+        year: hasLivva ? camp.nalLivva.slice(0, 4) : (camp.adv ? camp.adv.slice(0, 4) : ""),
+        valid: hasLivva,
+      };
+    }
+    if (bNorm === "azzorti") {
+      return {
+        short: camp.shortLabel,
+        full: camp.fullLabel,
+        year: camp.adv ? camp.adv.slice(0, 4) : "",
+        valid: true,
+      };
+    }
+    if ((bNorm === "azz livv" || bNorm === "azzlivv") && hasLivva) {
+      return {
+        short: `${camp.shortLabel} • ${livvaShort}`,
+        full: `${camp.fullLabel} | ${livvaFull}`,
+        year: camp.adv ? camp.adv.slice(0, 4) : "",
+        valid: true,
+      };
+    }
+    return {
+      short: camp.shortLabel,
+      full: hasLivva ? `${camp.fullLabel} • Livva NAL ${camp.nalLivva}` : camp.fullLabel,
+      year: camp.adv ? camp.adv.slice(0, 4) : "",
+      valid: true,
+    };
+  }
+
   function getActiveCampaigns() {
     if (!rawData || !rawData.campaigns) return [];
-    if (state.include2026) return rawData.campaigns;
-    return rawData.campaigns.filter((c) => c.fromC1_4_2027);
+    const isLivvaFilter = String(state.brand || "").trim().toLowerCase() === "livva";
+    return rawData.campaigns.filter((c) => {
+      if (isLivvaFilter) {
+        if (!c.nalLivva) return false;
+        if (!state.include2026) {
+          return /^\d+$/.test(c.nalLivva) ? parseInt(c.nalLivva, 10) >= 202701 : true;
+        }
+        return true;
+      }
+      if (state.include2026) return true;
+      return c.fromC1_4_2027;
+    });
   }
 
   function getSelectedCampaigns() {
@@ -1454,12 +1844,13 @@
       const maxDirect = count <= 4 ? count : 3;
       for (let i = 0; i < maxDirect; i++) {
         const c = selected[i];
+        const disp = getCampaignDisplayForBrand(c, state.brand);
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "camp-pill camp-pill-active";
-        btn.title = `Campaña ${c.shortLabel} (${c.fullLabel})\n• Clic para ver SOLO esta campaña\n• Clic en × para deseleccionar`;
+        btn.title = `Campaña ${disp.short} (${disp.full})\n• Clic para ver SOLO esta campaña\n• Clic en × para deseleccionar`;
         btn.innerHTML = `
-          <span class="camp-pill-name">${escapeHtml(c.shortLabel)}</span>
+          <span class="camp-pill-name">${escapeHtml(disp.short)}</span>
           <span class="camp-pill-remove" data-id="${c.id}" title="Quitar campaña">×</span>
         `;
 
@@ -1492,7 +1883,7 @@
         moreBtn.type = "button";
         moreBtn.className = "camp-pill camp-pill-more";
         moreBtn.textContent = `+${count - maxDirect} más`;
-        moreBtn.title = selected.slice(maxDirect).map((x) => x.shortLabel).join(", ") + "\nHaz clic para ver todas en el catálogo";
+        moreBtn.title = selected.slice(maxDirect).map((x) => getCampaignDisplayForBrand(x, state.brand).short).join(", ") + "\nHaz clic para ver todas en el catálogo";
         moreBtn.addEventListener("click", () => toggleCampaignDropdown(true));
         els.activeCampaignsPills.appendChild(moreBtn);
       }
@@ -1507,20 +1898,21 @@
     els.campaignList.innerHTML = "";
 
     const filtered = active.filter((c) => {
+      const disp = getCampaignDisplayForBrand(c, state.brand);
       // Filtro por Año rápido
       if (selectedCampaignYear !== "ALL") {
-        const cYear = c.adv ? c.adv.slice(0, 4) : "";
-        if (cYear !== selectedCampaignYear && !c.fullLabel.includes(selectedCampaignYear)) {
+        if (disp.year !== selectedCampaignYear && !disp.full.includes(selectedCampaignYear)) {
           return false;
         }
       }
       // Filtro por texto si el usuario escribe
       if (q) {
         const textMatch =
-          c.shortLabel.toLowerCase().includes(q) ||
-          c.fullLabel.toLowerCase().includes(q) ||
+          disp.short.toLowerCase().includes(q) ||
+          disp.full.toLowerCase().includes(q) ||
           c.adv.includes(q) ||
-          c.nal.includes(q);
+          c.nal.includes(q) ||
+          (c.nalLivva && c.nalLivva.includes(q));
         if (!textMatch) return false;
       }
       return true;
@@ -1537,7 +1929,8 @@
 
     for (const c of filtered) {
       const isChecked = state.selectedCampaignIds.has(c.id);
-      const year = c.adv ? c.adv.slice(0, 4) : "";
+      const disp = getCampaignDisplayForBrand(c, state.brand);
+      const year = disp.year;
 
       const card = document.createElement("div");
       card.className = `campaign-card-item ${isChecked ? "selected" : ""}`;
@@ -1546,10 +1939,10 @@
           <input type="checkbox" id="chk-camp-${c.id}" data-id="${c.id}" ${isChecked ? "checked" : ""} />
           <div>
             <div style="display:flex;align-items:center;gap:6px">
-              <span class="campaign-card-code">${escapeHtml(c.shortLabel)}</span>
+              <span class="campaign-card-code">${escapeHtml(disp.short)}</span>
               ${year ? `<span class="campaign-card-year">${year}</span>` : ""}
             </div>
-            <div class="campaign-card-desc">${escapeHtml(c.fullLabel)}</div>
+            <div class="campaign-card-desc">${escapeHtml(disp.full)}</div>
           </div>
         </div>
         <button type="button" class="campaign-btn-only" data-id="${c.id}" title="Seleccionar exclusivamente esta campaña">Solo esta</button>
@@ -1674,7 +2067,7 @@
       const row = document.createElement("div");
       row.className = `team-profile-option-row ${isSelected ? "selected" : ""}`;
 
-      const isAdminLogged = state.loggedInUserId === "DANI";
+      const isAdminLogged = isUserAdmin(state.loggedInUserId);
       const isCurrentTarget = state.targetUserId === p.id;
 
       row.innerHTML = `
@@ -1688,7 +2081,7 @@
         <div class="team-profile-actions">
           <span class="team-profile-count-pill">${count} evento${count !== 1 ? "s" : ""}</span>
           ${
-            isAdminLogged && p.id !== "DANI"
+            isAdminLogged && p.id !== state.loggedInUserId
               ? `<button type="button" class="team-profile-admin-btn" title="Configurar el calendario de ${p.name}">👑 Editar</button>`
               : ""
           }
@@ -2098,11 +2491,20 @@
   /* ==========================================================================
      8. FILTERING ACTIVITIES & CUSTOM EVENTS
      ========================================================================== */
-  function matchesBrandFilter(marca) {
-    if (state.brand === "ALL") return true;
-    if (state.brand === "Azz Livv") return marca === "Azz Livv";
-    if (marca === state.brand) return true;
-    if (state.includeSharedBrand && marca === "Azz Livv") return true;
+  function matchesBrandFilter(marca, cardKey) {
+    let effectiveMarca = marca;
+    if (cardKey && window.CalendarV2 && typeof window.CalendarV2.getCardState === "function") {
+      const cs = window.CalendarV2.getCardState(cardKey);
+      if (cs && cs.brand_override) effectiveMarca = cs.brand_override;
+    }
+    if (window.CalendarV2 && typeof window.CalendarV2.matchesBrandFilter === "function") {
+      return window.CalendarV2.matchesBrandFilter(effectiveMarca, state.brand, state.includeSharedBrand);
+    }
+    const b = String(state.brand || "ALL").trim().toLowerCase();
+    if (b === "all") return true;
+    const m = String(effectiveMarca || "Azz Livv").trim().toLowerCase();
+    if (m === b) return true;
+    if (state.includeSharedBrand && (m === "azz livv" || m === "azzlivv") && b !== "azz livv") return true;
     return false;
   }
 
@@ -2149,7 +2551,7 @@
     if (!state.showCustomEvents) return [];
     const q = state.searchQuery.trim().toLowerCase();
     return customEvents.filter((ev) => {
-      if (!matchesBrandFilter(ev.marca || "Azz Livv")) return false;
+      if (!matchesBrandFilter(ev.marca || "Azz Livv", `CUST_${ev.id}`)) return false;
 
       if (state.customFilterTags.size > 0) {
         const areaTag = `AREA:${ev.area || "General / Equipo"}`;
@@ -2177,9 +2579,22 @@
   }
 
   function badgeClassForBrand(marca) {
-    if (marca === "Livva") return "Livva";
-    if (marca === "Azzorti") return "Azzorti";
+    const low = String(marca || "").trim().toLowerCase();
+    if (low === "livva") return "Livva";
+    if (low === "azzorti") return "Azzorti";
     return "AzzLivv";
+  }
+
+  function getBrandBadgeHtml(marca) {
+    const label = window.CalendarV2 && typeof window.CalendarV2.normalizeBrandName === "function"
+      ? window.CalendarV2.normalizeBrandName(marca)
+      : (marca || "Azz Livv");
+    if (window.CalendarV2 && typeof window.CalendarV2.getBrandStyleVars === "function") {
+      const vars = window.CalendarV2.getBrandStyleVars(label);
+      return `<span class="badge-marca" style="background:${vars.bg};color:${vars.text};border:1px solid ${vars.border}">${escapeHtml(label)}</span>`;
+    }
+    const bClass = badgeClassForBrand(label);
+    return `<span class="badge-marca badge-${bClass}">${escapeHtml(label)}</span>`;
   }
 
   /* ==========================================================================
@@ -2204,7 +2619,11 @@
       els.matrixWrapper.style.display = "none";
       els.calendarToolbarOptions.style.display = "flex";
       els.ganttToolbarOptions.style.display = "none";
-      renderCalendar(selectedOfficial, visibleCustom, selectedCamps);
+      if (window.CalendarV2 && typeof window.CalendarV2.renderCalendar === "function") {
+        window.CalendarV2.renderCalendar(selectedOfficial, visibleCustom, selectedCamps);
+      } else {
+        renderCalendar(selectedOfficial, visibleCustom, selectedCamps);
+      }
     } else if (state.viewMode === "gantt") {
       els.calendarWrapper.style.display = "none";
       els.ganttWrapper.style.display = "flex";
@@ -2520,10 +2939,9 @@
                 eventsHtml.push(`
                   <div class="calendar-event-card event-custom-${cat} ${rangeClasses}" data-type="custom" data-evid="${cev.id}">
                     <div class="event-meta-line">
-                      <span class="event-custom-badge">📌 ${cev.area || "Diseño"}</span>
+                      <span class="event-brand-badge brand-${bClass}">${cev.marca || "Azz Livv"}</span>
                       ${tagBadgeHtml}
                       ${impBadgeHtml}
-                      <span class="event-brand-badge brand-${bClass}">${cev.marca || "Azz Livv"}</span>
                       ${
                         ev.isMultiDay
                           ? `<span class="event-range-badge">🗓️ ${formatShortDayMonth(ev.range.startStr)} → ${formatShortDayMonth(ev.range.endStr)}</span>`
@@ -2531,6 +2949,7 @@
                       }
                     </div>
                     <div class="event-full-title">${cev.title}</div>
+                    ${cev.area ? `<div class="cal-card-subarea">🏢 ${escapeHtml(cev.area)}</div>` : ""}
                     <div class="event-owners-wrap">${renderOwnerPillsHtml(owners, false)}</div>
                     ${meta.cleanNotes ? `<div class="event-notes-preview">${escapeHtml(meta.cleanNotes)}</div>` : ""}
                   </div>
@@ -2907,6 +3326,145 @@
     els.savedHashtagsList.innerHTML = html.join("");
   }
 
+  function normalizeBrandKeyForAreas(marca) {
+    if (window.CalendarV2 && typeof window.CalendarV2.normalizeBrandName === "function") {
+      const n = window.CalendarV2.normalizeBrandName(marca);
+      return n && n !== "ALL" ? n : "Azz Livv";
+    }
+    const raw = String(marca || "").trim();
+    if (!raw) return "Azz Livv";
+    const low = raw.toLowerCase();
+    if (low === "aglab" || low === "ag lab" || low === "ag_lab") return "AG LAB";
+    if (low === "nativa") return "NATIVA";
+    if (low === "azzorti") return "AZZORTI";
+    if (low === "livva") return "LIVVA";
+    if (low === "azz livv" || low === "azzlivv") return "Azz Livv";
+    return raw;
+  }
+
+  function loadSavedBrandAreas() {
+    const base = {};
+    Object.keys(DEFAULT_AREAS_BY_BRAND).forEach((k) => {
+      if (k !== "_DEFAULT_") base[k] = [...DEFAULT_AREAS_BY_BRAND[k]];
+    });
+
+    try {
+      const cached = localStorage.getItem(LOCAL_SAVED_AREAS_BY_BRAND_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed && typeof parsed === "object") {
+          Object.keys(parsed).forEach((brandKey) => {
+            const normKey = normalizeBrandKeyForAreas(brandKey);
+            const arr = Array.isArray(parsed[brandKey]) ? parsed[brandKey] : [];
+            const set = new Set(base[normKey] || DEFAULT_AREAS_BY_BRAND._DEFAULT_);
+            arr.forEach((a) => {
+              const clean = String(a || "").trim();
+              if (clean) set.add(clean);
+            });
+            base[normKey] = Array.from(set);
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Error leyendo savedAreasByBrand:", e);
+    }
+
+    if (Array.isArray(customEvents)) {
+      for (const cev of customEvents) {
+        if (!cev || !cev.area) continue;
+        const cleanArea = String(cev.area).trim();
+        if (!cleanArea) continue;
+        const normBrand = normalizeBrandKeyForAreas(cev.marca || "Azz Livv");
+        if (!base[normBrand]) base[normBrand] = [...DEFAULT_AREAS_BY_BRAND._DEFAULT_];
+        if (!base[normBrand].some((a) => a.toLowerCase() === cleanArea.toLowerCase())) {
+          base[normBrand].push(cleanArea);
+        }
+      }
+    }
+
+    savedAreasByBrand = base;
+  }
+
+  function saveSavedBrandAreas() {
+    try {
+      localStorage.setItem(LOCAL_SAVED_AREAS_BY_BRAND_KEY, JSON.stringify(savedAreasByBrand));
+    } catch (e) {
+      console.warn("Error guardando savedAreasByBrand:", e);
+    }
+  }
+
+  function getAreasForBrand(marca) {
+    const key = normalizeBrandKeyForAreas(marca);
+    if (!savedAreasByBrand[key] || savedAreasByBrand[key].length === 0) {
+      const defaults = DEFAULT_AREAS_BY_BRAND[key] || DEFAULT_AREAS_BY_BRAND._DEFAULT_;
+      savedAreasByBrand[key] = [...defaults];
+    }
+    return savedAreasByBrand[key];
+  }
+
+  function saveAreaForBrand(marca, areaName) {
+    const clean = String(areaName || "").trim();
+    if (!clean) return;
+    loadSavedBrandAreas();
+    const key = normalizeBrandKeyForAreas(marca);
+    const list = getAreasForBrand(key);
+    if (!list.some((a) => a.toLowerCase() === clean.toLowerCase())) {
+      list.push(clean);
+      savedAreasByBrand[key] = list;
+      saveSavedBrandAreas();
+    }
+    renderSavedBrandAreasList(key, clean);
+  }
+
+  function removeAreaForBrand(marca, areaName) {
+    const clean = String(areaName || "").trim();
+    if (!clean) return;
+    const key = normalizeBrandKeyForAreas(marca);
+    const list = getAreasForBrand(key);
+    savedAreasByBrand[key] = list.filter((a) => a.toLowerCase() !== clean.toLowerCase());
+    saveSavedBrandAreas();
+    const currentVal = els.evAreaInput ? els.evAreaInput.value : "";
+    renderSavedBrandAreasList(key, currentVal);
+  }
+
+  function updateModalAreaDisplay(val) {
+    const clean = String(val || "").trim();
+    if (els.evAreaActivePreview) {
+      els.evAreaActivePreview.textContent = clean || "Sin área";
+    }
+    if (els.btnClearArea) {
+      els.btnClearArea.style.display = clean ? "block" : "none";
+    }
+    if (els.savedBrandAreasList) {
+      els.savedBrandAreasList.querySelectorAll(".saved-area-pill").forEach((pill) => {
+        const aVal = pill.getAttribute("data-area") || "";
+        pill.classList.toggle("active", Boolean(clean && aVal.toLowerCase() === clean.toLowerCase()));
+      });
+    }
+  }
+
+  function renderSavedBrandAreasList(marca, activeArea) {
+    if (!els.savedBrandAreasList) return;
+    const normBrand = normalizeBrandKeyForAreas(marca);
+    if (els.savedBrandAreasLabel) {
+      els.savedBrandAreasLabel.textContent = `🏢 Áreas de ${normBrand} (clic para elegir o escribe una nueva):`;
+    }
+    const list = getAreasForBrand(normBrand);
+    const normActive = String(activeArea || "").trim().toLowerCase();
+
+    els.savedBrandAreasList.innerHTML = list
+      .map((areaName) => {
+        const isActive = Boolean(normActive && areaName.toLowerCase() === normActive);
+        return `
+          <button type="button" class="saved-hashtag-pill saved-area-pill ${isActive ? "active" : ""}" data-area="${escapeHtml(areaName)}">
+            <span>${escapeHtml(areaName)}</span>
+            <span class="pill-del-btn area-del-btn" data-delarea="${escapeHtml(areaName)}" title="Quitar de las sugerencias de ${escapeHtml(normBrand)}">×</span>
+          </button>
+        `;
+      })
+      .join("");
+  }
+
   function selectModalColor(colorName) {
     const color = colorName || "emerald";
     if (els.evCategoryInput) els.evCategoryInput.value = color;
@@ -3014,6 +3572,10 @@
 
   function openCustomEventModal(existingEvent, defaultDateStr) {
     loadSavedHashtags();
+    loadSavedBrandAreas();
+    if (window.CalendarV2 && typeof window.CalendarV2.renderBrandControls === "function") {
+      window.CalendarV2.renderBrandControls(true);
+    }
 
     if (existingEvent) {
       els.customModalTitle.textContent = "✏️ Editar Evento Adicional";
@@ -3022,9 +3584,24 @@
       const rng = getCustomEventRange(existingEvent);
       els.evDateInput.value = rng.startStr || TODAY_STR;
       els.evEndDateInput.value = rng.endStr || rng.startStr || TODAY_STR;
-      els.evAreaInput.value = existingEvent.area || "AG LAB (Diseño Textil y Moda)";
+
+      const normBrand = normalizeBrandKeyForAreas(existingEvent.marca || "Azz Livv");
+      if (els.evMarcaInput) {
+        if (!Array.from(els.evMarcaInput.options).some((o) => o.value === normBrand)) {
+          const opt = document.createElement("option");
+          opt.value = normBrand;
+          opt.textContent = normBrand;
+          els.evMarcaInput.appendChild(opt);
+        }
+        els.evMarcaInput.value = normBrand;
+      }
+
+      const evArea = existingEvent.area || "";
+      if (els.evAreaInput) els.evAreaInput.value = evArea;
+      updateModalAreaDisplay(evArea);
+      renderSavedBrandAreasList(normBrand, evArea);
+
       modalSelectedOwners = new Set(getCustomEventOwners(existingEvent));
-      els.evMarcaInput.value = existingEvent.marca || "Azz Livv";
 
       const meta = parseCustomEventMeta(existingEvent);
       if (els.evTagInput) els.evTagInput.value = meta.tag.replace(/^#/, "");
@@ -3040,12 +3617,26 @@
       els.customModalTitle.textContent = "✨ Agregar Nuevo Evento al Calendario";
       els.evIdInput.value = "";
       els.evTitleInput.value = "";
-      const defDate = defaultDateStr || "2027-06-15";
+      const defDate = defaultDateStr || TODAY_STR;
       els.evDateInput.value = defDate;
       els.evEndDateInput.value = defDate;
-      els.evAreaInput.value = "AG LAB (Diseño Textil y Moda)";
+
+      const preferredBrand = (state.brand && state.brand !== "ALL")
+        ? normalizeBrandKeyForAreas(state.brand)
+        : "AG LAB";
+      if (els.evMarcaInput) {
+        if (Array.from(els.evMarcaInput.options).some((o) => o.value === preferredBrand)) {
+          els.evMarcaInput.value = preferredBrand;
+        }
+      }
+      const chosenBrand = els.evMarcaInput ? els.evMarcaInput.value : preferredBrand;
+      const brandAreas = getAreasForBrand(chosenBrand);
+      const defArea = brandAreas[0] || "General";
+      if (els.evAreaInput) els.evAreaInput.value = defArea;
+      updateModalAreaDisplay(defArea);
+      renderSavedBrandAreasList(chosenBrand, defArea);
+
       modalSelectedOwners = new Set([state.targetUserId || state.loggedInUserId || "DANI"]);
-      els.evMarcaInput.value = "Azz Livv";
 
       const defTag = "#Entrega";
       if (els.evTagInput) els.evTagInput.value = defTag.replace(/^#/, "");
@@ -3098,13 +3689,17 @@
       saveHashtagToCatalog(finalTag);
     }
 
+    const chosenBrand = els.evMarcaInput ? els.evMarcaInput.value : "Azz Livv";
+    const cleanArea = (els.evAreaInput ? els.evAreaInput.value.trim() : "") || "General";
+    saveAreaForBrand(chosenBrand, cleanArea);
+
     const payload = {
       title: els.evTitleInput.value.trim(),
       event_date: encodedEventDate,
       dh: bizDays,
-      area: els.evAreaInput.value,
+      area: cleanArea,
       owner_user: encodedOwners,
-      marca: els.evMarcaInput.value,
+      marca: chosenBrand,
       category: selectedColor,
       notes: serializedNotes,
       created_by: state.loggedInUserId || "DANI",
@@ -3151,6 +3746,9 @@
 
       saveLocalCustomEventsCache();
       setCloudStatus("☁️ Evento guardado y sincronizado", false);
+      if (window.CalendarV2 && typeof window.CalendarV2.syncBrandsFromData === "function") {
+        window.CalendarV2.syncBrandsFromData(rawData, customEvents);
+      }
       populateFilterControls();
       renderAll();
     } catch (err) {
@@ -3218,7 +3816,7 @@
         act: {
           no: "📌",
           actividad: `${impIcon}${tagPrefix}${cev.title}`,
-          proceso: `📌 Eventos Extra (${cev.area || "Equipo"})`,
+          proceso: `🏷️ ${cev.marca || "Azz Livv"} (${cev.area || "Equipo"})`,
           area: ownersLabel,
           marca: cev.marca || "Azz Livv",
           dias: dhVal,
@@ -3452,7 +4050,7 @@
             <span class="cell-no">${isCustom ? "EXTRA" : `#${act.no}`}</span>
             <span class="cell-act">${act.actividad}</span>
             <span class="cell-area">${act.area}</span>
-            <span><span class="badge-marca badge-${bClass}">${act.marca}</span></span>
+            <span>${getBrandBadgeHtml(act.marca)}</span>
             <span class="cell-dh">${primaryDh}d</span>
           </div>
         `);
@@ -3528,8 +4126,9 @@
     const thRow2 = [];
 
     for (const c of campsToDisplay) {
-      thRow1.push(`<th style="text-align:center">${c.shortLabel}</th>`);
-      thRow2.push(`<th style="text-align:center;color:#475569">${c.fullLabel}</th>`);
+      const disp = getCampaignDisplayForBrand(c, state.brand);
+      thRow1.push(`<th style="text-align:center">${escapeHtml(disp.short)}</th>`);
+      thRow2.push(`<th style="text-align:center;color:#475569">${escapeHtml(disp.full)}</th>`);
     }
 
     els.matrixTableHead.innerHTML = `<tr>${thRow1.join("")}</tr><tr>${thRow2.join("")}</tr>`;
@@ -3543,7 +4142,7 @@
         `<td class="sticky-col-2 cell-no">#${act.no}</td>`,
         `<td class="sticky-col-3" title="${act.actividad}">${act.actividad}</td>`,
         `<td class="sticky-col-4" title="${act.proceso}">${act.proceso}</td>`,
-        `<td class="sticky-col-5"><span class="badge-marca badge-${bClass}">${act.marca}</span></td>`,
+        `<td class="sticky-col-5">${getBrandBadgeHtml(act.marca)}</td>`,
         `<td>${act.area} <small style="color:#64748b">(${act.dias}d)</small></td>`,
       ];
       for (const c of campsToDisplay) {
@@ -3570,6 +4169,13 @@
      14. PDF, ICS & CSV EXPORTS (INCLUDES OFFICIAL + CUSTOM EVENTS)
      ========================================================================== */
   function printPdfCalendar() {
+    const prevSubview = window.CalendarV2 && typeof window.CalendarV2.getSubview === "function"
+      ? window.CalendarV2.getSubview()
+      : "month";
+    if (window.CalendarV2 && typeof window.CalendarV2.setSubview === "function" && prevSubview !== "month") {
+      window.CalendarV2.setSubview("month");
+    }
+
     state.calShowAllMonths = true;
     if (els.chkCalShowAllMonths) els.chkCalShowAllMonths.checked = true;
 
@@ -3582,13 +4188,16 @@
     const selectedCamps = getSelectedCampaigns();
     const campNames = selectedCamps.map((c) => c.shortLabel.replace(/\s+/g, "_")).join("-");
     const oldTitle = document.title;
-    document.title = `Calendario_${state.targetUserId || "Diseno"}_${campNames || "Azzorti_Livva"}`;
+    document.title = `Calendario_${state.targetUserId || "Diseno"}_${campNames || "AGLAB_MultiMarca"}`;
 
     document.body.classList.add("printing-calendar");
     window.print();
     setTimeout(() => {
       document.body.classList.remove("printing-calendar");
       document.title = oldTitle;
+      if (window.CalendarV2 && typeof window.CalendarV2.setSubview === "function" && prevSubview !== "month") {
+        window.CalendarV2.setSubview(prevSubview);
+      }
     }, 1000);
   }
 
@@ -3635,9 +4244,10 @@
         const sVal = formatYMD(dt).replace(/-/g, "");
         const eVal = formatYMD(endDt).replace(/-/g, "");
         const dh = act.dh[camp.id] ?? act.dias ?? 0;
+        const disp = getCampaignDisplayForBrand(camp, act.marca);
         const uid = `act-${act.no}-${camp.adv}-${sVal}@azzorti-livva.com`;
-        const summary = `[${act.marca.toUpperCase()}] (${camp.shortLabel}) ${act.actividad}`;
-        const desc = `Marca: ${act.marca}\\nCampaña: ${camp.shortLabel}\\nProceso: ${act.proceso}\\nÁrea: ${act.area}\\nDH: ${dh}`;
+        const summary = `[${act.marca.toUpperCase()}] (${disp.short}) ${act.actividad}`;
+        const desc = `Marca: ${act.marca}\\nCampaña: ${disp.short} (${disp.full})\\nProceso: ${act.proceso}\\nÁrea: ${act.area}\\nDH: ${dh}`;
         lines.push(
           "BEGIN:VEVENT",
           `UID:${uid}`,
@@ -3664,7 +4274,7 @@
       const meta = parseCustomEventMeta(cev);
       const tagText = meta.tag ? ` [${meta.tag}]` : "";
       const uid = `custom-${cev.id}@azzorti-livva.com`;
-      const summary = `[📌 ${cev.area || "EXTRA"}${tagText} - ${owners || "Equipo"}] ${cev.title}`;
+      const summary = `[${(cev.marca || "Azz Livv").toUpperCase()}${tagText} - ${owners || "Equipo"}] ${cev.title}`;
       const desc = `Asignado a: ${owners}\\nÁrea: ${cev.area}\\nEtiqueta: ${meta.tag}\\nImportancia: ${meta.importance.toUpperCase()}\\nMarca: ${cev.marca}\\nRango: ${rng.startStr} al ${rng.endStr}\\nNotas: ${meta.cleanNotes || ""}`;
       lines.push(
         "BEGIN:VEVENT",
@@ -3784,13 +4394,24 @@
       els.loginOverlay.style.display = "flex";
     });
 
-    // Admin Controls (DANI)
+    // Admin Controls (DANI / ANDRE)
     els.adminTargetUserSelect.addEventListener("change", (e) => {
       switchAdminTargetUser(e.target.value);
     });
     els.btnReturnToDani.addEventListener("click", () => {
-      switchAdminTargetUser("DANI");
+      switchAdminTargetUser(state.loggedInUserId || "DANI");
     });
+    if (els.btnUploadExcel && els.excelUploadInput) {
+      els.btnUploadExcel.addEventListener("click", () => {
+        if (!isUserAdmin(state.loggedInUserId)) return;
+        els.excelUploadInput.value = "";
+        els.excelUploadInput.click();
+      });
+      els.excelUploadInput.addEventListener("change", (e) => {
+        const f = e.target.files && e.target.files[0];
+        if (f) handleFileUpload(f);
+      });
+    }
     els.btnAdminManagePins.addEventListener("click", openAdminPinsModal);
     els.btnCloseAdminPins.addEventListener("click", () => (els.adminPinsModal.style.display = "none"));
     els.btnCloseAdminPinsFooter.addEventListener("click", () => (els.adminPinsModal.style.display = "none"));
@@ -3802,6 +4423,50 @@
     els.btnCancelCustomModal.addEventListener("click", () => (els.customEventModal.style.display = "none"));
     els.customEventForm.addEventListener("submit", handleSaveCustomEvent);
     els.btnDeleteCustomEvent.addEventListener("click", handleDeleteCustomEvent);
+
+    if (els.evMarcaInput) {
+      els.evMarcaInput.addEventListener("change", () => {
+        const currentArea = els.evAreaInput ? els.evAreaInput.value : "";
+        renderSavedBrandAreasList(els.evMarcaInput.value, currentArea);
+      });
+    }
+
+    if (els.evAreaInput) {
+      els.evAreaInput.addEventListener("input", (e) => {
+        updateModalAreaDisplay(e.target.value);
+      });
+    }
+
+    if (els.btnClearArea) {
+      els.btnClearArea.addEventListener("click", () => {
+        if (els.evAreaInput) {
+          els.evAreaInput.value = "";
+          updateModalAreaDisplay("");
+          els.evAreaInput.focus();
+        }
+      });
+    }
+
+    if (els.savedBrandAreasList) {
+      els.savedBrandAreasList.addEventListener("click", (e) => {
+        const delBtn = e.target.closest(".area-del-btn");
+        if (delBtn) {
+          e.stopPropagation();
+          const areaToDel = delBtn.getAttribute("data-delarea");
+          if (areaToDel && els.evMarcaInput) {
+            removeAreaForBrand(els.evMarcaInput.value, areaToDel);
+          }
+          return;
+        }
+        const pill = e.target.closest(".saved-area-pill");
+        if (!pill) return;
+        const chosenArea = pill.getAttribute("data-area");
+        if (chosenArea && els.evAreaInput) {
+          els.evAreaInput.value = chosenArea;
+          updateModalAreaDisplay(chosenArea);
+        }
+      });
+    }
 
     if (els.evTagInput) {
       els.evTagInput.addEventListener("input", (e) => {
@@ -4093,18 +4758,20 @@
       });
     }
 
-    // 6. Brand & Search
-    els.brandPills.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        els.brandPills.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        state.brand = btn.getAttribute("data-brand");
-        els.sharedBrandWrap.style.display =
-          state.brand === "Livva" || state.brand === "Azzorti" ? "inline-flex" : "none";
-        scheduleSavePreferences();
-        renderAll();
+    // 6. Brand & Search (CalendarV2 handles #brandPillsContainer dynamically when present)
+    if (!window.CalendarV2) {
+      els.brandPills.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          els.brandPills.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.brand = btn.getAttribute("data-brand");
+          els.sharedBrandWrap.style.display =
+            state.brand !== "ALL" && state.brand !== "Azz Livv" ? "inline-flex" : "none";
+          scheduleSavePreferences();
+          renderAll();
+        });
       });
-    });
+    }
     els.chkSharedBrand.addEventListener("change", (e) => {
       state.includeSharedBrand = e.target.checked;
       scheduleSavePreferences();
@@ -4160,6 +4827,9 @@
       }
 
       state.forceIncludeToday = true;
+      if (window.CalendarV2 && typeof window.CalendarV2.goToToday === "function" && window.CalendarV2.goToToday()) {
+        return;
+      }
       renderAll();
 
       setTimeout(() => {
@@ -4177,12 +4847,18 @@
       els.btnCalToday.addEventListener("click", goToToday);
     }
     els.btnCalPrevMonth.addEventListener("click", () => {
+      if (window.CalendarV2 && typeof window.CalendarV2.onPrevClick === "function" && window.CalendarV2.onPrevClick()) {
+        return;
+      }
       state.calShowAllMonths = false;
       els.chkCalShowAllMonths.checked = false;
       state.calCurrentMonthIndex = Math.max(0, state.calCurrentMonthIndex - 1);
       renderAll();
     });
     els.btnCalNextMonth.addEventListener("click", () => {
+      if (window.CalendarV2 && typeof window.CalendarV2.onNextClick === "function" && window.CalendarV2.onNextClick()) {
+        return;
+      }
       state.calShowAllMonths = false;
       els.chkCalShowAllMonths.checked = false;
       state.calCurrentMonthIndex++;
@@ -4237,8 +4913,38 @@
   }
 
   /* ==========================================================================
-     16. INITIALIZATION
+     16. BRIDGE PARA CALENDAR V2 (window.CronogramaApp) & INITIALIZATION
      ========================================================================== */
+  window.CronogramaApp = {
+    getSbClient: () => sbClient,
+    getRawData: () => rawData,
+    getUsersMap: () => usersMap,
+    getAllKnownProfiles,
+    getProfileMeta,
+    getState: () => state,
+    getCustomEvents: () => customEvents,
+    getTodayStr: () => TODAY_STR,
+    isAdmin: () => isUserAdmin(state.loggedInUserId),
+    escapeHtml,
+    parseYMD,
+    formatYMD,
+    formatShortDayMonth,
+    subtractBusinessDays,
+    addDays,
+    getCustomEventRange,
+    getCustomEventOwners,
+    parseCustomEventMeta,
+    openCustomEventModal,
+    saveAreaForBrand,
+    applyQuickPreset,
+    getCampaignDisplayForBrand,
+    renderAll,
+    populateFilterControls,
+    scheduleSavePreferences,
+    setCloudStatus,
+    getElements: () => els,
+  };
+
   function init() {
     initDomRefs();
 
