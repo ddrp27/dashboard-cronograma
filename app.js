@@ -176,6 +176,7 @@
     selectedCampaignIds: new Set(DEFAULT_CAMPAIGNS),
     selectedActivityNos: new Set(), // Empty by default = ALL official areas/processes OFF
     brand: "ALL",
+    selectedBrands: new Set(), // Empty = ALL ("Multi-marca"); supports selecting multiple brands simultaneously
     includeSharedBrand: true,
     showCustomEvents: true,
     customFilterTags: new Set(), // Empty = show all custom events; otherwise filter by "AREA:..." or "USER:..."
@@ -674,6 +675,7 @@
       explicitlyClearedActivities: Boolean(state.explicitlyClearedActivities),
       selectedCampaignIds: Array.from(state.selectedCampaignIds),
       brand: state.brand,
+      selectedBrands: Array.from(state.selectedBrands || []),
       includeSharedBrand: state.includeSharedBrand,
       include2026: state.include2026,
       showCustomEvents: state.showCustomEvents,
@@ -730,10 +732,21 @@
     state.selectedActivityNos = new Set(savedActs.map((n) => Number(n)));
     state.explicitlyClearedActivities = explicitlyCleared;
 
-    const rawSavedBrand = prefs.brand || "ALL";
-    state.brand = window.CalendarV2 && typeof window.CalendarV2.normalizeBrandName === "function"
-      ? window.CalendarV2.normalizeBrandName(rawSavedBrand)
-      : rawSavedBrand;
+    const normFn = window.CalendarV2 && typeof window.CalendarV2.normalizeBrandName === "function"
+      ? window.CalendarV2.normalizeBrandName
+      : (x) => String(x || "ALL").trim();
+
+    if (Array.isArray(prefs.selectedBrands)) {
+      const cleaned = prefs.selectedBrands
+        .map((b) => normFn(b))
+        .filter((b) => b && b !== "ALL");
+      state.selectedBrands = new Set(cleaned);
+    } else if (prefs.brand && prefs.brand !== "ALL") {
+      state.selectedBrands = new Set([normFn(prefs.brand)]);
+    } else {
+      state.selectedBrands = new Set();
+    }
+    state.brand = state.selectedBrands.size === 1 ? Array.from(state.selectedBrands)[0] : "ALL";
     state.includeSharedBrand = prefs.includeSharedBrand !== undefined ? Boolean(prefs.includeSharedBrand) : true;
     state.showCustomEvents = prefs.showCustomEvents !== undefined ? Boolean(prefs.showCustomEvents) : true;
     state.customFilterTags = new Set(Array.isArray(prefs.customFilterTags) ? prefs.customFilterTags : []);
@@ -743,10 +756,10 @@
       window.CalendarV2.renderBrandControls(true);
     } else {
       document.querySelectorAll("#brandPillsContainer .brand-pill").forEach((b) => {
-        b.classList.toggle("active", b.getAttribute("data-brand") === state.brand);
+        const db = b.getAttribute("data-brand");
+        const active = db === "ALL" ? state.selectedBrands.size === 0 : state.selectedBrands.has(db);
+        b.classList.toggle("active", active);
       });
-      els.sharedBrandWrap.style.display =
-        state.brand !== "ALL" && state.brand !== "Azz Livv" ? "inline-flex" : "none";
     }
     els.chkSharedBrand.checked = state.includeSharedBrand;
     els.chkShowCustomEvents.checked = state.showCustomEvents;
@@ -1842,11 +1855,29 @@
     };
   }
 
+  function getEffectiveDisplayBrandContext() {
+    if (state.selectedBrands && state.selectedBrands.size === 1) {
+      return Array.from(state.selectedBrands)[0];
+    }
+    if (
+      state.selectedBrands &&
+      state.selectedBrands.size === 2 &&
+      state.selectedBrands.has("AZZORTI") &&
+      state.selectedBrands.has("LIVVA")
+    ) {
+      return "Azz Livv";
+    }
+    return "ALL";
+  }
+
   function getActiveCampaigns() {
     if (!rawData || !rawData.campaigns) return [];
-    const isLivvaFilter = String(state.brand || "").trim().toLowerCase() === "livva";
+    const isOnlyLivva =
+      state.selectedBrands &&
+      state.selectedBrands.size === 1 &&
+      Array.from(state.selectedBrands)[0].toLowerCase() === "livva";
     return rawData.campaigns.filter((c) => {
-      if (isLivvaFilter) {
+      if (isOnlyLivva) {
         if (!c.nalLivva) return false;
         if (!state.include2026) {
           return /^\d+$/.test(c.nalLivva) ? parseInt(c.nalLivva, 10) >= 202701 : true;
@@ -2155,6 +2186,46 @@
     }
   }
 
+  function getSelectedFilterUserIds() {
+    return Array.from(state.customFilterTags)
+      .filter((t) => t.startsWith("USER:"))
+      .map((t) => t.slice(5));
+  }
+
+  function toggleFilterUserSelection(userId) {
+    if (!userId) return;
+    if (!state.showCustomEvents) {
+      state.showCustomEvents = true;
+      if (els.chkShowCustomEvents) els.chkShowCustomEvents.checked = true;
+    }
+    const tag = `USER:${userId}`;
+    if (state.customFilterTags.has(tag)) {
+      state.customFilterTags.delete(tag);
+    } else {
+      state.customFilterTags.add(tag);
+    }
+    renderTeamAvatarsBar();
+    scheduleSavePreferences();
+    renderAll();
+  }
+
+  function countUserTotalAssignedItems(userId) {
+    let customCount = 0;
+    for (const ev of customEvents) {
+      let owners = getCustomEventOwners(ev);
+      if (window.CalendarV2 && typeof window.CalendarV2.getCardState === "function") {
+        const cs = window.CalendarV2.getCardState(`CUST_${ev.id}`);
+        if (cs && Array.isArray(cs.owners) && cs.owners.length > 0) owners = cs.owners;
+      }
+      if (owners.includes(userId)) customCount++;
+    }
+    const officialCount =
+      window.CalendarV2 && typeof window.CalendarV2.countOfficialCardsForOwner === "function"
+        ? window.CalendarV2.countOfficialCardsForOwner(userId)
+        : 0;
+    return customCount + officialCount;
+  }
+
   function renderTeamProfilesDropdownList() {
     if (!els.teamProfilesOptionsList) return;
     els.teamProfilesOptionsList.innerHTML = "";
@@ -2164,10 +2235,7 @@
       ? els.teamProfileSearchInput.value.trim().toLowerCase()
       : "";
 
-    const activeUserTag = state.customFilterTags.size > 0
-      ? Array.from(state.customFilterTags).find((t) => t.startsWith("USER:"))
-      : null;
-    const activeUserId = activeUserTag ? activeUserTag.replace("USER:", "") : null;
+    const selectedUserSet = new Set(getSelectedFilterUserIds());
 
     const filtered = allProfiles.filter((p) => {
       if (!query) return true;
@@ -2177,15 +2245,15 @@
     if (filtered.length === 0) {
       els.teamProfilesOptionsList.innerHTML = `
         <div style="padding:14px;text-align:center;color:var(--text-muted);font-size:11px">
-          No se encontró ningún perfil con "<strong>${query}</strong>"
+          No se encontró ningún perfil con "<strong>${escapeHtml(query)}</strong>"
         </div>
       `;
       return;
     }
 
     for (const p of filtered) {
-      const isSelected = activeUserId === p.id;
-      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
+      const isSelected = selectedUserSet.has(p.id);
+      const count = countUserTotalAssignedItems(p.id);
       const initials = p.name.length <= 3 ? p.name : p.name.slice(0, 2);
 
       const row = document.createElement("div");
@@ -2196,17 +2264,18 @@
 
       row.innerHTML = `
         <div class="team-profile-info">
+          <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;accent-color:var(--ui-primary)" />
           <span class="avatar-circle" style="background:${p.color};width:26px;height:26px;font-size:10px">${initials}</span>
           <div class="team-profile-text">
-            <span class="team-profile-name">${p.name} ${isSelected ? "✓" : ""}</span>
-            <span class="team-profile-role">${p.role === "admin" ? "👑 Administrador" : "Diseñador(a)"}${isCurrentTarget ? " • (Calendario activo)" : ""}</span>
+            <span class="team-profile-name">${escapeHtml(p.name)}</span>
+            <span class="team-profile-role">${p.role === "admin" ? "Administrador" : "Diseñador(a)"}${isCurrentTarget ? " • (Activo)" : ""}</span>
           </div>
         </div>
         <div class="team-profile-actions">
-          <span class="team-profile-count-pill">${count} evento${count !== 1 ? "s" : ""}</span>
+          <span class="team-profile-count-pill">${count} hito${count !== 1 ? "s" : ""}</span>
           ${
             isAdminLogged && p.id !== state.loggedInUserId
-              ? `<button type="button" class="team-profile-admin-btn" title="Configurar el calendario de ${p.name}">👑 Editar</button>`
+              ? `<button type="button" class="team-profile-admin-btn" title="Configurar el calendario de ${escapeHtml(p.name)}">Editar</button>`
               : ""
           }
         </div>
@@ -2221,28 +2290,16 @@
         });
       }
 
-      row.addEventListener("click", () => {
-        if (!state.showCustomEvents) {
-          state.showCustomEvents = true;
-          if (els.chkShowCustomEvents) els.chkShowCustomEvents.checked = true;
-        }
-
-        if (isSelected) {
-          state.customFilterTags.clear();
-        } else {
-          state.customFilterTags = new Set([`USER:${p.id}`]);
-        }
-        closeAllDropdowns();
-        renderTeamAvatarsBar();
-        scheduleSavePreferences();
-        renderAll();
+      row.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleFilterUserSelection(p.id);
       });
 
       els.teamProfilesOptionsList.appendChild(row);
     }
   }
 
-  // Barra de Avatares del Equipo y Selector Universal de Perfiles
+  // Barra de Avatares del Equipo (Soporta Multi-Selección de Personas)
   function renderTeamAvatarsBar() {
     if (!els.teamAvatarsList) return;
     els.teamAvatarsList.innerHTML = "";
@@ -2252,93 +2309,76 @@
       els.chkShowCustomEvents.checked = isExtrasOn;
     }
 
+    const selectedUserIds = getSelectedFilterUserIds();
+    const selectedUserSet = new Set(selectedUserIds);
     const hasFilter = state.customFilterTags.size > 0;
-    const activeUserTag = hasFilter
-      ? Array.from(state.customFilterTags).find((t) => t.startsWith("USER:"))
-      : null;
-    const activeUserId = activeUserTag ? activeUserTag.replace("USER:", "") : null;
-
     const allProfiles = getAllKnownProfiles();
-    const activeProfile = activeUserId ? allProfiles.find((p) => p.id === activeUserId) : null;
 
-    // Actualizar botón dropdown con el perfil activo
+    // Actualizar etiqueta del botón desplegable según 0, 1 o varias personas seleccionadas
     if (els.teamDropdownLabel) {
-      if (activeProfile) {
-        els.teamDropdownLabel.textContent = `👤 ${activeProfile.name}`;
+      if (selectedUserIds.length === 0) {
+        els.teamDropdownLabel.textContent = "Todos los perfiles";
+      } else if (selectedUserIds.length === 1) {
+        const p1 = allProfiles.find((p) => p.id === selectedUserIds[0]);
+        els.teamDropdownLabel.textContent = p1 ? p1.name : selectedUserIds[0];
+      } else if (selectedUserIds.length === 2) {
+        els.teamDropdownLabel.textContent = selectedUserIds.join(" + ");
       } else {
-        els.teamDropdownLabel.textContent = "Cualquier Perfil";
+        els.teamDropdownLabel.textContent = `${selectedUserIds.length} personas`;
       }
     }
     if (els.btnTeamProfilesDropdown) {
-      els.btnTeamProfilesDropdown.classList.toggle("active", Boolean(activeProfile));
+      els.btnTeamProfilesDropdown.classList.toggle("active", selectedUserIds.length > 0);
     }
 
     if (els.btnTeamShowAll) {
       els.btnTeamShowAll.style.display = hasFilter ? "inline-flex" : "none";
-      if (activeProfile) {
-        els.btnTeamShowAll.textContent = `✕ Ver todos (${activeProfile.name})`;
-      } else {
-        els.btnTeamShowAll.textContent = "✕ Ver todos";
-      }
+      els.btnTeamShowAll.title = "Quitar filtro de personas (Ver todos)";
     }
 
-    let selectedAvatarEl = null;
+    // Píldora inicial "Todos" para limpiar selección rápido
+    const allPill = document.createElement("button");
+    allPill.type = "button";
+    allPill.className = `team-avatar-pill ${selectedUserIds.length === 0 ? "selected" : ""}`;
+    allPill.title = "Mostrar actividades y eventos de todo el equipo";
+    allPill.innerHTML = `<span class="avatar-name" style="padding:0 4px">Todos</span>`;
+    allPill.addEventListener("click", () => {
+      state.customFilterTags.clear();
+      renderTeamAvatarsBar();
+      scheduleSavePreferences();
+      renderAll();
+    });
+    els.teamAvatarsList.appendChild(allPill);
 
     for (const p of allProfiles) {
-      const isSelected = activeUserId === p.id;
-      const count = customEvents.filter((e) => getCustomEventOwners(e).includes(p.id)).length;
+      const isSelected = selectedUserSet.has(p.id);
+      const count = countUserTotalAssignedItems(p.id);
 
       const avatarBtn = document.createElement("button");
       avatarBtn.type = "button";
       avatarBtn.className = `team-avatar-pill ${isSelected ? "selected" : ""} ${
-        hasFilter && !isSelected ? "dimmed" : ""
-      } ${!isExtrasOn ? "disabled" : ""}`;
+        selectedUserIds.length > 0 && !isSelected ? "dimmed" : ""
+      }`;
       avatarBtn.style.setProperty("--user-color", p.color);
-      avatarBtn.title = `${p.name} (${p.role === "admin" ? "Admin" : "Diseñador(a)"}) • ${count} evento${
+      avatarBtn.title = `${p.name} • ${count} hito${
         count !== 1 ? "s" : ""
-      } extra\nHaz clic para filtrar sus eventos en el calendario`;
+      } asignados\nClic para sumar o quitar de la selección múltiple`;
 
       const initials = p.name.length <= 3 ? p.name : p.name.slice(0, 2);
 
       avatarBtn.innerHTML = `
         <span class="avatar-circle" style="background:${p.color}">${initials}</span>
-        <span class="avatar-name">${p.name}</span>
-        ${count > 0 ? `<span class="avatar-count-badge">${count}</span>` : ""}
+        <span class="avatar-name">${escapeHtml(p.name)}</span>
+        ${isSelected ? `<span style="font-size:10px;font-weight:800">✓</span>` : count > 0 ? `<span class="avatar-count-badge">${count}</span>` : ""}
       `;
 
-      if (isSelected) {
-        selectedAvatarEl = avatarBtn;
-      }
-
       avatarBtn.addEventListener("click", () => {
-        if (!state.showCustomEvents) {
-          state.showCustomEvents = true;
-          if (els.chkShowCustomEvents) els.chkShowCustomEvents.checked = true;
-        }
-
-        if (isSelected) {
-          // Si ya estaba seleccionado, se deselecciona y se muestran todos los eventos
-          state.customFilterTags.clear();
-        } else {
-          // Filtrar solo los eventos del diseñador seleccionado
-          state.customFilterTags = new Set([`USER:${p.id}`]);
-        }
-        renderTeamAvatarsBar();
-        scheduleSavePreferences();
-        renderAll();
+        toggleFilterUserSelection(p.id);
       });
 
       els.teamAvatarsList.appendChild(avatarBtn);
     }
 
-    // Centrar suavemente en el avatar seleccionado si está activo
-    if (selectedAvatarEl) {
-      setTimeout(() => {
-        selectedAvatarEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-      }, 50);
-    }
-
-    // Gestionar visibilidad de flechas de scroll si hay desbordamiento horizontal
     setTimeout(() => {
       if (els.teamAvatarsList) {
         const canScroll = els.teamAvatarsList.scrollWidth > els.teamAvatarsList.clientWidth + 5;
@@ -2347,7 +2387,6 @@
       }
     }, 60);
 
-    // Actualizar también el contenido del dropdown
     renderTeamProfilesDropdownList();
   }
 
@@ -2621,14 +2660,21 @@
       const cs = window.CalendarV2.getCardState(cardKey);
       if (cs && cs.brand_override) effectiveMarca = cs.brand_override;
     }
+    const activeSet = state.selectedBrands && state.selectedBrands.size > 0 ? state.selectedBrands : "ALL";
     if (window.CalendarV2 && typeof window.CalendarV2.matchesBrandFilter === "function") {
-      return window.CalendarV2.matchesBrandFilter(effectiveMarca, state.brand, state.includeSharedBrand);
+      return window.CalendarV2.matchesBrandFilter(effectiveMarca, activeSet, state.includeSharedBrand);
     }
-    const b = String(state.brand || "ALL").trim().toLowerCase();
-    if (b === "all") return true;
+    if (activeSet === "ALL") return true;
     const m = String(effectiveMarca || "Azz Livv").trim().toLowerCase();
-    if (m === b) return true;
-    if (state.includeSharedBrand && (m === "azz livv" || m === "azzlivv") && b !== "azz livv") return true;
+    const lowerSet = new Set(Array.from(activeSet).map((x) => String(x).trim().toLowerCase()));
+    if (lowerSet.has(m)) return true;
+    if (
+      state.includeSharedBrand &&
+      (m === "azz livv" || m === "azzlivv") &&
+      (lowerSet.has("azzorti") || lowerSet.has("livva"))
+    ) {
+      return true;
+    }
     return false;
   }
 
@@ -2636,9 +2682,20 @@
   function getSelectedOfficialActivities() {
     if (!rawData) return [];
     const q = state.searchQuery.trim().toLowerCase();
+    const selectedUserIds = getSelectedFilterUserIds();
+    const activeCampIds = Array.from(state.selectedCampaignIds);
     return rawData.activities.filter((act) => {
       if (!state.selectedActivityNos.has(act.no)) return false;
       if (!matchesBrandFilter(act.marca)) return false;
+      if (
+        selectedUserIds.length > 0 &&
+        window.CalendarV2 &&
+        typeof window.CalendarV2.activityMatchesOwners === "function"
+      ) {
+        if (!window.CalendarV2.activityMatchesOwners(act.no, activeCampIds, selectedUserIds)) {
+          return false;
+        }
+      }
       if (q) {
         const matchNo = String(act.no).includes(q) || `#${act.no}` === q;
         const matchText =
@@ -2679,7 +2736,11 @@
 
       if (state.customFilterTags.size > 0) {
         const areaTag = `AREA:${ev.area || "General / Equipo"}`;
-        const owners = getCustomEventOwners(ev);
+        let owners = getCustomEventOwners(ev);
+        if (window.CalendarV2 && typeof window.CalendarV2.getCardState === "function") {
+          const cs = window.CalendarV2.getCardState(`CUST_${ev.id}`);
+          if (cs && Array.isArray(cs.owners) && cs.owners.length > 0) owners = cs.owners;
+        }
         const matchesAnyUser = owners.some((uid) => state.customFilterTags.has(`USER:${uid}`));
         const hasAreaTags = Array.from(state.customFilterTags).some((t) => t.startsWith("AREA:"));
         const hasUserTags = Array.from(state.customFilterTags).some((t) => t.startsWith("USER:"));
@@ -4015,8 +4076,12 @@
       els.evDateInput.value = defDate;
       els.evEndDateInput.value = defDate;
 
-      const preferredBrand = (state.brand && state.brand !== "ALL")
-        ? normalizeBrandKeyForAreas(state.brand)
+      const firstSelectedBrand =
+        state.selectedBrands && state.selectedBrands.size > 0
+          ? Array.from(state.selectedBrands)[0]
+          : state.brand;
+      const preferredBrand = (firstSelectedBrand && firstSelectedBrand !== "ALL")
+        ? normalizeBrandKeyForAreas(firstSelectedBrand)
         : "AG LAB";
       if (els.evMarcaInput) {
         if (Array.from(els.evMarcaInput.options).some((o) => o.value === preferredBrand)) {
@@ -5619,6 +5684,7 @@
         state.searchQuery = "";
         if (els.searchInput) els.searchInput.value = "";
         state.brand = "ALL";
+        if (state.selectedBrands) state.selectedBrands.clear();
         state.customFilterTags.clear();
         if (window.CalendarV2 && typeof window.CalendarV2.resetQuickViewFilters === "function") {
           window.CalendarV2.resetQuickViewFilters();

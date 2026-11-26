@@ -479,16 +479,31 @@ body.sidebar-collapsed .cockpit-sidebar {
 }
 
 .cockpit-sidebar #brandPillsContainer .brand-pill.active {
-  background: var(--ui-surface-mid) !important;
-  color: var(--ui-text) !important;
-  border-color: var(--ui-border) !important;
+  background: var(--brand-bg, var(--ui-surface-mid)) !important;
+  color: var(--brand-text, var(--ui-text)) !important;
+  border-color: var(--brand-border, var(--ui-border)) !important;
   box-shadow: none !important;
   font-weight: 700;
 }
 
 .cockpit-sidebar #brandPillsContainer .brand-pill[data-brand="ALL"].active {
-  background: var(--ui-surface-mid) !important;
-  color: var(--ui-text) !important;
+  background: var(--ui-primary-container) !important;
+  color: var(--ui-primary) !important;
+  border-color: #93b4ec !important;
+}
+
+.brand-pill-check {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--brand-color, var(--ui-primary));
+}
+
+.cockpit-sidebar .team-avatar-pill.selected {
+  background: var(--ui-primary-container) !important;
+  border-color: var(--ui-primary) !important;
+  color: var(--ui-primary) !important;
+  font-weight: 700 !important;
 }
 
 .brand-pill-dot {
@@ -807,19 +822,16 @@ body.sidebar-collapsed .cockpit-sidebar {
 }
 
 #calStatusFilter.cal-status-filter {
-  -webkit-appearance: none !important;
-  appearance: none !important;
+  -webkit-appearance: menulist !important;
+  appearance: auto !important;
+  background-image: none !important;
   height: 34px !important;
   min-height: 34px !important;
   max-height: 34px !important;
-  line-height: 32px !important;
-  padding: 0 28px 0 11px !important;
+  padding: 0 10px !important;
   border-radius: var(--radius-md) !important;
   border: 1px solid var(--ui-border) !important;
   background-color: var(--ui-surface-lowest) !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2343474e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 9px center !important;
   font-family: var(--font-body) !important;
   font-size: 12.5px !important;
   font-weight: 600 !important;

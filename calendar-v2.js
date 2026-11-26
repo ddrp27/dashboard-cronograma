@@ -599,21 +599,54 @@
     return vars;
   }
 
+  function getSelectedBrandsSetFromArg(filterBrandOrSet, st) {
+    if (filterBrandOrSet instanceof Set) {
+      const s = new Set();
+      filterBrandOrSet.forEach((b) => {
+        const n = normalizeBrandName(b);
+        if (n && n !== "ALL") s.add(n);
+      });
+      return s;
+    }
+    if (Array.isArray(filterBrandOrSet)) {
+      const s = new Set();
+      filterBrandOrSet.forEach((b) => {
+        const n = normalizeBrandName(b);
+        if (n && n !== "ALL") s.add(n);
+      });
+      return s;
+    }
+    if (typeof filterBrandOrSet === "string") {
+      const n = normalizeBrandName(filterBrandOrSet);
+      return n && n !== "ALL" ? new Set([n]) : new Set();
+    }
+    if (st && st.selectedBrands instanceof Set && st.selectedBrands.size > 0) {
+      const s = new Set();
+      st.selectedBrands.forEach((b) => {
+        const n = normalizeBrandName(b);
+        if (n && n !== "ALL") s.add(n);
+      });
+      return s;
+    }
+    const fallback = normalizeBrandName(st?.brand || "ALL");
+    return fallback && fallback !== "ALL" ? new Set([fallback]) : new Set();
+  }
+
   function matchesBrandFilter(cardBrand, filterBrand, includeShared) {
     const st = getStateSafe();
-    const fNorm = normalizeBrandName(filterBrand !== undefined ? filterBrand : (st.brand || "ALL"));
-    if (!fNorm || fNorm === "ALL") return true;
+    const selSet = getSelectedBrandsSetFromArg(filterBrand, st);
+    if (selSet.size === 0) return true; // Multi-marca (Todas)
 
     const cNorm = normalizeBrandName(cardBrand || "Azz Livv");
-    if (cNorm === fNorm) return true;
-
-    const fMeta = getBrandMeta(fNorm);
-    if (fMeta && fMeta.is_shared) return false;
+    if (selSet.has(cNorm)) return true;
 
     const incShared = includeShared !== undefined ? Boolean(includeShared) : (st.includeSharedBrand !== false);
     if (incShared) {
       const cMeta = getBrandMeta(cNorm);
-      if (cMeta && cMeta.is_shared) return true;
+      // Incluir marca compartida ("Azz Livv") solo cuando AZZORTI o LIVVA están dentro de la selección
+      if (cMeta && cMeta.is_shared && (selSet.has("AZZORTI") || selSet.has("LIVVA"))) {
+        return true;
+      }
     }
     return false;
   }
@@ -683,30 +716,32 @@
   function renderBrandControls(force) {
     const st = getStateSafe();
     const activeBrands = getBrands(false);
-    const activeBrandNorm = normalizeBrandName(st.brand || "ALL");
+    const selSet = getSelectedBrandsSetFromArg(undefined, st);
+    const isAllActive = selSet.size === 0;
     const adminFlag = isAdminSafe();
     const pillsWrap = getEl("brandPillsContainer");
-    const sig = `${activeBrandNorm}|${adminFlag}|${activeBrands.map((b) => `${b.name}:${b.color}:${b.is_shared}`).join(",")}`;
+    const sig = `${Array.from(selSet).sort().join("+") || "ALL"}|${adminFlag}|${activeBrands.map((b) => `${b.name}:${b.color}:${b.is_shared}`).join(",")}`;
+    const showSharedToggle = !selSet.has("Azz Livv") && (selSet.has("AZZORTI") || selSet.has("LIVVA"));
+
     if (!force && pillsWrap && sig === lastBrandSig) {
       const sharedWrapCheck = getEl("sharedBrandWrap", "sharedBrandWrap");
       if (sharedWrapCheck) {
-        const selectedMeta = activeBrandNorm !== "ALL" ? getBrandMeta(activeBrandNorm) : null;
-        sharedWrapCheck.style.display = Boolean(selectedMeta && !selectedMeta.is_shared) ? "inline-flex" : "none";
+        sharedWrapCheck.style.display = showSharedToggle ? "inline-flex" : "none";
       }
       return;
     }
     if (pillsWrap) lastBrandSig = sig;
 
-    // 1. #brandPillsContainer
+    // 1. #brandPillsContainer (Soporta selección múltiple de marcas)
     if (pillsWrap) {
       const pillsHtml = [
-        `<button type="button" class="brand-pill ${activeBrandNorm === "ALL" ? "active" : ""}" data-brand="ALL">Multi-marca</button>`,
+        `<button type="button" class="brand-pill ${isAllActive ? "active" : ""}" data-brand="ALL" title="Mostrar todas las marcas"><span>Multi-marca (Todas)</span>${isAllActive ? `<span class="brand-pill-check">✓</span>` : ""}</button>`,
       ];
       for (const b of activeBrands) {
-        const isActive = activeBrandNorm === b.name;
+        const isActive = selSet.has(b.name);
         const styleVars = getBrandStyleVars(b.name);
         pillsHtml.push(
-          `<button type="button" class="brand-pill ${isActive ? "active" : ""}" data-brand="${esc(b.name)}" style="${styleVars.cssText}"><span class="brand-pill-dot" style="background:${esc(b.color)}"></span>${esc(b.name)}</button>`
+          `<button type="button" class="brand-pill ${isActive ? "active" : ""}" data-brand="${esc(b.name)}" style="${styleVars.cssText}" title="Clic para sumar o quitar ${esc(b.name)} del filtro"><span class="brand-pill-dot" style="background:${esc(b.color)}"></span><span>${esc(b.name)}</span>${isActive ? `<span class="brand-pill-check">✓</span>` : ""}</button>`
         );
       }
       if (isAdminSafe() && !document.getElementById("btnOpenBrandsManager")) {
@@ -720,9 +755,7 @@
     // Update #sharedBrandWrap visibility
     const sharedWrap = getEl("sharedBrandWrap", "sharedBrandWrap");
     if (sharedWrap) {
-      const selectedMeta = activeBrandNorm !== "ALL" ? getBrandMeta(activeBrandNorm) : null;
-      const showShared = Boolean(selectedMeta && !selectedMeta.is_shared);
-      sharedWrap.style.display = showShared ? "inline-flex" : "none";
+      sharedWrap.style.display = showSharedToggle ? "inline-flex" : "none";
     }
 
     // 2. #evMarcaInput (select inside Custom Event Modal)
@@ -2230,17 +2263,54 @@
     return st.targetUserId || st.loggedInUserId || "";
   }
 
+  function countOfficialCardsForOwner(userId) {
+    if (!userId) return 0;
+    let count = 0;
+    cardsMap.forEach((row, key) => {
+      if (key && key.startsWith("ACT_") && Array.isArray(row.owners) && row.owners.includes(userId)) {
+        count++;
+      }
+    });
+    return count;
+  }
+
+  function activityMatchesOwners(actNo, campaignIds, selectedUserIds) {
+    if (!selectedUserIds || selectedUserIds.length === 0) return true;
+    const camps = Array.isArray(campaignIds) && campaignIds.length > 0
+      ? campaignIds
+      : (getRaw()?.campaigns || []).map((c) => c.id);
+    for (const cid of camps) {
+      const key = buildOfficialCardKey(actNo, cid);
+      const row = cardsMap.get(key);
+      if (row && Array.isArray(row.owners) && row.owners.some((u) => selectedUserIds.includes(u))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function passesV2QuickFilters(cardKey, defaultBrand) {
     const desc = resolveCardDescriptor(cardKey);
     if (!desc) return false;
 
     const st = getStateSafe();
+    const activeBrandFilter = st.selectedBrands instanceof Set && st.selectedBrands.size > 0 ? st.selectedBrands : (st.brand || "ALL");
     if (desc.cardState?.brand_override) {
-      if (!matchesBrandFilter(desc.effectiveBrand, st.brand, st.includeSharedBrand)) {
+      if (!matchesBrandFilter(desc.effectiveBrand, activeBrandFilter, st.includeSharedBrand)) {
         return false;
       }
-    } else if (defaultBrand && !matchesBrandFilter(defaultBrand, st.brand, st.includeSharedBrand)) {
+    } else if (defaultBrand && !matchesBrandFilter(defaultBrand, activeBrandFilter, st.includeSharedBrand)) {
       return false;
+    }
+
+    // Filtro multi-persona desde el panel lateral ("Persona asignada")
+    if (st.customFilterTags instanceof Set && st.customFilterTags.size > 0) {
+      const selectedUsers = Array.from(st.customFilterTags)
+        .filter((t) => t.startsWith("USER:"))
+        .map((t) => t.slice(5));
+      if (selectedUsers.length > 0) {
+        if (!desc.owners.some((u) => selectedUsers.includes(u))) return false;
+      }
     }
 
     if (viewPrefs.onlyMine) {
@@ -2718,12 +2788,27 @@
     const todayYm = todayStr.slice(0, 7);
     const { eventsByDate, monthsMap } = indexData;
 
-    if (st.forceIncludeToday && !monthsMap.has(todayYm)) {
-      const todayDt = parseYMD(todayStr) || new Date();
-      monthsMap.set(todayYm, {
-        year: todayDt.getFullYear(),
-        month: todayDt.getMonth(),
-        ym: todayYm,
+    if (st.forceIncludeToday) {
+      st.calPinnedYm = todayYm;
+      if (!monthsMap.has(todayYm)) {
+        const todayDt = parseYMD(todayStr) || new Date();
+        monthsMap.set(todayYm, {
+          year: todayDt.getFullYear(),
+          month: todayDt.getMonth(),
+          ym: todayYm,
+          events: [],
+          uniqueKeys: new Set(),
+        });
+      }
+    }
+
+    if (st.calPinnedYm && /^\d{4}-\d{2}$/.test(st.calPinnedYm) && !monthsMap.has(st.calPinnedYm)) {
+      const pYr = parseInt(st.calPinnedYm.slice(0, 4), 10);
+      const pMo = parseInt(st.calPinnedYm.slice(5, 7), 10) - 1;
+      monthsMap.set(st.calPinnedYm, {
+        year: pYr,
+        month: pMo,
+        ym: st.calPinnedYm,
         events: [],
         uniqueKeys: new Set(),
       });
@@ -2745,6 +2830,8 @@
     if (st.forceIncludeToday && sortedMonthKeys.includes(todayYm)) {
       st.calCurrentMonthIndex = sortedMonthKeys.indexOf(todayYm);
       st.forceIncludeToday = false;
+    } else if (st.calPinnedYm && sortedMonthKeys.includes(st.calPinnedYm)) {
+      st.calCurrentMonthIndex = sortedMonthKeys.indexOf(st.calPinnedYm);
     }
     if (st.calCurrentMonthIndex >= sortedMonthKeys.length) {
       st.calCurrentMonthIndex = sortedMonthKeys.length - 1;
@@ -2752,6 +2839,7 @@
     if (st.calCurrentMonthIndex < 0) st.calCurrentMonthIndex = 0;
 
     const activeMonthKey = sortedMonthKeys[st.calCurrentMonthIndex];
+    st.calPinnedYm = activeMonthKey;
     const activeMonthObj = monthsMap.get(activeMonthKey);
     if (activeMonthObj) {
       updateTopbarMonthDhBadge(activeMonthObj.year, activeMonthObj.month);
@@ -3257,9 +3345,26 @@
     refreshCalendarImmediate();
   }
 
+  function stepPinnedMonth(delta) {
+    const st = getStateSafe();
+    const curYm = st.calPinnedYm || getTodayStrSafe().slice(0, 7);
+    const yr = parseInt(curYm.slice(0, 4), 10);
+    const mo = parseInt(curYm.slice(5, 7), 10) - 1;
+    const nextDt = new Date(yr, mo + delta, 1, 12, 0, 0);
+    st.calPinnedYm = `${nextDt.getFullYear()}-${String(nextDt.getMonth() + 1).padStart(2, "0")}`;
+    st.calShowAllMonths = false;
+    const chk = document.getElementById("chkCalShowAllMonths");
+    if (chk) chk.checked = false;
+    refreshCalendarImmediate();
+  }
+
   function onPrevClick() {
     if (viewPrefs.subview === "week") {
       prevWeek();
+      return true;
+    }
+    if (viewPrefs.subview === "month") {
+      stepPinnedMonth(-1);
       return true;
     }
     return false;
@@ -3268,6 +3373,10 @@
   function onNextClick() {
     if (viewPrefs.subview === "week") {
       nextWeek();
+      return true;
+    }
+    if (viewPrefs.subview === "month") {
+      stepPinnedMonth(1);
       return true;
     }
     return false;
@@ -3890,10 +3999,23 @@
         }
         const pill = e.target.closest(".brand-pill[data-brand]");
         if (!pill) return;
-        const chosenBrand = pill.getAttribute("data-brand") || "ALL";
+        const chosenRaw = pill.getAttribute("data-brand") || "ALL";
+        const chosenNorm = normalizeBrandName(chosenRaw);
         const st = getStateSafe();
-        st.brand = chosenBrand;
-        renderBrandControls();
+        if (!(st.selectedBrands instanceof Set)) {
+          st.selectedBrands = new Set(st.brand && st.brand !== "ALL" ? [normalizeBrandName(st.brand)] : []);
+        }
+
+        if (chosenNorm === "ALL") {
+          st.selectedBrands.clear();
+        } else if (st.selectedBrands.has(chosenNorm)) {
+          st.selectedBrands.delete(chosenNorm);
+        } else {
+          st.selectedBrands.add(chosenNorm);
+        }
+        st.brand = st.selectedBrands.size === 1 ? Array.from(st.selectedBrands)[0] : "ALL";
+
+        renderBrandControls(true);
         if (typeof app().populateFilterControls === "function") app().populateFilterControls();
         if (typeof app().scheduleSavePreferences === "function") app().scheduleSavePreferences();
         if (typeof app().renderAll === "function") app().renderAll();
@@ -4298,6 +4420,8 @@
     getBrandMeta,
     getBrandStyleVars,
     matchesBrandFilter,
+    countOfficialCardsForOwner,
+    activityMatchesOwners,
     syncBrandsFromData,
     renderBrandControls,
     openBrandsManagerModal,
