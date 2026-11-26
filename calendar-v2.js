@@ -27,7 +27,7 @@
     pendiente: { key: "pendiente", label: "Pendiente", short: "Pend.", icon: "⏳", color: "#64748b", bg: "#f1f5f9" },
     en_progreso: { key: "en_progreso", label: "En progreso", short: "Progreso", icon: "🔨", color: "#2563eb", bg: "#dbeafe" },
     revision: { key: "revision", label: "En revisión", short: "Revisión", icon: "👀", color: "#d97706", bg: "#fef3c7" },
-    listo: { key: "listo", label: "Listo", short: "✅", color: "#059669", bg: "#d1fae5" },
+    listo: { key: "listo", label: "Listo", short: "✓", icon: "✅", color: "#059669", bg: "#d1fae5" },
   };
   const STATUS_ORDER = ["pendiente", "en_progreso", "revision", "listo"];
 
@@ -86,6 +86,7 @@
   let activeDropCell = null;
   let activeHoverCard = null;
   let activeHoveredEvId = null;
+  let mobileSelectedDateStr = "";
 
   /* ==========================================================================
      3. BRIDGE TO window.CronogramaApp & FALLBACK HELPERS
@@ -525,13 +526,57 @@
     };
   }
 
+  function getColombianHolidaySafe(dateStr) {
+    if (typeof app().getColombianHoliday === "function") return app().getColombianHoliday(dateStr);
+    return null;
+  }
+
+  function getShortBrandCode(brandName) {
+    const n = String(brandName || "").trim().toLowerCase();
+    if (n === "azzorti") return "AZZ";
+    if (n === "livva") return "LIV";
+    if (n === "nativa") return "NAT";
+    if (n === "ag lab" || n === "aglab") return "AGL";
+    if (n === "azz livv" || n === "azzlivv") return "A/L";
+    return String(brandName || "AGL").replace(/\s+/g, "").slice(0, 3).toUpperCase();
+  }
+
   function getBrandStyleVars(name) {
     const meta = getBrandMeta(name);
-    const color = meta.color || "#4f46e5";
-    const { r, g, b } = hexToRgb(color);
-    const bg = `rgba(${r}, ${g}, ${b}, 0.11)`;
-    const border = `rgba(${r}, ${g}, ${b}, 0.38)`;
-    const text = darkenHex(color, 0.22);
+    const norm = String(meta.name || name || "").trim().toLowerCase();
+    let color = meta.color || "#4f46e5";
+    let bg = "";
+    let border = "";
+    let text = "";
+
+    // Contenedores suaves estilo Stitch manteniendo colores históricos de marca
+    if (norm === "azzorti" && color.toLowerCase() === "#e11d48") {
+      bg = "#fce8ef";
+      border = "#f9a8c9";
+      text = "#7a0e35";
+    } else if (norm === "livva" && color.toLowerCase() === "#8b5cf6") {
+      bg = "#f3e8ff";
+      border = "#d8b4fe";
+      text = "#4c1d95";
+    } else if (norm === "nativa" && color.toLowerCase() === "#059669") {
+      bg = "#e2f8ef";
+      border = "#6ee7b7";
+      text = "#064e3b";
+    } else if ((norm === "ag lab" || norm === "aglab") && color.toLowerCase() === "#4f46e5") {
+      bg = "#ebf1ff";
+      border = "#c7d2fe";
+      text = "#1e1b4b";
+    } else if ((norm === "azz livv" || norm === "azzlivv") && color.toLowerCase() === "#0284c7") {
+      bg = "#e0f2fe";
+      border = "#7dd3fc";
+      text = "#0c4a6e";
+    } else {
+      const { r, g, b } = hexToRgb(color);
+      bg = `rgba(${r}, ${g}, ${b}, 0.12)`;
+      border = `rgba(${r}, ${g}, ${b}, 0.36)`;
+      text = darkenHex(color, 0.28);
+    }
+
     const cssText = `--brand-color:${color};--brand-bg:${bg};--brand-border:${border};--brand-text:${text};`;
 
     const vars = {
@@ -655,7 +700,7 @@
     // 1. #brandPillsContainer
     if (pillsWrap) {
       const pillsHtml = [
-        `<button type="button" class="brand-pill ${activeBrandNorm === "ALL" ? "active" : ""}" data-brand="ALL">Todas</button>`,
+        `<button type="button" class="brand-pill ${activeBrandNorm === "ALL" ? "active" : ""}" data-brand="ALL">Multi-marca</button>`,
       ];
       for (const b of activeBrands) {
         const isActive = activeBrandNorm === b.name;
@@ -946,11 +991,18 @@
         ? [...cardState.owners]
         : cevOwners;
 
+      const customCamp = meta.campaignId && meta.campaignId.startsWith("ADV_")
+        ? findCampaignById(meta.campaignId)
+        : null;
+
       return {
         cardKey: key,
         kind: "custom",
         evId,
         cev,
+        camp: customCamp,
+        campaignId: meta.campaignId || "",
+        campaignLabel: meta.campaignLabel || "",
         title: cev ? cev.title : key,
         rawTitle: cev ? cev.title : key,
         area: cev?.area || "General / Equipo",
@@ -1146,10 +1198,6 @@
   }
 
   function moveCardToDate(cardKey, targetDateStr) {
-    if (!isAdminSafe()) {
-      showToast("🔒 Solo Administrador puede reprogramar fechas.", "warn");
-      return;
-    }
     if (!parseYMD(targetDateStr)) return;
     const desc = resolveCardDescriptor(cardKey);
     if (!desc) return;
@@ -1159,8 +1207,8 @@
       upsertCardRecordOptimistic(cardKey, { override_date: nextOverride });
       showToast(
         nextOverride
-          ? `📅 Reprogramada al ${formatShortDayMonth(targetDateStr)}`
-          : `↺ Fecha restaurada al Excel (${formatShortDayMonth(desc.baseDateStr)})`,
+          ? `Reprogramada al ${formatShortDayMonth(targetDateStr)}`
+          : `Fecha restaurada al Excel (${formatShortDayMonth(desc.baseDateStr)})`,
         "info"
       );
     } else if (desc.kind === "custom" && desc.cev) {
@@ -1187,20 +1235,68 @@
           })
           .catch(() => {});
       }
-      showToast(`📅 Evento movido al ${formatShortDayMonth(targetDateStr)}`, "info");
+      showToast(`Evento movido al ${formatShortDayMonth(targetDateStr)}`, "info");
     }
 
     const st = getStateSafe();
-    const actor = st.loggedInUserId || "Admin";
+    const actor = st.loggedInUserId || st.targetUserId || "Equipo";
     const recipients = desc.owners.filter((u) => u !== actor);
     if (recipients.length > 0) {
       notifyUsers(recipients, {
         type: "date_change",
         cardKey,
-        title: `📅 Fecha actualizada por ${actor}`,
+        title: `Fecha actualizada por ${actor}`,
         body: `${desc.rawTitle} → ${formatShortDayMonth(targetDateStr)}`,
       });
     }
+  }
+
+  function duplicateCard(cardKey) {
+    const desc = resolveCardDescriptor(cardKey);
+    if (!desc) return;
+    closeCardDetail();
+
+    if (typeof app().openDuplicateEventModal === "function") {
+      if (desc.kind === "custom") {
+        app().openDuplicateEventModal({
+          title: desc.rawTitle,
+          marca: desc.effectiveBrand,
+          campaignId: desc.campaignId || "",
+          startStr: desc.startDateStr,
+          endStr: desc.endDateStr,
+          owners: desc.owners,
+          area: desc.area,
+          tag: desc.tag || "#Entrega",
+          category: desc.cev?.category || "emerald",
+          importance: desc.importance || "medium",
+          cleanNotes: desc.cleanNotes || "",
+        });
+      } else {
+        app().openDuplicateEventModal({
+          title: desc.rawTitle,
+          marca: desc.effectiveBrand,
+          campaignId: desc.campaignId || "",
+          startStr: desc.effectiveDateStr,
+          endStr: desc.effectiveDateStr,
+          owners: desc.owners,
+          area: desc.area || desc.proceso || "General",
+          tag: "#Entrega",
+          category: "indigo",
+          importance: "medium",
+          cleanNotes: `Duplicado de actividad oficial #${desc.actNo} (${desc.proceso || desc.area})`,
+        });
+      }
+    }
+  }
+
+  function resetQuickViewFilters() {
+    viewPrefs.onlyMine = false;
+    viewPrefs.statusFilter = "";
+    saveViewPrefsCache();
+    const mineBtn = getEl("btnCalOnlyMine");
+    if (mineBtn) mineBtn.classList.remove("active");
+    const stSel = getEl("calStatusFilter");
+    if (stSel) stSel.value = "";
   }
 
   function addNoteToCard(cardKey, rawContent) {
@@ -1619,6 +1715,15 @@
         badgeEl.style.display = "inline-flex";
       } else {
         badgeEl.style.display = "none";
+      }
+    }
+    const mobBadge = document.getElementById("mobileNotifBadge");
+    if (mobBadge) {
+      if (unreadCount > 0) {
+        mobBadge.textContent = unreadCount > 99 ? "99+" : String(unreadCount);
+        mobBadge.style.display = "inline-flex";
+      } else {
+        mobBadge.style.display = "none";
       }
     }
 
@@ -2166,20 +2271,64 @@
     return chips.join("");
   }
 
+  function buildCardHoverToolbarHtml(cardKey, stMeta) {
+    return `
+      <div class="cal-card-hover-toolbar">
+        <button type="button" class="cal-hover-icon-btn cal-quick-status-btn" data-card-key="${esc(cardKey)}" title="Cambiar estado (${esc(stMeta.label)})">
+          <span class="material-symbols-outlined">${descStatusMaterialIcon(stMeta.key)}</span>
+        </button>
+        <button type="button" class="cal-hover-icon-btn cal-quick-duplicate-btn" data-card-key="${esc(cardKey)}" title="Duplicar evento">
+          <span class="material-symbols-outlined">content_copy</span>
+        </button>
+        <button type="button" class="cal-hover-icon-btn cal-quick-assign-btn" data-card-key="${esc(cardKey)}" title="Asignarme / Desasignarme">
+          <span class="material-symbols-outlined">person_add</span>
+        </button>
+        <button type="button" class="cal-hover-icon-btn cal-quick-teams-btn" data-card-key="${esc(cardKey)}" title="Citar en Microsoft Teams">
+          <span class="material-symbols-outlined">videocam</span>
+        </button>
+      </div>
+    `;
+  }
+
+  function descStatusMaterialIcon(stKey) {
+    if (stKey === "listo") return "check_circle";
+    if (stKey === "en_progreso") return "pending";
+    if (stKey === "revision") return "visibility";
+    return "schedule";
+  }
+
+  function resolveCustomCampaignShortText(desc) {
+    if (!desc) return "";
+    if (desc.campaignLabel) return desc.campaignLabel;
+    if (desc.camp) {
+      const d = getCampDisplayForCard(desc.camp, desc.effectiveBrand);
+      return d ? d.short : "";
+    }
+    return "";
+  }
+
   function renderOfficialCardHtml(ev) {
     const desc = resolveCardDescriptor(ev.cardKey);
     if (!desc) return "";
     const stMeta = STATUS_META[desc.status] || STATUS_META.pendiente;
     const brandVars = getBrandStyleVars(desc.effectiveBrand);
     const campDisp = getCampDisplayForCard(ev.camp, desc.effectiveBrand);
-    const admin = isAdminSafe();
-    const notesBadge = desc.notes.length > 0
-      ? `<span class="cal-card-notes-badge" title="${desc.notes.length} notas">💬 ${desc.notes.length}</span>`
-      : "";
-    const movedBadge = desc.isOverriddenDate
-      ? `<span class="cal-card-moved-badge" title="Fecha Excel original: ${esc(desc.baseDateStr)}">📅 Movida</span>`
-      : "";
+    const bCode = getShortBrandCode(desc.effectiveBrand);
     const customAccent = desc.customColor ? `--card-accent:${esc(desc.customColor)};border-left-color:${esc(desc.customColor)};` : "";
+
+    const miniInds = [];
+    if (desc.status !== "pendiente") {
+      miniInds.push(`<span class="cal-mini-ind" style="color:${stMeta.color}" title="${esc(stMeta.label)}">${stMeta.short}</span>`);
+    }
+    if (desc.isOverriddenDate) {
+      miniInds.push(`<span class="cal-mini-ind" title="Movida (Excel: ${esc(desc.baseDateStr)})">↺</span>`);
+    }
+    if (desc.notes.length > 0) {
+      miniInds.push(`<span class="cal-mini-ind" title="${desc.notes.length} notas">💬${desc.notes.length}</span>`);
+    }
+    if (desc.owners.length > 0) {
+      miniInds.push(`<span class="cal-owners-mini-wrap">${renderOwnerChipsMini(desc.owners, 2)}</span>`);
+    }
 
     return `
       <div class="calendar-event-card cal-v2-card cal-status-${desc.status}"
@@ -2191,30 +2340,18 @@
            data-start="${esc(desc.startDateStr)}"
            data-end="${esc(ev.dateStr)}"
            data-dh="${ev.dh}"
-           draggable="${admin ? "true" : "false"}"
+           draggable="true"
            style="${brandVars.cssText}${customAccent}">
-        <div class="event-meta-line cal-card-headline-row">
-          <span class="cal-brand-headline-badge">${esc(desc.effectiveBrand)}</span>
-          <span class="event-camp-badge">${esc(campDisp.short)}</span>
-          <span class="event-dh-badge">${ev.dh} DH</span>
-          ${movedBadge}
+        ${buildCardHoverToolbarHtml(desc.cardKey, stMeta)}
+        <div class="cal-card-top-mono">
+          <span class="cal-card-code-line">
+            <span class="cal-card-brand-dot"></span>
+            <span>${esc(bCode)} · ${esc(campDisp.short)} · ${ev.dh} DH</span>
+          </span>
+          <span class="cal-card-mini-indicators">${miniInds.join("")}</span>
         </div>
-        <div class="event-full-title">
-          <span class="event-act-no">#${ev.act.no}</span> ${esc(ev.act.actividad)}
-        </div>
-        ${desc.area && desc.area.toLowerCase() !== desc.effectiveBrand.toLowerCase() ? `<div class="cal-card-subarea">🏢 ${esc(desc.area)}</div>` : ""}
-        <div class="cal-card-footer">
-          <div class="cal-card-footer-left">
-            <button type="button" class="cal-quick-status-btn status-${desc.status}" data-card-key="${esc(desc.cardKey)}" title="Clic para cambiar estado (${esc(stMeta.label)})" style="background:${stMeta.bg};color:${stMeta.color}">
-              ${stMeta.icon} ${stMeta.short}
-            </button>
-            ${notesBadge}
-            <div class="cal-owners-mini-wrap">${renderOwnerChipsMini(desc.owners, 3)}</div>
-          </div>
-          <div class="cal-card-quick-actions">
-            <button type="button" class="cal-quick-assign-btn" data-card-key="${esc(desc.cardKey)}" title="Asignarme / Desasignarme">🙋</button>
-            <button type="button" class="cal-quick-teams-btn" data-card-key="${esc(desc.cardKey)}" title="Citar en Microsoft Teams">📹</button>
-          </div>
+        <div class="cal-card-clean-title">
+          <span class="act-num-mono">#${ev.act.no}</span> ${esc(ev.act.actividad)}
         </div>
       </div>
     `;
@@ -2228,86 +2365,76 @@
     const cat = cev.category || "emerald";
     const stMeta = STATUS_META[desc.status] || STATUS_META.pendiente;
     const brandVars = getBrandStyleVars(desc.effectiveBrand);
-    const campDisp = getCampDisplayForCard(ev.camp, desc.effectiveBrand);
-    const admin = isAdminSafe();
+    const bCode = getShortBrandCode(desc.effectiveBrand);
+    const campShort = resolveCustomCampaignShortText(desc);
     const customAccent = desc.customColor ? `--card-accent:${esc(desc.customColor)};border-left-color:${esc(desc.customColor)};` : "";
 
-    const rangeClasses = ev.isMultiDay
-      ? `is-range-card ${ev.isRangeStart ? "is-range-start" : "is-range-continuation"} ${ev.isRangeEnd ? "is-range-end" : ""} ${ev.isWeekend ? "is-range-weekend" : ""} ${ev.continuesLeft ? "continues-left" : ""} ${ev.continuesRight ? "continues-right" : ""}`
-      : "";
-
-    let impBadgeHtml = "";
+    const miniInds = [];
     if (meta.importance === "high") {
-      impBadgeHtml = `<span class="event-importance-badge priority-high" title="Prioridad Alta">🔴 Alta</span>`;
-    } else if (meta.importance === "low") {
-      impBadgeHtml = `<span class="event-importance-badge priority-low" title="Prioridad Baja">🟢 Baja</span>`;
+      miniInds.push(`<span class="cal-mini-ind" style="color:#e11d48" title="Prioridad Alta">●</span>`);
     }
-    const tagBadgeHtml = meta.tag ? `<span class="event-hashtag-badge">${esc(meta.tag)}</span>` : "";
-    const notesBadge = desc.notes.length > 0
-      ? `<span class="cal-card-notes-badge" title="${desc.notes.length} notas">💬 ${desc.notes.length}</span>`
-      : "";
-
-    const areaRaw = String(cev.area || "").trim();
-    const showSubArea = Boolean(areaRaw && areaRaw.toLowerCase() !== desc.effectiveBrand.toLowerCase());
-
-    if (!ev.isMultiDay || ev.isRangeStart) {
-      return `
-        <div class="calendar-event-card cal-v2-card cal-status-${desc.status} event-custom-${esc(cat)} ${rangeClasses}"
-             data-type="custom"
-             data-card-key="${esc(desc.cardKey)}"
-             data-evid="${esc(cev.id)}"
-             draggable="${admin ? "true" : "false"}"
-             style="${brandVars.cssText}${customAccent}">
-          <div class="event-meta-line cal-card-headline-row">
-            <span class="cal-brand-headline-badge">${esc(desc.effectiveBrand)}</span>
-            ${tagBadgeHtml}
-            ${impBadgeHtml}
-            ${ev.isMultiDay ? `<span class="event-range-badge">🗓️ ${formatShortDayMonth(ev.range.startStr)} → ${formatShortDayMonth(ev.range.endStr)}</span>` : ""}
-          </div>
-          <div class="event-full-title">${esc(cev.title)}</div>
-          ${showSubArea ? `<div class="cal-card-subarea">🏢 ${esc(areaRaw)}</div>` : ""}
-          <div class="cal-card-footer">
-            <div class="cal-card-footer-left">
-              <button type="button" class="cal-quick-status-btn status-${desc.status}" data-card-key="${esc(desc.cardKey)}" title="Clic para cambiar estado (${esc(stMeta.label)})" style="background:${stMeta.bg};color:${stMeta.color}">
-                ${stMeta.icon} ${stMeta.short}
-              </button>
-              ${notesBadge}
-              <div class="cal-owners-mini-wrap">${renderOwnerChipsMini(desc.owners, 3)}</div>
-            </div>
-            <div class="cal-card-quick-actions">
-              <button type="button" class="cal-quick-assign-btn" data-card-key="${esc(desc.cardKey)}" title="Asignarme / Desasignarme">🙋</button>
-              <button type="button" class="cal-quick-teams-btn" data-card-key="${esc(desc.cardKey)}" title="Citar en Microsoft Teams">📹</button>
-            </div>
-          </div>
-          ${meta.cleanNotes ? `<div class="event-notes-preview">${esc(meta.cleanNotes)}</div>` : ""}
-        </div>
-      `;
+    if (desc.status !== "pendiente") {
+      miniInds.push(`<span class="cal-mini-ind" style="color:${stMeta.color}" title="${esc(stMeta.label)}">${stMeta.short}</span>`);
+    }
+    if (desc.notes.length > 0) {
+      miniInds.push(`<span class="cal-mini-ind" title="${desc.notes.length} notas">💬${desc.notes.length}</span>`);
+    }
+    if (desc.owners.length > 0) {
+      miniInds.push(`<span class="cal-owners-mini-wrap">${renderOwnerChipsMini(desc.owners, 2)}</span>`);
     }
 
-    const arrowSymbol = ev.isRangeEnd ? "🏁" : ev.isMonday ? "↪" : "→";
-    const rightBadge = ev.isRangeEnd
-      ? `<span class="event-range-badge">Fin</span>`
-      : ev.isMonday
-      ? `<span class="event-range-badge">→ ${formatShortDayMonth(ev.range.endStr)}</span>`
-      : "";
-    const showOwnersRow = ev.isMonday || ev.isRangeEnd;
+    const codeParts = [bCode];
+    if (campShort) codeParts.push(campShort);
+    else if (meta.tag && meta.tag !== "#General") codeParts.push(meta.tag);
+    codeParts.push(`${desc.dh} DH`);
 
     return `
-      <div class="calendar-event-card cal-v2-card cal-status-${desc.status} event-custom-${esc(cat)} ${rangeClasses}"
+      <div class="calendar-event-card cal-v2-card cal-status-${desc.status} event-custom-${esc(cat)}"
            data-type="custom"
            data-card-key="${esc(desc.cardKey)}"
            data-evid="${esc(cev.id)}"
+           draggable="true"
            style="${brandVars.cssText}${customAccent}">
-        <div class="range-cont-header">
-          <div class="range-cont-title">
-            <span class="range-cont-arrow">${arrowSymbol}</span>
-            <span class="cal-brand-mini-tag">${esc(desc.effectiveBrand)}</span>
-            ${meta.tag ? `<span class="event-hashtag-badge-mini">${esc(meta.tag)}</span>` : ""}
-            <span>${esc(cev.title)}</span>
-          </div>
-          ${rightBadge}
+        ${buildCardHoverToolbarHtml(desc.cardKey, stMeta)}
+        <div class="cal-card-top-mono">
+          <span class="cal-card-code-line">
+            <span class="cal-card-brand-dot"></span>
+            <span>${esc(codeParts.join(" · "))}</span>
+          </span>
+          <span class="cal-card-mini-indicators">${miniInds.join("")}</span>
         </div>
-        ${showOwnersRow ? `<div class="cal-owners-mini-wrap" style="margin-top:2px">${renderOwnerChipsMini(desc.owners, 3)}</div>` : ""}
+        <div class="cal-card-clean-title">${esc(cev.title)}</div>
+      </div>
+    `;
+  }
+
+  function renderMultiDayLaneBarHtml(cev, colStart, colSpan, continuesLeft, continuesRight) {
+    const cardKey = buildCustomCardKey(cev.id);
+    const desc = resolveCardDescriptor(cardKey);
+    if (!desc) return "";
+    const stMeta = STATUS_META[desc.status] || STATUS_META.pendiente;
+    const brandVars = getBrandStyleVars(desc.effectiveBrand);
+    const bCode = getShortBrandCode(desc.effectiveBrand);
+    const campShort = resolveCustomCampaignShortText(desc);
+    const customAccent = desc.customColor ? `--card-accent:${esc(desc.customColor)};` : "";
+    const leftPrefix = continuesLeft ? "← " : "";
+    const rightSuffix = continuesRight ? " →" : "";
+    const codeTxt = campShort ? `${bCode} · ${campShort}` : bCode;
+
+    return `
+      <div class="cal-multiday-bar cal-status-${desc.status}"
+           data-type="custom"
+           data-card-key="${esc(cardKey)}"
+           data-evid="${esc(cev.id)}"
+           draggable="true"
+           style="grid-column:${colStart} / span ${colSpan};${brandVars.cssText}${customAccent}">
+        ${buildCardHoverToolbarHtml(cardKey, stMeta)}
+        <div class="cal-multiday-bar-left">
+          <span class="cal-card-brand-dot"></span>
+          <span class="cal-multiday-bar-code">${leftPrefix}${esc(codeTxt)}</span>
+          <span class="cal-multiday-bar-title">${esc(cev.title)}</span>
+        </div>
+        <span class="cal-multiday-bar-range">${formatShortDayMonth(desc.startDateStr)}–${formatShortDayMonth(desc.endDateStr)} · ${desc.dh} DH${rightSuffix}</span>
       </div>
     `;
   }
@@ -2453,6 +2580,138 @@
     return `${selectedCamps.length} campañas seleccionadas`;
   }
 
+  function updateTopbarMonthDhBadge(year, month0) {
+    const dhCount = typeof app().countWeekdaysInMonth === "function"
+      ? app().countWeekdaysInMonth(year, month0)
+      : 21;
+    const dhEl = document.getElementById("kpiMonthDhText");
+    if (dhEl) dhEl.textContent = `${dhCount} DH`;
+    const mobDhEl = document.getElementById("mobileDhLabel");
+    if (mobDhEl) mobDhEl.textContent = `${dhCount} DH`;
+  }
+
+  function renderMobileMonthSplitHtml(mInfo, weeks, eventsByDate, todayStr, onboardingBannerHtml) {
+    const yr = mInfo.year;
+    const mo = mInfo.month;
+    const ymPrefix = `${yr}-${String(mo + 1).padStart(2, "0")}`;
+
+    if (mobileSelectedDateStr && !mobileSelectedDateStr.startsWith(ymPrefix)) {
+      mobileSelectedDateStr = "";
+    }
+
+    const miniCellsHtml = [];
+    for (const w of weeks) {
+      for (let colIdx = 0; colIdx < w.length; colIdx++) {
+        const cell = w[colIdx];
+        const isWknd = colIdx >= 5;
+        const holidayName = getColombianHolidaySafe(cell.dateStr);
+        const isToday = cell.dateStr === todayStr;
+        const isSelected = mobileSelectedDateStr === cell.dateStr;
+        const dayEvs = cell.isOtherMonth ? [] : (eventsByDate.get(cell.dateStr) || []);
+        const dotsHtml = dayEvs.slice(0, 3).map((ev) => {
+          const d = resolveCardDescriptor(ev.cardKey);
+          const dotColor = d ? d.effectiveColor : "#4f46e5";
+          return `<span class="mini-dot" style="background:${esc(dotColor)}"></span>`;
+        }).join("");
+
+        miniCellsHtml.push(`
+          <button type="button"
+                  class="mobile-mini-day ${cell.isOtherMonth ? "day-other-month" : ""} ${isWknd ? "is-weekend" : ""} ${holidayName ? "is-col-holiday" : ""} ${isToday ? "is-today" : ""} ${isSelected ? "is-selected" : ""}"
+                  data-mobile-day="${cell.dateStr}"
+                  ${cell.isOtherMonth ? "disabled style='opacity:0.35'" : ""}
+                  title="${holidayName ? `🇨🇴 Festivo: ${esc(holidayName)}` : esc(cell.dateStr)}">
+            <span class="mini-day-num">${cell.dayNum}</span>
+            <span class="mini-day-dots">${dotsHtml}</span>
+          </button>
+        `);
+      }
+    }
+
+    const selectedHoliday = mobileSelectedDateStr ? getColombianHolidaySafe(mobileSelectedDateStr) : null;
+    const holidayNoticeHtml = selectedHoliday
+      ? `<div class="col-holiday-badge" style="padding:5px 10px;font-size:11.5px;margin-bottom:8px;display:flex">🇨🇴 Festivo oficial en Colombia: ${esc(selectedHoliday)}</div>`
+      : "";
+
+    // Lista Agenda inferior del mes (o del día tocado en el mini-calendario)
+    const monthDates = Array.from(eventsByDate.keys())
+      .filter((d) => (mobileSelectedDateStr ? d === mobileSelectedDateStr : d.startsWith(ymPrefix)))
+      .sort();
+
+    const listCards = [];
+    const seenMultiIds = new Set();
+    for (const dStr of monthDates) {
+      const evs = sortDayEvents(eventsByDate.get(dStr) || []);
+      for (const ev of evs) {
+        if (ev.type === "custom" && ev.isMultiDay && !mobileSelectedDateStr) {
+          if (seenMultiIds.has(ev.custom.id)) continue;
+          seenMultiIds.add(ev.custom.id);
+        }
+        const desc = resolveCardDescriptor(ev.cardKey);
+        if (!desc) continue;
+        const brandVars = getBrandStyleVars(desc.effectiveBrand);
+        const campShort = desc.kind === "official"
+          ? (desc.camp ? getCampDisplayForCard(desc.camp, desc.effectiveBrand).short : "")
+          : resolveCustomCampaignShortText(desc);
+        const dateBadge = desc.kind === "custom" && desc.calDays > 1
+          ? `${formatShortDayMonth(desc.startDateStr)}–${formatShortDayMonth(desc.endDateStr)}`
+          : formatShortDayMonth(dStr);
+        const hol = getColombianHolidaySafe(dStr);
+
+        listCards.push(`
+          <div class="calendar-event-card cal-v2-card cal-status-${desc.status}"
+               data-card-key="${esc(desc.cardKey)}"
+               draggable="true"
+               style="padding:10px 12px !important;border-radius:10px !important;${brandVars.cssText}">
+            <div class="cal-card-top-mono" style="font-size:11.5px">
+              <span class="cal-card-code-line">
+                <span class="cal-card-brand-dot"></span>
+                <span>${esc(desc.effectiveBrand)}${campShort ? ` · ${esc(campShort)}` : ""}</span>
+              </span>
+              <span>${esc(dateBadge)} · ${desc.dh} DH</span>
+            </div>
+            <div class="cal-card-clean-title" style="font-size:13.5px;font-weight:600;margin-top:2px">
+              ${desc.kind === "official" ? `<span class="act-num-mono">#${desc.actNo}</span> ` : ""}${esc(desc.rawTitle)}
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;font-size:11.5px;color:var(--ui-text-secondary)">
+              <span>${esc(desc.area || desc.proceso || "")}${hol ? ` · <strong style="color:#be123c">🇨🇴 ${esc(hol)}</strong>` : ""}</span>
+              <span>${renderOwnerChipsMini(desc.owners, 3)}</span>
+            </div>
+          </div>
+        `);
+      }
+    }
+
+    return `
+      ${onboardingBannerHtml}
+      <section class="mobile-mini-cal-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <strong style="font-family:var(--font-display);font-size:15px">${MONTH_NAMES[mo]} ${yr}</strong>
+          ${
+            mobileSelectedDateStr
+              ? `<button type="button" class="link-btn" data-action="clear-mobile-day" style="font-size:11.5px">Ver todo el mes</button>`
+              : `<span style="font-size:11px;color:var(--ui-text-muted)">Toca un día para filtrar</span>`
+          }
+        </div>
+        <div class="mobile-mini-weekdays">
+          <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        </div>
+        <div class="mobile-mini-grid">${miniCellsHtml.join("")}</div>
+      </section>
+      ${holidayNoticeHtml}
+      <section style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <strong style="font-size:14px">${mobileSelectedDateStr ? `Entregas del ${formatHumanDate(mobileSelectedDateStr)}` : "Entregas del mes"}</strong>
+          <span class="font-mono-num" style="font-size:12px;color:var(--ui-primary);font-weight:600">${listCards.length} hitos</span>
+        </div>
+        ${
+          listCards.length > 0
+            ? listCards.join("")
+            : `<div style="padding:24px 14px;text-align:center;background:#fff;border:1px solid var(--ui-border);border-radius:10px;color:var(--ui-text-secondary);font-size:12.5px">Sin entregas en esta selección.</div>`
+        }
+      </section>
+    `;
+  }
+
   function renderMonthSubview(container, indexData, selectedCamps, onboardingBannerHtml) {
     const st = getStateSafe();
     const todayStr = getTodayStrSafe();
@@ -2471,7 +2730,7 @@
     }
 
     if (monthsMap.size === 0) {
-      const fallbackDate = parseYMD("2027-06-01") || new Date();
+      const fallbackDate = parseYMD(todayStr) || new Date();
       const ym = formatYMD(fallbackDate).slice(0, 7);
       monthsMap.set(ym, {
         year: fallbackDate.getFullYear(),
@@ -2492,23 +2751,41 @@
     }
     if (st.calCurrentMonthIndex < 0) st.calCurrentMonthIndex = 0;
 
+    const activeMonthKey = sortedMonthKeys[st.calCurrentMonthIndex];
+    const activeMonthObj = monthsMap.get(activeMonthKey);
+    if (activeMonthObj) {
+      updateTopbarMonthDhBadge(activeMonthObj.year, activeMonthObj.month);
+    }
+
     const labelEl = getEl("calCurrentMonthLabel", "calCurrentMonthLabel");
-    if (labelEl) {
+    if (labelEl && activeMonthObj) {
       if (st.calShowAllMonths) {
-        labelEl.textContent = `Todos los meses (${sortedMonthKeys.length})`;
+        labelEl.textContent = `Todos (${sortedMonthKeys.length} meses)`;
       } else {
-        const activeKey = sortedMonthKeys[st.calCurrentMonthIndex];
-        const mObj = monthsMap.get(activeKey);
-        labelEl.textContent = `${MONTH_NAMES[mObj.month]} ${mObj.year} (${st.calCurrentMonthIndex + 1} de ${sortedMonthKeys.length})`;
+        labelEl.textContent = `${MONTH_NAMES[activeMonthObj.month]} ${activeMonthObj.year}`;
       }
     }
 
+    const isMobilePwaViewport =
+      typeof window !== "undefined" &&
+      window.innerWidth < 768 &&
+      !document.body.classList.contains("printing-calendar");
+
     const campHeaderBadge = buildCampHeaderBadge(selectedCamps);
-    const keysToRender = st.calShowAllMonths ? sortedMonthKeys : [sortedMonthKeys[st.calCurrentMonthIndex]];
+    const keysToRender = (st.calShowAllMonths && !isMobilePwaViewport) ? sortedMonthKeys : [activeMonthKey];
+    const visibleCustomList = lastCalendarArgs?.visibleCustom || [];
+    const multiDayCustoms = visibleCustomList.filter((cev) => {
+      const cardKey = buildCustomCardKey(cev.id);
+      if (!passesV2QuickFilters(cardKey, cev.marca)) return false;
+      const rng = getCustomEventRangeSafe(cev);
+      return rng.calDays > 1 && rng.startStr && rng.endStr;
+    });
+
     const sheetsHtml = [onboardingBannerHtml];
 
     for (const ym of keysToRender) {
       const mInfo = monthsMap.get(ym);
+      if (!mInfo) continue;
       const yr = mInfo.year;
       const mo = mInfo.month;
 
@@ -2522,15 +2799,25 @@
 
       const weeks = [];
       let currentWeek = [];
+      let monthBizCounter = 0;
 
       for (let p = startingDow - 1; p >= 0; p--) {
         const dayNum = prevMonthLastDay - p;
         const prevDt = new Date(yr, mo - 1, dayNum, 12, 0, 0);
-        currentWeek.push({ date: prevDt, dateStr: formatYMD(prevDt), dayNum, isOtherMonth: true });
+        currentWeek.push({ date: prevDt, dateStr: formatYMD(prevDt), dayNum, isOtherMonth: true, dhIdx: null });
       }
       for (let d = 1; d <= totalDaysInMonth; d++) {
         const curDt = new Date(yr, mo, d, 12, 0, 0);
-        currentWeek.push({ date: curDt, dateStr: formatYMD(curDt), dayNum: d, isOtherMonth: false });
+        const dow = curDt.getDay();
+        const isBiz = dow !== 0 && dow !== 6;
+        if (isBiz) monthBizCounter++;
+        currentWeek.push({
+          date: curDt,
+          dateStr: formatYMD(curDt),
+          dayNum: d,
+          isOtherMonth: false,
+          dhIdx: isBiz ? monthBizCounter : null,
+        });
         if (currentWeek.length === 7) {
           weeks.push(currentWeek);
           currentWeek = [];
@@ -2540,68 +2827,113 @@
         let nextDay = 1;
         while (currentWeek.length < 7) {
           const nextDt = new Date(yr, mo + 1, nextDay, 12, 0, 0);
-          currentWeek.push({ date: nextDt, dateStr: formatYMD(nextDt), dayNum: nextDay, isOtherMonth: true });
+          currentWeek.push({ date: nextDt, dateStr: formatYMD(nextDt), dayNum: nextDay, isOtherMonth: true, dhIdx: null });
           nextDay++;
         }
         weeks.push(currentWeek);
       }
 
-      const rowsHtml = [];
+      if (isMobilePwaViewport) {
+        container.innerHTML = renderMobileMonthSplitHtml(mInfo, weeks, eventsByDate, todayStr, onboardingBannerHtml);
+        return;
+      }
+
+      const weekBlocksHtml = [];
       for (const w of weeks) {
+        const wStartStr = w[0].dateStr;
+        const wEndStr = w[6].dateStr;
+
+        // Carriles continuos horizontales para eventos extra multi-día que cruzan esta semana
+        const weekLaneBars = [];
+        for (const cev of multiDayCustoms) {
+          const rng = getCustomEventRangeSafe(cev);
+          if (rng.endStr < wStartStr || rng.startStr > wEndStr) continue;
+          let startCol = 1;
+          let endCol = 7;
+          for (let idx = 0; idx < 7; idx++) {
+            if (w[idx].dateStr === rng.startStr) startCol = idx + 1;
+            if (w[idx].dateStr === rng.endStr) endCol = idx + 1;
+          }
+          if (rng.startStr < wStartStr) startCol = 1;
+          if (rng.endStr > wEndStr) endCol = 7;
+          const span = Math.max(1, endCol - startCol + 1);
+          weekLaneBars.push(
+            `<div class="cal-v3-lane-grid">${renderMultiDayLaneBarHtml(
+              cev,
+              startCol,
+              span,
+              rng.startStr < wStartStr,
+              rng.endStr > wEndStr
+            )}</div>`
+          );
+        }
+
+        const lanesSectionHtml = weekLaneBars.length > 0
+          ? `<div class="cal-v3-multiday-lanes">${weekLaneBars.join("")}</div>`
+          : "";
+
         const cellsHtml = [];
-        for (const cell of w) {
+        for (let colIdx = 0; colIdx < w.length; colIdx++) {
+          const cell = w[colIdx];
           const isToday = cell.dateStr === todayStr;
-          const dayEvents = sortDayEvents(eventsByDate.get(cell.dateStr) || []);
+          const isWeekend = colIdx >= 5;
+          const holidayName = getColombianHolidaySafe(cell.dateStr);
+          const dayEvents = sortDayEvents(eventsByDate.get(cell.dateStr) || []).filter(
+            (ev) => !(ev.type === "custom" && ev.isMultiDay)
+          );
           const eventsHtml = dayEvents.map((ev) =>
             ev.type === "official" ? renderOfficialCardHtml(ev) : renderCustomCardHtml(ev)
           );
 
           cellsHtml.push(`
-            <td class="calendar-day-cell ${cell.isOtherMonth ? "day-other-month" : ""} ${isToday ? "day-today" : ""}" data-date="${cell.dateStr}">
+            <div class="calendar-day-cell cal-v3-day-cell ${cell.isOtherMonth ? "day-other-month" : ""} ${isWeekend ? "is-weekend" : ""} ${holidayName ? "is-col-holiday" : ""} ${isToday ? "day-today" : ""}" data-date="${cell.dateStr}">
               <div class="day-num-wrap">
-                <span class="day-num ${cell.isOtherMonth ? "day-num-other" : ""}">${cell.dayNum}</span>
-                <div style="display:flex;align-items:center;gap:4px">
-                  ${isToday ? `<span class="today-chip">Hoy</span>` : ""}
-                  <button type="button" class="day-add-btn" data-adddate="${cell.dateStr}" title="Agregar evento en el ${cell.dateStr}">+</button>
+                <div style="display:flex;align-items:center;gap:5px;min-width:0;overflow:hidden">
+                  <span class="day-num ${cell.isOtherMonth ? "day-num-other" : ""}">${cell.dayNum}</span>
+                  ${holidayName && !cell.isOtherMonth ? `<span class="col-holiday-badge" title="Festivo oficial Colombia: ${esc(holidayName)}">🇨🇴 ${esc(holidayName)}</span>` : ""}
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+                  ${cell.dhIdx && !holidayName ? `<span class="day-dh-micro">DH ${cell.dhIdx}</span>` : ""}
+                  <button type="button" class="day-add-btn" data-adddate="${cell.dateStr}" title="Agregar evento el ${cell.dateStr}">+</button>
                 </div>
               </div>
               <div class="calendar-events-list">${eventsHtml.join("")}</div>
-            </td>
+            </div>
           `);
         }
-        rowsHtml.push(`<tr>${cellsHtml.join("")}</tr>`);
+
+        weekBlocksHtml.push(`
+          <div class="cal-v3-week-block">
+            ${lanesSectionHtml}
+            <div class="cal-v3-days-grid">${cellsHtml.join("")}</div>
+          </div>
+        `);
       }
 
       sheetsHtml.push(`
         <div class="calendar-month-sheet">
-          <div class="calendar-month-header">
+          <div class="calendar-month-header" style="${st.calShowAllMonths ? "" : "display:none"}">
             <div>
               <div class="calendar-month-title">${MONTH_NAMES[mo]} ${yr}</div>
-              <div style="font-size:12px;color:#64748b;margin-top:2px">
-                ${mInfo.events.length} evento${mInfo.events.length === 1 ? "" : "s"} en este mes
-                • Perfil: <strong>${esc(st.targetUserId || "Equipo")}</strong>
+              <div style="font-size:12px;color:var(--ui-text-secondary);margin-top:2px">
+                ${mInfo.events.length} hitos • Perfil: <strong>${esc(st.targetUserId || "Equipo")}</strong>
               </div>
             </div>
             <div class="calendar-campaign-meta">
               <span class="calendar-campaign-badge">${esc(campHeaderBadge)}</span>
-              <span class="calendar-campaign-sub">CRONOGRAMA AGLAB — Multi-Marca</span>
             </div>
           </div>
 
-          <table class="calendar-grid-table">
-            <thead>
-              <tr>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miércoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
-                <th>Sábado</th>
-                <th>Domingo</th>
-              </tr>
-            </thead>
-            <tbody>${rowsHtml.join("")}</tbody>
-          </table>
+          <div class="cal-v3-weekdays-header">
+            <div class="cal-v3-weekday-cell">Lun</div>
+            <div class="cal-v3-weekday-cell">Mar</div>
+            <div class="cal-v3-weekday-cell">Mié</div>
+            <div class="cal-v3-weekday-cell">Jue</div>
+            <div class="cal-v3-weekday-cell">Vie</div>
+            <div class="cal-v3-weekday-cell is-weekend-head">Sáb</div>
+            <div class="cal-v3-weekday-cell is-weekend-head">Dom</div>
+          </div>
+          <div class="cal-v3-month-body">${weekBlocksHtml.join("")}</div>
         </div>
       `);
     }
@@ -2643,20 +2975,23 @@
         ev.type === "official" ? renderOfficialCardHtml(ev) : renderCustomCardHtml(ev)
       );
 
+      const holidayName = getColombianHolidaySafe(dateStr);
+
       colsHtml.push(`
-        <div class="cal-week-col calendar-day-cell ${isToday ? "day-today" : ""} ${isWeekend ? "is-weekend" : ""}" data-date="${dateStr}">
+        <div class="cal-week-col calendar-day-cell ${isToday ? "day-today" : ""} ${isWeekend ? "is-weekend" : ""} ${holidayName ? "is-col-holiday" : ""}" data-date="${dateStr}">
           <div class="cal-week-col-header">
-            <div>
+            <div style="min-width:0">
               <div class="cal-week-day-name">${WEEKDAY_NAMES[i]}</div>
-              <div class="cal-week-day-date">${formatShortDayMonth(dateStr)}</div>
+              <div class="cal-week-day-date font-mono-num">${formatShortDayMonth(dateStr)}</div>
+              ${holidayName ? `<div class="col-holiday-badge" style="margin-top:3px" title="Festivo oficial Colombia: ${esc(holidayName)}">🇨🇴 ${esc(holidayName)}</div>` : ""}
             </div>
             <div style="display:flex;align-items:center;gap:4px">
               ${isToday ? `<span class="today-chip">Hoy</span>` : ""}
-              <button type="button" class="day-add-btn" data-adddate="${dateStr}" title="Agregar evento el ${dateStr}">+</button>
+              <button type="button" class="day-add-btn" style="opacity:1" data-adddate="${dateStr}" title="Agregar evento el ${dateStr}">+</button>
             </div>
           </div>
           <div class="cal-week-col-body calendar-events-list">
-            ${cardsHtml.length > 0 ? cardsHtml.join("") : `<div class="cal-week-empty">Sin entregas</div>`}
+            ${cardsHtml.length > 0 ? cardsHtml.join("") : `<div class="cal-week-empty">Arrastra aquí o pulsa +</div>`}
           </div>
         </div>
       `);
@@ -2719,13 +3054,40 @@
       return;
     }
 
+    // Construir chips rápidos de destino para Drag & Drop hacia días nuevos en Agenda
+    const baseDropDt = parseYMD(todayStr) || new Date();
+    const quickDropChips = [];
+    for (let k = 0; k < 6; k++) {
+      const qDt = addDays(baseDropDt, k);
+      const qStr = formatYMD(qDt);
+      quickDropChips.push(
+        `<span class="agenda-drop-chip" data-date="${qStr}" title="Suelta una tarjeta aquí para moverla al ${qStr}">${k === 0 ? "Hoy · " : ""}${formatShortDayMonth(qStr)}</span>`
+      );
+    }
+    const agendaQuickDropBarHtml = `
+      <div class="agenda-quick-drop-bar">
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ui-text-secondary)">
+          <span class="material-symbols-outlined" style="font-size:17px;color:var(--ui-primary)">drag_indicator</span>
+          <span><strong>Drag & Drop activo:</strong> Arrastra cualquier tarjeta a otro día o suéltala en una fecha rápida:</span>
+        </div>
+        <div class="agenda-drop-chips">
+          ${quickDropChips.join("")}
+          <label class="agenda-drop-chip" id="agendaCustomDateDropZone" style="display:inline-flex;align-items:center;gap:5px" title="Elige una fecha destino y suelta encima">
+            <span>Otra fecha:</span>
+            <input type="date" id="agendaDropDateInput" value="${todayStr}" style="border:none;background:transparent;font-family:var(--font-mono);font-size:11.5px;padding:0" />
+          </label>
+        </div>
+      </div>
+    `;
+
     const groupsHtml = [];
     for (const dateStr of sortedDates) {
       const dt = parseYMD(dateStr);
       const dowIdx = dt ? (dt.getDay() === 0 ? 6 : dt.getDay() - 1) : 0;
+      const isWeekend = dowIdx >= 5;
+      const holidayName = getColombianHolidaySafe(dateStr);
       const isToday = dateStr === todayStr;
       const rawEvents = sortDayEvents(eventsByDate.get(dateStr) || []);
-      // In Agenda, show custom multi-day only on range start or today so mobile list stays clean
       const agendaEvents = rawEvents.filter((ev) => {
         if (ev.type === "official") return true;
         return !ev.isMultiDay || ev.isRangeStart || dateStr === todayStr;
@@ -2740,24 +3102,30 @@
           const brandVars = getBrandStyleVars(desc.effectiveBrand);
           const accent = desc.customColor || desc.brandColor;
           const campDisp = desc.camp ? getCampDisplayForCard(desc.camp, desc.effectiveBrand) : null;
+          const customCampTxt = resolveCustomCampaignShortText(desc);
           const campTxt = campDisp
-            ? `<span class="event-camp-badge">${esc(campDisp.short)}</span>`
-            : (desc.tag ? `<span class="event-hashtag-badge">${esc(desc.tag)}</span>` : "");
+            ? `<span class="event-camp-badge font-mono-num">${esc(campDisp.short)}</span>`
+            : customCampTxt
+              ? `<span class="event-camp-badge font-mono-num">${esc(customCampTxt)}</span>`
+              : (desc.tag ? `<span class="event-hashtag-badge">${esc(desc.tag)}</span>` : "");
           const showAgendaSubArea = Boolean(desc.area && desc.area.toLowerCase() !== desc.effectiveBrand.toLowerCase());
 
           return `
             <div class="cal-agenda-item calendar-event-card cal-status-${desc.status}"
                  data-card-key="${esc(desc.cardKey)}"
-                 style="${brandVars.cssText}border-left:4px solid ${esc(accent)}">
+                 draggable="true"
+                 style="${brandVars.cssText}border-left:4px solid ${esc(accent)};cursor:grab">
               <div class="cal-agenda-item-main">
                 <div class="event-meta-line cal-card-headline-row">
+                  <span class="material-symbols-outlined" style="font-size:15px;color:var(--ui-text-muted)" title="Arrastrar para cambiar fecha">drag_indicator</span>
                   <span class="cal-brand-headline-badge">${esc(desc.effectiveBrand)}</span>
                   ${campTxt}
-                  ${desc.kind === "custom" && desc.range?.isMultiDay ? `<span class="event-range-badge">🗓️ ${formatShortDayMonth(desc.startDateStr)} → ${formatShortDayMonth(desc.endDateStr)}</span>` : ""}
-                  ${desc.isOverriddenDate ? `<span class="cal-card-moved-badge">📅 Movida</span>` : ""}
+                  <span class="font-mono-num" style="font-size:11px;font-weight:600;color:var(--ui-text-secondary)">${desc.dh} DH</span>
+                  ${desc.kind === "custom" && desc.range?.isMultiDay ? `<span class="event-range-badge font-mono-num">${formatShortDayMonth(desc.startDateStr)} → ${formatShortDayMonth(desc.endDateStr)}</span>` : ""}
+                  ${desc.isOverriddenDate ? `<span class="cal-card-moved-badge">Movida</span>` : ""}
                 </div>
-                <div class="event-full-title">${esc(desc.title)}</div>
-                ${showAgendaSubArea ? `<div class="cal-card-subarea">🏢 ${esc(desc.area)}</div>` : ""}
+                <div class="event-full-title" style="font-size:13.5px;margin-top:3px">${esc(desc.title)}</div>
+                ${showAgendaSubArea ? `<div class="cal-card-subarea">${esc(desc.area)}</div>` : ""}
                 <div class="cal-card-footer" style="margin-top:6px">
                   <div class="cal-card-footer-left">
                     <button type="button" class="cal-quick-status-btn status-${desc.status}" data-card-key="${esc(desc.cardKey)}" style="background:${stMeta.bg};color:${stMeta.color}">${stMeta.icon} ${stMeta.label}</button>
@@ -2765,8 +3133,9 @@
                     <div class="cal-owners-mini-wrap">${renderOwnerChipsMini(desc.owners, 4)}</div>
                   </div>
                   <div class="cal-card-quick-actions">
-                    <button type="button" class="cal-quick-assign-btn" data-card-key="${esc(desc.cardKey)}" title="Asignarme">🙋</button>
-                    <button type="button" class="cal-quick-teams-btn" data-card-key="${esc(desc.cardKey)}" title="Citar en Teams">📹</button>
+                    <button type="button" class="cal-hover-icon-btn cal-quick-duplicate-btn" data-card-key="${esc(desc.cardKey)}" title="Duplicar evento"><span class="material-symbols-outlined">content_copy</span></button>
+                    <button type="button" class="cal-hover-icon-btn cal-quick-assign-btn" data-card-key="${esc(desc.cardKey)}" title="Asignarme"><span class="material-symbols-outlined">person_add</span></button>
+                    <button type="button" class="cal-hover-icon-btn cal-quick-teams-btn" data-card-key="${esc(desc.cardKey)}" title="Citar en Teams"><span class="material-symbols-outlined">videocam</span></button>
                   </div>
                 </div>
               </div>
@@ -2776,15 +3145,17 @@
         .join("");
 
       groupsHtml.push(`
-        <section class="cal-agenda-day-group ${isToday ? "is-today" : ""}" data-date="${dateStr}">
+        <section class="cal-agenda-day-group ${isToday ? "is-today" : ""} ${isWeekend ? "is-weekend" : ""} ${holidayName ? "is-col-holiday" : ""}" data-date="${dateStr}">
           <header class="cal-agenda-day-header">
-            <div class="cal-agenda-day-title">
-              <strong>${WEEKDAY_NAMES[dowIdx]}</strong> · ${formatHumanDate(dateStr)}
+            <div class="cal-agenda-day-title" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+              <strong>${WEEKDAY_NAMES[dowIdx]}</strong> · <span class="font-mono-num">${formatHumanDate(dateStr)}</span>
               ${isToday ? `<span class="today-chip">Hoy</span>` : ""}
+              ${isWeekend ? `<span style="font-size:10.5px;padding:1px 6px;border-radius:4px;background:var(--wknd-header-bg);color:var(--wknd-text);font-weight:700">Fin de semana</span>` : ""}
+              ${holidayName ? `<span class="col-holiday-badge">🇨🇴 Festivo · ${esc(holidayName)}</span>` : ""}
             </div>
             <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-size:11px;color:#64748b">${agendaEvents.length} tarjeta${agendaEvents.length === 1 ? "" : "s"}</span>
-              <button type="button" class="day-add-btn" data-adddate="${dateStr}" title="Agregar evento">+</button>
+              <span class="font-mono-num" style="font-size:11px;color:#64748b">${agendaEvents.length} hito${agendaEvents.length === 1 ? "" : "s"}</span>
+              <button type="button" class="day-add-btn" style="opacity:1" data-adddate="${dateStr}" title="Agregar evento">+</button>
             </div>
           </header>
           <div class="cal-agenda-day-list">${itemsHtml}</div>
@@ -2792,7 +3163,7 @@
       `);
     }
 
-    container.innerHTML = `${onboardingBannerHtml}<div class="cal-agenda-container">${groupsHtml.join("")}</div>`;
+    container.innerHTML = `${onboardingBannerHtml}${agendaQuickDropBarHtml}<div class="cal-agenda-container">${groupsHtml.join("")}</div>`;
   }
 
   function renderCalendar(selectedOfficial, visibleCustom, selectedCamps) {
@@ -3057,26 +3428,70 @@
       : `<div style="font-size:12px;color:#94a3b8;padding:8px 0">Sin notas aún. Escribe un comentario para el equipo.</div>`;
 
     const campDisp = desc.camp ? getCampDisplayForCard(desc.camp, desc.effectiveBrand) : null;
-    const headerSub = desc.kind === "official"
-      ? `#${desc.actNo} • ${campDisp ? campDisp.short : ""} • ${desc.proceso || desc.area}`
-      : `Evento Extra • ${desc.area}${desc.tag ? " • " + desc.tag : ""}`;
+    const customCampLabel = resolveCustomCampaignShortText(desc);
+    const campChipText = campDisp ? campDisp.short : (customCampLabel || (desc.tag || ""));
+    const holidayOnTarget = getColombianHolidaySafe(desc.effectiveDateStr);
 
     const bodyHtml = `
-      <div class="cal-drawer-header" style="border-bottom:1px solid #e2e8f0;padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;${brandVars.cssText}">
-        <div style="min-width:0">
-          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px">
-            <span class="cal-brand-headline-badge">${esc(desc.effectiveBrand)}</span>
-            <span style="font-size:11px;color:#64748b;font-weight:600">${esc(headerSub)}</span>
+      <div class="mobile-sheet-handle" style="display:none"><span></span></div>
+      <div class="drawer-editorial-head" style="${brandVars.cssText}">
+        <div style="min-width:0;flex:1">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:4px;font-size:11.5px;font-weight:700;background:${brandVars.bg};color:${brandVars.text};border:1px solid ${brandVars.border}">
+              <span style="width:6px;height:6px;border-radius:50%;background:${brandVars.color}"></span>
+              ${esc(desc.effectiveBrand)}
+            </span>
+            ${campChipText ? `<span class="font-mono-num" style="padding:2px 7px;border-radius:4px;background:var(--ui-surface-mid);font-size:11.5px;font-weight:600;color:var(--ui-text)">${esc(campChipText)}</span>` : ""}
+            ${desc.kind === "official" ? `<span class="font-mono-num" style="font-size:11.5px;color:var(--ui-text-muted)">#${desc.actNo}</span>` : ""}
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:#0f172a;line-height:1.35">${esc(desc.rawTitle)}</h3>
+          <h3 class="drawer-editorial-title">${esc(desc.rawTitle)}</h3>
         </div>
-        <button type="button" id="btnDrawerClose" class="drawer-close-btn" data-action="close-drawer" title="Cerrar panel">✕</button>
+        <button type="button" id="btnDrawerClose" class="btn-icon-square" data-action="close-drawer" title="Cerrar detalle">
+          <span class="material-symbols-outlined">close</span>
+        </button>
       </div>
 
-      <div class="cal-drawer-body" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:14px">
+      <div class="cal-drawer-body" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:16px">
+        <!-- Atributos Operativos (Estilo Stitch) -->
+        <div class="drawer-meta-grid">
+          <div class="drawer-meta-item">
+            <span class="lbl">Proceso</span>
+            <span class="val">${esc(desc.proceso || "General")}</span>
+          </div>
+          <div class="drawer-meta-item">
+            <span class="lbl">Área</span>
+            <span class="val">${esc(desc.area || "Equipo")}</span>
+          </div>
+          <div class="drawer-meta-item">
+            <span class="lbl">${desc.kind === "custom" && desc.calDays > 1 ? "Rango programado" : "Fecha programada"}</span>
+            <span class="val font-mono-num">${
+              desc.kind === "custom" && desc.calDays > 1
+                ? `${formatShortDayMonth(desc.startDateStr)} – ${formatHumanDate(desc.endDateStr)}`
+                : formatHumanDate(desc.effectiveDateStr)
+            }</span>
+            ${holidayOnTarget ? `<span class="col-holiday-badge" style="margin-top:3px">🇨🇴 ${esc(holidayOnTarget)}</span>` : ""}
+          </div>
+          <div class="drawer-meta-item">
+            <span class="lbl">Duración estimada</span>
+            <span class="val font-mono-num" style="color:var(--ui-primary)">${desc.dh} Días Hábiles</span>
+          </div>
+        </div>
+
+        ${
+          desc.isOverriddenDate
+            ? `<div class="drawer-diff-alert">
+                 <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:3px">
+                   <strong style="font-size:12px">Fecha reprogramada por el equipo</strong>
+                   <button type="button" class="link-btn" data-action="restore-excel-date" style="font-size:11.5px;color:#9a3412;font-weight:700">↺ Restaurar Excel (${esc(desc.baseDateStr)})</button>
+                 </div>
+                 <div class="font-mono-num" style="font-size:12px">Excel base: ${formatHumanDate(desc.baseDateStr)} → Actual: ${formatHumanDate(desc.effectiveDateStr)}</div>
+               </div>`
+            : ""
+        }
+
         <!-- Estado -->
         <section class="cal-drawer-section">
-          <label class="cal-drawer-label">Estado de la tarjeta</label>
+          <label class="cal-drawer-label">Estado de la actividad</label>
           <div class="cal-drawer-status-grid">${statusBtnsHtml}</div>
         </section>
 
@@ -3084,29 +3499,27 @@
         <section class="cal-drawer-section">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
             <label class="cal-drawer-label" style="margin:0">Responsables (${desc.owners.length})</label>
-            <button type="button" id="btnDrawerAssignMe" class="btn btn-sm ${isMeAssigned ? "btn-outline" : "btn-primary"}" data-action="toggle-assign-me">
-              ${isMeAssigned ? "✓ Asignado a mí" : "🙋‍♀️ Asignarme"}
+            <button type="button" id="btnDrawerAssignMe" class="btn btn-sm ${isMeAssigned ? "btn-outline" : "btn-primary"}" data-action="toggle-assign-me" style="${isMeAssigned ? "" : "background:var(--ui-primary)"}">
+              ${isMeAssigned ? "✓ Asignado a mí" : "+ Asignarme"}
             </button>
           </div>
           <div class="cal-drawer-owners-grid">${ownersGridHtml}</div>
         </section>
 
-        <!-- Fecha -->
+        <!-- Reprogramar Fecha (Habilitado para todo el equipo) -->
         <section class="cal-drawer-section">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
             <label class="cal-drawer-label" style="margin:0">
-              ${desc.kind === "official" ? "Fecha de entrega" : "Fecha de inicio"}
-              ${!admin ? ` <span style="font-size:10px;color:#64748b">🔒 Solo Admin</span>` : ""}
+              ${desc.kind === "official" ? "Mover fecha de entrega" : "Mover fecha de inicio"}
             </label>
-            ${desc.isOverriddenDate && admin ? `<button type="button" class="link-btn" data-action="restore-excel-date" style="font-size:11px">↺ Restaurar Excel (${esc(desc.baseDateStr)})</button>` : ""}
+            ${desc.kind === "custom" && desc.cev ? `<button type="button" class="link-btn" data-action="open-legacy-custom-modal" style="font-size:11.5px">Editar evento completo / recurrencia</button>` : ""}
           </div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <input type="date" id="drawerDateInput" class="filter-input" value="${esc(desc.effectiveDateStr)}" ${admin ? "" : "disabled"} style="width:auto" />
-            <span style="font-size:11px;color:#64748b">
-              ${desc.kind === "official" ? `Inicio: ${formatShortDayMonth(desc.startDateStr)} • ${desc.dh} DH` : `Fin: ${formatShortDayMonth(desc.endDateStr)} • ${desc.calDays} día(s)`}
+            <input type="date" id="drawerDateInput" class="filter-input font-mono-num" value="${esc(desc.effectiveDateStr)}" style="width:auto" />
+            <span class="font-mono-num" style="font-size:11.5px;color:var(--ui-text-secondary)">
+              ${desc.kind === "official" ? `Inicio est.: ${formatShortDayMonth(desc.startDateStr)}` : `Fin: ${formatShortDayMonth(desc.endDateStr)}`}
             </span>
           </div>
-          ${desc.kind === "custom" && desc.cev ? `<button type="button" class="link-btn" data-action="open-legacy-custom-modal" style="margin-top:6px;font-size:11px">✏️ Editar título, rango completo o etiqueta</button>` : ""}
         </section>
 
         <!-- Marca & Paleta de Color -->
@@ -3121,36 +3534,48 @@
             </div>
             ${desc.kind === "custom" ? `
             <div>
-              <label class="cal-drawer-label" for="drawerAreaInput" style="margin-bottom:4px">Área o Rol (personalizable para ${esc(desc.effectiveBrand)})</label>
-              <input type="text" id="drawerAreaInput" class="filter-input" value="${esc(desc.area || "")}" placeholder="Ej. Utilería y Modelos, Diseño Textil..." />
+              <label class="cal-drawer-label" for="drawerAreaInput" style="margin-bottom:4px">Área o Rol</label>
+              <input type="text" id="drawerAreaInput" class="filter-input" value="${esc(desc.area || "")}" placeholder="Ej. Diseño Textil, Utilería y Modelos..." />
             </div>` : ""}
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <label class="cal-drawer-label" style="margin:0">Color de tarjeta</label>
-                <button type="button" class="link-btn" data-action="use-brand-color" style="font-size:11px">🎨 Usar color de marca</button>
+                <label class="cal-drawer-label" style="margin:0">Color personalizado</label>
+                <button type="button" class="link-btn" data-action="use-brand-color" style="font-size:11px">Usar color de marca</button>
               </div>
               <div class="cal-drawer-palette" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">${paletteHtml}</div>
             </div>
           </div>
         </section>
 
-        <!-- Hilo de Notas -->
+        <!-- Notas y Comentarios -->
         <section class="cal-drawer-section">
-          <label class="cal-drawer-label">Notas y seguimiento (${desc.notes.length})</label>
+          <label class="cal-drawer-label">Notas y comentarios del equipo (${desc.notes.length})</label>
           <div id="drawerNotesList" class="cal-drawer-notes-list">${notesHtml}</div>
           <form id="drawerNoteForm" style="display:flex;gap:6px;margin-top:8px">
-            <input type="text" id="drawerNoteInput" class="filter-input" placeholder="Escribe una nota y presiona Enter..." required style="flex:1" />
-            <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+            <input type="text" id="drawerNoteInput" class="filter-input" placeholder="Escribe una nota operativa..." required style="flex:1" />
+            <button type="submit" class="btn btn-sm btn-primary" style="background:var(--ui-primary)">Agregar</button>
           </form>
         </section>
       </div>
     `;
 
     const footerHtml = `
-      <div class="cal-drawer-footer" style="border-top:1px solid #e2e8f0;padding:12px 16px;display:flex;gap:8px;flex-wrap:wrap;background:#f8fafc">
-        <button type="button" id="btnDrawerTeamsCite" class="btn btn-sm btn-primary" title="Crear reunión en Microsoft Teams con los responsables">📹 Citar en Teams</button>
-        <button type="button" id="btnDrawerTeamsChat" class="btn btn-sm btn-outline" title="Abrir chat en Microsoft Teams">💬 Chat Teams</button>
-        <button type="button" id="btnDrawerCardIcs" class="btn btn-sm btn-outline" title="Descargar evento de calendario (.ics)">📅 .ICS</button>
+      <div class="cal-drawer-footer" style="border-top:1px solid var(--ui-border);padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--ui-surface-low)">
+        <button type="button" class="btn-rail-secondary" data-action="duplicate-card" title="Crear una copia de este evento en esta u otras campañas">
+          <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
+          <span>Duplicar</span>
+        </button>
+        <button type="button" id="btnDrawerTeamsCite" class="btn-rail-secondary" title="Citar reunión en Microsoft Teams">
+          <span class="material-symbols-outlined" style="font-size:16px">videocam</span>
+          <span>Teams</span>
+        </button>
+        <button type="button" id="btnDrawerCardIcs" class="btn-rail-secondary" title="Exportar este hito a calendario (.ics)">
+          <span class="material-symbols-outlined" style="font-size:16px">event</span>
+          <span>.ICS</span>
+        </button>
+        <button type="button" class="btn-rail-primary" data-action="close-drawer" style="width:auto;margin-left:auto;padding:7px 16px">
+          Listo
+        </button>
       </div>
     `;
 
@@ -3226,6 +3651,28 @@
         }
         if (e.target.closest("[data-action='next-week']")) {
           nextWeek();
+          return;
+        }
+
+        const mobDayBtn = e.target.closest("[data-mobile-day]");
+        if (mobDayBtn) {
+          const dStr = mobDayBtn.getAttribute("data-mobile-day") || "";
+          mobileSelectedDateStr = mobileSelectedDateStr === dStr ? "" : dStr;
+          refreshCalendarImmediate();
+          return;
+        }
+
+        if (e.target.closest("[data-action='clear-mobile-day']")) {
+          mobileSelectedDateStr = "";
+          refreshCalendarImmediate();
+          return;
+        }
+
+        const dupBtn = e.target.closest(".cal-quick-duplicate-btn");
+        if (dupBtn) {
+          e.stopPropagation();
+          const key = dupBtn.getAttribute("data-card-key");
+          if (key) duplicateCard(key);
           return;
         }
 
@@ -3330,10 +3777,35 @@
         if (tt) tt.style.display = "none";
       });
 
-      // Delegated Admin-only Drag & Drop
+      // Helper para resolver la celda destino [data-date] en Mes (incluso sobre carriles multi-día), Semana y Agenda
+      function resolveDropTargetElement(e) {
+        const directDateEl = e.target.closest("[data-date]");
+        if (directDateEl) return directDateEl;
+
+        const customAgendaZone = e.target.closest("#agendaCustomDateDropZone");
+        if (customAgendaZone) return customAgendaZone;
+
+        const weekBlock = e.target.closest(".cal-v3-week-block");
+        if (weekBlock) {
+          const cells = weekBlock.querySelectorAll(".cal-v3-day-cell[data-date]");
+          if (cells.length === 7) {
+            const rect = weekBlock.getBoundingClientRect();
+            const relX = Math.max(0, Math.min(rect.width - 1, e.clientX - rect.left));
+            const colIdx = Math.min(6, Math.max(0, Math.floor((relX / rect.width) * 7)));
+            return cells[colIdx];
+          }
+        }
+        return null;
+      }
+
+      // Universal Drag & Drop para TODO el equipo (Mes, Semana y Agenda)
       calContainer.addEventListener("dragstart", (e) => {
+        if (e.target.closest("button, input, select, a")) {
+          e.preventDefault();
+          return;
+        }
         const cardEl = e.target.closest("[data-card-key]");
-        if (!cardEl || !isAdminSafe()) {
+        if (!cardEl) {
           e.preventDefault();
           return;
         }
@@ -3344,6 +3816,9 @@
         }
         draggedCardKey = key;
         cardEl.classList.add("is-dragging");
+        document.body.classList.add("dragging-active-card");
+        const tt = getEl("ganttTooltip", "tooltip");
+        if (tt) tt.style.display = "none";
         if (e.dataTransfer) {
           e.dataTransfer.effectAllowed = "move";
           e.dataTransfer.setData("text/plain", key);
@@ -3353,6 +3828,7 @@
       calContainer.addEventListener("dragend", (e) => {
         const cardEl = e.target.closest("[data-card-key]");
         if (cardEl) cardEl.classList.remove("is-dragging");
+        document.body.classList.remove("dragging-active-card");
         if (activeDropCell) {
           activeDropCell.classList.remove("is-drop-target");
           activeDropCell = null;
@@ -3361,8 +3837,8 @@
       });
 
       calContainer.addEventListener("dragover", (e) => {
-        if (!isAdminSafe() || !draggedCardKey) return;
-        const cell = e.target.closest("[data-date]");
+        if (!draggedCardKey) return;
+        const cell = resolveDropTargetElement(e);
         if (!cell) return;
         e.preventDefault();
         if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
@@ -3374,7 +3850,7 @@
       });
 
       calContainer.addEventListener("dragleave", (e) => {
-        const cell = e.target.closest("[data-date]");
+        const cell = resolveDropTargetElement(e);
         if (!cell) return;
         if (e.relatedTarget && cell.contains(e.relatedTarget)) return;
         cell.classList.remove("is-drop-target");
@@ -3382,14 +3858,18 @@
       });
 
       calContainer.addEventListener("drop", (e) => {
-        if (!isAdminSafe()) return;
-        const cell = e.target.closest("[data-date]");
+        const cell = resolveDropTargetElement(e);
         if (!cell) return;
         e.preventDefault();
         cell.classList.remove("is-drop-target");
+        document.body.classList.remove("dragging-active-card");
         activeDropCell = null;
 
-        const targetDate = cell.getAttribute("data-date");
+        let targetDate = cell.getAttribute("data-date");
+        if (!targetDate && cell.id === "agendaCustomDateDropZone") {
+          const inp = document.getElementById("agendaDropDateInput");
+          targetDate = inp ? inp.value : "";
+        }
         const key = draggedCardKey || e.dataTransfer?.getData("text/plain");
         draggedCardKey = null;
         if (key && targetDate) {
@@ -3523,6 +4003,10 @@
 
         if (e.target.closest("[data-action='close-drawer']")) {
           closeCardDetail();
+          return;
+        }
+        if (e.target.closest("[data-action='duplicate-card']")) {
+          duplicateCard(cardKey);
           return;
         }
         if (e.target.closest("#btnDrawerAssignMe") || e.target.closest("[data-action='toggle-assign-me']")) {
@@ -3748,6 +4232,12 @@
   function init() {
     ensureInitialized();
     bindSingleDelegatedEvents();
+    try {
+      const mq = window.matchMedia("(max-width: 767px)");
+      if (mq && typeof mq.addEventListener === "function") {
+        mq.addEventListener("change", () => refreshCalendarImmediate());
+      }
+    } catch (_) {}
     syncBrandsFromData(getRaw(), getCustomEventsSafe());
     if (getSb()) {
       hasSyncedCloud = true;
@@ -3791,6 +4281,8 @@
     getSubview: () => viewPrefs.subview,
     openCardDetail,
     closeCardDetail,
+    duplicateCard,
+    resetQuickViewFilters,
     getCardState,
     getEffectiveDate,
     openTeamsCitation,

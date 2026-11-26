@@ -184,7 +184,7 @@
     searchQuery: "",
     viewMode: "calendar", // Calendar is the main official view!
     calCurrentMonthIndex: 0,
-    calShowAllMonths: true,
+    calShowAllMonths: false, // 1 mes enfocado por defecto en escritorio
     forceIncludeToday: false,
     showCatalogInGantt: false,
     groupByProceso: true,
@@ -356,6 +356,40 @@
     els.evImportanceGroup = document.getElementById("evImportanceGroup");
     els.evNotesInput = document.getElementById("evNotesInput");
     els.btnDeleteCustomEvent = document.getElementById("btnDeleteCustomEvent");
+    els.evCampaignSelect = document.getElementById("evCampaignSelect");
+    els.evCampaignLabel = document.getElementById("evCampaignLabel");
+    els.evCampaignHint = document.getElementById("evCampaignHint");
+    els.evRecurrenceDetails = document.getElementById("evRecurrenceDetails");
+    els.evRecurrenceCountBadge = document.getElementById("evRecurrenceCountBadge");
+    els.evRecurrenceRows = document.getElementById("evRecurrenceRows");
+    els.btnAddRecurrenceRow = document.getElementById("btnAddRecurrenceRow");
+
+    // Cockpit, Export Popover, Excel Modal & Mobile PWA refs
+    els.btnToggleSidebar = document.getElementById("btnToggleSidebar");
+    els.btnResetAllFilters = document.getElementById("btnResetAllFilters");
+    els.btnExportMenuToggle = document.getElementById("btnExportMenuToggle");
+    els.exportMenuPopover = document.getElementById("exportMenuPopover");
+    els.excelUploadModal = document.getElementById("excelUploadModal");
+    els.excelDropZone = document.getElementById("excelDropZone");
+    els.btnCloseExcelModal = document.getElementById("btnCloseExcelModal");
+    els.btnCancelExcelModal = document.getElementById("btnCancelExcelModal");
+    els.uploadSuccessBanner = document.getElementById("uploadSuccessBanner");
+    els.uploadSuccessText = document.getElementById("uploadSuccessText");
+    els.btnDismissUploadBanner = document.getElementById("btnDismissUploadBanner");
+    els.kpiMonthDhText = document.getElementById("kpiMonthDhText");
+    els.kpiVisibleTotalCount = document.getElementById("kpiVisibleTotalCount");
+
+    els.btnMobileOpenFilters = document.getElementById("btnMobileOpenFilters");
+    els.btnMobileCloseSidebar = document.getElementById("btnMobileCloseSidebar");
+    els.mobileSidebarBackdrop = document.getElementById("mobileSidebarBackdrop");
+    els.mobileUserNameLabel = document.getElementById("mobileUserNameLabel");
+    els.mobileDhLabel = document.getElementById("mobileDhLabel");
+    els.btnMobileSwitchUser = document.getElementById("btnMobileSwitchUser");
+    els.btnMobileAddEvent = document.getElementById("btnMobileAddEvent");
+    els.btnMobileExport = document.getElementById("btnMobileExport");
+    els.btnMobileNotif = document.getElementById("btnMobileNotif");
+    els.mobileNotifBadge = document.getElementById("mobileNotifBadge");
+    els.mobileBottomNav = document.getElementById("mobileBottomNav");
 
     // Admin PINs Modal
     els.adminPinsModal = document.getElementById("adminPinsModal");
@@ -372,16 +406,8 @@
      ========================================================================== */
   function setCloudStatus(text, isError) {
     if (!els.cloudStatusBadge) return;
-    els.cloudStatusBadge.textContent = text;
-    if (isError) {
-      els.cloudStatusBadge.style.background = "rgba(244, 63, 94, 0.2)";
-      els.cloudStatusBadge.style.color = "#fda4af";
-      els.cloudStatusBadge.style.borderColor = "rgba(244, 63, 94, 0.4)";
-    } else {
-      els.cloudStatusBadge.style.background = "rgba(16, 185, 129, 0.18)";
-      els.cloudStatusBadge.style.color = "#6ee7b7";
-      els.cloudStatusBadge.style.borderColor = "rgba(16, 185, 129, 0.35)";
-    }
+    els.cloudStatusBadge.textContent = text.replace(/^☁️\s*/, "");
+    els.cloudStatusBadge.style.color = isError ? "#be123c" : "#43474e";
   }
 
   function updateCronogramaVersionBadge() {
@@ -802,9 +828,10 @@
 
     els.loginOverlay.style.display = "none";
     els.headerUserAvatar.textContent = meta.name.slice(0, 2).toUpperCase();
-    els.headerUserAvatar.style.background = "#000000";
+    els.headerUserAvatar.style.background = "#022448";
     els.headerUserAvatar.style.color = "#ffffff";
-    els.headerUserName.textContent = meta.name + (meta.role === "admin" ? " 👑" : "");
+    els.headerUserName.textContent = meta.name + (meta.role === "admin" ? " · Admin" : "");
+    if (els.mobileUserNameLabel) els.mobileUserNameLabel.textContent = meta.name;
 
     // Setup Admin Bar if DANI / ANDRE
     if (isUserAdmin(userId)) {
@@ -966,6 +993,100 @@
     if (!d) return "—";
     const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
     return `${String(d.getDate()).padStart(2, "0")} ${months[d.getMonth()]}`;
+  }
+
+  /* ==========================================================================
+     COLOMBIAN OFFICIAL HOLIDAYS ENGINE (18 FESTIVOS ANUALES — LEY EMILIANI)
+     Visualización oficial en todas las vistas sin alterar el conteo DH de Excel.
+     ========================================================================== */
+  const COLOMBIAN_HOLIDAYS_CACHE = new Map();
+
+  function computeEasterSunday(year) {
+    // Algoritmo gregoriano exacto de Meeus / Jones / Butcher
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month0 = Math.floor((h + l - 7 * m + 114) / 31) - 1;
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(year, month0, day, 12, 0, 0);
+  }
+
+  function shiftEmilianiToMonday(dt) {
+    const copy = new Date(dt.getTime());
+    const dow = copy.getDay(); // 0=Sun, 1=Mon ... 6=Sat
+    if (dow !== 1) {
+      const delta = (8 - dow) % 7;
+      copy.setDate(copy.getDate() + delta);
+    }
+    return copy;
+  }
+
+  function getColombianHolidaysForYear(year) {
+    const yr = Number(year);
+    if (!Number.isFinite(yr) || yr < 1980 || yr > 2100) return new Map();
+    if (COLOMBIAN_HOLIDAYS_CACHE.has(yr)) return COLOMBIAN_HOLIDAYS_CACHE.get(yr);
+
+    const map = new Map();
+    const putHoliday = (dt, name) => {
+      const ymd = formatYMD(dt);
+      if (!ymd) return;
+      map.set(ymd, map.has(ymd) ? `${map.get(ymd)} / ${name}` : name);
+    };
+
+    // 1. 6 Festivos Fijos
+    putHoliday(new Date(yr, 0, 1, 12, 0, 0), "Año Nuevo");
+    putHoliday(new Date(yr, 4, 1, 12, 0, 0), "Día del Trabajo");
+    putHoliday(new Date(yr, 6, 20, 12, 0, 0), "Día de la Independencia");
+    putHoliday(new Date(yr, 7, 7, 12, 0, 0), "Batalla de Boyacá");
+    putHoliday(new Date(yr, 11, 8, 12, 0, 0), "Inmaculada Concepción");
+    putHoliday(new Date(yr, 11, 25, 12, 0, 0), "Navidad");
+
+    // 2. 7 Festivos Ley Emiliani (se trasladan al lunes siguiente)
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 0, 6, 12, 0, 0)), "Reyes Magos");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 2, 19, 12, 0, 0)), "San José");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 5, 29, 12, 0, 0)), "San Pedro y San Pablo");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 7, 15, 12, 0, 0)), "Asunción de la Virgen");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 9, 12, 12, 0, 0)), "Día de la Raza");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 10, 1, 12, 0, 0)), "Todos los Santos");
+    putHoliday(shiftEmilianiToMonday(new Date(yr, 10, 11, 12, 0, 0)), "Independencia de Cartagena");
+
+    // 3. 5 Festivos Móviles respecto al Domingo de Pascua
+    const easter = computeEasterSunday(yr);
+    putHoliday(addDays(easter, -3), "Jueves Santo");
+    putHoliday(addDays(easter, -2), "Viernes Santo");
+    putHoliday(addDays(easter, 43), "Ascensión del Señor");
+    putHoliday(addDays(easter, 64), "Corpus Christi");
+    putHoliday(addDays(easter, 71), "Sagrado Corazón");
+
+    COLOMBIAN_HOLIDAYS_CACHE.set(yr, map);
+    return map;
+  }
+
+  function getColombianHoliday(dateStr) {
+    if (!dateStr || typeof dateStr !== "string" || dateStr.length < 10) return null;
+    const yr = parseInt(dateStr.slice(0, 4), 10);
+    if (!yr) return null;
+    const map = getColombianHolidaysForYear(yr);
+    return map.get(dateStr.slice(0, 10)) || null;
+  }
+
+  function countWeekdaysInMonth(year, month0) {
+    const lastDay = new Date(year, month0 + 1, 0).getDate();
+    let count = 0;
+    for (let d = 1; d <= lastDay; d++) {
+      const dow = new Date(year, month0, d).getDay();
+      if (dow !== 0 && dow !== 6) count++;
+    }
+    return count;
   }
 
   function subtractBusinessDays(endDateStr, dh) {
@@ -1657,10 +1778,13 @@
       }
 
       if (els.btnResetData) els.btnResetData.style.display = "inline-flex";
-      els.statusBadge.textContent = `📂 Excel activo: ${file.name} (${parsed.activities.length} act. • ${validDatesCount} fechas)`;
-      els.statusBadge.style.background = "#059669";
-      els.statusBadge.style.color = "#ffffff";
+      els.statusBadge.textContent = `${parsed.activities.length} act. · ${validDatesCount} fechas`;
       updateCronogramaVersionBadge();
+      if (els.excelUploadModal) els.excelUploadModal.style.display = "none";
+      if (els.uploadSuccessBanner && els.uploadSuccessText) {
+        els.uploadSuccessText.textContent = `Versión "${file.name}" cargada correctamente (${parsed.activities.length} actividades sincronizadas).`;
+        els.uploadSuccessBanner.style.display = "flex";
+      }
 
       if (window.CalendarV2 && typeof window.CalendarV2.syncBrandsFromData === "function") {
         window.CalendarV2.syncBrandsFromData(rawData, customEvents);
@@ -2571,8 +2695,21 @@
 
       if (q) {
         const meta = parseCustomEventMeta(ev);
-        const text = `${ev.title || ""} ${ev.area || ""} ${ev.owner_user || ""} ${meta.tag || ""} ${meta.cleanNotes || ""}`.toLowerCase();
+        const text = `${ev.title || ""} ${ev.area || ""} ${ev.owner_user || ""} ${meta.tag || ""} ${meta.campaignLabel || ""} ${meta.cleanNotes || ""}`.toLowerCase();
         if (!text.includes(q)) return false;
+      }
+
+      // Si el evento tiene asociada una campaña oficial ADV_... y el usuario filtró campañas específicas, respetar selección
+      const metaCamp = parseCustomEventMeta(ev);
+      if (
+        metaCamp.campaignId &&
+        metaCamp.campaignId.startsWith("ADV_") &&
+        state.selectedCampaignIds.size > 0 &&
+        rawData &&
+        Array.isArray(rawData.campaigns) &&
+        state.selectedCampaignIds.size < getActiveCampaigns().length
+      ) {
+        if (!state.selectedCampaignIds.has(metaCamp.campaignId)) return false;
       }
       return true;
     });
@@ -2582,6 +2719,8 @@
     const low = String(marca || "").trim().toLowerCase();
     if (low === "livva") return "Livva";
     if (low === "azzorti") return "Azzorti";
+    if (low === "nativa") return "Nativa";
+    if (low === "ag lab" || low === "aglab") return "AgLab";
     return "AzzLivv";
   }
 
@@ -2591,10 +2730,17 @@
       : (marca || "Azz Livv");
     if (window.CalendarV2 && typeof window.CalendarV2.getBrandStyleVars === "function") {
       const vars = window.CalendarV2.getBrandStyleVars(label);
-      return `<span class="badge-marca" style="background:${vars.bg};color:${vars.text};border:1px solid ${vars.border}">${escapeHtml(label)}</span>`;
+      return `<span class="badge-marca" style="display:inline-flex;align-items:center;gap:5px;padding:2px 7px;border-radius:4px;font-weight:600;font-size:11.5px;background:${vars.bg};color:${vars.text};border:1px solid ${vars.border}"><span style="width:6px;height:6px;border-radius:50%;background:${vars.color}"></span>${escapeHtml(label)}</span>`;
     }
     const bClass = badgeClassForBrand(label);
     return `<span class="badge-marca badge-${bClass}">${escapeHtml(label)}</span>`;
+  }
+
+  function syncMobileBottomNavActive() {
+    if (!els.mobileBottomNav) return;
+    els.mobileBottomNav.querySelectorAll("[data-mobile-view]").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-mobile-view") === state.viewMode);
+    });
   }
 
   /* ==========================================================================
@@ -2608,10 +2754,14 @@
     const visibleCustom = getVisibleCustomEvents();
 
     updateUnifiedFilterBadge();
+    syncMobileBottomNavActive();
 
     // Update KPIs
     els.kpiActivities.innerHTML = `Cronograma activas: <strong>${selectedOfficial.length}</strong>`;
     els.kpiCustomEvents.innerHTML = `Eventos extra: <strong>${visibleCustom.length}</strong>`;
+    if (els.kpiVisibleTotalCount) {
+      els.kpiVisibleTotalCount.textContent = String(selectedOfficial.length + visibleCustom.length);
+    }
 
     if (state.viewMode === "calendar") {
       els.calendarWrapper.style.display = "block";
@@ -3207,10 +3357,12 @@
   }
 
   function parseCustomEventMeta(cev) {
-    if (!cev) return { tag: "#Entrega", importance: "medium", cleanNotes: "" };
+    if (!cev) return { tag: "#Entrega", importance: "medium", campaignId: "", campaignLabel: "", cleanNotes: "" };
 
     let tag = cev.tag || "";
     let importance = cev.importance || "medium";
+    let campaignId = cev.campaign_id || "";
+    let campaignLabel = cev.campaign_label || "";
     let rawNotes = cev.notes || "";
     let cleanNotes = rawNotes;
 
@@ -3220,6 +3372,8 @@
         const parsed = JSON.parse(metaMatch[1]);
         if (parsed.tag) tag = parsed.tag;
         if (parsed.importance) importance = parsed.importance;
+        if (parsed.campaignId) campaignId = String(parsed.campaignId);
+        if (parsed.campaignLabel) campaignLabel = String(parsed.campaignLabel);
         cleanNotes = rawNotes.replace(/<!--meta:[\s\S]*?-->/, "").trim();
       } catch (e) {}
     } else {
@@ -3245,18 +3399,256 @@
     return {
       tag: normalizeHashtag(tag) || "#General",
       importance: (importance === "high" || importance === "low") ? importance : "medium",
+      campaignId: campaignId || "",
+      campaignLabel: campaignLabel || "",
       cleanNotes,
     };
   }
 
-  function serializeCustomEventNotes(cleanNotes, tag, importance) {
+  function serializeCustomEventNotes(cleanNotes, tag, importance, campaignId, campaignLabel) {
     const metaObj = {};
     if (tag) metaObj.tag = normalizeHashtag(tag);
     if (importance) metaObj.importance = importance;
+    if (campaignId) metaObj.campaignId = String(campaignId);
+    if (campaignLabel) metaObj.campaignLabel = String(campaignLabel);
 
     const hasMeta = Object.keys(metaObj).length > 0;
     const metaComment = hasMeta ? `\n<!--meta:${JSON.stringify(metaObj)}-->` : "";
     return (cleanNotes || "").trim() + metaComment;
+  }
+
+  const MONTH_NAMES_FULL_ES = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+  ];
+
+  function formatAzzortiCleanShort(shortLabel) {
+    const s = String(shortLabel || "").trim();
+    const mCross = s.match(/^C(\d+)\s*\(\d{4}\)\s*-\s*C(\d+)\s*\((\d{4})\)$/i);
+    if (mCross) return `C${mCross[1]}-${mCross[2]} ${mCross[3]}`;
+    return s;
+  }
+
+  function formatLivvaCleanShort(camp) {
+    if (!camp || !camp.nalLivva) return "";
+    const code = String(camp.nalLivva).trim();
+    if (/^\d{6}$/.test(code)) {
+      const yr = code.slice(0, 4);
+      const num = parseInt(code.slice(4), 10);
+      return `C${num} ${yr}`;
+    }
+    return String(camp.livvaShortLabel || "").replace(/^Livva\s+/i, "").trim();
+  }
+
+  function getBrandCampaignChoices(brandName) {
+    const bNorm = String(brandName || "").trim().toLowerCase();
+    const allCamps = (rawData && Array.isArray(rawData.campaigns)) ? rawData.campaigns : [];
+
+    // Meses calendario para Nativa (y grupo auxiliar en marcas compartidas)
+    const monthOptions = [];
+    for (let yr = 2026; yr <= 2029; yr++) {
+      for (let m = 0; m < 12; m++) {
+        if (yr === 2026 && m < 7) continue; // Desde Ago 2026 en adelante
+        const ym = `${yr}-${String(m + 1).padStart(2, "0")}`;
+        monthOptions.push({
+          value: `MES_${ym}`,
+          label: `${MONTH_NAMES_FULL_ES[m]} ${yr}`,
+          shortBadge: `${MONTH_NAMES_FULL_ES[m]} ${yr}`,
+          group: `Meses ${yr}`,
+        });
+      }
+    }
+
+    if (bNorm === "nativa") {
+      return {
+        hint: "Nativa por meses",
+        placeholder: "Sin mes específico (General)",
+        items: monthOptions,
+      };
+    }
+
+    if (bNorm === "livva") {
+      const livvaItems = allCamps
+        .filter((c) => Boolean(c.nalLivva))
+        .map((c) => {
+          const clean = formatLivvaCleanShort(c); // ej. "C1 2027"
+          const cOnly = clean.split(" ")[0] || clean; // ej. "C1"
+          return {
+            value: c.id,
+            label: `${clean} (${c.livvaFullLabel || `NAL ${c.nalLivva}`})`,
+            shortBadge: clean || cOnly,
+            group: `Livva ${clean.split(" ")[1] || ""}`.trim(),
+          };
+        });
+      return {
+        hint: "Campañas Livva (C1, C2...)",
+        placeholder: "General (Sin campaña Livva)",
+        items: livvaItems,
+      };
+    }
+
+    if (bNorm === "azzorti") {
+      const azzItems = allCamps.map((c) => {
+        const clean = formatAzzortiCleanShort(c.shortLabel); // ej. "C18-3 2027" o "C1-4 2027"
+        return {
+          value: c.id,
+          label: `${clean}`,
+          shortBadge: clean.replace(/\s+202\d$/, ""),
+          group: `Azzorti ${c.adv ? c.adv.slice(0, 4) : ""}`.trim(),
+        };
+      });
+      return {
+        hint: "Campañas Azzorti (C18-3, C1-4...)",
+        placeholder: "General (Sin campaña Azzorti)",
+        items: azzItems,
+      };
+    }
+
+    // AG LAB, Azz Livv o marcas dinámicas: mostrar campañas combinadas + meses
+    const combinedItems = allCamps.map((c) => {
+      const azzClean = formatAzzortiCleanShort(c.shortLabel);
+      const livClean = formatLivvaCleanShort(c);
+      const label = livClean ? `${azzClean} · Livva ${livClean}` : azzClean;
+      const badge = livClean ? `${azzClean.split(" ")[0]} · Liv ${livClean.split(" ")[0]}` : azzClean.split(" ")[0];
+      return {
+        value: c.id,
+        label,
+        shortBadge: badge,
+        group: "Campañas Cronograma (Azzorti / Livva)",
+      };
+    });
+    const extraMonths = monthOptions.map((m) => ({ ...m, group: "Por Meses (Nativa / Mensual)" }));
+    return {
+      hint: "Campaña o Mes",
+      placeholder: "General (Sin campaña específica)",
+      items: [...combinedItems, ...extraMonths],
+    };
+  }
+
+  function populateCampaignSelectElement(selectEl, brandName, selectedValue, refDateStr) {
+    if (!selectEl) return;
+    const cfg = getBrandCampaignChoices(brandName);
+    if (selectEl === els.evCampaignSelect && els.evCampaignHint) {
+      els.evCampaignHint.textContent = cfg.hint;
+    }
+
+    const groups = new Map();
+    for (const it of cfg.items) {
+      const g = it.group || "Campañas";
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+    }
+
+    const html = [`<option value="" data-badge="">${escapeHtml(cfg.placeholder)}</option>`];
+    groups.forEach((arr, gName) => {
+      html.push(`<optgroup label="${escapeHtml(gName)}">`);
+      for (const it of arr) {
+        html.push(
+          `<option value="${escapeHtml(it.value)}" data-badge="${escapeHtml(it.shortBadge)}">${escapeHtml(it.label)}</option>`
+        );
+      }
+      html.push(`</optgroup>`);
+    });
+    selectEl.innerHTML = html.join("");
+
+    let targetVal = selectedValue || "";
+    const bNorm = String(brandName || "").trim().toLowerCase();
+    if (!targetVal && bNorm === "nativa" && refDateStr && refDateStr.length >= 7) {
+      targetVal = `MES_${refDateStr.slice(0, 7)}`;
+    }
+    if (targetVal && Array.from(selectEl.options).some((o) => o.value === targetVal)) {
+      selectEl.value = targetVal;
+    } else {
+      selectEl.value = "";
+    }
+  }
+
+  function resolveSelectedCampaignMeta(selectEl, brandName) {
+    if (!selectEl || !selectEl.value) return { campaignId: "", campaignLabel: "" };
+    const val = selectEl.value;
+    const opt = selectEl.selectedOptions && selectEl.selectedOptions[0];
+    const badge = (opt && opt.getAttribute("data-badge")) || (opt ? opt.textContent : val);
+    return { campaignId: val, campaignLabel: badge.trim() };
+  }
+
+  function updateRecurrenceCountBadge() {
+    if (!els.evRecurrenceCountBadge || !els.evRecurrenceRows) return;
+    const n = els.evRecurrenceRows.querySelectorAll(".ev-recurrence-row").length;
+    els.evRecurrenceCountBadge.textContent = `${n} extra`;
+  }
+
+  function clearRecurrenceRows() {
+    if (els.evRecurrenceRows) els.evRecurrenceRows.innerHTML = "";
+    if (els.evRecurrenceDetails) els.evRecurrenceDetails.open = false;
+    updateRecurrenceCountBadge();
+  }
+
+  function addRecurrenceRow(prefill) {
+    if (!els.evRecurrenceRows) return;
+    const brandName = els.evMarcaInput ? els.evMarcaInput.value : "AG LAB";
+    const mainStart = els.evDateInput ? els.evDateInput.value : TODAY_STR;
+    const mainEnd = els.evEndDateInput ? els.evEndDateInput.value : mainStart;
+    const mainSpanDays = Math.max(0, daysBetween(parseYMD(mainStart) || new Date(), parseYMD(mainEnd) || new Date()));
+
+    const existingRows = els.evRecurrenceRows.querySelectorAll(".ev-recurrence-row");
+    let suggestedStart = prefill?.startStr || "";
+    if (!suggestedStart) {
+      const refBaseStr = existingRows.length > 0
+        ? (existingRows[existingRows.length - 1].querySelector(".rec-start-input")?.value || mainStart)
+        : mainStart;
+      const baseDt = parseYMD(refBaseStr) || new Date();
+      if (String(brandName).trim().toLowerCase() === "nativa") {
+        const nextMo = new Date(baseDt.getFullYear(), baseDt.getMonth() + 1, baseDt.getDate(), 12, 0, 0);
+        suggestedStart = formatYMD(nextMo);
+      } else {
+        suggestedStart = formatYMD(addDays(baseDt, 21));
+      }
+    }
+    const suggestedEnd = prefill?.endStr || formatYMD(addDays(parseYMD(suggestedStart) || new Date(), mainSpanDays));
+
+    const row = document.createElement("div");
+    row.className = "ev-recurrence-row";
+    row.innerHTML = `
+      <input type="date" class="filter-input font-mono-num rec-start-input" value="${escapeHtml(suggestedStart)}" title="Fecha inicio repetición" required />
+      <input type="date" class="filter-input font-mono-num rec-end-input" value="${escapeHtml(suggestedEnd)}" min="${escapeHtml(suggestedStart)}" title="Fecha fin repetición" required />
+      <select class="filter-select rec-campaign-select" title="Campaña o mes de esta fecha"></select>
+      <button type="button" class="btn-icon-square rec-remove-btn" style="width:30px;height:30px" title="Quitar repetición">
+        <span class="material-symbols-outlined" style="font-size:16px">close</span>
+      </button>
+    `;
+
+    const startInp = row.querySelector(".rec-start-input");
+    const endInp = row.querySelector(".rec-end-input");
+    const campSel = row.querySelector(".rec-campaign-select");
+    const delBtn = row.querySelector(".rec-remove-btn");
+
+    populateCampaignSelectElement(campSel, brandName, prefill?.campaignId || "", suggestedStart);
+
+    startInp.addEventListener("change", () => {
+      const sVal = startInp.value;
+      if (!sVal) return;
+      endInp.min = sVal;
+      const curMainStart = parseYMD(els.evDateInput?.value || sVal);
+      const curMainEnd = parseYMD(els.evEndDateInput?.value || sVal);
+      const span = curMainStart && curMainEnd ? Math.max(0, daysBetween(curMainStart, curMainEnd)) : 0;
+      const newEndDt = addDays(parseYMD(sVal), span);
+      endInp.value = formatYMD(newEndDt);
+      if (String(els.evMarcaInput?.value || "").trim().toLowerCase() === "nativa") {
+        const autoMo = `MES_${sVal.slice(0, 7)}`;
+        if (Array.from(campSel.options).some((o) => o.value === autoMo)) {
+          campSel.value = autoMo;
+        }
+      }
+    });
+
+    delBtn.addEventListener("click", () => {
+      row.remove();
+      updateRecurrenceCountBadge();
+    });
+
+    els.evRecurrenceRows.appendChild(row);
+    if (els.evRecurrenceDetails) els.evRecurrenceDetails.open = true;
+    updateRecurrenceCountBadge();
   }
 
   function loadSavedHashtags() {
@@ -3573,12 +3965,13 @@
   function openCustomEventModal(existingEvent, defaultDateStr) {
     loadSavedHashtags();
     loadSavedBrandAreas();
+    clearRecurrenceRows();
     if (window.CalendarV2 && typeof window.CalendarV2.renderBrandControls === "function") {
       window.CalendarV2.renderBrandControls(true);
     }
 
     if (existingEvent) {
-      els.customModalTitle.textContent = "✏️ Editar Evento Adicional";
+      els.customModalTitle.textContent = "Editar Evento del Calendario";
       els.evIdInput.value = existingEvent.id;
       els.evTitleInput.value = existingEvent.title || "";
       const rng = getCustomEventRange(existingEvent);
@@ -3604,6 +3997,7 @@
       modalSelectedOwners = new Set(getCustomEventOwners(existingEvent));
 
       const meta = parseCustomEventMeta(existingEvent);
+      populateCampaignSelectElement(els.evCampaignSelect, normBrand, meta.campaignId || "", rng.startStr || TODAY_STR);
       if (els.evTagInput) els.evTagInput.value = meta.tag.replace(/^#/, "");
       updateModalHashtagDisplay(meta.tag);
       renderSavedHashtagsList(meta.tag);
@@ -3614,7 +4008,7 @@
       els.evNotesInput.value = meta.cleanNotes || "";
       els.btnDeleteCustomEvent.style.display = "inline-flex";
     } else {
-      els.customModalTitle.textContent = "✨ Agregar Nuevo Evento al Calendario";
+      els.customModalTitle.textContent = "Agregar Nuevo Evento al Calendario";
       els.evIdInput.value = "";
       els.evTitleInput.value = "";
       const defDate = defaultDateStr || TODAY_STR;
@@ -3630,6 +4024,9 @@
         }
       }
       const chosenBrand = els.evMarcaInput ? els.evMarcaInput.value : preferredBrand;
+      const singleSelectedCampId = state.selectedCampaignIds.size === 1 ? Array.from(state.selectedCampaignIds)[0] : "";
+      populateCampaignSelectElement(els.evCampaignSelect, chosenBrand, singleSelectedCampId, defDate);
+
       const brandAreas = getAreasForBrand(chosenBrand);
       const defArea = brandAreas[0] || "General";
       if (els.evAreaInput) els.evAreaInput.value = defArea;
@@ -3659,6 +4056,52 @@
     }, 50);
   }
 
+  function openDuplicateEventModal(prefill) {
+    if (!prefill) return;
+    openCustomEventModal(null, prefill.startStr || TODAY_STR);
+    els.customModalTitle.textContent = "Duplicar Evento en el Calendario";
+    els.evIdInput.value = "";
+    els.evTitleInput.value = prefill.title || "";
+    const sDate = prefill.startStr || TODAY_STR;
+    const eDate = prefill.endStr || sDate;
+    els.evDateInput.value = sDate;
+    els.evEndDateInput.value = eDate;
+
+    const normBrand = normalizeBrandKeyForAreas(prefill.marca || "AG LAB");
+    if (els.evMarcaInput) {
+      if (!Array.from(els.evMarcaInput.options).some((o) => o.value === normBrand)) {
+        const opt = document.createElement("option");
+        opt.value = normBrand;
+        opt.textContent = normBrand;
+        els.evMarcaInput.appendChild(opt);
+      }
+      els.evMarcaInput.value = normBrand;
+    }
+
+    populateCampaignSelectElement(els.evCampaignSelect, normBrand, prefill.campaignId || "", sDate);
+
+    const evArea = prefill.area || "General";
+    if (els.evAreaInput) els.evAreaInput.value = evArea;
+    updateModalAreaDisplay(evArea);
+    renderSavedBrandAreasList(normBrand, evArea);
+
+    if (Array.isArray(prefill.owners) && prefill.owners.length > 0) {
+      modalSelectedOwners = new Set(prefill.owners);
+    }
+    renderModalOwnersGrid();
+
+    const tag = prefill.tag || "#Entrega";
+    if (els.evTagInput) els.evTagInput.value = tag.replace(/^#/, "");
+    updateModalHashtagDisplay(tag);
+    renderSavedHashtagsList(tag);
+
+    selectModalColor(prefill.category || "emerald");
+    selectModalImportance(prefill.importance || "medium");
+    els.evNotesInput.value = prefill.cleanNotes || "";
+    els.btnDeleteCustomEvent.style.display = "none";
+    updateModalRangeSummary();
+  }
+
   async function handleSaveCustomEvent(e) {
     e.preventDefault();
     const id = els.evIdInput.value.trim();
@@ -3682,19 +4125,28 @@
     const finalTag = normalizeHashtag(rawTag || "General");
     const importance = els.evImportanceInput ? els.evImportanceInput.value || "medium" : "medium";
     const cleanNotes = els.evNotesInput ? els.evNotesInput.value.trim() : "";
-    const serializedNotes = serializeCustomEventNotes(cleanNotes, finalTag, importance);
-
-    // Guardar el hashtag para futuros usos
-    if (finalTag && finalTag !== "#General") {
-      saveHashtagToCatalog(finalTag);
-    }
 
     const chosenBrand = els.evMarcaInput ? els.evMarcaInput.value : "Azz Livv";
     const cleanArea = (els.evAreaInput ? els.evAreaInput.value.trim() : "") || "General";
+    const mainCampMeta = resolveSelectedCampaignMeta(els.evCampaignSelect, chosenBrand);
+    const serializedNotes = serializeCustomEventNotes(
+      cleanNotes,
+      finalTag,
+      importance,
+      mainCampMeta.campaignId,
+      mainCampMeta.campaignLabel
+    );
+
+    if (finalTag && finalTag !== "#General") {
+      saveHashtagToCatalog(finalTag);
+    }
     saveAreaForBrand(chosenBrand, cleanArea);
 
-    const payload = {
-      title: els.evTitleInput.value.trim(),
+    const titleVal = els.evTitleInput.value.trim();
+    if (!titleVal || !startStr) return;
+
+    const basePayload = {
+      title: titleVal,
       event_date: encodedEventDate,
       dh: bizDays,
       area: cleanArea,
@@ -3705,56 +4157,134 @@
       created_by: state.loggedInUserId || "DANI",
     };
 
-    if (!payload.title || !startStr) return;
+    // Recolectar repeticiones manuales del sub-menú "Evento recurrente"
+    const extraPayloads = [];
+    const autoEnableCampIds = [];
+    if (mainCampMeta.campaignId && mainCampMeta.campaignId.startsWith("ADV_")) {
+      autoEnableCampIds.push(mainCampMeta.campaignId);
+    }
+
+    if (els.evRecurrenceRows) {
+      const recRows = els.evRecurrenceRows.querySelectorAll(".ev-recurrence-row");
+      recRows.forEach((row) => {
+        const rStart = row.querySelector(".rec-start-input")?.value || "";
+        let rEnd = row.querySelector(".rec-end-input")?.value || rStart;
+        const rSel = row.querySelector(".rec-campaign-select");
+        if (!rStart) return;
+        if (rEnd < rStart) rEnd = rStart;
+        const rsDt = parseYMD(rStart);
+        const reDt = parseYMD(rEnd) || rsDt;
+        const rDh = rsDt && reDt ? countBusinessDaysBetween(rsDt, reDt) : 1;
+        const rEncodedDate = rStart === rEnd ? rStart : `${rStart}|${rEnd}`;
+        const rCampMeta = resolveSelectedCampaignMeta(rSel, chosenBrand);
+        if (rCampMeta.campaignId && rCampMeta.campaignId.startsWith("ADV_")) {
+          autoEnableCampIds.push(rCampMeta.campaignId);
+        }
+        const rNotes = serializeCustomEventNotes(
+          cleanNotes,
+          finalTag,
+          importance,
+          rCampMeta.campaignId,
+          rCampMeta.campaignLabel
+        );
+        extraPayloads.push({
+          title: titleVal,
+          event_date: rEncodedDate,
+          dh: rDh,
+          area: cleanArea,
+          owner_user: encodedOwners,
+          marca: chosenBrand,
+          category: selectedColor,
+          notes: rNotes,
+          created_by: state.loggedInUserId || "DANI",
+        });
+      });
+    }
+
+    // Garantizar que las campañas elegidas queden activas en el filtro para que los eventos creados nunca queden ocultos
+    for (const cid of autoEnableCampIds) {
+      if (cid.includes("2026") && !state.include2026) {
+        state.include2026 = true;
+        if (els.chkInclude2026) els.chkInclude2026.checked = true;
+      }
+      state.selectedCampaignIds.add(cid);
+    }
 
     els.customEventModal.style.display = "none";
-    setCloudStatus("☁️ Guardando evento en la nube...", false);
+    setCloudStatus("Guardando en la nube...", false);
 
     try {
       if (id) {
-        // Update existing
         const idx = customEvents.findIndex((x) => String(x.id) === String(id));
-        if (idx !== -1) customEvents[idx] = { ...customEvents[idx], ...payload };
+        if (idx !== -1) customEvents[idx] = { ...customEvents[idx], ...basePayload };
 
         if (sbClient) {
           const { data, error } = await sbClient
             .from("custom_events")
-            .update(payload)
+            .update(basePayload)
             .eq("id", id)
             .select()
             .single();
           if (!error && data && idx !== -1) customEvents[idx] = data;
         }
+
+        // Si al editar también agregó repeticiones nuevas en "Evento recurrente", insertarlas en lote
+        if (extraPayloads.length > 0) {
+          const tempList = extraPayloads.map((p, i) => ({
+            id: crypto.randomUUID ? crypto.randomUUID() : `local-${Date.now()}-${i}`,
+            ...p,
+            created_at: new Date().toISOString(),
+          }));
+          customEvents.push(...tempList);
+          if (sbClient) {
+            const { data: insertedRows, error: insErr } = await sbClient
+              .from("custom_events")
+              .insert(extraPayloads)
+              .select();
+            if (!insErr && Array.isArray(insertedRows)) {
+              insertedRows.forEach((srvRow, i) => {
+                const tIdx = customEvents.findIndex((x) => x.id === tempList[i]?.id);
+                if (tIdx !== -1) customEvents[tIdx] = srvRow;
+              });
+            }
+          }
+        }
       } else {
-        // Insert new
-        const tempId = crypto.randomUUID ? crypto.randomUUID() : `local-${Date.now()}`;
-        const newEv = { id: tempId, ...payload, created_at: new Date().toISOString() };
-        customEvents.push(newEv);
+        const allToInsert = [basePayload, ...extraPayloads];
+        const tempList = allToInsert.map((p, i) => ({
+          id: crypto.randomUUID ? crypto.randomUUID() : `local-${Date.now()}-${i}`,
+          ...p,
+          created_at: new Date().toISOString(),
+        }));
+        customEvents.push(...tempList);
 
         if (sbClient) {
-          const { data, error } = await sbClient
+          const { data: insertedRows, error } = await sbClient
             .from("custom_events")
-            .insert([payload])
-            .select()
-            .single();
-          if (!error && data) {
-            const idx = customEvents.findIndex((x) => x.id === tempId);
-            if (idx !== -1) customEvents[idx] = data;
+            .insert(allToInsert)
+            .select();
+          if (!error && Array.isArray(insertedRows)) {
+            insertedRows.forEach((srvRow, i) => {
+              const tIdx = customEvents.findIndex((x) => x.id === tempList[i]?.id);
+              if (tIdx !== -1) customEvents[tIdx] = srvRow;
+            });
           }
         }
       }
 
       saveLocalCustomEventsCache();
-      setCloudStatus("☁️ Evento guardado y sincronizado", false);
+      const totalSaved = (id ? 1 : 1) + extraPayloads.length;
+      setCloudStatus(totalSaved > 1 ? `${totalSaved} eventos sincronizados` : "Evento sincronizado", false);
       if (window.CalendarV2 && typeof window.CalendarV2.syncBrandsFromData === "function") {
         window.CalendarV2.syncBrandsFromData(rawData, customEvents);
       }
       populateFilterControls();
+      scheduleSavePreferences();
       renderAll();
     } catch (err) {
       console.warn("Error guardando evento en Supabase:", err);
       saveLocalCustomEventsCache();
-      setCloudStatus("☁️ Evento guardado localmente", true);
+      setCloudStatus("Evento guardado localmente", true);
       renderAll();
     }
   }
@@ -3958,10 +4488,20 @@
     if (state.zoom === "day") {
       for (let i = 0; i < totalDays; i++) {
         const d = addDays(minDate, i);
+        const ymd = formatYMD(d);
         const dow = d.getDay();
         const isWknd = dow === 0 || dow === 6;
+        const isTodayTick = ymd === TODAY_STR;
+        const holidayName = getColombianHoliday(ymd);
+        const tickCls = isTodayTick
+          ? "is-today-tick"
+          : holidayName
+            ? "is-holiday-tick"
+            : "";
+        const bgStyle = !isTodayTick && !holidayName && isWknd ? "background:var(--wknd-header-bg);color:var(--wknd-text);" : "";
+        const titleAttr = holidayName ? ` title="🇨🇴 Festivo Colombia: ${escapeHtml(holidayName)}"` : "";
         ticksHtml.push(
-          `<div class="timeline-tick-cell" style="width:${pxPerDay}px;${isWknd ? "background:#e2e8f0" : ""}">${d.getDate()}</div>`
+          `<div class="timeline-tick-cell ${tickCls}" style="width:${pxPerDay}px;${bgStyle}"${titleAttr}>${d.getDate()}</div>`
         );
       }
     } else if (state.zoom === "week") {
@@ -4057,14 +4597,24 @@
 
         const rowBarsHtml = [];
         const isMulti = campsToPlot.length > 1;
+        const brandCodeMap = { Azzorti: "AZZ", Livva: "LIV", Nativa: "NAT", AgLab: "AGL", AzzLivv: "AZL" };
+        const shortCode = brandCodeMap[bClass] || "AGL";
         for (const b of bars) {
           const startOffset = daysBetween(minDate, b.startDt);
           const durDays = Math.max(1, daysBetween(b.startDt, b.endDt) + 1);
           const leftPx = Math.round(startOffset * pxPerDay);
-          const widthPx = Math.max(14, Math.round(durDays * pxPerDay));
-          const insideText = isMulti ? b.camp.shortLabel : widthPx > 95 ? `${b.endStr}` : "";
+          const widthPx = Math.max(18, Math.round(durDays * pxPerDay));
+          const cardKey = isCustom
+            ? `CUST_${rowObj.item.custom.id}`
+            : `ACT_${act.no}__${b.camp.id}`;
+          let insideText = "";
+          if (widthPx > 140) {
+            insideText = `<span>${shortCode} · ${b.dh} DH</span><span style="opacity:0.8">${formatShortDayMonth(b.startStr)}–${formatShortDayMonth(b.endStr)}</span>`;
+          } else if (widthPx > 68) {
+            insideText = `<span>${isMulti ? escapeHtml(b.camp.shortLabel) : `${b.dh} DH`}</span>`;
+          }
           rowBarsHtml.push(
-            `<div class="gantt-bar bar-${bClass}" style="left:${leftPx}px;width:${widthPx}px">${insideText}</div>`
+            `<div class="gantt-bar bar-${bClass}" data-card-key="${escapeHtml(cardKey)}" style="left:${leftPx}px;width:${widthPx}px" title="${escapeHtml(act.actividad)} (${formatShortDayMonth(b.startStr)} → ${formatShortDayMonth(b.endStr)} · ${b.dh} DH)">${insideText}</div>`
           );
         }
         rightHtml.push(`<div class="gantt-row-right">${rowBarsHtml.join("")}</div>`);
@@ -4147,9 +4697,20 @@
       ];
       for (const c of campsToDisplay) {
         const f = act.fechas[c.id];
-        cells.push(`<td style="text-align:center;font-variant-numeric:tabular-nums">${f || "—"}</td>`);
+        cells.push(`<td class="matrix-date-cell" style="text-align:center">${f || "—"}</td>`);
       }
       bodyRows.push(`<tr class="${isChecked ? "selected-row" : ""}">${cells.join("")}</tr>`);
+    }
+    if (bodyRows.length === 0) {
+      els.matrixTableBody.innerHTML = `
+        <tr>
+          <td colspan="${6 + campsToDisplay.length}" style="padding:40px 20px;text-align:center;color:var(--ui-text-secondary)">
+            <div style="font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--ui-text);margin-bottom:4px">No hay actividades seleccionadas para mostrar en la Matriz</div>
+            <div style="font-size:12.5px">Activa actividades desde "Actividades oficiales" en el panel izquierdo o marca "Catálogo completo (259)" arriba.</div>
+          </td>
+        </tr>
+      `;
+      return;
     }
     els.matrixTableBody.innerHTML = bodyRows.join("");
 
@@ -4404,13 +4965,45 @@
     if (els.btnUploadExcel && els.excelUploadInput) {
       els.btnUploadExcel.addEventListener("click", () => {
         if (!isUserAdmin(state.loggedInUserId)) return;
-        els.excelUploadInput.value = "";
-        els.excelUploadInput.click();
+        if (els.excelUploadModal) {
+          els.excelUploadModal.style.display = "flex";
+        } else {
+          els.excelUploadInput.value = "";
+          els.excelUploadInput.click();
+        }
       });
       els.excelUploadInput.addEventListener("change", (e) => {
         const f = e.target.files && e.target.files[0];
         if (f) handleFileUpload(f);
       });
+    }
+    if (els.excelDropZone && els.excelUploadInput) {
+      els.excelDropZone.addEventListener("click", () => {
+        els.excelUploadInput.value = "";
+        els.excelUploadInput.click();
+      });
+      els.excelDropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        els.excelDropZone.classList.add("drag-over");
+      });
+      els.excelDropZone.addEventListener("dragleave", () => {
+        els.excelDropZone.classList.remove("drag-over");
+      });
+      els.excelDropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        els.excelDropZone.classList.remove("drag-over");
+        const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (f) handleFileUpload(f);
+      });
+    }
+    if (els.btnCloseExcelModal) {
+      els.btnCloseExcelModal.addEventListener("click", () => (els.excelUploadModal.style.display = "none"));
+    }
+    if (els.btnCancelExcelModal) {
+      els.btnCancelExcelModal.addEventListener("click", () => (els.excelUploadModal.style.display = "none"));
+    }
+    if (els.btnDismissUploadBanner && els.uploadSuccessBanner) {
+      els.btnDismissUploadBanner.addEventListener("click", () => (els.uploadSuccessBanner.style.display = "none"));
     }
     els.btnAdminManagePins.addEventListener("click", openAdminPinsModal);
     els.btnCloseAdminPins.addEventListener("click", () => (els.adminPinsModal.style.display = "none"));
@@ -4426,9 +5019,22 @@
 
     if (els.evMarcaInput) {
       els.evMarcaInput.addEventListener("change", () => {
+        const chosenBrand = els.evMarcaInput.value;
         const currentArea = els.evAreaInput ? els.evAreaInput.value : "";
-        renderSavedBrandAreasList(els.evMarcaInput.value, currentArea);
+        renderSavedBrandAreasList(chosenBrand, currentArea);
+        const refDate = els.evDateInput ? els.evDateInput.value : TODAY_STR;
+        populateCampaignSelectElement(els.evCampaignSelect, chosenBrand, "", refDate);
+        if (els.evRecurrenceRows) {
+          els.evRecurrenceRows.querySelectorAll(".ev-recurrence-row").forEach((row) => {
+            const rSel = row.querySelector(".rec-campaign-select");
+            const rStart = row.querySelector(".rec-start-input")?.value || refDate;
+            populateCampaignSelectElement(rSel, chosenBrand, "", rStart);
+          });
+        }
       });
+    }
+    if (els.btnAddRecurrenceRow) {
+      els.btnAddRecurrenceRow.addEventListener("click", () => addRecurrenceRow());
     }
 
     if (els.evAreaInput) {
@@ -4522,7 +5128,15 @@
       });
     }
 
-    els.evDateInput.addEventListener("change", updateModalRangeSummary);
+    els.evDateInput.addEventListener("change", () => {
+      updateModalRangeSummary();
+      if (els.evMarcaInput && String(els.evMarcaInput.value).trim().toLowerCase() === "nativa" && els.evCampaignSelect) {
+        const ymVal = `MES_${(els.evDateInput.value || "").slice(0, 7)}`;
+        if (Array.from(els.evCampaignSelect.options).some((o) => o.value === ymVal)) {
+          els.evCampaignSelect.value = ymVal;
+        }
+      }
+    });
     els.evEndDateInput.addEventListener("change", updateModalRangeSummary);
 
     els.btnEvOwnerOnlyMe.addEventListener("click", () => {
@@ -4905,11 +5519,130 @@
       els.ganttTimelineHeader.scrollLeft = els.ganttTimelineBody.scrollLeft;
     });
 
-    // Exports
-    els.btnExportPdfCalendar.addEventListener("click", printPdfCalendar);
-    els.btnExportPdfGantt.addEventListener("click", printPdfGantt);
-    els.btnExportIcs.addEventListener("click", exportFilteredToICS);
-    els.btnExportCsv.addEventListener("click", exportFilteredToCSV);
+    // Exports + Cockpit Sidebar + Mobile PWA bindings
+    els.btnExportPdfCalendar.addEventListener("click", () => {
+      if (els.exportMenuPopover) els.exportMenuPopover.classList.remove("open");
+      printPdfCalendar();
+    });
+    els.btnExportPdfGantt.addEventListener("click", () => {
+      if (els.exportMenuPopover) els.exportMenuPopover.classList.remove("open");
+      printPdfGantt();
+    });
+    els.btnExportIcs.addEventListener("click", () => {
+      if (els.exportMenuPopover) els.exportMenuPopover.classList.remove("open");
+      exportFilteredToICS();
+    });
+    els.btnExportCsv.addEventListener("click", () => {
+      if (els.exportMenuPopover) els.exportMenuPopover.classList.remove("open");
+      exportFilteredToCSV();
+    });
+
+    if (els.btnExportMenuToggle && els.exportMenuPopover) {
+      els.btnExportMenuToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        els.exportMenuPopover.style.left = "14px";
+        els.exportMenuPopover.style.right = "auto";
+        els.exportMenuPopover.style.bottom = "58px";
+        els.exportMenuPopover.style.top = "auto";
+        els.exportMenuPopover.classList.toggle("open");
+      });
+      document.addEventListener("click", (e) => {
+        if (
+          els.exportMenuPopover.classList.contains("open") &&
+          !els.exportMenuPopover.contains(e.target) &&
+          e.target !== els.btnExportMenuToggle &&
+          e.target !== els.btnMobileExport
+        ) {
+          els.exportMenuPopover.classList.remove("open");
+        }
+      });
+    }
+
+    // Sidebar Collapse (Desktop) & Filter Drawer (Mobile)
+    try {
+      if (localStorage.getItem("AGLAB_SIDEBAR_COLLAPSED") === "1" && window.innerWidth >= 768) {
+        document.body.classList.add("sidebar-collapsed");
+      }
+    } catch (_) {}
+
+    if (els.btnToggleSidebar) {
+      els.btnToggleSidebar.addEventListener("click", () => {
+        const collapsed = document.body.classList.toggle("sidebar-collapsed");
+        try {
+          localStorage.setItem("AGLAB_SIDEBAR_COLLAPSED", collapsed ? "1" : "0");
+        } catch (_) {}
+      });
+    }
+
+    const closeMobileFilters = () => document.body.classList.remove("mobile-filters-open");
+    if (els.btnMobileOpenFilters) {
+      els.btnMobileOpenFilters.addEventListener("click", () => {
+        document.body.classList.add("mobile-filters-open");
+        if (els.btnMobileCloseSidebar) els.btnMobileCloseSidebar.style.display = "inline-flex";
+      });
+    }
+    if (els.btnMobileCloseSidebar) els.btnMobileCloseSidebar.addEventListener("click", closeMobileFilters);
+    if (els.mobileSidebarBackdrop) els.mobileSidebarBackdrop.addEventListener("click", closeMobileFilters);
+    if (els.btnMobileSwitchUser) els.btnMobileSwitchUser.addEventListener("click", () => els.btnSwitchUser?.click());
+    if (els.btnMobileAddEvent) els.btnMobileAddEvent.addEventListener("click", () => openCustomEventModal(null, TODAY_STR));
+    if (els.btnMobileExport && els.exportMenuPopover) {
+      els.btnMobileExport.addEventListener("click", (e) => {
+        e.stopPropagation();
+        els.exportMenuPopover.style.top = "54px";
+        els.exportMenuPopover.style.right = "12px";
+        els.exportMenuPopover.style.left = "auto";
+        els.exportMenuPopover.style.bottom = "auto";
+        els.exportMenuPopover.classList.toggle("open");
+      });
+    }
+    if (els.btnMobileNotif) {
+      els.btnMobileNotif.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const bell = document.getElementById("btnNotifBell");
+        if (bell) bell.click();
+      });
+    }
+
+    if (els.mobileBottomNav) {
+      els.mobileBottomNav.addEventListener("click", (e) => {
+        const navBtn = e.target.closest("[data-mobile-view]");
+        if (!navBtn) return;
+        const v = navBtn.getAttribute("data-mobile-view");
+        if (v === "calendar") els.tabCalendar?.click();
+        else if (v === "gantt") els.tabGantt?.click();
+        else if (v === "matrix") els.tabMatrix?.click();
+      });
+    }
+
+    if (els.btnResetAllFilters) {
+      els.btnResetAllFilters.addEventListener("click", () => {
+        state.searchQuery = "";
+        if (els.searchInput) els.searchInput.value = "";
+        state.brand = "ALL";
+        state.customFilterTags.clear();
+        if (window.CalendarV2 && typeof window.CalendarV2.resetQuickViewFilters === "function") {
+          window.CalendarV2.resetQuickViewFilters();
+        }
+        if (window.CalendarV2 && typeof window.CalendarV2.renderBrandControls === "function") {
+          window.CalendarV2.renderBrandControls(true);
+        }
+        populateFilterControls();
+        scheduleSavePreferences();
+        renderAll();
+      });
+    }
+
+    // Permitir clic en barra de Gantt para abrir el Inspector Lateral de Actividad
+    if (els.ganttTimelineBody) {
+      els.ganttTimelineBody.addEventListener("click", (e) => {
+        const barEl = e.target.closest(".gantt-bar[data-card-key]");
+        if (!barEl) return;
+        const cKey = barEl.getAttribute("data-card-key");
+        if (cKey && window.CalendarV2 && typeof window.CalendarV2.openCardDetail === "function") {
+          window.CalendarV2.openCardDetail(cKey);
+        }
+      });
+    }
   }
 
   /* ==========================================================================
@@ -4931,10 +5664,14 @@
     formatShortDayMonth,
     subtractBusinessDays,
     addDays,
+    countWeekdaysInMonth,
+    getColombianHoliday,
+    getColombianHolidaysForYear,
     getCustomEventRange,
     getCustomEventOwners,
     parseCustomEventMeta,
     openCustomEventModal,
+    openDuplicateEventModal,
     saveAreaForBrand,
     applyQuickPreset,
     getCampaignDisplayForBrand,

@@ -1,0 +1,2022 @@
+/* ==========================================================================
+   CRONOGRAMA AGLAB — REDESIGN V3 (EDITORIAL STITCH + COCKPIT + PWA)
+   Sistema visual editorial, contenedores suaves de marca, Sáb/Dom y Festivos CO,
+   carriles multi-día, Drag & Drop universal y experiencia nativa Móvil PWA.
+   ========================================================================== */
+
+:root {
+  /* Editorial Stitch Surfaces & Primary */
+  --ui-primary: #022448;
+  --ui-primary-hover: #1e3a5f;
+  --ui-primary-container: #ebf1ff;
+  --ui-on-primary-container: #0f2442;
+
+  --ui-surface: #faf9fc;
+  --ui-surface-lowest: #ffffff;
+  --ui-surface-low: #f4f3f7;
+  --ui-surface-mid: #eeedf1;
+  --ui-surface-high: #e7e6ec;
+
+  --ui-text: #1a1c1e;
+  --ui-text-secondary: #43474e;
+  --ui-text-muted: #6e727a;
+  --ui-border: #d5d7df;
+  --ui-border-strong: #b8bcc8;
+  --ui-border-subtle: #e5e7ef;
+
+  /* Weekend & Colombian Holiday Shading */
+  --wknd-bg: #ebeef5;
+  --wknd-header-bg: #e2e6f0;
+  --wknd-text: #5a6275;
+
+  --holiday-bg: #fff2f2;
+  --holiday-border: #fecdd3;
+  --holiday-accent: #e11d48;
+  --holiday-pill-bg: #ffe4e6;
+  --holiday-pill-fg: #9f1239;
+
+  /* Typography */
+  --font-display: "Wix Madefor Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Map legacy variables to Stitch system */
+  --bg-app: var(--ui-surface);
+  --bg-surface: var(--ui-surface-lowest);
+  --bg-subtle: var(--ui-surface-low);
+  --border-color: var(--ui-border);
+  --border-strong: var(--ui-border-strong);
+  --text-main: var(--ui-text);
+  --text-secondary: var(--ui-text-secondary);
+  --text-muted: var(--ui-text-muted);
+  --primary: var(--ui-primary);
+  --primary-hover: var(--ui-primary-hover);
+  --primary-light: var(--ui-primary-container);
+
+  /* Radii & Shadows */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --shadow-xs: 0 1px 2px rgba(2, 36, 72, 0.05);
+  --shadow-sm: 0 2px 6px rgba(2, 36, 72, 0.07);
+  --shadow-md: 0 8px 24px rgba(2, 36, 72, 0.11);
+  --shadow-lg: 0 16px 40px rgba(2, 36, 72, 0.16);
+}
+
+/* Base Reset & Typography */
+body {
+  font-family: var(--font-body);
+  background-color: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: 13.5px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   1. REDESIGNED LOGIN OVERLAY (#loginOverlay)
+   ========================================================================== */
+.login-overlay {
+  background: radial-gradient(circle at 50% 0%, #eef2ff 0%, #faf9fc 58%, #f1f3f9 100%) !important;
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--ui-surface-lowest) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+  max-width: 760px !important;
+  padding: 28px 32px !important;
+}
+
+.login-eyebrow {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--ui-primary) !important;
+  background: var(--ui-primary-container) !important;
+  border: 1px solid #c7d2fe !important;
+  padding: 3px 10px !important;
+  border-radius: 999px !important;
+  display: inline-block;
+}
+
+.login-hero-title {
+  font-family: var(--font-display) !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.4px !important;
+  color: var(--ui-text) !important;
+  margin-top: 8px !important;
+}
+
+.login-hero-sub {
+  font-family: var(--font-body) !important;
+  color: var(--ui-text-secondary) !important;
+  font-size: 13.5px !important;
+}
+
+.login-user-btn {
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--ui-surface-lowest) !important;
+  transition: all 0.14s ease !important;
+}
+
+.login-user-btn:hover {
+  border-color: var(--ui-primary) !important;
+  background: var(--ui-surface-low) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs) !important;
+}
+
+.login-card .btn-secondary,
+#btnChangeLoginUser {
+  background: var(--ui-surface-low) !important;
+  color: var(--ui-text) !important;
+  border: 1px solid var(--ui-border) !important;
+  font-weight: 600 !important;
+}
+
+.login-card .btn-secondary:hover,
+#btnChangeLoginUser:hover {
+  background: var(--ui-surface-mid) !important;
+}
+
+.login-pin-input:placeholder-shown {
+  letter-spacing: normal !important;
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   2. DESKTOP COCKPIT SHELL (260px Collapsible Rail + Full Main Workspace)
+   ========================================================================== */
+.cockpit-shell {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--ui-surface);
+  transition: grid-template-columns 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+
+body.sidebar-collapsed .cockpit-shell {
+  grid-template-columns: 0px minmax(0, 1fr);
+}
+
+.cockpit-sidebar {
+  background: var(--ui-surface-lowest);
+  border-right: 1px solid var(--ui-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100dvh;
+  width: 264px;
+  overflow: hidden;
+  z-index: 35;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), opacity 0.18s ease;
+}
+
+body.sidebar-collapsed .cockpit-sidebar {
+  transform: translateX(-264px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cockpit-sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cockpit-sidebar-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.cockpit-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+
+/* Identity Block */
+.cockpit-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ui-border-subtle);
+}
+
+.cockpit-ag-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--ui-primary);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.3px;
+}
+
+.cockpit-id-texts {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cockpit-id-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.cockpit-id-title-row h1 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ui-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cockpit-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.badge-version-mono,
+#cronogramaVersionBadge {
+  font-family: var(--font-mono) !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  padding: 2px 6px !important;
+  border-radius: var(--radius-xs) !important;
+  background: var(--ui-primary-container) !important;
+  color: var(--ui-on-primary-container) !important;
+  border: 1px solid #c7d2fe !important;
+  font-variant-numeric: tabular-nums;
+  max-width: 190px;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: inline-block !important;
+  line-height: 1.3 !important;
+}
+
+.badge-cloud-dot {
+  font-size: 11px;
+  color: var(--ui-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 185px;
+}
+
+.cockpit-user-btn {
+  margin-top: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 5px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ui-border-subtle);
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  max-width: 100%;
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.cockpit-user-btn:hover {
+  background: var(--ui-surface-mid);
+  border-color: var(--ui-border-strong);
+}
+
+.user-avatar-xs {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--ui-primary) !important;
+  color: #ffffff !important;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Admin Compact Box inside Sidebar */
+.cockpit-admin-box {
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cockpit-admin-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.cockpit-admin-box select {
+  width: 100%;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid #fcd34d;
+  background: #ffffff;
+  color: var(--ui-text);
+}
+
+/* Section Labels in Sidebar */
+.rail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ui-border-subtle);
+}
+
+.rail-section-first {
+  border-top: none;
+  padding-top: 0;
+}
+
+.rail-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ui-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Vertical View Switcher */
+.cockpit-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cockpit-nav .tab-btn,
+.cockpit-nav .rail-link-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ui-text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.cockpit-nav .tab-btn:hover:not(.active),
+.cockpit-nav .rail-link-btn:hover {
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+}
+
+.cockpit-nav .tab-btn.active {
+  background: var(--ui-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--ui-primary) !important;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Vertical Brand Selector in Sidebar */
+.cockpit-sidebar #brandPillsContainer.brand-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.cockpit-sidebar #brandPillsContainer .brand-pill {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  text-align: left;
+}
+
+.cockpit-sidebar #brandPillsContainer .brand-pill:hover:not(.active) {
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+}
+
+.cockpit-sidebar #brandPillsContainer .brand-pill.active {
+  background: var(--ui-surface-mid) !important;
+  color: var(--ui-text) !important;
+  border-color: var(--ui-border) !important;
+  box-shadow: none !important;
+  font-weight: 700;
+}
+
+.cockpit-sidebar #brandPillsContainer .brand-pill[data-brand="ALL"].active {
+  background: var(--ui-surface-mid) !important;
+  color: var(--ui-text) !important;
+}
+
+.brand-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Sidebar Filter Controls */
+.rail-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rail-input-wrap .material-symbols-outlined {
+  position: absolute;
+  left: 9px;
+  font-size: 16px;
+  color: var(--ui-text-muted);
+  pointer-events: none;
+}
+
+.rail-search-input {
+  width: 100%;
+  padding: 7px 10px 7px 30px !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--ui-border) !important;
+  background: var(--ui-surface-lowest) !important;
+  font-family: var(--font-body) !important;
+  font-size: 12.5px !important;
+  color: var(--ui-text) !important;
+}
+
+.rail-search-input:focus {
+  outline: none !important;
+  border-color: var(--ui-primary) !important;
+  box-shadow: 0 0 0 2px rgba(2, 36, 72, 0.1) !important;
+}
+
+.rail-trigger-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.rail-trigger-btn:hover {
+  background: var(--ui-surface-low);
+  border-color: var(--ui-border-strong);
+}
+
+.rail-trigger-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--ui-primary-container);
+  color: var(--ui-on-primary-container);
+  margin-left: auto;
+}
+
+/* Active campaign pills inside rail */
+.cockpit-sidebar .active-campaigns-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.cockpit-sidebar .camp-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--ui-surface-low);
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text);
+}
+
+/* Team Avatars Pills in Rail */
+.cockpit-sidebar .team-avatars-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.cockpit-sidebar .team-avatars-scroll-wrap {
+  max-width: 100%;
+}
+
+.cockpit-sidebar .team-avatars-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 118px;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
+.rail-reset-btn {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.rail-reset-btn:hover {
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+}
+
+/* Sticky Footer Actions in Left Rail */
+.cockpit-sidebar-footer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.btn-rail-primary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ui-primary);
+  background: var(--ui-primary);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.14s ease;
+}
+
+.btn-rail-primary:hover {
+  background: var(--ui-primary-hover);
+}
+
+.btn-rail-upload {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ui-border-strong);
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.14s ease;
+}
+
+.btn-rail-upload:hover {
+  background: var(--ui-surface-mid);
+}
+
+.rail-footer-row2 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  position: relative;
+}
+
+.btn-rail-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.btn-rail-secondary:hover {
+  background: var(--ui-surface-low);
+}
+
+/* Unified Export Menu Popover */
+.export-menu-popover {
+  position: fixed;
+  left: 14px;
+  bottom: 58px;
+  width: 244px;
+  background: var(--ui-surface-lowest);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 120;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.export-menu-popover.open {
+  display: flex;
+}
+
+.export-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.export-menu-item:hover {
+  background: var(--ui-surface-low);
+}
+
+.export-menu-item .material-symbols-outlined {
+  color: var(--ui-primary);
+  font-size: 19px;
+}
+
+.export-item-title {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.export-item-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--ui-text-muted);
+}
+
+/* Notification Dropdown Positioned Cleanly */
+.notif-dropdown-panel {
+  position: fixed !important;
+  left: 272px !important;
+  bottom: 16px !important;
+  top: auto !important;
+  right: auto !important;
+  width: 340px !important;
+  max-height: 460px !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--ui-border) !important;
+  box-shadow: var(--shadow-lg) !important;
+  z-index: 130 !important;
+}
+
+/* ==========================================================================
+   3. COCKPIT MAIN PANEL & CONTEXTUAL TOPBAR
+   ========================================================================== */
+.cockpit-main {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--ui-surface);
+}
+
+.contextual-topbar {
+  background: var(--ui-surface-lowest);
+  border-bottom: 1px solid var(--ui-border);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.topbar-left-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+#calStatusFilter.cal-status-filter {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  line-height: 32px !important;
+  padding: 0 28px 0 11px !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--ui-border) !important;
+  background-color: var(--ui-surface-lowest) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2343474e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 9px center !important;
+  font-family: var(--font-body) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--ui-text) !important;
+}
+
+.btn-icon-square {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-icon-square:hover {
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+}
+
+/* Month Navigation Pill (< Noviembre 2026 >) */
+.month-stepper-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--radius-md);
+  background: var(--ui-surface-lowest);
+  overflow: hidden;
+  height: 34px;
+}
+
+.month-stepper-btn {
+  border: none;
+  background: transparent;
+  height: 100%;
+  padding: 0 8px;
+  color: var(--ui-text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-stepper-btn:hover {
+  background: var(--ui-surface-low);
+  color: var(--ui-text);
+}
+
+.month-stepper-label {
+  padding: 0 12px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ui-text);
+  min-width: 148px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-topbar-chip {
+  height: 34px;
+  padding: 0 11px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-topbar-chip:hover {
+  background: var(--ui-surface-low);
+}
+
+.btn-topbar-chip.active {
+  background: var(--ui-primary-container);
+  color: var(--ui-primary);
+  border-color: #93b4ec;
+}
+
+/* Segmented Subview (Mes | Semana | Agenda) */
+.cal-subview-segmented {
+  height: 34px;
+  padding: 3px !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--ui-surface-mid) !important;
+  border: 1px solid var(--ui-border) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cal-subview-btn {
+  height: 26px;
+  padding: 0 10px !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: var(--font-body) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--ui-text-secondary) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.cal-subview-btn.active {
+  background: var(--ui-primary) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Right KPIs in Topbar (21 DH | 16 hitos visibles) */
+.topbar-right-kpis {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kpi-mono-badge {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--ui-surface-low);
+  border: 1px solid var(--ui-border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-mono-badge strong {
+  color: var(--ui-primary);
+}
+
+/* Main Workspace Scroll Container */
+.main-workspace {
+  flex: 1;
+  overflow: auto;
+  padding: 16px 18px 28px;
+  background: var(--ui-surface);
+}
+
+/* Upload Success Banner */
+.upload-success-banner {
+  margin: 10px 18px 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: #dcfce7;
+  color: #14532d;
+  border: 1px solid #86efac;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   4. CALENDAR V3: WEEKENDS, COLOMBIAN HOLIDAYS, MULTI-DAY LANES & MINIMAL CARDS
+   ========================================================================== */
+.calendar-month-sheet {
+  background: var(--ui-surface-lowest) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-xs) !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.calendar-month-header {
+  padding: 12px 16px !important;
+  background: var(--ui-surface-lowest) !important;
+  border-bottom: 1px solid var(--ui-border-subtle) !important;
+}
+
+.calendar-month-title {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--ui-text) !important;
+}
+
+/* Week Grid Header (Lun - Dom) */
+.cal-v3-weekdays-header {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  background: var(--ui-surface-low);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.cal-v3-weekday-cell {
+  padding: 7px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ui-text-secondary);
+  border-right: 1px solid var(--ui-border-subtle);
+}
+
+.cal-v3-weekday-cell:last-child {
+  border-right: none;
+}
+
+.cal-v3-weekday-cell.is-weekend-head {
+  background: var(--wknd-header-bg);
+  color: var(--wknd-text);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Week Row Container (supports continuous multi-day lanes + 7 day cells) */
+.cal-v3-week-block {
+  position: relative;
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.cal-v3-week-block:last-child {
+  border-bottom: none;
+}
+
+.cal-v3-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.cal-v3-day-cell {
+  min-height: 124px;
+  padding: 6px;
+  border-right: 1px solid var(--ui-border-subtle);
+  background: var(--ui-surface-lowest);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  transition: background-color 0.12s ease;
+}
+
+.cal-v3-day-cell:last-child {
+  border-right: none;
+}
+
+/* CLEAR WEEKEND SHADING (Saturday & Sunday) */
+.cal-v3-day-cell.is-weekend,
+.cal-week-col.is-weekend {
+  background-color: var(--wknd-bg) !important;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.026) 0px,
+    rgba(15, 23, 42, 0.026) 5px,
+    transparent 5px,
+    transparent 10px
+  ) !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cal-v3-day-cell.day-other-month {
+  background-color: #f3f4f8 !important;
+  opacity: 0.68;
+}
+
+/* COLOMBIAN OFFICIAL HOLIDAY SHADING & BADGE */
+.cal-v3-day-cell.is-col-holiday:not(.day-other-month),
+.cal-week-col.is-col-holiday {
+  background-color: var(--holiday-bg) !important;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(225, 29, 72, 0.03) 0px,
+    rgba(225, 29, 72, 0.03) 5px,
+    transparent 5px,
+    transparent 10px
+  ) !important;
+  box-shadow: inset 0 2px 0 var(--holiday-accent);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Today Highlight */
+.cal-v3-day-cell.day-today {
+  box-shadow: inset 0 0 0 2px var(--ui-primary) !important;
+}
+
+.day-num-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-height: 22px;
+}
+
+.day-num {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--ui-text-secondary) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-today .day-num {
+  background: var(--ui-primary) !important;
+  color: #ffffff !important;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.day-dh-micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.col-holiday-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  background: var(--holiday-pill-bg);
+  color: var(--holiday-pill-fg);
+  border: 1px solid var(--holiday-border);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.25;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.day-add-btn {
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-lowest);
+  color: var(--ui-text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.12s ease, background 0.12s ease;
+}
+
+.cal-v3-day-cell:hover .day-add-btn,
+.cal-week-col:hover .day-add-btn {
+  opacity: 1;
+}
+
+.day-add-btn:hover {
+  background: var(--ui-primary);
+  color: #ffffff;
+  border-color: var(--ui-primary);
+}
+
+/* Continuous Multi-Day Horizontal Lanes inside Week Block */
+.cal-v3-multiday-lanes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 5px 6px 3px;
+  background: rgba(250, 249, 252, 0.72);
+  border-bottom: 1px dashed var(--ui-border-subtle);
+}
+
+.cal-v3-lane-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.cal-multiday-bar {
+  position: relative;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  background: var(--brand-bg, #ebf1ff);
+  color: var(--brand-text, #1e1b4b);
+  border: 1px solid var(--brand-border, #c7d2fe);
+  border-left: 3px solid var(--card-accent, var(--brand-color, #4f46e5));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: grab;
+  min-width: 0;
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.cal-multiday-bar:hover {
+  box-shadow: var(--shadow-sm);
+  z-index: 5;
+}
+
+.cal-multiday-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cal-multiday-bar-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cal-multiday-bar-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-multiday-bar-range {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* Minimalist Stitch Event Card (Image 1 Style) */
+.calendar-event-card.cal-v2-card {
+  position: relative;
+  padding: 5px 7px !important;
+  border-radius: var(--radius-xs) !important;
+  background: var(--brand-bg, #ebf1ff) !important;
+  border: 1px solid var(--brand-border, #c7d2fe) !important;
+  border-left: 3px solid var(--card-accent, var(--brand-color, #4f46e5)) !important;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: grab;
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.calendar-event-card.cal-v2-card:hover {
+  box-shadow: var(--shadow-sm) !important;
+  z-index: 6;
+}
+
+.calendar-event-card.cal-v2-card.cal-status-listo {
+  opacity: 0.76;
+}
+
+.cal-card-top-mono {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--brand-text, var(--ui-primary));
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+
+.cal-card-code-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cal-card-brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--card-accent, var(--brand-color, #4f46e5));
+  flex-shrink: 0;
+}
+
+.cal-card-mini-indicators {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.cal-mini-ind {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  padding: 0 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ui-text-secondary);
+}
+
+.cal-card-clean-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ui-text);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.cal-card-clean-title .act-num-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ui-text-secondary);
+}
+
+/* Hover-only Floating Action Toolbar on Cards */
+.cal-card-hover-toolbar {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--ui-border-strong);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+  z-index: 10;
+}
+
+.calendar-event-card:hover .cal-card-hover-toolbar,
+.cal-multiday-bar:hover .cal-card-hover-toolbar,
+.calendar-event-card:focus-within .cal-card-hover-toolbar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cal-hover-icon-btn {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ui-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cal-hover-icon-btn .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.cal-hover-icon-btn:hover {
+  background: var(--ui-primary-container);
+  color: var(--ui-primary);
+}
+
+/* ==========================================================================
+   5. UNIVERSAL DRAG & DROP VISUALS (Month, Week & Agenda)
+   ========================================================================== */
+[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.is-dragging {
+  opacity: 0.45 !important;
+  transform: scale(0.98);
+}
+
+.is-drop-target {
+  outline: 2px dashed var(--ui-primary) !important;
+  outline-offset: -3px;
+  background-color: var(--ui-primary-container) !important;
+}
+
+/* Agenda Quick Drop Bar (for moving cards to any date in Agenda view) */
+.agenda-quick-drop-bar {
+  position: sticky;
+  top: 0;
+  z-index: 18;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--ui-surface-lowest);
+  border: 1px dashed var(--ui-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s ease;
+}
+
+body.dragging-active-card .agenda-quick-drop-bar {
+  background: #ebf1ff;
+  border-color: var(--ui-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.agenda-drop-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.agenda-drop-chip {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px dashed var(--ui-border-strong);
+  background: var(--ui-surface-low);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ui-text);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. SLIDE-OVER INSPECTOR DRAWER & REDESIGNED MODALS
+   ========================================================================== */
+.card-drawer-backdrop {
+  background: rgba(15, 23, 42, 0.32) !important;
+  backdrop-filter: blur(2px);
+  z-index: 150 !important;
+}
+
+.card-detail-drawer {
+  width: 430px !important;
+  max-width: 100vw !important;
+  background: var(--ui-surface-lowest) !important;
+  border-left: 1px solid var(--ui-border) !important;
+  box-shadow: var(--shadow-lg) !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-editorial-head {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--ui-border-subtle);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.drawer-editorial-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ui-text);
+  line-height: 1.3;
+  margin: 6px 0 0;
+}
+
+.drawer-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--ui-surface-low);
+  border: 1px solid var(--ui-border-subtle);
+}
+
+.drawer-meta-item span.lbl {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ui-text-muted);
+  margin-bottom: 2px;
+}
+
+.drawer-meta-item span.val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.drawer-diff-alert {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: #ffedd5;
+  color: #7c2d12;
+  border: 1px solid #fdba74;
+  font-size: 12.5px;
+}
+
+/* Recurrence Sub-menu inside Custom Event Modal & Drawer Footer Single Row */
+.modal-body > * {
+  flex-shrink: 0;
+}
+
+.ev-recurrence-box {
+  flex-shrink: 0 !important;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--radius-md);
+  background: var(--ui-surface-low);
+  overflow: visible !important;
+}
+
+.cal-drawer-footer {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.cal-drawer-footer .btn-rail-secondary {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+}
+
+.ev-recurrence-summary {
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  list-style: none;
+}
+
+.ev-recurrence-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ev-recurrence-body {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--ui-border-subtle);
+  background: var(--ui-surface-lowest);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ev-recurrence-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.25fr auto;
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  background: var(--ui-surface-low);
+  border: 1px solid var(--ui-border-subtle);
+}
+
+/* Drag & Drop Excel Modal */
+.excel-dropzone {
+  border: 2px dashed var(--ui-border-strong);
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--ui-surface-low);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.excel-dropzone:hover,
+.excel-dropzone.drag-over {
+  border-color: var(--ui-primary);
+  background: var(--ui-primary-container);
+}
+
+/* ==========================================================================
+   7. GANTT (IMAGE 2) & PIVOT MATRIX (IMAGE 3) EDITORIAL REFINEMENT
+   ========================================================================== */
+.gantt-wrapper {
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--ui-surface-lowest) !important;
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+
+.timeline-tick-cell.is-today-tick {
+  background: var(--ui-primary) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 3px;
+}
+
+.timeline-tick-cell.is-holiday-tick {
+  background: var(--holiday-pill-bg) !important;
+  color: var(--holiday-pill-fg) !important;
+  font-weight: 700;
+}
+
+.gantt-bar:not(.group-summary-bar) {
+  border-radius: var(--radius-xs) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 6px !important;
+  padding: 0 7px !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.badge-marca {
+  white-space: nowrap !important;
+}
+
+.gantt-bar.bar-Azzorti {
+  background: #fce8ef !important;
+  color: #7a0e35 !important;
+  border: 1px solid #f9a8c9 !important;
+}
+
+.gantt-bar.bar-Livva {
+  background: #f3e8ff !important;
+  color: #4c1d95 !important;
+  border: 1px solid #d8b4fe !important;
+}
+
+.gantt-bar.bar-Nativa {
+  background: #e2f8ef !important;
+  color: #064e3b !important;
+  border: 1px solid #6ee7b7 !important;
+}
+
+.gantt-bar.bar-AgLab,
+.gantt-bar.bar-AzzLivv {
+  background: #ebf1ff !important;
+  color: #1e1b4b !important;
+  border: 1px solid #c7d2fe !important;
+}
+
+/* Matrix Pivot Table Clean Editorial Look */
+.matrix-wrapper {
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--ui-surface-lowest) !important;
+  box-shadow: var(--shadow-xs);
+}
+
+.matrix-table thead th {
+  background: var(--ui-surface-low) !important;
+  color: var(--ui-text-secondary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid var(--ui-border) !important;
+}
+
+.matrix-table tbody td {
+  font-size: 12.5px !important;
+  border-bottom: 1px solid var(--ui-border-subtle) !important;
+}
+
+.matrix-date-cell {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Fix shifted sticky column widths in Pivot Matrix (Checkbox | No | Actividad | Proceso | Marca) */
+.matrix-table .sticky-col-1 {
+  left: 0 !important;
+  width: 38px !important;
+  min-width: 38px !important;
+  max-width: 38px !important;
+}
+.matrix-table .sticky-col-2 {
+  left: 38px !important;
+  width: 58px !important;
+  min-width: 58px !important;
+  max-width: 58px !important;
+  font-family: var(--font-mono) !important;
+}
+.matrix-table .sticky-col-3 {
+  left: 96px !important;
+  width: 270px !important;
+  min-width: 240px !important;
+  max-width: 290px !important;
+}
+.matrix-table .sticky-col-4 {
+  left: 366px !important;
+  width: 155px !important;
+  min-width: 140px !important;
+  max-width: 170px !important;
+}
+.matrix-table .sticky-col-5 {
+  left: 521px !important;
+  width: 110px !important;
+  min-width: 105px !important;
+  max-width: 120px !important;
+}
+
+/* ==========================================================================
+   8. MOBILE PWA (< 768px): MINI-CALENDAR + AGENDA + BOTTOM NAV + BOTTOM SHEET
+   ========================================================================== */
+.mobile-pwa-header,
+.mobile-bottom-nav,
+.mobile-sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body {
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .cockpit-shell {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    padding-bottom: 66px;
+  }
+
+  .mobile-pwa-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--ui-surface-lowest);
+    border-bottom: 1px solid var(--ui-border);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* Sidebar becomes slide-over filter drawer on mobile */
+  .cockpit-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 286px;
+    max-width: 86vw;
+    z-index: 160;
+    transform: translateX(-104%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  body.mobile-filters-open .cockpit-sidebar {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.mobile-filters-open .mobile-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.38);
+    z-index: 155;
+  }
+
+  .cockpit-main {
+    height: auto;
+    overflow: visible;
+  }
+
+  .main-workspace {
+    overflow: visible;
+    padding: 12px 12px 24px;
+  }
+
+  .contextual-topbar {
+    padding: 8px 12px;
+  }
+
+  .contextual-topbar #btnToggleSidebar {
+    display: none;
+  }
+
+  /* Mini-Calendar with Brand Dots + Agenda Split */
+  .mobile-mini-cal-card {
+    background: var(--ui-surface-lowest);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    margin-bottom: 14px;
+  }
+
+  .mobile-mini-weekdays,
+  .mobile-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    text-align: center;
+  }
+
+  .mobile-mini-weekdays span {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ui-text-muted);
+    padding-bottom: 4px;
+  }
+
+  .mobile-mini-day {
+    height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-mini-day.is-weekend {
+    background: var(--wknd-bg);
+  }
+
+  .mobile-mini-day.is-col-holiday {
+    background: var(--holiday-bg);
+    border-color: var(--holiday-border);
+  }
+
+  .mobile-mini-day.is-selected {
+    border-color: var(--ui-primary);
+    background: var(--ui-primary-container);
+  }
+
+  .mobile-mini-day.is-today .mini-day-num {
+    background: var(--ui-primary);
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0 5px;
+  }
+
+  .mini-day-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ui-text);
+  }
+
+  .mini-day-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 6px;
+  }
+
+  .mini-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  /* Bottom Sheet for Card Detail on Mobile */
+  .card-drawer-backdrop {
+    align-items: flex-end !important;
+  }
+
+  .card-detail-drawer {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 88dvh !important;
+    border-left: none !important;
+    border-top: 1px solid var(--ui-border) !important;
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  .mobile-sheet-handle {
+    display: flex !important;
+    justify-content: center;
+    padding: 8px 0 2px;
+  }
+
+  .mobile-sheet-handle span {
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--ui-border-strong);
+  }
+
+  /* Fixed Bottom Navigation PWA */
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: var(--ui-surface-lowest);
+    border-top: 1px solid var(--ui-border);
+    padding: 5px 10px calc(5px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .mobile-nav-btn {
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-md);
+    padding: 5px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: var(--ui-text-secondary);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .mobile-nav-btn.active {
+    background: var(--ui-primary-container);
+    color: var(--ui-primary);
+  }
+
+  .ev-recurrence-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   9. PRINT PRESERVATION (@media print for PDF Calendar & PDF Gantt)
+   ========================================================================== */
+@media print {
+  .cockpit-sidebar,
+  .contextual-topbar,
+  .mobile-pwa-header,
+  .mobile-bottom-nav,
+  .mobile-sidebar-backdrop,
+  .cal-card-hover-toolbar,
+  .export-menu-popover,
+  .agenda-quick-drop-bar,
+  .day-add-btn {
+    display: none !important;
+  }
+
+  .cockpit-shell {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .cockpit-main,
+  .main-workspace {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .cal-v3-day-cell.is-weekend,
+  .cal-v3-day-cell.is-col-holiday,
+  .col-holiday-badge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
